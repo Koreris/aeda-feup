@@ -68,7 +68,7 @@ bool BuddyList::areBuddies(const Person& personA, const Person& personB) const
 	return it->second.find(personB) != it->second.end();
 }
 
-std::unordered_set<Person> BuddyList::getBuddies(const Person& personA) const
+unordered_set<Person> BuddyList::getBuddies(const Person& personA) const
 {
 	const auto it = buddies.find(personA);
 
@@ -78,6 +78,6 @@ std::unordered_set<Person> BuddyList::getBuddies(const Person& personA) const
 	}
 	else
 	{
-		return std::unordered_set<Person>();
+		return unordered_set<Person>();
 	}
 }

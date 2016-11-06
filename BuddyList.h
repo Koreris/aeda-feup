@@ -4,8 +4,11 @@
 #include <unordered_set>
 #include "Person.h"
 
+using namespace std;
+
 class BuddyList
 {
+
 private:
 
 	void removeVertex(const Person& personA);
@@ -26,11 +29,11 @@ public:
 	void insertBuddies(const Person& personA, const Person& personB);
 	void removeBuddies(const Person& personA, const Person& personB);
 
-	std::unordered_set<Person> getBuddies(const Person& personA) const;
+	unordered_set<Person> getBuddies(const Person& personA) const;
 
 	bool areBuddies(const Person& personA, const Person& personB) const;
 
 private:
 
-	std::map<Person, std::unordered_set<Person>> buddies;
+	map<Person, unordered_set<Person>> buddies;
 };
