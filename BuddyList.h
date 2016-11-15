@@ -1,10 +1,7 @@
 #pragma once
-
-#include <map>
-#include <unordered_set>
+#include "includes.h"
 #include "Person.h"
 
-using namespace std;
 
 class BuddyList
 {
