@@ -5,6 +5,7 @@ Vehicle::Vehicle()
 	car_seats=0;
 }
 
+Vehicle::Vehicle(string o, string t, string b, string l_p, unsigned int c_s)
 {
 	owner=o;
 	type=t;
@@ -38,6 +39,7 @@ void Vehicle::setLicensePlate(string l_p)
 	license_plate=l_p;
 }
 
+void Vehicle::setCarSeats(unsigned int c_s)
 {
 	car_seats=c_s;
 }
@@ -63,6 +65,7 @@ string Vehicle::getLicensePlate() const
 	return license_plate;
 }
 
+unsigned int Vehicle::getCarSeats() const
 {
 	return car_seats;
 }
