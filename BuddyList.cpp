@@ -1,5 +1,13 @@
 #include "BuddyList.h"
 
+BuddyList::BuddyList()
+{
+}
+
+BuddyList::~BuddyList()
+{
+}
+
 void BuddyList::insertEdge(const Person& personA, const Person& personB)
 {
 	auto it = buddies.find(personA);

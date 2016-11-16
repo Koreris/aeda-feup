@@ -14,13 +14,8 @@ private:
 
 public:
 
-	BuddyList()
-	{
-	}
-
-	virtual ~BuddyList()
-	{
-	}
+	BuddyList();
+	virtual ~BuddyList();
 
 	void removeUser(const Person& personA);
 	void insertBuddies(const Person& personA, const Person& personB);
