@@ -1,3 +1,4 @@
+#pragma once
 #include "includes.h"
 #include <cmath>
 #include <ctime>
@@ -6,23 +7,66 @@
 class Date
 {
 private:
-	unsigned int hour, minute, day, month, year;
+	int year;
+	int month;
+	int day;
+	int hour;
+	int minute;
+	int second;
+
 public:
 	Date();
-	Date(unsigned int h, unsigned int min, unsigned int d, unsigned int m, unsigned int y);
-	~Date();
+	Date(string cfg_str);
+	Date(int year, int month, int day, int hour, int minute, int second);
 
-	unsigned int getHour() const;
-	unsigned int getMin() const;
-	unsigned int getDay() const;
-	unsigned int getMonth() const;
-	unsigned int getYear() const;
+	int getYear() const;
+	int getMonth() const;
+	int getDay() const;
+	int getHour() const;
+	int getMinute() const;
+	int getSecond() const;
 
-	void setHour(unsigned int h);
-	void setMin(unsigned int min);
-	void setDay(unsigned int d);
-	void setMonth(unsigned int m);
-	void setYear(unsigned int y);
+	void setYear(int year);
+	void setMonth(int month);
+	void setDay(int day);
+	void setHour(int hour);
+	void setMinute(int minute);
+	void setSecond(int second);
 
-	//TODO - we'll prolly need operator overloading
+	bool operator<(Date date2) const;
+	bool operator>(Date date2) const;
+	bool operator==(Date date2) const;
+	friend ostream& operator<<(ostream& os, const Date& d);
+	friend istream& operator>>(istream &is, Date& date);
+
+	string str() const;
+	string cfg_str() const;
+
+	static int daysInMonth(int month, int year);
+	static bool isLeapYear(int year);
+	static Date curDate();
+	static int numDays(Date d1, Date d2);
+
+	class InvalidDate
+	{
+	public:
+		InvalidDate()
+	{
+	}
+	};
 };
+
+/**
+ * Doesn't have error checking, assumes the string contains only digits and a possible minus sign in the beggining.
+ * @brief Converts string to long
+ * @param txt string to convert
+ * @return long with the value
+ */
+long stol(string txt)
+{
+	stringstream ss(txt);
+	long num;
+	ss >> num;
+
+	return num;
+}

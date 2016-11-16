@@ -9,12 +9,10 @@ Trip::Trip()
 	end=Date();
 }
 
-Trip::Trip(unsigned int a_s, float d, string f_p, string t_p, bool smoke, Date s, Date e)
+Trip::Trip(unsigned int a_s, float d, bool smoke, Date s, Date e)
 {
 	available_seats=a_s;
 	distance=d;
-	from_point=f_p;
-	to_point=t_p;
 	smoking_allowed=smoke;
 	start = s;
 	end = e;
@@ -33,16 +31,6 @@ void Trip::setAvailableSeats(unsigned int a_s)
 void Trip::setDistance(float d)
 {
 	distance=d;
-}
-
-void Trip::setFromPoint(string f_p)
-{
-	from_point=f_p;
-}
-
-void Trip::setToPoint(string t_p)
-{
-	to_point=t_p;
 }
 
 void Trip::setSmokingSign(bool s)
@@ -69,16 +57,6 @@ unsigned int Trip::getAvailableSeats() const
 float Trip::getDistance() const
 {
 	return distance;
-}
-
-string Trip::getFromPoint() const
-{
-	return from_point;
-}
-
-string Trip::getToPoint() const
-{
-	return to_point;
 }
 
 vector<string> Trip::getRoute() const

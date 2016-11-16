@@ -1,16 +1,34 @@
-class Person
+#include "Person.h"
+
+Person::Person()
 {
+	telephone_nr=000000000;
+}
 
-private:
+Person::Person(string n, unsigned long int t_nr)
+{
+	name=n;
+	telephone_nr=t_nr;
+}
 
+//setters
+void Person::setName(string n)
+{
+	name=n;
+}
 
-public:
+void Person::setTelNr(unsigned long t_nr)
+{
+	telephone_nr=t_nr;
+}
 
-	Person()
-	{
-	}
+//getters
+string Person::getName() const
+{
+	return name;
+}
 
-	virtual ~Person()
-	{
-	}
-};
+unsigned long Person::getTelNr() const
+{
+	return telephone_nr;
+}
