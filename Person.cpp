@@ -5,7 +5,7 @@ Person::Person()
 	telephone_nr=000000000;
 }
 
-Person::Person(string n, unsigned long int t_nr)
+Person::Person(string n, unsigned long t_nr)
 {
 	name=n;
 	telephone_nr=t_nr;
