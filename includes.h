@@ -8,10 +8,9 @@
 #include <cstring>
 #include <sstream>
 #include <vector>
+#include <stdio>
 #include <windows.h>
 #include <fstream>
-#include <conio.h>
-#include <stdio.h>
 #include <list>
 #include <map>
 

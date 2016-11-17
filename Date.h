@@ -3,6 +3,7 @@
 #include <cmath>
 #include <ctime>
 #include <chrono>
+#include <time>
 
 class Date
 {
@@ -55,18 +56,3 @@ public:
 	}
 	};
 };
-
-/**
- * Doesn't have error checking, assumes the string contains only digits and a possible minus sign in the beggining.
- * @brief Converts string to long
- * @param txt string to convert
- * @return long with the value
- */
-long stol(string txt)
-{
-	stringstream ss(txt);
-	long num;
-	ss >> num;
-
-	return num;
-}
