@@ -32,3 +32,48 @@ unsigned long Person::getTelNr() const
 {
 	return telephone_nr;
 }
+
+//RegPerson
+//setters
+
+void RegPerson::setUsern(string usrn)
+{
+	username=usrn;
+}
+
+void RegPerson::setPassw(string pw)
+{
+	password=pw;
+}
+
+void RegPerson::setVehicle(bool b)
+{
+	hasVehicle=b;
+}
+
+void RegPerson::setBilling(float f)
+{
+	billing=f;
+}
+
+//getters
+
+string RegPerson::getUsern() const
+{
+	return username;
+}
+
+string RegPerson::getPassw() const
+{
+	return password;
+}
+
+bool RegPerson::getHasVehicle() const
+{
+	return hasVehicle;
+}
+
+float RegPerson::getBilling() const
+{
+	return billing;
+}

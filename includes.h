@@ -8,7 +8,7 @@
 #include <cstring>
 #include <sstream>
 #include <vector>
-#include <stdio>
+#include <stdio.h>
 #include <windows.h>
 #include <fstream>
 #include <list>

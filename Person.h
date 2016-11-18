@@ -32,4 +32,14 @@ public:
 	RegPerson();
 	RegPerson(string n, unsigned long t_nr, string passw, string uname, bool v, float bill);
 	~RegPerson();
+
+	void setPassw(string pw);
+	void setUsern(string usrn);
+	void setVehicle(bool b);
+	void setBilling(float f);
+
+	string getPassw() const;
+	string getUsern() const;
+	bool getHasVehicle() const;
+	float getBilling() const;
 };
