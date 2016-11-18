@@ -29,7 +29,10 @@ int userLogin(RegPerson p)
 	return 1;
 }
 
-
+int main()
+{
+	return 0;
+}
 
 
 
