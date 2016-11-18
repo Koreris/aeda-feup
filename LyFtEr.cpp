@@ -19,10 +19,10 @@ void displayMainMenu()
 {
 	cout << "Welcome to LyFtEr!" << endl
 		<< "|*****************************************************************|" << endl <<
-		"| 1.  Login!                                                       |" << endl <<
+		"| 1.  Login!                                                      |" << endl <<
 		"| 2.  Search for next trip                                        |" << endl <<
 		"| 3.  Trip history                                                |" << endl <<
-		"| 4.  Payment options                                             |" << endl <<                                                    |" << endl <<
+		"| 4.  Payment options                                             |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 }
@@ -87,6 +87,19 @@ void displayPaymentMenu()
 		"| 2.  Consult all your payment                                    |" << endl <<
 		"| 3.  Consults all your transactions                              |" << endl <<
 		"| 4.  Go back to previous menu                                    |" << endl <<
+		"|*****************************************************************|" << endl;
+	cout << "Selected number from menu: ";
+}
+
+void displaySettingsMenu()
+{
+	cout << "Here you can manage your settings and account: " << endl
+		<< "|*****************************************************************|" << endl <<
+		"| 1.  Add vehicle/Become a driver                                 |" << endl <<
+		"| 2.  Delete vehicle                                              |" << endl <<
+		"| 3.  Display all vehicles                                        |" << endl <<
+		"| 4.  Alter full name                                             |" << endl <<
+		"| 5.  Go back to previous menu                                    |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 }
