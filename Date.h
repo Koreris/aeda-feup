@@ -7,6 +7,8 @@
 
 using namespace std;
 
+long stol(string txt);
+
 class Date
 {
 private:

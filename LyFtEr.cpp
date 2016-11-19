@@ -6,8 +6,9 @@
 #include "Vehicle.h"
 
 
-void displayMainMenu()
+long displayMainMenu()
 {
+	string user_in;
 	cout << "\n Welcome to LyFtEr! \n\n"<< endl
 		<< " +============================================================================+" << endl <<
 		" | 1.  Login!                                                                 |" << endl <<
@@ -16,17 +17,10 @@ void displayMainMenu()
 		" | 4.  Payment options                                                        |" << endl <<
 		" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
-}
+	getline(cin, user_in);
 
-int main()
-{
-    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
-    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
-    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
-    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
-    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
-    displayMainMenu();
-    return 0;
+	long user_in_=stol(user_in);
+	return user_in_;
 }
 
 void userLogin()
@@ -53,6 +47,25 @@ void displayLoginMenu()
 		"| 5.  Log out                                                     |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
+}
+
+int main()
+{
+    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
+    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
+    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
+    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
+    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
+    switch(displayMainMenu())
+    {
+    case 1:
+    	userLogin();
+    	displayLoginMenu();
+    	break;
+    default:
+    	cout << "nope" << endl;
+    }
+    return 0;
 }
 
 void displayTripMenu()
