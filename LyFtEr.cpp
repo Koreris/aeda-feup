@@ -5,24 +5,16 @@
 #include "Trip.h"
 #include "Vehicle.h"
 
-void displayLogo()
-{
-//	__ __  __ ______ ______ ______ ____ 
-//   / / \ \/ // ____//_  __// ____// __ \
-//  / /   \  // /_     / /  / __/  / /_/ /
-// / /___ / // __/    / /  / /___ / _, _/ 
-///_____//_//_/      /_/  /_____//_/ |_|
-}
 
 void displayMainMenu()
 {
 	cout << "\n Welcome to LyFtEr! \n\n"<< endl
-		<< " +============================================================================+\n" << endl <<
-		"| 1.  Login!                                                      |" << endl <<
-		"| 2.  Search for next trip                                        |" << endl <<
-		"| 3.  Trip history                                                |" << endl <<
-		"| 4.  Payment options                                             |" << endl <<
-		"+============================================================================+\n" << endl;
+		<< " +============================================================================+" << endl <<
+		" | 1.  Login!                                                                 |" << endl <<
+		" | 2.  Search for next trip                                                   |" << endl <<
+		" | 3.  Trip history                                                           |" << endl <<
+		" | 4.  Payment options                                                        |" << endl <<
+		" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
 }
 
@@ -35,6 +27,18 @@ int main()
     cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
     displayMainMenu();
     return 0;
+}
+
+void userLogin()
+{
+	string username="";
+	string password="";
+
+	cout << "Input your username: " << endl;
+	getline(cin, username);
+
+	cout << "Input your password: " << endl;
+	getline(cin, password);
 }
 
 void displayLoginMenu()

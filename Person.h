@@ -2,6 +2,7 @@
 #define PERSON_H_
 
 #include "includes.h"
+#include "Vehicle.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ private:
 	bool hasVehicle;
 	float billing;
 	vector <const RegPerson*> buddies;
+	vector <Vehicle *> vehicles;
 public:
 	RegPerson();
 	RegPerson(string n, unsigned long t_nr, string passw, string uname, bool v, float bill);
@@ -50,11 +52,14 @@ public:
 	bool getHasVehicle() const;
 	float getBilling() const;
 	vector<const RegPerson*> getBuddies() const;
+	vector<Vehicle *> getVehicles() const;
 
-	//misc
+	//crud
 	void insertBuddy(RegPerson* other_person);
 	void removeBuddy(RegPerson* other_person);
 	bool areBuddies(const RegPerson* other_person) const;
+	void addVehicle(Vehicle* v);
+	void removeVehicle(Vehicle *v);
 };
 
 #endif //PERSON_H_

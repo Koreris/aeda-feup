@@ -9,15 +9,6 @@ using namespace std;
 
 /*int userLogin(RegPerson p)
 {
-	string username="";
-	string password="";
-
-	cout << "Input your username: " << endl;
-	getline(cin, username);
-
-	cout << "Input your password: " << endl;
-	getline(cin, password);
-
 	if (p.getUsern()==username && p.getPassw()==password)
 	{
 		displayLoginMenu();

@@ -84,7 +84,12 @@ vector<const RegPerson*> RegPerson::getBuddies() const
 	return buddies;
 }
 
-//misc
+vector<Vehicle *> RegPerson::getVehicles() const
+{
+	return vehicles;
+}
+
+//crud
 bool RegPerson::areBuddies(const RegPerson* other_person) const
 {
 	/*
@@ -126,4 +131,14 @@ void RegPerson::removeBuddy(RegPerson* other_person)
 		}
 	}
 	*/
+}
+
+void RegPerson::addVehicle(Vehicle* v)
+{
+	this->vehicles.push_back(v);
+}
+
+void RegPerson::removeVehicle(Vehicle* v)
+{
+	//
 }
