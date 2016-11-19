@@ -1,13 +1,13 @@
 #include "includes.h"
-#include "BuddyList.h"
 #include "Date.h"
 #include "Person.h"
 #include "Place.h"
 #include "Trip.h"
 #include "Vehicle.h"
 
+using namespace std;
 
-int userLogin(RegPerson p)
+/*int userLogin(RegPerson p)
 {
 	string username="";
 	string password="";
@@ -31,8 +31,9 @@ int userLogin(RegPerson p)
 
 int main()
 {
+	cout << "at main" << endl;
 	return 0;
-}
+}*/
 
 
 

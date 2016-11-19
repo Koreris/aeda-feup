@@ -1,4 +1,9 @@
+#ifndef VEHICLE_H_
+#define VEHICLE_H_
+
 #include "includes.h"
+
+using namespace std;
 
 
 class Vehicle
@@ -27,3 +32,5 @@ public:
 	string getLicensePlate() const;
 	unsigned int getCarSeats() const;
 };
+
+#endif

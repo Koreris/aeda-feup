@@ -59,7 +59,7 @@ float Trip::getDistance() const
 	return distance;
 }
 
-vector<string> Trip::getRoute() const
+vector<Place *> Trip::getRoute() const
 {
 	return route;
 }

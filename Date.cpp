@@ -5,7 +5,7 @@
 * @brief Converts string to long
 * @param txt string to convert
 * @return long with the value
-
+*/
 long stol(string txt)
 {
 	stringstream ss(txt);
@@ -13,7 +13,7 @@ long stol(string txt)
 	ss >> num;
 
 	return num;
-}*/
+}
 
 /**
  * This constructor leads to an invalid date, not possible with setters or the other constructors because of the exceptions
@@ -336,7 +336,7 @@ bool Date::isLeapYear(int year)
  */
 Date Date::curDate()
 {
-	/*time_t t = time(0); // Get current time
+	time_t t = time(0); // Get current time
 	struct tm *t_now = localtime(&t);
 
 	int year = t_now->tm_year + 1900;
@@ -344,7 +344,7 @@ Date Date::curDate()
 	int day = t_now->tm_mday;
 	int hour = t_now->tm_hour;
 	int minute = t_now->tm_min;
-	int second = t_now->tm_sec;*/
+	int second = t_now->tm_sec;
 
 	Date temp(year, month, day, hour, minute, second);
 

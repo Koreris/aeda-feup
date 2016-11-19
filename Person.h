@@ -1,5 +1,9 @@
-#pragma once
+#ifndef PERSON_H_
+#define PERSON_H_
+
 #include "includes.h"
+
+using namespace std;
 
 class Person
 {
@@ -28,18 +32,29 @@ private:
 	string username;
 	bool hasVehicle;
 	float billing;
+	vector <const RegPerson*> buddies;
 public:
 	RegPerson();
 	RegPerson(string n, unsigned long t_nr, string passw, string uname, bool v, float bill);
 	~RegPerson();
 
+	//setters
 	void setPassw(string pw);
 	void setUsern(string usrn);
 	void setVehicle(bool b);
 	void setBilling(float f);
 
+	//getters
 	string getPassw() const;
 	string getUsern() const;
 	bool getHasVehicle() const;
 	float getBilling() const;
+	vector<const RegPerson*> getBuddies() const;
+
+	//misc
+	void insertBuddy(RegPerson* other_person);
+	void removeBuddy(RegPerson* other_person);
+	bool areBuddies(const RegPerson* other_person) const;
 };
+
+#endif //PERSON_H_

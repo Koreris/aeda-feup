@@ -1,5 +1,12 @@
+#ifndef TRIP_H_
+#define TRIP_H_
+
 #include "includes.h"
 #include "Date.h"
+#include "Person.h"
+#include "Place.h"
+
+using namespace std;
 
 class Trip
 {
@@ -20,7 +27,7 @@ public:
 
 	unsigned int getAvailableSeats() const;
 	float getDistance() const;
-	vector<string> getRoute() const;
+	vector<Place *> getRoute() const;
 	vector<Person *> getTravellers() const;
 	bool getSmokingSign() const;
 	Date getStart() const;
@@ -32,3 +39,5 @@ public:
 	void setStart(Date s);
 	void setEnd(Date e);
 };
+
+#endif //TRIP_H_

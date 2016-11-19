@@ -1,9 +1,11 @@
-#pragma once
+#ifndef DATE_H_
+#define DATE_H_
+
 #include "includes.h"
 #include <cmath>
 #include <ctime>
-#include <chrono>
-#include <time>
+
+using namespace std;
 
 class Date
 {
@@ -56,3 +58,5 @@ public:
 	}
 	};
 };
+
+#endif //_DATE_H_

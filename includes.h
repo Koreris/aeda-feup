@@ -1,5 +1,3 @@
-#include <map>
-#include <unordered_set>
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
@@ -12,6 +10,3 @@
 #include <windows.h>
 #include <fstream>
 #include <list>
-#include <map>
-
-using namespace std;

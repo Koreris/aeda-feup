@@ -1,4 +1,9 @@
+#ifndef PLACE_H_
+#define PLACE_H_
+
 #include "includes.h"
+
+using namespace std;
 
 class Place
 {
@@ -19,3 +24,5 @@ public:
 	string getName() const;
 	string getCoordinates() const;
 };
+
+#endif //PLACE_H_

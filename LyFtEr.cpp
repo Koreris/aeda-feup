@@ -1,5 +1,4 @@
 #include "includes.h"
-#include "BuddyList.h"
 #include "Date.h"
 #include "Person.h"
 #include "Place.h"
@@ -17,14 +16,25 @@ void displayLogo()
 
 void displayMainMenu()
 {
-	cout << "Welcome to LyFtEr!" << endl
-		<< "|*****************************************************************|" << endl <<
+	cout << "\n Welcome to LyFtEr! \n\n"<< endl
+		<< " +============================================================================+\n" << endl <<
 		"| 1.  Login!                                                      |" << endl <<
 		"| 2.  Search for next trip                                        |" << endl <<
 		"| 3.  Trip history                                                |" << endl <<
 		"| 4.  Payment options                                             |" << endl <<
-		"|*****************************************************************|" << endl;
-	cout << "Selected number from menu: ";
+		"+============================================================================+\n" << endl;
+	cout << "\n Selected number from menu:\n";
+}
+
+int main()
+{
+    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
+    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
+    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
+    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
+    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
+    displayMainMenu();
+    return 0;
 }
 
 void displayLoginMenu()
