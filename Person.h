@@ -4,11 +4,14 @@
 #include "includes.h"
 #include "Vehicle.h"
 
+
 using namespace std;
 
+class Trip;
 class Person
 {
-private:
+
+protected:
 	string name;
 	unsigned long telephone_nr;
 	float billing;
@@ -33,14 +36,14 @@ public:
 	void payBilling();
 };
 
-class RegPerson: public Person
+class RegPerson: protected Person
 {
 private:
 	string password;
 	string username;
 	vector <RegPerson*> buddies;
 	vector <Vehicle *> vehicles;
-	vector <Trip *> tripHistory;
+	vector <Trip*> tripHistory;
 	vector<string> notifications;
 public:
 	RegPerson();
@@ -75,9 +78,8 @@ public:
 	void addBill(float bill,string fee, float triplength);
 };
 
-class UnregPerson: public Person
+class UnregPerson: protected Person
 {
-private:
 
 public:
 	UnregPerson();

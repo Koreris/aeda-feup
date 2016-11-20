@@ -15,10 +15,10 @@ private:
 	Vehicle* vehicle;
 	unsigned int available_seats;
 	float distance;
-	vector<pair<Place *,int>> route;
-	vector<pair<Person *,vector<Place*>>> travellers;
+	vector< pair <Place *,int> > route;
+	vector< pair <Person*, vector<Place*> > > travellers;
 	bool smoking_allowed;
-
+    Person l;
 	Date start;
 	Date end;
 public:
@@ -28,11 +28,11 @@ public:
 
 	unsigned int getAvailableSeats() const;
 	float getDistance() const;
-	vector<pair<Place *,int>> getRoute() const;
+	vector< pair<Place *,int> > getRoute() const;
 	bool getSmokingSign() const;
 	Date getStart() const;
 	Date getEnd() const;
-	vector<Person *>& getTravellers() const;
+	vector<Person*> & getTravellers();
 	string getDriver() const;
 	Vehicle* getVehicle() const;
 
@@ -42,8 +42,8 @@ public:
 	void setSmokingSign(bool s);
 	void setStart(Date s);
 	void setEnd(Date e);
-	void addRoute(vector<pair<Place*,int>>);
-	void calculateDistance(Place * begin, Place * end); //call upon addingRoute
+	void addRoute(vector< pair<Place*,int> > rota);
+	float calculateDistance(Place * begin, Place * end); //call upon addingRoute
 
 	 /*
 		Must be called if changeTravellerRoute or addTraveller or removeTraveller is called,
@@ -51,13 +51,14 @@ public:
 		seats for each place in route vector
 	*/
 	void recalculateRouteSeats();
+	int findPlaceIndex(Place * p);
 
 	//CRUD for travellers participating in trip
 	void addTraveller(Person * t,vector<Place *>);
 	void removeTraveller(Person * t,vector<Place *>);
 	void updateTravellerRoute(Person *,vector<Place *>);
 
-    stringstream toString();
+    string toString();
 };
 
 #endif //TRIP_H_

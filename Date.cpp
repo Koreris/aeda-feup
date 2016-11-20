@@ -289,7 +289,7 @@ istream& operator >>(istream &is, Date& date)
 
 string Date::str() const
 {
-	stringstream ss { };
+	stringstream ss;
 
 	ss << year << "/" << month << "/" << day << " - " << setfill('0') << setw(2) << hour << ":" << setfill('0') << setw(2) << minute << ":"  << setfill('0')<< setw(2) << second;
 
@@ -298,7 +298,7 @@ string Date::str() const
 
 string Date::cfg_str() const
 {
-	stringstream ss { };
+	stringstream ss;
 
 	ss << year << " " << month << " " << day << " " << hour << " " << minute << " " << second;
 

@@ -23,7 +23,7 @@ public:
 	string getName() const;
 	pair<int,int> getCoords() const;
 
-	stringstream toString();
+	string toString();
 };
 
 #endif //PLACE_H_

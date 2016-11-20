@@ -1,4 +1,5 @@
 #include "Person.h"
+#include "Trip.h"
 #include <algorithm>
 
 Person::Person()
@@ -14,7 +15,7 @@ Person::Person(string n, unsigned long t_nr)
 	telephone_nr=t_nr;
 	billing = 0;
 }
-
+Person::~Person(){}
 //setters
 void Person::setName(string n)
 {
@@ -65,7 +66,7 @@ RegPerson::RegPerson(string n, unsigned long t_nr,string passw, string uname)
 	buddies = vector<RegPerson *>();
 	tripHistory = vector<Trip *>();
 }
-
+RegPerson::~RegPerson(){}
 //setters
 
 void RegPerson::setUsern(string usrn)
@@ -211,7 +212,7 @@ UnregPerson::UnregPerson(string n, unsigned long t_nr)
 {
 	Person(n,t_nr);
 }
-
+UnregPerson::~UnregPerson(){}
 void UnregPerson::addBill(float bill,string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="trip"){

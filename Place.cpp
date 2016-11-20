@@ -30,8 +30,8 @@ pair<int,int> Place::getCoords() const
 	return coordinates;
 }
 
-stringstream Place::toString(){
-	stringstream ss {};
+string Place::toString(){
+	stringstream ss;
 	ss << name <<"(" << coordinates.first << "," << coordinates.second << ")";
-	return ss;
+	return ss.str();
 }
