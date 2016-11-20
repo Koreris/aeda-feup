@@ -117,15 +117,21 @@ void Logic::deleteDestinations(int index)
 		return;
 	}
 
-			vector<Place *>::iterator it=destinations.begin();
+	vector<Place *>::iterator it=destinations.begin();
 
-			while (it!=destinations.end() && index != 0)
-			{
-				it++;
-				index--;
-			}
-			del_destinations.push_back(destinations[index]);
-			this->destinations.erase(it);
+	while (it!=destinations.end() && index != 0)
+	{
+		it++;
+		index--;
+	}
+	del_destinations.push_back(destinations[index]);
+	this->destinations.erase(it);
+}
+
+vector<RegPerson *> Logic::findBuddy(string username)
+{
+	vector<RegPerson *> empty=vector<RegPerson *>();
+	return empty;
 }
 
 

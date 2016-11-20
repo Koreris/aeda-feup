@@ -24,6 +24,7 @@ private:
 
 public:
 	Logic();
+	RegPerson* curr_user;
 	bool userLogin(string usr, string passw);
 	vector<Trip *> findDest(string dest);
 	vector<Trip *> tripSortByDate();
@@ -51,6 +52,7 @@ public:
 	void setRegUsers (vector<Person*>& regUsers);
 
 	void deleteDestinations(int index);
+	vector<RegPerson *> findBuddy(string username);
 };
 
 #endif //LOGIC_H_
