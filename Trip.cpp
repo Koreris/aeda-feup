@@ -2,6 +2,8 @@
 
 Trip::Trip()
 {
+	vehicleOwner = "";
+	vehicle = Vehicle();
 	distance=0;
 	available_seats=0;
 	smoking_allowed=false;
@@ -11,9 +13,11 @@ Trip::Trip()
 	travellers=vector<pair<Person*,vector<Place*>>>();
 }
 
+Trip::Trip(string VehicleOwner,Vehicle v,bool smoke, Date s,Date e)
 {
 	vehicleOwner=VehicleOwner;
 	vehicle = v;
+	available_seats=v.getCarSeats()-1;
 	smoking_allowed=smoke;
 	start = s;
 	end = e;
@@ -54,10 +58,12 @@ void Trip::setEnd(Date e)
 
 //getters
 
+string Trip::getDriver() const
 {
 	return vehicleOwner;
 }
 
+Vehicle Trip::getVehicle() const
 {
 	return vehicle;
 }
@@ -94,6 +100,7 @@ Date Trip::getEnd() const
 
 stringstream Trip::toString(){
 	stringstream ss {};
+	ss << "Driver: " << vehicleOwner  << "| Route: ";
 	for(int i=0; i<route.size();i++)
 	{
 		if(i==route.size()-1)

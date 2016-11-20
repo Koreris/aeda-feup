@@ -33,6 +33,8 @@ public:
 	Date getStart() const;
 	Date getEnd() const;
 	vector<Person *> getTravellers() const;
+	string getDriver() const;
+	Vehicle getVehicle() const;
 
 	void setAvailableSeats(unsigned int a_s);
 	void setVehicle(Vehicle * v);
