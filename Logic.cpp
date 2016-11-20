@@ -109,7 +109,24 @@ void Logic::setRegUsers (vector<Person*>& regUsers)
 }
 
 
+void Logic::deleteDestinations(int index)
+{
+	if(index<0 || index >= destinations.size())
+	{
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
 
+			vector<Place *>::iterator it=destinations.begin();
+
+			while (it!=destinations.end() && index != 0)
+			{
+				it++;
+				index--;
+			}
+			del_destinations.push_back(destinations[index]);
+			this->destinations.erase(it);
+}
 
 
 

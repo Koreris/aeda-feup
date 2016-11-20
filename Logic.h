@@ -49,6 +49,8 @@ public:
 
 	vector<Person*>& getRegUsers ();
 	void setRegUsers (vector<Person*>& regUsers);
+
+	void deleteDestinations(int index);
 };
 
 #endif //LOGIC_H_
