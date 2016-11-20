@@ -4,7 +4,11 @@
 #include "Place.h"
 #include "Trip.h"
 #include "Vehicle.h"
+#include "Logic.h"
 
+Logic l;
+
+//login section
 
 long displayMainMenu()
 {
@@ -18,67 +22,86 @@ long displayMainMenu()
 		" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
 	getline(cin, user_in);
-
 	long user_in_=stol(user_in);
 	return user_in_;
 }
 
-void userLogin()
+bool userLogin()
 {
-	string username="";
-	string password="";
+	string usr="";
+	string passw="";
 
 	cout << "Input your username: " << endl;
-	getline(cin, username);
-
+	getline(cin, usr);
+	cin.ignore();
 	cout << "Input your password: " << endl;
-	getline(cin, password);
+	getline(cin, passw);
+	cin.ignore();
+	return(l.userLogin(usr, passw));
 }
 
 void displayLoginMenu()
 {
-	cout << "You are logged in! Here are your options:" << endl
-		<< "|*****************************************************************|" << endl <<
-		"| 1.  Search for your next trip                                   |" << endl <<
-		"| 2.  Your trip history                                           |" << endl <<
-		"| 3.  Your buddies                                                |" << endl <<
-		"| 4.  Your payment options                                        |" << endl <<
-		"| 4.  Your settings                                               |" << endl <<
-		"| 5.  Log out                                                     |" << endl <<
-		"|*****************************************************************|" << endl;
-	cout << "Selected number from menu: ";
+	while(true)
+	{
+		if(userLogin()==true)
+		{
+			cout << "You are logged in! Here are your options:" << endl
+							<< "|*****************************************************************|" << endl <<
+							"| 1.  Search for your next trip                                   |" << endl <<
+							"| 2.  Your trip history                                           |" << endl <<
+							"| 3.  Your buddies                                                |" << endl <<
+							"| 4.  Your payment options                                        |" << endl <<
+							"| 4.  Your settings                                               |" << endl <<
+							"| 5.  Log out                                                     |" << endl <<
+							"|*****************************************************************|" << endl;
+			cout << "Selected number from menu: ";
+			break;
+		}
+		else
+		{
+			cout << "Invalid login, try again." << endl;
+			displayLoginMenu();
+		}
+		return;
+	}
+	return;
 }
 
-int main()
+//end of login section
+
+
+//vector<Trip *>
+bool userDest()
 {
-    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
-    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
-    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
-    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
-    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
-    switch(displayMainMenu())
-    {
-    case 1:
-    	userLogin();
-    	displayLoginMenu();
-    	break;
-    default:
-    	cout << "nope" << endl;
-    }
-    return 0;
+	string dest="";
+	cout << "Input your destination: " << endl;
+	getline(cin, dest);
+	cin.ignore();
+	return true;
+					//(l.findDest(dest));
 }
 
-void displayTripMenu()
+void displayVector(vector<Trip *>)
 {
-	cout << "Let's find you your next trip! Pick your filters:" << endl
+	//separate smoking from non smoking
+
+}
+
+
+long displayTripMenu()
+{
+	string user_in;
+	cout << "Let's find you your next trip! Pick your filter:" << endl
 		<< "|*****************************************************************|" << endl <<
-		"| +.  During your next trip you'll want to...                     |" << endl <<
-		"| 1.  Smoke in the car                                            |" << endl <<
-		"| 2.  Travel with buddy X                                         |" << endl <<
-		"| 3.  Travel in X type of vehicle                                 |" << endl <<
-		"| 4.  Go back to previous menu                                    |" << endl <<
+		"| +.  During your next trip you'll want to go to...               |" << endl <<
+		"| 1.  X destination                                               |" << endl <<
+		"| 2.  Go back to previous menu                                    |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
+	getline(cin, user_in);
+	long user_in_=stol(user_in);
+	return user_in_;
 }
 
 void displayTripHistoryMenu()
@@ -131,3 +154,41 @@ void displaySettingsMenu()
 	cout << "Selected number from menu: ";
 }
 
+int main()
+{
+    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
+    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
+    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
+    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
+    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
+    switch(displayMainMenu())
+    {
+    case 1:
+    	displayLoginMenu();
+    	break;
+    case 2:
+    	switch(displayTripMenu())
+    	{
+    	case 1:
+    		userDest();
+    		break;
+    	case 2:
+    		return true;
+    		break;
+    	default:
+    		cout << "No valid option picked! Please try again." << endl;
+    		break;
+    	}
+    	break;
+    case 3:
+    	displayTripHistoryMenu();
+    	break;
+    case 4:
+    	displayPaymentMenu();
+    	break;
+    default:
+    	cout << "nope" << endl;
+    	break;
+    }
+    return 0;
+}

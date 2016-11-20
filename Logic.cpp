@@ -4,27 +4,25 @@
 #include "Place.h"
 #include "Trip.h"
 #include "Vehicle.h"
+#include "Logic.h"
 
 using namespace std;
 
-/*int userLogin(RegPerson p)
-{
-	if (p.getUsern()==username && p.getPassw()==password)
-	{
-		displayLoginMenu();
-		return 0;
-	}
+Logic::Logic()
+{}
 
-	else
-		cout << "Non matching user/password! Please try again" << endl;
-	return 1;
+bool Logic::userLogin(string usr, string passw)
+{
+	return (usr == "test" && passw == "1234");
 }
 
-int main()
+vector<Trip *> Logic::findDest(string dest)
 {
-	cout << "at main" << endl;
-	return 0;
-}*/
+	vector<Trip *> dests;
+	return (dests);
+	//returns true and
+}
+
 
 
 
