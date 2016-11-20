@@ -98,23 +98,26 @@ bool RegPerson::getHasVehicle() const
 
 
 
-vector<RegPerson*>& RegPerson::getBuddies()
+vector<RegPerson*> RegPerson::getBuddies() const
 {
 	return buddies;
 }
 
-vector<Vehicle *>& RegPerson::getVehicles()
+vector<Vehicle *> RegPerson::getVehicles() const
 {
 	return vehicles;
 }
 
 //crud
-bool RegPerson::areMutualBuddies(RegPerson* other_person) const
+bool RegPerson::areMutualBuddies(const RegPerson* other_person) const
 {
-	return (find(other_person->getBuddies().begin(),other_person->getBuddies().end(), this) != other_person->getBuddies().end());
+
+	vector <RegPerson *> other_p_buddies=other_person->getBuddies();
+	return (find(other_p_buddies.begin(),other_p_buddies.end(), this) != other_p_buddies.end());
+
 }
 
-vector<string>& RegPerson::getNotifications()
+vector<string> RegPerson::getNotifications() const
 {
 	return notifications;
 }
