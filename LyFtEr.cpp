@@ -109,7 +109,26 @@ long displayTripMenu()
 //trip history section
 void tripSortByDate()
 {
+	//fazer cout/tostring
+	l.tripSortByDate();
+}
 
+void tripSortByDriverName()
+{
+	//fazer cout/tostring
+	l.tripSortByDriverName();
+}
+
+void tripSortByScheduled()
+{
+	l.tripSortByScheduled();
+}
+
+void allTrips()
+{
+	//cout
+	l.getCurTrips();
+	//to string trip
 }
 
 long displayTripHistoryMenu()
@@ -203,7 +222,18 @@ int main()
     				tripSortByDate();
     				break;
     			case 2:
-
+    				tripSortByDriverName();
+    				break;
+    			case 3:
+    				tripSortByScheduled();
+    				break;
+    			case 4:
+    				allTrips();
+    			case 5:
+    				break;
+    			default:
+    				cout << "No valid option picked! Please try again." << endl;
+    				break;
     			}
     			break;
     		case 4:

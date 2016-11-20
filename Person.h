@@ -3,6 +3,9 @@
 
 #include "includes.h"
 #include "Vehicle.h"
+#include "Trip.h"
+#include "Place.h"
+#include "Person.h"
 
 
 using namespace std;

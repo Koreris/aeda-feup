@@ -33,6 +33,21 @@ vector<Trip *> Logic::findDest(string dest)
 	//returns true and
 }
 
+vector<Trip *> Logic::tripSortByDate()
+{
+
+}
+
+vector<Trip *> Logic::tripSortByDriverName()
+{
+
+}
+
+vector<Trip *> Logic::tripSortByScheduled()
+{
+
+}
+
 vector<Trip*>& Logic::getCurTrips ()
 	{
 		return cur_trips;

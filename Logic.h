@@ -27,6 +27,8 @@ public:
 	bool userLogin(string usr, string passw);
 	vector<Trip *> findDest(string dest);
 	vector<Trip *> tripSortByDate();
+	vector<Trip *> tripSortByDriverName();
+	vector<Trip *> tripSortByScheduled();
 
 	Date get_curDate() const;
 
