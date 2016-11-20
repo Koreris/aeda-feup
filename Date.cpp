@@ -9,7 +9,7 @@
 long stol(string txt)
 {
 	stringstream ss(txt);
-	long num;
+	long num { };
 	ss >> num;
 
 	return num;
@@ -270,13 +270,13 @@ ostream& operator<<(ostream& os, const Date& d)
 
 istream& operator >>(istream &is, Date& date)
 {
-	char c1 = ' ';
-	int year;
-	int month;
-	int day;
-	int hour;
-	int minute;
-	int second;
+	char c1 { ' ' };
+	int year { };
+	int month { };
+	int day { };
+	int hour { };
+	int minute { };
+	int second { };
 
 	is >> year >> c1 >> month >> c1 >> day >> c1 >> hour >> c1 >> minute >> c1 >> second;
 
@@ -289,7 +289,7 @@ istream& operator >>(istream &is, Date& date)
 
 string Date::str() const
 {
-	stringstream ss;
+	stringstream ss { };
 
 	ss << year << "/" << month << "/" << day << " - " << setfill('0') << setw(2) << hour << ":" << setfill('0') << setw(2) << minute << ":"  << setfill('0')<< setw(2) << second;
 
@@ -298,7 +298,7 @@ string Date::str() const
 
 string Date::cfg_str() const
 {
-	stringstream ss;
+	stringstream ss { };
 
 	ss << year << " " << month << " " << day << " " << hour << " " << minute << " " << second;
 
@@ -339,12 +339,12 @@ Date Date::curDate()
 	time_t t = time(0); // Get current time
 	struct tm *t_now = localtime(&t);
 
-	int year = t_now->tm_year + 1900;
-	int month = t_now->tm_mon+1;
-	int day = t_now->tm_mday;
-	int hour = t_now->tm_hour;
-	int minute = t_now->tm_min;
-	int second = t_now->tm_sec;
+	int year { t_now->tm_year + 1900 };
+	int month { t_now->tm_mon + 1 };
+	int day { t_now->tm_mday };
+	int hour { t_now->tm_hour };
+	int minute { t_now->tm_min };
+	int second { t_now->tm_sec };
 
 	Date temp(year, month, day, hour, minute, second);
 
@@ -358,45 +358,43 @@ int Date::numDays(Date d1, Date d2)
 		if (d1.getMonth() == d2.getMonth())
 		{  //same month?
 			if (d1.getDay() > d2.getDay())
-			{ //yup same month, who has a bigger day
-				return d1.getDay() - d2.getDay(); //d1 wins
+			{ //same month
+				return d1.getDay() - d2.getDay();
 			} else
-				return d2.getDay() - d1.getDay(); //d2 wins
+				return d2.getDay() - d1.getDay();
 		} else
-		{ //nope not same month... Dammit...
-			int somadaysbetweenmonths = 0;
+		{ //different month
+			int somadaysbetweenmonths { 0 };
 			if (d1.getMonth() > d1.getMonth())
-			{ //who has bigger month?
-
+			{
 				for (int i = d2.getMonth() + 1;
 						i < (d1.getMonth() - d2.getMonth()) + d2.getMonth(); i++)
-				{ //d1 has bigger month
+				{
 					somadaysbetweenmonths = somadaysbetweenmonths
-							+ Date::daysInMonth(i, d1.getYear()); //get difference between months in days
+							+ Date::daysInMonth(i, d1.getYear());
 				}
 				return somadaysbetweenmonths
 						+ (Date::daysInMonth(d1.getMonth(), d1.getYear()) - d1.getDay())
-						+ d2.getDay(); //add the days in d1 month and d2 month
+						+ d2.getDay();
 			} else
 			{
 				for (int i = d1.getMonth() + 1;
 						i < (d2.getMonth() - d1.getMonth()) + d1.getMonth(); i++)
-				{ //d2 has bigger month
+				{
 					somadaysbetweenmonths = somadaysbetweenmonths
-							+ Date::daysInMonth(i, d2.getYear()); //get difference between months in days
+							+ Date::daysInMonth(i, d2.getYear());
 				}
 				return somadaysbetweenmonths
 						+ (Date::daysInMonth(d2.getMonth(), d2.getYear()) - d2.getDay())
-						+ d1.getDay(); //add the days in d1 month and d2 month
+						+ d1.getDay();
 			}
 		}
 	} else
-	{ //not same year
-			 //implement for not same year
+	{
+		//different year year
 		Date date1(d1);
 		Date date2(d2);
 
-		// Make sure date1 is before date2
 		if (d1.getYear() > d2.getYear())
 		{
 			Date date3(d2);
@@ -404,16 +402,17 @@ int Date::numDays(Date d1, Date d2)
 			date1 = date3;
 		}
 
-		// First, days missing 'till the end of the month
-		int days = Date::daysInMonth(date1.getMonth(), date1.getYear()) - date1.getDay();
 
-		// Then, days missing 'till the end of the year
+		int days { Date::daysInMonth(date1.getMonth(), date1.getYear())
+				- date1.getDay() };
+
+
 		for (unsigned int i = date1.getMonth() + 1; i <= 12; i++)
 		{
 			days += Date::daysInMonth(i, date1.getYear());
 		}
 
-		// Then, days for all years between the 2 dates
+
 		for (int i = date1.getYear() + 1; i < date2.getYear(); i++)
 		{
 			if (Date::isLeapYear(i))
@@ -422,13 +421,13 @@ int Date::numDays(Date d1, Date d2)
 				days += 365;
 		}
 
-		// Then, days from the date2 year
+
 		for (int i = 1; i < date2.getMonth(); i++)
 		{
 			days += Date::daysInMonth(i, date2.getYear());
 		}
 
-		// Finally, days from the date2 day
+
 		days += date2.getDay();
 
 		return days;

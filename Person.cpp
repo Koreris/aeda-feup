@@ -4,12 +4,15 @@
 Person::Person()
 {
 	telephone_nr=000000000;
+	billing=0;
+	name="emptyName";
 }
 
 Person::Person(string n, unsigned long t_nr)
 {
 	name=n;
 	telephone_nr=t_nr;
+	billing = 0;
 }
 
 //setters
@@ -23,6 +26,15 @@ void Person::setTelNr(unsigned long t_nr)
 	telephone_nr=t_nr;
 }
 
+void Person::setBilling(float f)
+{
+	billing=f;
+}
+
+void Person::payBilling(){
+	cout << "Paid " << billing << " € : All bills paid" << endl;
+	billing = 0;
+}
 //getters
 string Person::getName() const
 {
@@ -34,7 +46,25 @@ unsigned long Person::getTelNr() const
 	return telephone_nr;
 }
 
+float Person::getBilling() const
+{
+	return billing;
+}
+
 //RegPerson
+RegPerson::RegPerson()
+{
+	Person();
+}
+RegPerson::RegPerson(string n, unsigned long t_nr,string passw, string uname)
+{
+	Person(n,t_nr);
+	password=passw;
+	username=uname;
+	vehicles = vector<Vehicle *>();
+	buddies = vector<const RegPerson *>();
+}
+
 //setters
 
 void RegPerson::setUsern(string usrn)
@@ -47,15 +77,6 @@ void RegPerson::setPassw(string pw)
 	password=pw;
 }
 
-void RegPerson::setVehicle(bool b)
-{
-	hasVehicle=b;
-}
-
-void RegPerson::setBilling(float f)
-{
-	billing=f;
-}
 
 //getters
 
@@ -71,13 +92,10 @@ string RegPerson::getPassw() const
 
 bool RegPerson::getHasVehicle() const
 {
-	return hasVehicle;
+	 return vehicles.size()>0;
 }
 
-float RegPerson::getBilling() const
-{
-	return billing;
-}
+
 
 vector<const RegPerson*> RegPerson::getBuddies() const
 {
@@ -141,4 +159,36 @@ void RegPerson::addVehicle(Vehicle* v)
 void RegPerson::removeVehicle(Vehicle* v)
 {
 	//
+}
+
+void RegPerson::addBill(float bill,string fee, float triplength){
+	float prevbilling { billing };
+	if(fee=="monthly"){
+		billing+=10;
+	}
+
+	if(fee=="trip"){
+		if(!this->getHasVehicle()){
+			billing+=4+triplength*0.2;
+		}
+	}
+	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
+}
+
+//UnregPerson
+UnregPerson::UnregPerson()
+{
+	Person();
+}
+UnregPerson::UnregPerson(string n, unsigned long t_nr)
+{
+	Person(n,t_nr);
+}
+
+void UnregPerson::addBill(float bill,string fee, float triplength){
+	float prevbilling { billing };
+	if(fee=="trip"){
+		billing+=5+triplength*0.4;
+	}
+	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
 }

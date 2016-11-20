@@ -11,19 +11,26 @@ class Person
 private:
 	string name;
 	unsigned long telephone_nr;
+	float billing;
 
 public:
 	Person();
 	Person(string n, unsigned long t_nr);
-	~Person();
+	virtual ~Person();
 
 	//setters
 	void setName(string n);
 	void setTelNr(unsigned long t_nr);
+	void setBilling(float f);
 
 	//getters
 	string getName() const;
 	unsigned long getTelNr() const;
+	float getBilling() const;
+
+	//billing
+	virtual void addBill(float bill,string fee, float triplength);
+	void payBilling();
 };
 
 class RegPerson: public Person
@@ -31,26 +38,23 @@ class RegPerson: public Person
 private:
 	string password;
 	string username;
-	bool hasVehicle;
-	float billing;
 	vector <const RegPerson*> buddies;
 	vector <Vehicle *> vehicles;
 public:
 	RegPerson();
-	RegPerson(string n, unsigned long t_nr, string passw, string uname, bool v, float bill);
+	RegPerson(string n, unsigned long t_nr, string passw, string uname);
 	~RegPerson();
 
 	//setters
 	void setPassw(string pw);
 	void setUsern(string usrn);
-	void setVehicle(bool b);
-	void setBilling(float f);
+
+
 
 	//getters
 	string getPassw() const;
 	string getUsern() const;
 	bool getHasVehicle() const;
-	float getBilling() const;
 	vector<const RegPerson*> getBuddies() const;
 	vector<Vehicle *> getVehicles() const;
 
@@ -60,6 +64,20 @@ public:
 	bool areBuddies(const RegPerson* other_person) const;
 	void addVehicle(Vehicle* v);
 	void removeVehicle(Vehicle *v);
+	void addBill(float bill,string fee, float triplength);
+};
+
+class UnregPerson: public Person
+{
+private:
+
+public:
+	UnregPerson();
+	UnregPerson(string n, unsigned long t_nr);
+	~UnregPerson();
+
+	//crud
+	void addBill(float bill, string fee, float triplength);
 };
 
 #endif //PERSON_H_
