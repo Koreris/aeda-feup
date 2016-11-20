@@ -128,11 +128,11 @@ float Trip::calculateDistance(Place * begin, Place * end)
 	{
 		int beginning { };
 		int end { };
-		for(int i=0;i<route.size();i++)
+		for(unsigned int i=0;i<route.size();i++)
 		{
 			route[i].second=0;
 		}
-		for(int i=0;i<travellers.size();i++)
+		for(unsigned int i=0;i<travellers.size();i++)
 		{
 			beginning=findPlaceIndex(travellers[i].second[0]);
 			end=findPlaceIndex(travellers[i].second[travellers[i].second.size()-1]);
@@ -164,13 +164,45 @@ float Trip::calculateDistance(Place * begin, Place * end)
 		recalculateRouteSeats();
 	}
 
-	void Trip::removeTraveller(Person * t,vector<Place *>){}
-	void Trip::updateTravellerRoute(Person *,vector<Place *>){}
+	void Trip::removeTraveller(Person * t)
+	{
+		for(unsigned int i=0;i<travellers.size();i++)
+		{
+			if(travellers[i].first==t)
+				travellers.erase(travellers.begin()+i);
+		}
+		recalculateRouteSeats();
+	}
+
+	void Trip::updateTravellerRoute(Person *t,vector<Place *>r)
+	{
+		for(unsigned int i=0;i<travellers.size();i++)
+		{
+			if(travellers[i].first==t)
+				travellers[i].second=r;
+		}
+	}
+
+	void Trip::printTravellers()
+	{	stringstream ss;
+		for(unsigned int i=0;i<travellers.size();i++)
+		{
+			ss << "Person:" <<travellers[i].first << " Route:";
+			for(unsigned int j=0; j<route.size();j++)
+			{
+					if(j==travellers[i].second.size()-1)
+						ss << travellers[i].second[j]->toString();
+					else ss << travellers[i].second[j]->toString() << "->";
+			}
+			ss << endl;
+		}
+		cout << ss.str();
+	}
 
 string Trip::toString(){
 	stringstream ss;
 	ss << "Driver: " << vehicleOwner  << "| Route: ";
-	for(int i=0; i<route.size();i++)
+	for(unsigned int i=0; i<route.size();i++)
 	{
 		if(i==route.size()-1)
 			ss << route[i].first->toString();

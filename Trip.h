@@ -57,8 +57,10 @@ public:
 
 	//CRUD for travellers participating in trip
 	void addTraveller(Person * t,vector<Place *>);
-	void removeTraveller(Person * t,vector<Place *>);
-	void updateTravellerRoute(Person *,vector<Place *>);
+	void removeTraveller(Person * t);
+	void updateTravellerRoute(Person *t,vector<Place *>r);
+
+	void printTravellers();
 
     string toString();
 };
