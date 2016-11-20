@@ -38,8 +38,10 @@ class RegPerson: public Person
 private:
 	string password;
 	string username;
-	vector <const RegPerson*> buddies;
+	vector <RegPerson*> buddies;
 	vector <Vehicle *> vehicles;
+	vector <Trip *> tripHistory;
+	vector<string> notifications;
 public:
 	RegPerson();
 	RegPerson(string n, unsigned long t_nr, string passw, string uname);
@@ -55,15 +57,21 @@ public:
 	string getPassw() const;
 	string getUsern() const;
 	bool getHasVehicle() const;
-	vector<const RegPerson*> getBuddies() const;
+	vector<RegPerson*> getBuddies() const;
 	vector<Vehicle *> getVehicles() const;
-
+	vector<string> getNotifications() const;
 	//crud
 	void insertBuddy(RegPerson* other_person);
-	void removeBuddy(RegPerson* other_person);
-	bool areBuddies(const RegPerson* other_person) const;
+	void removeBuddy(int index);
+	bool areMutualBuddies(const RegPerson* other_person) const;
+
 	void addVehicle(Vehicle* v);
-	void removeVehicle(Vehicle *v);
+	void removeVehicle(int index);
+	void printTripHistory();
+
+	void addNotifications(string message);
+	void showNotifications(int howmany);
+
 	void addBill(float bill,string fee, float triplength);
 };
 

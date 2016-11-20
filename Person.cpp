@@ -62,7 +62,8 @@ RegPerson::RegPerson(string n, unsigned long t_nr,string passw, string uname)
 	password=passw;
 	username=uname;
 	vehicles = vector<Vehicle *>();
-	buddies = vector<const RegPerson *>();
+	buddies = vector<RegPerson *>();
+	tripHistory = vector<Trip *>();
 }
 
 //setters
@@ -97,7 +98,7 @@ bool RegPerson::getHasVehicle() const
 
 
 
-vector<const RegPerson*> RegPerson::getBuddies() const
+vector<RegPerson*> RegPerson::getBuddies() const
 {
 	return buddies;
 }
@@ -108,47 +109,57 @@ vector<Vehicle *> RegPerson::getVehicles() const
 }
 
 //crud
-bool RegPerson::areBuddies(const RegPerson* other_person) const
+bool RegPerson::areMutualBuddies(const RegPerson* other_person) const
 {
-	/*
+
 	vector <RegPerson *> other_p_buddies=other_person->getBuddies();
 	return (find(other_p_buddies.begin(),other_p_buddies.end(), this) != other_p_buddies.end());
-	*/
+
+}
+
+vector<string> RegPerson::getNotifications() const
+{
+	return notifications;
+}
+
+void RegPerson::addNotifications(string message)
+{
+	notifications.insert(notifications.begin(),message);
+}
+
+void RegPerson::showNotifications(int howmany)
+{
+	if(howmany<0)
+		return;
+	if(howmany>notifications.size()-1)
+		for(int i=0;i<notifications.size();i++){
+			cout << notifications[i] << endl;
+		}
+	else for(int i=0;i<howmany;i++){
+		cout << notifications[i] << endl;
+	}
 }
 
 void RegPerson::insertBuddy(RegPerson* other_person)
 {
 	buddies.push_back(other_person);
-	other_person->getBuddies().push_back(this);
 }
 
-void RegPerson::removeBuddy(RegPerson* other_person)
+void RegPerson::removeBuddy(int index)
 {
-	/*
-	vector <RegPerson *>::iterator it;
-	vector <RegPerson *>::iterator ita;
-
-	vector <RegPerson *> bud=this->getBuddies();
-	vector <RegPerson *> other_p_buddies=other_person->getBuddies();
-
-	for(it=other_p_buddies.begin(); it!=other_p_buddies.end(); it++)
-	{
-		if((*it)==this)
-		{
-			other_p_buddies.erase(it);
-			break;
-		}
+	if(index<0 || index >= buddies.size()){
+		cout << "Invalid index chosen" << endl;
+		return;
 	}
 
-	for(ita=bud.begin(); ita!=bud.end(); ita++)
-	{
-		if((*ita)==other_person)
-		{
-			bud.erase(ita);
-			break;
-		}
+	vector<RegPerson *>::iterator it=buddies.begin();
+
+	while (it!=buddies.end() && index != 0) {
+		it++;
+		index--;
 	}
-	*/
+
+	this->buddies.erase(it);
 }
 
 void RegPerson::addVehicle(Vehicle* v)
@@ -156,9 +167,21 @@ void RegPerson::addVehicle(Vehicle* v)
 	this->vehicles.push_back(v);
 }
 
-void RegPerson::removeVehicle(Vehicle* v)
+void RegPerson::removeVehicle(int index)
 {
-	//
+	if(index<0 || index >= vehicles.size()){
+			cout << "Invalid index chosen" << endl;
+			return;
+		}
+
+		vector<Vehicle *>::iterator it=vehicles.begin();
+
+		while (it!=vehicles.end() && index != 0) {
+			it++;
+			index--;
+		}
+
+		this->vehicles.erase(it);
 }
 
 void RegPerson::addBill(float bill,string fee, float triplength){
@@ -173,6 +196,13 @@ void RegPerson::addBill(float bill,string fee, float triplength){
 		}
 	}
 	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
+}
+
+void RegPerson::printTripHistory(){
+	for(int i=0;i<tripHistory.size();i++)
+	{
+		cout << tripHistory[i]->toString() << endl;
+	}
 }
 
 //UnregPerson
@@ -192,3 +222,4 @@ void UnregPerson::addBill(float bill,string fee, float triplength){
 	}
 	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
 }
+

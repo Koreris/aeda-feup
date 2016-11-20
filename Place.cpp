@@ -4,20 +4,16 @@ Place::Place()
 {
 }
 
-Place::Place(string n, string coord)
+Place::Place(string n,pair<int,int> coords)
 {
 	name=n;
-	coordinates=coord;
+	coordinates=coords;
 }
 
 Place::~Place()
 {
 }
 
-void Place::setCoord(string coord)
-{
-	coordinates=coord;
-}
 
 void Place::setName(string n)
 {
@@ -29,7 +25,13 @@ string Place::getName() const
 	return name;
 }
 
-string Place::getCoordinates() const
+pair<int,int> Place::getCoords() const
 {
 	return coordinates;
+}
+
+stringstream Place::toString(){
+	stringstream ss {};
+	ss << name <<"(" << coordinates.first << "," << coordinates.second << ")";
+	return ss;
 }

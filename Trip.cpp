@@ -7,15 +7,19 @@ Trip::Trip()
 	smoking_allowed=false;
 	start=Date();
 	end=Date();
+	route= vector<pair<Place*,int>>();
+	travellers=vector<pair<Person*,vector<Place*>>>();
 }
 
-Trip::Trip(unsigned int a_s, float d, bool smoke, Date s, Date e)
 {
-	available_seats=a_s;
-	distance=d;
+	vehicleOwner=VehicleOwner;
+	vehicle = v;
 	smoking_allowed=smoke;
 	start = s;
 	end = e;
+	distance=0;
+	route= vector<pair<Place*,int>>();
+	travellers=vector<pair<Person*,vector<Place*>>>();
 }
 
 Trip::~Trip()
@@ -45,10 +49,19 @@ void Trip::setStart(Date s)
 
 void Trip::setEnd(Date e)
 {
-	end=e;
+	start=e;
 }
 
 //getters
+
+{
+	return vehicleOwner;
+}
+
+{
+	return vehicle;
+}
+
 unsigned int Trip::getAvailableSeats() const
 {
 	return available_seats;
@@ -59,14 +72,9 @@ float Trip::getDistance() const
 	return distance;
 }
 
-vector<Place *> Trip::getRoute() const
+vector<pair<Place *,int>> Trip::getRoute() const
 {
 	return route;
-}
-
-vector<Person *> Trip::getTravellers() const
-{
-	return travellers;
 }
 
 bool Trip::getSmokingSign() const
@@ -82,5 +90,17 @@ Date Trip::getStart() const
 Date Trip::getEnd() const
 {
 	return end;
+}
+
+stringstream Trip::toString(){
+	stringstream ss {};
+	for(int i=0; i<route.size();i++)
+	{
+		if(i==route.size()-1)
+			ss << route[i].first->toString();
+		else ss << route[i].first->toString() << "->";
+	}
+	ss << "| Initial Date: " << start.str() << "| End Date: " << end.str();
+	return ss;
 }
 
