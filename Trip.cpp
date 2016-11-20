@@ -1,5 +1,5 @@
 #include "Trip.h"
-
+#include "Person.h"
 Trip::Trip()
 {
 	vehicleOwner = "";

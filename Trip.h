@@ -3,11 +3,13 @@
 
 #include "includes.h"
 #include "Date.h"
-#include "Person.h"
 #include "Place.h"
+#include "Vehicle.h"
 
 using namespace std;
-
+class Person;
+class RegPerson;
+class UnregPerson;
 class Trip
 {
 private:
@@ -18,7 +20,6 @@ private:
 	vector< pair <Place *,int> > route;
 	vector< pair <Person*, vector<Place*> > > travellers;
 	bool smoking_allowed;
-    Person l;
 	Date start;
 	Date end;
 public:
