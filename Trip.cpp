@@ -110,11 +110,11 @@ void Trip::addRoute(vector< pair<Place*,int> > rota)
 
 float Trip::calculateDistance(Place * begin, Place * end)
 {
-	  float distancex = (end->getCoords().first-begin->getCoords().first);
+	  float distancex = abs((end->getCoords().first-begin->getCoords().first));
 	  distancex*=distancex;
-	  float distancey = (end->getCoords().second-begin->getCoords().second);
+	  float distancey = abs((end->getCoords().second-begin->getCoords().second));
 	  distancey*=distancey;
-	  float calcdistance = sqrt(distancex - distancey);
+	  float calcdistance = sqrt(abs(distancex - distancey));
 
 	  return calcdistance;
 }
@@ -142,7 +142,7 @@ float Trip::calculateDistance(Place * begin, Place * end)
 
 	int Trip::findPlaceIndex(Place * p)
 	{
-		for(int i=0;i<route.size();i++)
+		for(unsigned int i=0;i<route.size();i++)
 		{
 			if(route[i].first==p)
 				return i;

@@ -54,12 +54,13 @@ float Person::getBilling() const
 
 //RegPerson
 RegPerson::RegPerson()
+:Person()
 {
-	Person();
+	username="empty";
 }
-RegPerson::RegPerson(string n, unsigned long t_nr,string passw, string uname)
+RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
+:Person(n,t_nr)
 {
-	Person(n,t_nr);
 	password=passw;
 	username=uname;
 	vehicles = vector<Vehicle *>();
@@ -130,7 +131,7 @@ void RegPerson::showNotifications(int howmany)
 	if(howmany<0)
 		return;
 	if(howmany>notifications.size()-1)
-		for(int i=0;i<notifications.size();i++){
+		for(unsigned int i=0;i<notifications.size();i++){
 			cout << notifications[i] << endl;
 		}
 	else for(int i=0;i<howmany;i++){
@@ -182,6 +183,17 @@ void RegPerson::removeVehicle(int index)
 		this->vehicles.erase(it);
 }
 
+void RegPerson::printPerson()
+{
+	stringstream ss,ssn;
+	ss << "Name:" << name << "| Phone:" << telephone_nr << "| Username:" << username << "| Password:" << password;
+	cout << ss.str() << endl;
+	for(int i=0;i<vehicles.size();i++)
+	{
+		cout << vehicles[i]->toString() << endl;
+	}
+}
+
 void RegPerson::addBill(float bill,string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="monthly"){
@@ -213,6 +225,13 @@ UnregPerson::UnregPerson(string n, unsigned long t_nr)
 	Person(n,t_nr);
 }
 UnregPerson::~UnregPerson(){}
+
+void UnregPerson::printPerson()
+{
+	stringstream ss;
+	ss << "Name:" << name << "| Phone:" << telephone_nr;
+	cout << ss.str();
+}
 
 void UnregPerson::addBill(float bill,string fee, float triplength){
 	float prevbilling { billing };
