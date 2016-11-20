@@ -7,13 +7,17 @@
 #include "Logic.h"
 
 Logic l;
-
+enum states {mainMenu, loginMenu, searchTripMenu, historyMenu, paymentMenu, buddiesMenu, settingsMenu};
+states curr_state = mainMenu;
+states prev_state = mainMenu;
 //login section
 
 long displayMainMenu()
 {
 	string user_in;
-	cout << "\n Welcome to LyFtEr! \n\n"<< endl
+	long user_in_;
+	bool validInput=false;
+	cout << "\n Welcome to LyFtEr! \n\n" << endl
 		<< " +============================================================================+" << endl <<
 		" | 1.  Login!                                                                 |" << endl <<
 		" | 2.  Search for next trip                                                   |" << endl <<
@@ -21,8 +25,43 @@ long displayMainMenu()
 		" | 4.  Payment options                                                        |" << endl <<
 		" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
-	getline(cin, user_in);
-	long user_in_=stol(user_in);
+	while(!validInput)
+	{
+		getline(cin, user_in);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		user_in_=stol(user_in);
+		if(user_in_>= 1 && user_in_<= 4)
+		{
+			validInput=true;
+			switch(user_in_)
+			{
+			case 1:
+				if(userLogin)
+				{
+					prev_state=curr_state;
+					curr_state=loginMenu;
+				}
+				else
+				{
+					validInput=false;
+				}
+				break;
+			case 2:
+				prev_state=curr_state;
+				curr_state=searchTripMenu;
+				break;
+			case 3:
+				prev_state=curr_state;
+				curr_state=historyMenu;
+				break;
+			case 4:
+				prev_state=curr_state;
+				curr_state=paymentMenu;
+				break;
+			}
+		}
+	}
 	return user_in_;
 }
 
@@ -33,41 +72,70 @@ bool userLogin()
 
 	cout << "Input your username: " << endl;
 	getline(cin, usr);
-	cin.ignore();
+	cin.clear();
+	cin.ignore(10000, '\n');
 	cout << "Input your password: " << endl;
 	getline(cin, passw);
-	cin.ignore();
+	cin.clear();
+	cin.ignore(10000, '\n');
 	return(l.userLogin(usr, passw));
 }
 
 void displayLoginMenu()
 {
-	while(true)
+	string user_in;
+	long user_in_;
+	bool validInput=false;
+	cout << "You are logged in! Here are your options:" << endl
+					<< "|*****************************************************************|" << endl <<
+					"| 1.  Search for your next trip                                   |" << endl <<
+					"| 2.  Your trip history                                           |" << endl <<
+					"| 3.  Your buddies                                                |" << endl <<
+					"| 4.  Your payment options                                        |" << endl <<
+					"| 5.  Your settings                                               |" << endl <<
+					"| 6.  Log out                                                     |" << endl <<
+					"|*****************************************************************|" << endl;
+	cout << "Selected number from menu: ";
+	while(!validInput)
 	{
-		if(userLogin()==true)
+		getline(cin, user_in);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		user_in_=stol(user_in);
+		if(user_in_>= 1 && user_in_<= 6)
 		{
-			cout << "You are logged in! Here are your options:" << endl
-							<< "|*****************************************************************|" << endl <<
-							"| 1.  Search for your next trip                                   |" << endl <<
-							"| 2.  Your trip history                                           |" << endl <<
-							"| 3.  Your buddies                                                |" << endl <<
-							"| 4.  Your payment options                                        |" << endl <<
-							"| 4.  Your settings                                               |" << endl <<
-							"| 5.  Log out                                                     |" << endl <<
-							"|*****************************************************************|" << endl;
-			cout << "Selected number from menu: ";
-			break;
+			validInput=true;
+			switch(user_in_)
+			{
+			case 1:
+				prev_state=curr_state;
+				curr_state=searchTripMenu;
+				break;
+			case 2:
+				prev_state=curr_state;
+				curr_state=historyMenu;
+				break;
+			case 3:
+				prev_state=curr_state;
+				curr_state=buddiesMenu;
+				break;
+			case 4:
+				prev_state=curr_state;
+				curr_state=paymentMenu;
+				break;
+			case 5:
+				prev_state=curr_state;
+				curr_state=settingsMenu;
+				break;
+			case 6:
+				prev_state=curr_state;
+				curr_state=mainMenu;
+				break;
+			}
 		}
-		else
-		{
-			cout << "Invalid login, try again." << endl;
-			displayLoginMenu();
-		}
-		return;
 	}
 	return;
 }
-
 //end of login section
 
 //trip search section
@@ -77,7 +145,8 @@ bool userDest()
 	string dest="";
 	cout << "Input your destination: " << endl;
 	getline(cin, dest);
-	cin.ignore();
+	cin.clear();
+	cin.ignore(10000, '\n');
 	return true;
 	//(l.findDest(dest));
 }
@@ -101,6 +170,8 @@ long displayTripMenu()
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	getline(cin, user_in);
+	cin.clear();
+	cin.ignore(10000, '\n');
 	user_in_=stol(user_in);
 	return user_in_;
 }
@@ -145,6 +216,8 @@ long displayTripHistoryMenu()
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	getline(cin, user_in);
+	cin.clear();
+	cin.ignore(10000, '\n');
 	user_in_=stol(user_in);
 	return user_in_;
 }
@@ -187,7 +260,8 @@ void displaySettingsMenu()
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 }
-void atTripMenu(){
+void atTripMenu()
+{
 	switch(displayTripMenu())
 				{
 					case 1:
@@ -201,7 +275,8 @@ void atTripMenu(){
 				}
 }
 
-void atTripHistory(){
+void atTripHistory()
+{
 	switch(displayTripHistoryMenu())
 			{
 				case 1:
@@ -266,7 +341,7 @@ int main()
 			}
 			default:
 			{
-				cout << "nope" << endl;
+				cout << "Invalid option, try again." << endl;
 				break;
 			}
 		}
