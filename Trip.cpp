@@ -13,11 +13,11 @@ Trip::Trip()
 	travellers=vector<pair<Person*,vector<Place*>>>();
 }
 
-Trip::Trip(string VehicleOwner,Vehicle v,bool smoke, Date s,Date e)
+Trip::Trip(string VehicleOwner,Vehicle* v,bool smoke, Date s,Date e)
 {
 	vehicleOwner=VehicleOwner;
 	vehicle = v;
-	available_seats=v.getCarSeats()-1;
+	available_seats=v->getCarSeats()-1;
 	smoking_allowed=smoke;
 	start = s;
 	end = e;
@@ -34,6 +34,10 @@ Trip::~Trip()
 void Trip::setAvailableSeats(unsigned int a_s)
 {
 	available_seats=a_s;
+}
+
+void Trip::setVehicle(Vehicle * v){
+	vehicle=v;
 }
 
 void Trip::setDistance(float d)
@@ -63,7 +67,7 @@ string Trip::getDriver() const
 	return vehicleOwner;
 }
 
-Vehicle Trip::getVehicle() const
+Vehicle* Trip::getVehicle() const
 {
 	return vehicle;
 }

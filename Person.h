@@ -57,13 +57,13 @@ public:
 	string getPassw() const;
 	string getUsern() const;
 	bool getHasVehicle() const;
-	vector<RegPerson*> getBuddies() const;
-	vector<Vehicle *> getVehicles() const;
-	vector<string> getNotifications() const;
+	vector<RegPerson*>& getBuddies();
+	vector<Vehicle *>& getVehicles();
+	vector<string>& getNotifications();
 	//crud
 	void insertBuddy(RegPerson* other_person);
 	void removeBuddy(int index);
-	bool areMutualBuddies(const RegPerson* other_person) const;
+	bool areMutualBuddies(RegPerson* other_person) const;
 
 	void addVehicle(Vehicle* v);
 	void removeVehicle(int index);
