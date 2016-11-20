@@ -190,59 +190,80 @@ void displaySettingsMenu()
 
 int main()
 {
-    cout << "     __ __  __ ______ ______ ______ ____  " << endl;
-    cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
-    cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
-    cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
-    cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
-    while(true)
-    {
-    	switch(displayMainMenu())
-    	{
-    	case 1:
-    		displayLoginMenu();
-    		break;
-    	case 2:
-    		switch(displayTripMenu())
-    		{
-    		case 1:
-    			userDest();
-    			break;
-    		case 2:
-    			break;
-    		default:
-    			cout << "No valid option picked! Please try again." << endl;
-    			break;
-    		}
-    		break;
-    		case 3:
-    			switch(displayTripHistoryMenu());
-    			{
-    			case 1:
-    				tripSortByDate();
-    				break;
-    			case 2:
-    				tripSortByDriverName();
-    				break;
-    			case 3:
-    				tripSortByScheduled();
-    				break;
-    			case 4:
-    				allTrips();
-    			case 5:
-    				break;
-    			default:
-    				cout << "No valid option picked! Please try again." << endl;
-    				break;
-    			}
-    			break;
-    		case 4:
-    			displayPaymentMenu();
-    			break;
-    		default:
-    			cout << "nope" << endl;
-    			break;
-    	}
-    }
-    return 0;
+	cout << "     __ __  __ ______ ______ ______ ____  " << endl;
+	cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
+	cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
+	cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
+	cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
+	while(true)
+	{
+		switch(displayMainMenu())
+		{
+			case 1:
+			{
+				displayLoginMenu();
+				break;
+			}
+			case 2:
+			{
+				switch(displayTripMenu())
+				{
+					case 1:
+						userDest();
+						break;
+					case 2:
+						break;
+					default:
+						cout << "No valid option picked! Please try again." << endl;
+						break;
+				}
+				break;
+			}
+			case 3:
+			{
+				switch(displayTripHistoryMenu());
+				{
+					case 1:
+					{
+						tripSortByDate();
+						break;
+					}
+					case 2:
+					{
+						tripSortByDriverName();
+						break;
+					}
+					case 3:
+					{
+						tripSortByScheduled();
+						break;
+					}
+					case 4:
+					{
+						allTrips();
+						break;
+					}
+					case 5:
+						break;
+					default:
+					{
+						cout << "No valid option picked! Please try again." << endl;
+						break;
+					}
+				}
+				break;
+			}
+			case 4:
+			{
+				displayPaymentMenu();
+				break;
+			}
+			default:
+			{
+				cout << "nope" << endl;
+				break;
+			}
+			break;
+		}
+	}
 }
