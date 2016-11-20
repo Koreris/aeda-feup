@@ -70,7 +70,7 @@ void displayLoginMenu()
 
 //end of login section
 
-
+//trip search section
 //vector<Trip *>
 bool userDest()
 {
@@ -79,7 +79,7 @@ bool userDest()
 	getline(cin, dest);
 	cin.ignore();
 	return true;
-					//(l.findDest(dest));
+	//(l.findDest(dest));
 }
 
 void displayVector(vector<Trip *>)
@@ -91,31 +91,46 @@ void displayVector(vector<Trip *>)
 
 long displayTripMenu()
 {
-	string user_in;
+	string user_in="";
+	long user_in_;
 	cout << "Let's find you your next trip! Pick your filter:" << endl
-		<< "|*****************************************************************|" << endl <<
-		"| +.  During your next trip you'll want to go to...               |" << endl <<
-		"| 1.  X destination                                               |" << endl <<
-		"| 2.  Go back to previous menu                                    |" << endl <<
-		"|*****************************************************************|" << endl;
+					<< "|*****************************************************************|" << endl <<
+					"| +.  During your next trip you'll want to go to...               |" << endl <<
+					"| 1.  X destination                                               |" << endl <<
+					"| 2.  Go back to previous menu                                    |" << endl <<
+					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	getline(cin, user_in);
-	long user_in_=stol(user_in);
+	user_in_=stol(user_in);
 	return user_in_;
 }
+//end of trip search section
 
-void displayTripHistoryMenu()
+//trip history section
+void tripSortByDate()
 {
+
+}
+
+long displayTripHistoryMenu()
+{
+	string user_in="";
+	long user_in_;
 	cout << "Do you want to filter your history? If so, pick your filters: " << endl
 		<< "|*****************************************************************|" << endl <<
-		"| 1.  By vehicle type                                             |" << endl <<
+		"| 1.  Sort by date (descending)                                   |" << endl <<
 		"| 2.  By driver name                                              |" << endl <<
-		"| 3.  By accompanying buddy name                                  |" << endl <<
+		"| 3.  Future trips                                                |" << endl <<
 		"| 4.  I don't want any of those, show me all of my trips          |" << endl <<
 		"| 5.  Go back to previous menu                                    |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
+	getline(cin, user_in);
+	user_in_=stol(user_in);
+	return user_in_;
 }
+
+//end of trip history section
 
 void displayBuddyMenu()
 {
@@ -148,7 +163,7 @@ void displaySettingsMenu()
 		"| 1.  Add vehicle/Become a driver                                 |" << endl <<
 		"| 2.  Delete vehicle                                              |" << endl <<
 		"| 3.  Display all vehicles                                        |" << endl <<
-		"| 4.  Alter full name                                             |" << endl <<
+		"| 4.  Alter password                                              |" << endl <<
 		"| 5.  Go back to previous menu                                    |" << endl <<
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
@@ -161,34 +176,43 @@ int main()
     cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
     cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
     cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
-    switch(displayMainMenu())
+    while(true)
     {
-    case 1:
-    	displayLoginMenu();
-    	break;
-    case 2:
-    	switch(displayTripMenu())
+    	switch(displayMainMenu())
     	{
     	case 1:
-    		userDest();
+    		displayLoginMenu();
     		break;
     	case 2:
-    		return true;
+    		switch(displayTripMenu())
+    		{
+    		case 1:
+    			userDest();
+    			break;
+    		case 2:
+    			break;
+    		default:
+    			cout << "No valid option picked! Please try again." << endl;
+    			break;
+    		}
     		break;
-    	default:
-    		cout << "No valid option picked! Please try again." << endl;
-    		break;
+    		case 3:
+    			switch(displayTripHistoryMenu());
+    			{
+    			case 1:
+    				tripSortByDate();
+    				break;
+    			case 2:
+
+    			}
+    			break;
+    		case 4:
+    			displayPaymentMenu();
+    			break;
+    		default:
+    			cout << "nope" << endl;
+    			break;
     	}
-    	break;
-    case 3:
-    	displayTripHistoryMenu();
-    	break;
-    case 4:
-    	displayPaymentMenu();
-    	break;
-    default:
-    	cout << "nope" << endl;
-    	break;
     }
     return 0;
 }
