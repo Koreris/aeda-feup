@@ -187,7 +187,52 @@ void displaySettingsMenu()
 		"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 }
+void atTripMenu(){
+	switch(displayTripMenu())
+				{
+					case 1:
+						userDest();
+						break;
+					case 2:
+						break;
+					default:
+						cout << "No valid option picked! Please try again." << endl;
+						break;
+				}
+}
 
+void atTripHistory(){
+	switch(displayTripHistoryMenu())
+			{
+				case 1:
+				{
+					tripSortByDate();
+					break;
+				}
+				case 2:
+				{
+					tripSortByDriverName();
+					break;
+				}
+				case 3:
+				{
+					tripSortByScheduled();
+					break;
+				}
+				case 4:
+				{
+					allTrips();
+					break;
+				}
+				case 5:
+					break;
+				default:
+				{
+					cout << "No valid option picked! Please try again." << endl;
+					break;
+				}
+			}
+}
 int main()
 {
 	cout << "     __ __  __ ______ ______ ______ ____  " << endl;
@@ -206,51 +251,12 @@ int main()
 			}
 			case 2:
 			{
-				switch(displayTripMenu())
-				{
-					case 1:
-						userDest();
-						break;
-					case 2:
-						break;
-					default:
-						cout << "No valid option picked! Please try again." << endl;
-						break;
-				}
+				atTripMenu();
 				break;
 			}
 			case 3:
 			{
-				switch(displayTripHistoryMenu());
-				{
-					case 1:
-					{
-						tripSortByDate();
-						break;
-					}
-					case 2:
-					{
-						tripSortByDriverName();
-						break;
-					}
-					case 3:
-					{
-						tripSortByScheduled();
-						break;
-					}
-					case 4:
-					{
-						allTrips();
-						break;
-					}
-					case 5:
-						break;
-					default:
-					{
-						cout << "No valid option picked! Please try again." << endl;
-						break;
-					}
-				}
+				atTripHistory();
 				break;
 			}
 			case 4:
@@ -263,7 +269,6 @@ int main()
 				cout << "nope" << endl;
 				break;
 			}
-			break;
 		}
 	}
 }

@@ -35,7 +35,7 @@ public:
 	float getBilling() const;
 
 	//billing
-	virtual void addBill(float bill,string fee, float triplength);
+	virtual void addBill(float bill,string fee, float triplength){};
 	void payBilling();
 };
 
