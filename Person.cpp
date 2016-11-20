@@ -213,6 +213,7 @@ UnregPerson::UnregPerson(string n, unsigned long t_nr)
 	Person(n,t_nr);
 }
 UnregPerson::~UnregPerson(){}
+
 void UnregPerson::addBill(float bill,string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="trip"){

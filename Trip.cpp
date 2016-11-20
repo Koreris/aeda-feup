@@ -126,15 +126,17 @@ float Trip::calculateDistance(Place * begin, Place * end)
 	*/
 	void Trip::recalculateRouteSeats()
 	{
-
-		for(signed int i=0;i<route.size();i++)
+		int beginning { };
+		int end { };
+		for(int i=0;i<route.size();i++)
 		{
 			route[i].second=0;
 		}
-		for(signed int i=0;i<travellers.size();i++)
+		for(int i=0;i<travellers.size();i++)
 		{
-			int beginning=findPlaceIndex(travellers[i].second[0]);
-			int end=findPlaceIndex(travellers[i].second[travellers[i].second.size()-1]);
+			beginning=findPlaceIndex(travellers[i].second[0]);
+			end=findPlaceIndex(travellers[i].second[travellers[i].second.size()-1]);
+			incrementVacancies(beginning,end);
 		}
 	}
 
@@ -148,10 +150,22 @@ float Trip::calculateDistance(Place * begin, Place * end)
 		return -1;
 	}
 
+	void Trip::incrementVacancies(int b, int e){
+		for(int i=b;i<=e;i++){
+			route[i].second++;
+		}
+	}
+
 	//CRUD for travellers participating in trip
-	void addTraveller(Person * t,vector<Place *>);
-	void removeTraveller(Person * t,vector<Place *>);
-	void updateTravellerRoute(Person *,vector<Place *>);
+	void Trip::addTraveller(Person * t,vector<Place *> r)
+	{
+		pair<Person * ,vector<Place*> > p(t,r);
+		travellers.push_back(p);
+		recalculateRouteSeats();
+	}
+
+	void Trip::removeTraveller(Person * t,vector<Place *>){}
+	void Trip::updateTravellerRoute(Person *,vector<Place *>){}
 
 string Trip::toString(){
 	stringstream ss;

@@ -52,6 +52,7 @@ public:
 	*/
 	void recalculateRouteSeats();
 	int findPlaceIndex(Place * p);
+	void incrementVacancies(int b, int e);
 
 	//CRUD for travellers participating in trip
 	void addTraveller(Person * t,vector<Place *>);
