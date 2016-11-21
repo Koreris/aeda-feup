@@ -37,6 +37,7 @@ public:
 	//billing
 	virtual void addBill(float bill,string fee, float triplength){};
 	virtual void printPerson(){};
+	virtual void addTripHistory(Trip * t) {};
 	void payBilling();
 };
 
@@ -72,7 +73,7 @@ public:
 	void removeBuddy(int index);
 	bool areMutualBuddies(RegPerson* other_person) const;
 
-
+	void addTripHistory(Trip * t);
 	void addVehicle(Vehicle* v);
 	void removeVehicle(int index);
 	void printTripHistory();
@@ -95,6 +96,7 @@ public:
 	//crud
 	void addBill(float bill, string fee, float triplength);
 	void printPerson();
+	void addTripHistory(Trip * t) {};
 };
 
 #endif //PERSON_H_

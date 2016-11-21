@@ -25,6 +25,7 @@ private:
 public:
 	Trip();
 	Trip(string VehicleOwner,Vehicle* vehicle, bool smoke, Date s, Date e);
+	Trip(string VehicleOwner,unsigned int seats, bool smoke, Date s, Date e);
 	~Trip();
 
 	unsigned int getAvailableSeats() const;
@@ -43,6 +44,7 @@ public:
 	void setSmokingSign(bool s);
 	void setStart(Date s);
 	void setEnd(Date e);
+	bool hasDestination(string src,string dest);
 	void addRoute(vector< pair<Place*,int> > rota);
 	float calculateDistance(Place * begin, Place * end); //call upon addingRoute
 

@@ -15,7 +15,7 @@ const string CFG_FILE_REGUSERS = "RegUsers.txt";
 const string CFG_FILE_DEL_REGUSERS = "DelRegUsers.txt";
 const string CFG_FILE_DESTINATIONS = "Destinations.txt";
 const string CFG_FILE_DEL_DESTINATIONS = "DelDestinations.txt";
-const string CFG_FILE_CURTRIPS = "CurTrips.txt";
+const string CFG_FILE_CURTRIPS = "Trips.txt";
 const string CFG_FILE_DELTRIPS = "DelTrips.txt";
 
 
@@ -43,7 +43,7 @@ public:
 	RegPerson* curr_user;
 
 	bool userLogin(string usr, string passw);
-	vector<Trip *> findDest(string dest);
+
 	vector<Trip *> tripSortByDate();
 	vector<Trip *> tripSortByDriverName();
 	vector<Trip *> tripSortByScheduled();
@@ -73,6 +73,8 @@ public:
 
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
+	vector<Trip *> findTrips(string src, string dest);
+	Place * findDest(string destname);
 
 	int load_regUsers();
 	//int load_del_regUsers();

@@ -120,7 +120,10 @@ vector<string>& RegPerson::getNotifications()
 {
 	return notifications;
 }
-
+void RegPerson::addTripHistory(Trip * t)
+{
+	tripHistory.push_back(t);
+}
 void RegPerson::addNotifications(string message)
 {
 	notifications.insert(notifications.begin(),message);
@@ -217,12 +220,12 @@ void RegPerson::printTripHistory(){
 
 //UnregPerson
 UnregPerson::UnregPerson()
+:Person()
 {
-	Person();
 }
 UnregPerson::UnregPerson(string n, unsigned long t_nr)
+:Person(n,t_nr)
 {
-	Person(n,t_nr);
 }
 UnregPerson::~UnregPerson(){}
 

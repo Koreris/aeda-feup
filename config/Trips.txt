@@ -1,0 +1,58 @@
+[Trip]
+vehicleOwner=user4
+seats=5
+place=Lisboa
+place=Porto
+place=Chaves
+smoking=1
+begindate=2016 11 10 19 30 0
+finishdate=2016 11 10 21 10 0
+[Traveler]
+traveller=user
+tplace=Lisboa
+tplace=Porto
+[/Traveler]
+[Traveler]
+traveller=user2
+tplace=Porto
+tplace=Chaves
+[/Traveler]
+[Traveler]
+traveller=user3
+tplace=Lisboa
+tplace=Chaves
+[/Traveler]
+[/Trip]
+[Trip]
+vehicleOwner=user2
+seats=4
+place=Porto
+place=Coimbra
+smoking=1
+begindate=2016 11 24 10 45 0
+finishdate=2016 11 24 12 10 0
+[Traveler]
+traveller=user
+tplace=Porto
+tplace=Coimbra
+[/Traveler]
+[/Trip]
+[Trip]
+vehicleOwner=user4
+seats=7
+place=Lisboa
+place=Coimbra
+smoking=0
+begindate=2015 11 24 10 45 0
+finishdate=2015 11 24 13 15 0
+[Traveler]
+traveller=user
+tplace=Lisboa
+tplace=Coimbra
+[/Traveler]
+[Traveler]
+traveller=unregistered
+tplace=Lisboa
+tplace=Coimbra
+[/Traveler]
+[/Trip]

@@ -26,6 +26,17 @@ Trip::Trip(string VehicleOwner,Vehicle* v,bool smoke, Date s,Date e)
 	travellers=vector< pair<Person*,vector<Place*> > >();
 }
 
+Trip::Trip(string VehicleOwner,unsigned int seats,bool smoke, Date s,Date e)
+{
+	vehicleOwner=VehicleOwner;
+	available_seats=seats-1;
+	smoking_allowed=smoke;
+	start = s;
+	end = e;
+	distance=0;
+	route= vector< pair<Place*,int> >();
+	travellers=vector< pair<Person*,vector<Place*> > >();
+}
 Trip::~Trip()
 {
 }
@@ -105,7 +116,7 @@ Date Trip::getEnd() const
 void Trip::addRoute(vector< pair<Place*,int> > rota)
 {
 	route=rota;
-	setDistance(calculateDistance((*route.begin()).first,(*route.end()).first));
+	setDistance(calculateDistance((*route.begin()).first,(*(route.end()-1)).first));
 }
 
 float Trip::calculateDistance(Place * begin, Place * end)
@@ -198,17 +209,31 @@ float Trip::calculateDistance(Place * begin, Place * end)
 		}
 		cout << ss.str();
 	}
-
+bool Trip::hasDestination(string src,string dest){
+	bool srcfound=false;
+	bool destfound=false;
+	for(int i=0;i<route.size();i++)
+	{
+		if(route[i].first->getName()==src)
+			srcfound=true;
+		if(srcfound)
+			if(route[i].first->getName()==dest)
+				destfound=true;
+	}
+	if(srcfound && destfound)
+		return true;
+	return false;
+}
 string Trip::toString(){
 	stringstream ss;
-	ss << "Driver: " << vehicleOwner  << "| Route: ";
+	ss << "Driver: " << vehicleOwner  << "|Route: ";
 	for(unsigned int i=0; i<route.size();i++)
 	{
 		if(i==route.size()-1)
 			ss << route[i].first->toString();
 		else ss << route[i].first->toString() << "->";
 	}
-	ss << "| Initial Date: " << start.str() << "| End Date: " << end.str();
+	ss << "|Initial Date: " << start.str() << "|End Date: " << end.str();
 	return ss.str();
 }
 
