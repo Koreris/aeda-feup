@@ -471,7 +471,7 @@ int Logic::load_trips()
 				}
 
 
-				if(trip->getStart()<Date::curDate()){
+				if(trip->getStart()<get_curDate()){
 					del_trips.push_back(trip);
 					cout <<"OLD_TRIP:"<<trip->toString() << endl;
 				}

@@ -170,44 +170,152 @@ void displayLoginMenu()
 }
 //end of login section
 
-Trip* createTripMenu()
+void displayVehicles(vector<Vehicle *>v)
 {
-	string usr=l.curr_user->getUsern();
-	if(!(l.curr_user->getHasVehicle()))
-		break;
-	else
+	for(int i=0;i<v.size();i++)
 	{
-		string index="";
-		string smoking="";
-		long smoke;
-		bool smk=false;
-		long index_;
-		int i;
-		bool validIndex=false;
-		cout << "Is smoking allowed on this trip? Input 0 for no, 1 for yes: " << endl;
-		getline(cin, smoking);
-		cin.clear();
-		cin.ignore(10000, '\n');
-		smoke=stol(smoking);
-		smk=smoke;
-		displayVehicles(l.curr_user->getVehicles());
-		cout << "Input the index of the vehicle you want to use for this trip: " << endl;
-		getline(cin, index);
-		cin.clear();
-		cin.ignore(10000, '\n');
-		index_=stol(index);
-		i=index_;
-		if(i<=l.curr_user->getVehicles().size())
-		{
-			validIndex=true;
-			return Trip*(usr, l.curr_user->getVehicles().at(i), smoking, );
-		}
-		cout << "Invalid index! Please input again." << endl;
-		return
+		cout << i <<": " << v[i]->toString() << endl;
 	}
 }
 
+void addDestinationsTrip(Trip *t)
+{
+	string place="";
+	Place * dest;
+	bool pressFtoPayRespects = false;
+	vector< pair<Place *, int> > route=vector< pair<Place *, int> >();
+	//QUERYING FOR DESTINATIONS
+	cout << "Input Route: One Destination at a time, input string 'F' to end input of destinations " << endl;
+	while(!pressFtoPayRespects){
+		getline(cin, place);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		if(place=="F")
+		{
+			t->addRoute(route);
+			pressFtoPayRespects=true;
+		}
+		if((dest=l.findDest(place))==NULL){
+			cout << "Destination isn't registered in the application yet, please register destination first" << endl;
+			continue;
+		}
+		else
+		{
+			pair<Place*,int> p (dest,0);
+			route.push_back(p);
+			cout << "Added " << dest->getName() << " to route." << endl;
+		}
+
+	}
+}
+
+bool createTrip()
+{
+
+	if(!(l.curr_user->getHasVehicle()))
+		return false;
+
+	Date start_date;
+	Date end_date;
+	string usr=l.curr_user->getUsern();
+	string index="";
+	string begindate="";
+	string finishdate="";
+	string smoking="";
+	bool smk=false;
+	unsigned long i;
+	bool validIndex=false;
+	bool validSmoke=false;
+	bool validBeginDate=false;
+	bool validEndDate=false;
+
+	//QUERYING FOR SMOKING CONDITION
+	cout << "Is smoking allowed on this trip? Input 0 for no, 1 for yes: " << endl;
+	while(!validSmoke){
+		getline(cin, smoking);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		if(stol(smoking)!=0 && stol(smoking)!=1)
+			continue;
+		smk=stol(smoking);
+		validSmoke=true;
+	}
+
+	//QUERYING TO CHOOSE VEHICLE
+	displayVehicles(l.curr_user->getVehicles());
+	cout << "Input the index of the vehicle you want to use for this trip: " << endl;
+	while(!validIndex)
+	{
+		getline(cin, index);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		i=stol(index);
+
+
+		if(i<=l.curr_user->getVehicles().size()-1 && i>=0)
+		{
+			validIndex=true;
+
+		}
+		if(!validIndex)
+			cout << "Invalid index! Please input again." << endl;
+	}
+
+	//QUERYING TO TRIP START DATE
+
+	cout << "Input the start date in format -> year month day hour minute second " << endl;
+	while(!validBeginDate)
+	{
+		getline(cin, begindate);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		try {
+				Date start_date(begindate);
+			} catch (Date::InvalidDate &d) {
+				cout << "Invalid input of Date format" << endl;
+				continue;
+			}
+		//make date after confirming it's valid
+		start_date(begindate);
+
+		if(start_date<l.get_curDate())
+			cout  << "Cannot make trips in the past, try again" << endl;
+		else validBeginDate=true;
+	}
+
+	//QUERYING TO TRIP END DATE
+
+	cout << "Input the end date in format -> year month day hour minute second " << endl;
+	while(!validEndDate)
+	{
+		getline(cin, finishdate);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		try {
+			Date start_date(finishdate);
+		} catch (Date::InvalidDate &d) {
+			cout << "Invalid input of Date format" << endl;
+			continue;
+		}
+
+		//make date after confirming it's valid
+		end_date(finishdate);
+		if(end_date<start_date)
+			cout  << "Cannot have end date earlier than start date, try again" << endl;
+		else validEndDate=true;
+	}
+
+	Trip * t = new Trip(usr, l.curr_user->getVehicles()[i], smoking,start_date,end_date);
+	addDestinationsTrip(t);
+	l.getCurTrips().push_back(t);
+	return true;
+}
+
+
+
 //trip search section
+
+
 void displayTrips(vector<Trip *>)
 {
 	//separate smoking from non smoking
@@ -548,11 +656,6 @@ Vehicle* makeVehicle()
 	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,license_plate,car_seats);
 
 	return v;
-}
-
-void displayVehicles(vector <Vehicle *> vs)
-{
-	//cout
 }
 
 bool rmVehicle()
