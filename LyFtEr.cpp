@@ -25,7 +25,13 @@ enum states
 	allTripsMenu,
 	addBuddyState,
 	removeBuddyState,
-	allBuddiesState
+	allBuddiesState,
+	payState,
+	checkDebtState,
+	addVehicleState,
+	displayAllVehiclesState,
+	rmVehicleState,
+	changePasswState
 };
 states curr_state = mainMenu;
 states prev_state = mainMenu;
@@ -314,12 +320,13 @@ void displayBuddies(vector <RegPerson *> buds)
 {
 	//cout
 }
+
 bool rmBuddyUsername()
 {
 	string index="";
 	bool validIndex=false;
 	long index_;
-	int i;
+	unsigned int i;
 
 	while(!validIndex)
 	{
@@ -353,7 +360,7 @@ bool findBuddyUsername()
 		getline(cin, usrn);
 		cin.clear();
 		cin.ignore(10000, '\n');
-		buddies=l.findBuddy(usrn);
+		buddies=l.findRegPerson(usrn);
 		RegPerson * user= buddies[0];
 		if(buddies.size()>0)
 		{
@@ -386,7 +393,7 @@ void displayBuddyMenu()
 		cin.clear();
 		cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_>= 1 && user_in_<= 5)
+		if(user_in_>= 1 && user_in_<= 4)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -416,20 +423,143 @@ void displayBuddyMenu()
 }
 //end of buddies section
 
+//payment section
 void displayPaymentMenu()
 {
+	string user_in="";
+	long user_in_;
+	bool validInput=false;
 	cout << "Here you can manage your wallet and payment options: " << endl
 					<< "|*****************************************************************|" << endl <<
-					"| 1.  Add funds                                                   |" << endl <<
-					"| 2.  Consult all your payment                                    |" << endl <<
-					"| 3.  Consults all your transactions                              |" << endl <<
-					"| 4.  Go back to previous menu                                    |" << endl <<
+					"| 1.  Pay bills                                                   |" << endl <<
+					"| 2.  Consult debts                                               |" << endl <<
+					"| 3.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
+	while(!validInput)
+	{
+		getline(cin, user_in);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		user_in_=stol(user_in);
+		if(user_in_>= 1 && user_in_<= 3)
+		{
+			validInput=true;
+			switch(user_in_)
+			{
+			case 1:
+				l.curr_user->payBilling();
+				prev_state=curr_state;
+				curr_state=payState;
+				break;
+			case 2:
+				cout << "Your current debt is: " << l.curr_user->getBilling() << endl;
+				prev_state=curr_state;
+				curr_state=checkDebtState;
+				break;
+			case 3:
+				prev_state=curr_state;
+				curr_state=mainMenu;
+				break;
+			}
+		}
+	}
+}
+//end of payment section
+
+//settings section
+Vehicle* makeVehicle()
+{
+	string type="";
+	string brand="";
+	string license_plate="";
+	string seats="";
+	unsigned int car_seats;
+
+	cout << "Input the car type (either van, sedan or hatchback): " << endl;
+	getline(cin,type);
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	cout << "Input the car brand: " << endl;
+	getline(cin,brand);
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	cout << "Input the car license plate: " << endl;
+	getline(cin,license_plate);
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	cout << "Input the car's number of seats: " << endl;
+	getline(cin,seats);
+	car_seats=stol(seats);
+	cin.clear();
+	cin.ignore(10000, '\n');
+
+	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,license_plate,car_seats);
+
+	return v;
+}
+
+void displayVehicles(vector <Vehicle *> vs)
+{
+	//cout
+}
+
+bool rmVehicle()
+{
+	string index="";
+	bool validIndex=false;
+	long index_;
+	unsigned int i;
+
+	while(!validIndex)
+	{
+		cout << "Input the index of the vehicle you want to remove: " << endl;
+		getline(cin, index);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		index_=stol(index);
+		i=index_;
+		displayVehicles(l.curr_user->getVehicles());
+		if(i<=l.curr_user->getVehicles().size())
+		{
+			validIndex=true;
+			l.curr_user->removeVehicle(i);
+			return true;
+		}
+		cout << "Invalid index! Please input again." << endl;
+	}
+	return false;
+}
+
+bool changePassword(RegPerson* p)
+{
+	string curr_passw="";
+	string new_passw="";
+
+	cout << "Input your current password: " << endl;
+	getline(cin, curr_passw);
+	cin.clear();
+	cin.ignore(10000, '\n');
+	cout << "Input your new password: " << endl;
+	getline(cin, new_passw);
+	cin.clear();
+	cin.ignore(10000, '\n');
+	if(l.userLogin(p->getUsern(), curr_passw))
+	{
+		p->setPassw(new_passw);
+		return true;
+	}
+	cout << "Current password is incorrect! Try again later." << endl;
 }
 
 void displaySettingsMenu()
 {
+	string user_in="";
+	long user_in_;
+	bool validInput=false;
 	cout << "Here you can manage your settings and account: " << endl
 					<< "|*****************************************************************|" << endl <<
 					"| 1.  Add vehicle/Become a driver                                 |" << endl <<
@@ -439,6 +569,45 @@ void displaySettingsMenu()
 					"| 5.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
+	while(!validInput)
+	{
+		getline(cin, user_in);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		user_in_=stol(user_in);
+		if(user_in_>= 1 && user_in_<= 5)
+		{
+			validInput=true;
+			switch(user_in_)
+			{
+			case 1:
+				makeVehicle();
+				l.curr_user->addVehicle(makeVehicle());
+				prev_state=curr_state;
+				curr_state=addVehicleState;
+				break;
+			case 2:
+				rmVehicle();
+				prev_state=curr_state;
+				curr_state=rmVehicleState;
+				break;
+			case 3:
+				displayVehicles(l.curr_user->getVehicles());
+				prev_state=curr_state;
+				curr_state=displayAllVehiclesState;
+				break;
+			case 4:
+				changePassword(l.curr_user);
+				prev_state=curr_state;
+				curr_state=changePasswState;
+				break;
+			case 5:
+				prev_state=curr_state;
+				curr_state=mainMenu;
+				break;
+			}
+		}
+	}
 }
 
 int main()
