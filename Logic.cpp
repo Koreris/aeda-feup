@@ -594,7 +594,7 @@ int Logic::load_trips()
 }
 
 /**
- * Loads all the program information from the files (their names are defined in the top of Library.h as constants).\n
+ * Loads all the program information from the files (their names are defined in the top of Logic.h as constants).\n
  * This includes the registeredUsers, destinations(the ones that exist and a record of deleted ones) and trips \n\n
  *
  * @brief Loads all the Program information from files
