@@ -70,6 +70,8 @@ public:
 
 	void deleteDestinations(int index);
 
+	void deleteTrips(int index);
+
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest);

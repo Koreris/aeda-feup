@@ -150,6 +150,25 @@ void Logic::deleteDestinations(int index)
 	this->destinations.erase(it);
 }
 
+void Logic::deleteTrips(int index)
+{
+	if(index<0 || index >= cur_trips.size())
+	{
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
+
+	vector<Trip *>::iterator it=cur_trips.begin();
+
+	while (it!=cur_trips.end() && index != 0)
+	{
+		it++;
+		index--;
+	}
+	del_trips.push_back(cur_trips[index]);
+	this->cur_trips.erase(it);
+}
+
 RegPerson * Logic::findRegPerson (string username)
 {
 	for(int i=0;i<regUsers.size();i++){
