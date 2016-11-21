@@ -119,14 +119,16 @@ class SaveFailed {
 public:
 	SaveFailed() {
 	}
-
-	vector<Person*>& getRegUsers ();
-	void setRegUsers (vector<Person*>& regUsers);
-
-	void deleteDestinations(int index);
-	vector<RegPerson *> findBuddy(string username);
-
 };
 ///@}
+
+vector<Person*>& getRegUsers ();
+void setRegUsers (vector<Person*>& regUsers);
+
+void deleteDestinations(int index);
+
+
+
+
 
 #endif //LOGIC_H_

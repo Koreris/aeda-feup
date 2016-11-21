@@ -247,9 +247,6 @@ int Logic::load_regUsers()
 	return 0;
 }
 
-
-
-
 int Logic::load_destinations(){
 	ifstream fin;
 	stringstream ss;
@@ -309,7 +306,66 @@ int Logic::load_destinations(){
 	return 0;
 
 }
-//int Logic::load_del_destinations();
+
+int Logic::load_del_destinations(){
+	ifstream fin;
+	stringstream ss;
+
+	// -------------------
+	// Destinations file
+	// -------------------
+
+	fin.open(cfg_file_deldestinations.c_str());
+
+	if (fin.fail()) {
+		cout << "Opening file failed " << cfg_file_deldestinations.c_str() << endl;
+		return -1;
+	} else {
+		string line;
+
+		string key = "";
+		string value = "";
+
+		string name ="";
+		int x=-1;
+		int y=-1;
+
+		while (!fin.eof()) {
+			getline(fin, line);
+			if (line == "[DelPlace]") {
+				name ="";
+				x=-1;
+				y=-1;
+			} else if (line == "[/DelPlace]") {
+				if (name == "" ||x == -1 || y == -1)
+					throw CorruptedDelDestination();
+
+				pair<int,int> coord(x,y);
+				Place *pl = new Place(name,coord);
+				del_destinations.push_back(pl);
+				cout << del_destinations[del_destinations.size()-1]->toString() << endl;
+			}
+			else {
+				ss.str("");
+				ss.str(line + "\n");
+				getline(ss, key, '=');
+				getline(ss, value);
+
+				if (key == "name")
+					name = value;
+				else if (key == "x")
+					x = stol(value);
+				else if (key == "y")
+					y = stol(value);
+
+			}
+		}
+	}
+
+	fin.close();
+	return 0;
+}
+
 //int Logic::load_trips();
 
 /**
@@ -331,6 +387,13 @@ try{
 	load_destinations();
 }
 catch(CorruptedDestination e){
+	return -1;
+}
+
+try{
+	load_del_destinations();
+}
+catch(CorruptedDelDestination e){
 	return -1;
 }
  return 0;
