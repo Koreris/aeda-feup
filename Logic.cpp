@@ -190,12 +190,17 @@ vector<RegPerson *> Logic::findRegPersonVec (string username)
 	return temp;
 }
 
-Place * Logic::findDest(string destname)
+Place * Logic::findDest(string destname,string f)
 {
 	for(int i=0;i<destinations.size();i++){
 			if(destinations[i]->getName()==destname)
 				return destinations[i];
 		}
+	if(f=="loading")
+	for(int i=0;i<del_destinations.size();i++){
+				if(del_destinations[i]->getName()==destname)
+					return del_destinations[i];
+			}
 		return NULL;
 }
 int Logic::load_regUsers()
@@ -550,7 +555,7 @@ int Logic::load_trips()
 					seats = stol(value);
 				else if (key == "place"){
 					place = value;
-					Place * p = findDest(value);
+					Place * p = findDest(value,"loading");
 					if(p==NULL)
 					{
 						cout << "Invalid place in trips file " << endl;
@@ -561,7 +566,7 @@ int Logic::load_trips()
 				}
 				else if (key == "tplace"){
 					tplace = value;
-					Place * p = findDest(value);
+					Place * p = findDest(value,"loading");
 					if(p==NULL)
 					{
 						cout << "Invalid place in trips file " << endl;

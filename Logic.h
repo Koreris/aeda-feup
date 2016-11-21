@@ -75,7 +75,7 @@ public:
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest);
-	Place * findDest(string destname);
+	Place * findDest(string destname, string f="");
 
 	int load_regUsers();
 	//int load_del_regUsers();
