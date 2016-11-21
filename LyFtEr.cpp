@@ -610,3 +610,43 @@ void displaySettingsMenu()
 	}
 }
 
+int main()
+{
+	cout << "     __ __  __ ______ ______ ______ ____  " << endl;
+	cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
+	cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
+	cout << "  / /___ / // __/    / /  / /___ / _, _/  " << endl;
+	cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
+	while(true)
+	{
+		/*switch(displayMainMenu())
+		{
+			case 1:
+			{
+				displayLoginMenu();
+				break;
+			}
+			case 2:
+			{
+				atTripMenu();
+				break;
+			}
+			case 3:
+			{
+				atTripHistory();
+				break;
+			}
+			case 4:
+			{
+				displayPaymentMenu();
+				break;
+			}
+			default:
+			{
+				cout << "Invalid option, try again." << endl;
+				break;
+			}
+		}*/
+	}
+}
+
