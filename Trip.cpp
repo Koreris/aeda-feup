@@ -130,85 +130,86 @@ float Trip::calculateDistance(Place * begin, Place * end)
 	  return calcdistance;
 }
 
-	 /*
+/*
 		Must be called if changeTravellerRoute or addTraveller or removeTraveller is called,
 		goes through travellers vector and changes available
 		seats for each place in route vector
-	*/
-	void Trip::recalculateRouteSeats()
+ */
+void Trip::recalculateRouteSeats()
+{
+	int beginning { };
+	int end { };
+	for(unsigned int i=0;i<route.size();i++)
 	{
-		int beginning { };
-		int end { };
-		for(unsigned int i=0;i<route.size();i++)
-		{
-			route[i].second=0;
-		}
-		for(unsigned int i=0;i<travellers.size();i++)
-		{
-			beginning=findPlaceIndex(travellers[i].second[0]);
-			end=findPlaceIndex(travellers[i].second[travellers[i].second.size()-1]);
-			incrementVacancies(beginning,end);
-		}
+		route[i].second=0;
 	}
-
-	int Trip::findPlaceIndex(Place * p)
+	for(unsigned int i=0;i<travellers.size();i++)
 	{
-		for(unsigned int i=0;i<route.size();i++)
-		{
-			if(route[i].first==p)
-				return i;
-		}
-		return -1;
+		beginning=findPlaceIndex(travellers[i].second[0]);
+		end=findPlaceIndex(travellers[i].second[travellers[i].second.size()-1]);
+		incrementVacancies(beginning,end);
 	}
+}
 
-	void Trip::incrementVacancies(int b, int e){
-		for(int i=b;i<=e;i++){
-			route[i].second++;
-		}
-	}
-
-	//CRUD for travellers participating in trip
-	void Trip::addTraveller(Person * t,vector<Place *> r)
+int Trip::findPlaceIndex(Place * p)
+{
+	for(unsigned int i=0;i<route.size();i++)
 	{
-		pair<Person * ,vector<Place*> > p(t,r);
-		travellers.push_back(p);
-		recalculateRouteSeats();
+		if(route[i].first==p)
+			return i;
 	}
+	return -1;
+}
 
-	void Trip::removeTraveller(Person * t)
+void Trip::incrementVacancies(int b, int e){
+	for(int i=b;i<=e;i++){
+		route[i].second++;
+	}
+}
+
+//CRUD for travellers participating in trip
+void Trip::addTraveller(Person * t,vector<Place *> r)
+{
+	pair<Person * ,vector<Place*> > p(t,r);
+	travellers.push_back(p);
+	recalculateRouteSeats();
+}
+
+void Trip::removeTraveller(Person * t)
+{
+	for(unsigned int i=0;i<travellers.size();i++)
 	{
-		for(unsigned int i=0;i<travellers.size();i++)
-		{
-			if(travellers[i].first==t)
-				travellers.erase(travellers.begin()+i);
-		}
-		recalculateRouteSeats();
+		if(travellers[i].first==t)
+			travellers.erase(travellers.begin()+i);
 	}
+	recalculateRouteSeats();
+}
 
-	void Trip::updateTravellerRoute(Person *t,vector<Place *>r)
+void Trip::updateTravellerRoute(Person *t,vector<Place *>r)
+{
+	for(unsigned int i=0;i<travellers.size();i++)
 	{
-		for(unsigned int i=0;i<travellers.size();i++)
-		{
-			if(travellers[i].first==t)
-				travellers[i].second=r;
-		}
+		if(travellers[i].first==t)
+			travellers[i].second=r;
 	}
+}
 
-	void Trip::printTravellers()
-	{	stringstream ss;
-		for(unsigned int i=0;i<travellers.size();i++)
-		{
-			ss << "Person:" <<travellers[i].first << " Route:";
-			for(unsigned int j=0; j<route.size();j++)
-			{
-					if(j==travellers[i].second.size()-1)
-						ss << travellers[i].second[j]->toString();
-					else ss << travellers[i].second[j]->toString() << "->";
-			}
-			ss << endl;
-		}
-		cout << ss.str();
+void Trip::printTravellers()
+{	stringstream ss;
+for(unsigned int i=0;i<travellers.size();i++)
+{
+	ss << "Person:" <<travellers[i].first << " Route:";
+	for(unsigned int j=0; j<route.size();j++)
+	{
+		if(j==travellers[i].second.size()-1)
+			ss << travellers[i].second[j]->toString();
+		else ss << travellers[i].second[j]->toString() << "->";
 	}
+	ss << endl;
+}
+cout << ss.str();
+}
+
 bool Trip::hasDestination(string src,string dest){
 	bool srcfound=false;
 	bool destfound=false;
@@ -224,6 +225,26 @@ bool Trip::hasDestination(string src,string dest){
 		return true;
 	return false;
 }
+
+bool Trip::isFull(string src, string dest)
+{
+	int bi;
+	int ei;
+	for(unsigned int i=0;i<route.size();i++)
+	{
+		if(route[i].first->getName()==src)
+			bi=i;
+		if(route[i].first->getName()==dest)
+			ei=i;
+	}
+	for(int j=bi;j<=ei;j++){
+		//if not full
+		if(route[j].second<available_seats)
+			return false;
+	}
+	return true;
+}
+
 string Trip::toString(){
 	stringstream ss;
 	ss << "Driver: " << vehicleOwner  << "|Route: ";

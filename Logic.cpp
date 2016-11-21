@@ -38,13 +38,18 @@ bool Logic::userLogin(string usr, string passw)
 	return (usr == "test" && passw == "1234");
 }
 
+/**
+ * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest
+ * @brief finds trips with vacancies by giving start location and end location
+ * @return vector of trips, empty if no trips found
+ */
 vector<Trip *> Logic::findTrips(string src,string dest)
 {
 	vector<Trip *> temp=vector<Trip *>();
 	for(int i=0;i<cur_trips.size();i++){
 		if(cur_trips[i]->hasDestination(src,dest)){
-			temp.push_back(cur_trips[i]);
-			return temp;
+			if(!cur_trips[i]->isFull(src,dest))
+				temp.push_back(cur_trips[i]);
 		}
 	}
 	return temp;

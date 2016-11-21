@@ -59,8 +59,6 @@ public:
 	void setPassw(string pw);
 	void setUsern(string usrn);
 
-
-
 	//getters
 	string getPassw() const;
 	string getUsern() const;
@@ -68,21 +66,23 @@ public:
 	vector<RegPerson*>& getBuddies();
 	vector<Vehicle *>& getVehicles();
 	vector<string>& getNotifications();
+
 	//crud
 	void insertBuddy(RegPerson* other_person);
 	void removeBuddy(int index);
-	bool areMutualBuddies(RegPerson* other_person) const;
-
 	void addTripHistory(Trip * t);
 	void addVehicle(Vehicle* v);
 	void removeVehicle(int index);
-	void printTripHistory();
 
+	//features
+	bool areMutualBuddies(RegPerson* other_person) const;
 	void addNotifications(string message);
 	void showNotifications(int howmany);
-
 	void addBill(float bill,string fee, float triplength);
+
+	//Printing functions
 	void printPerson();
+	void printTripHistory();
 };
 
 class UnregPerson: public Person

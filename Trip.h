@@ -44,26 +44,30 @@ public:
 	void setSmokingSign(bool s);
 	void setStart(Date s);
 	void setEnd(Date e);
-	bool hasDestination(string src,string dest);
+
+	//CRUDS
 	void addRoute(vector< pair<Place*,int> > rota);
-	float calculateDistance(Place * begin, Place * end); //call upon addingRoute
+	//CRUD for travellers participating in trip
+	void addTraveller(Person * t,vector<Place *>);
+	void removeTraveller(Person * t);
+	void updateTravellerRoute(Person *t,vector<Place *>r);
+
 
 	 /*
 		Must be called if changeTravellerRoute or addTraveller or removeTraveller is called,
 		goes through travellers vector and changes available
 		seats for each place in route vector
 	*/
+	float calculateDistance(Place * begin, Place * end); //call upon addingRoute
 	void recalculateRouteSeats();
 	int findPlaceIndex(Place * p);
 	void incrementVacancies(int b, int e);
+	bool hasDestination(string src,string dest);
+	bool isFull(string src,string dest);
 
-	//CRUD for travellers participating in trip
-	void addTraveller(Person * t,vector<Place *>);
-	void removeTraveller(Person * t);
-	void updateTravellerRoute(Person *t,vector<Place *>r);
 
+	//Printing
 	void printTravellers();
-
     string toString();
 };
 

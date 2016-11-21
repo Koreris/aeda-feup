@@ -95,7 +95,7 @@ string RegPerson::getPassw() const
 
 bool RegPerson::getHasVehicle() const
 {
-	 return vehicles.size()>0;
+	return vehicles.size()>0;
 }
 
 
@@ -172,18 +172,18 @@ void RegPerson::addVehicle(Vehicle* v)
 void RegPerson::removeVehicle(int index)
 {
 	if(index<0 || index >= vehicles.size()){
-			cout << "Invalid index chosen" << endl;
-			return;
-		}
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
 
-		vector<Vehicle *>::iterator it=vehicles.begin();
+	vector<Vehicle *>::iterator it=vehicles.begin();
 
-		while (it!=vehicles.end() && index != 0) {
-			it++;
-			index--;
-		}
+	while (it!=vehicles.end() && index != 0) {
+		it++;
+		index--;
+	}
 
-		this->vehicles.erase(it);
+	this->vehicles.erase(it);
 }
 
 void RegPerson::printPerson()
