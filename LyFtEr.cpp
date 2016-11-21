@@ -197,6 +197,7 @@ void addDestinationsTrip(Trip *t)
 		{
 			t->addRoute(route);
 			pressFtoPayRespects=true;
+			break;
 		}
 		if((dest=l.findDest(place))==NULL){
 			cout << "Destination isn't registered in the application yet, please register destination first" << endl;
@@ -314,6 +315,7 @@ bool createTrip()
 	addDestinationsTrip(t);
 	l.getCurTrips().push_back(t);
 	cout << "Successfully added the trip: " << t->toString() << endl;
+	curr_state=prev_state;
 	return true;
 }
 

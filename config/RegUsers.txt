@@ -35,6 +35,13 @@ name=u4
 phone=444444
 username=user4
 password=4
+[Vehicle]
+owner=user4
+type=VAN
+brand=PiggaBrand
+plate=Chu
+seats=4
+[/Vehicle]
 [/RegUser]
 [RegUser]
 name=u5
