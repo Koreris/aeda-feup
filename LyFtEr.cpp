@@ -353,7 +353,7 @@ bool findBuddyUsername()
 		getline(cin, usrn);
 		cin.clear();
 		cin.ignore(10000, '\n');
-		buddies=l.findBuddy(usrn);
+		buddies=l.findRegPersonVec(usrn);
 		RegPerson * user= buddies[0];
 		if(buddies.size()>0)
 		{

@@ -72,6 +72,8 @@ public:
 	void deleteDestinations(int index);
 
 	RegPerson * findRegPerson (string username);
+	vector<RegPerson *> findRegPersonVec (string username);
+
 	int load_regUsers();
 	//int load_del_regUsers();
 	int load_destinations();
@@ -117,13 +119,13 @@ class SaveFailed {
 public:
 	SaveFailed() {
 	}
-=======
+
 	vector<Person*>& getRegUsers ();
 	void setRegUsers (vector<Person*>& regUsers);
 
 	void deleteDestinations(int index);
 	vector<RegPerson *> findBuddy(string username);
->>>>>>> origin/master
+
 };
 ///@}
 

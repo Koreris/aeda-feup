@@ -137,6 +137,16 @@ RegPerson * Logic::findRegPerson (string username)
 	}
 }
 
+vector<RegPerson *> Logic::findRegPersonVec (string username)
+{
+	vector<RegPerson *> temp=vector<RegPerson *>();
+	for(int i=0;i<regUsers.size();i++){
+		if(regUsers[i]->getUsern()==username){
+			temp.push_back(regUsers[i]);
+			return temp;
+		}
+	}
+}
 int Logic::load_regUsers()
 {
 	ifstream fin;
@@ -324,6 +334,7 @@ catch(CorruptedDestination e){
 	return -1;
 }
  return 0;
+}
 
 
 
