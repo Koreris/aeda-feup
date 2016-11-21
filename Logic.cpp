@@ -35,7 +35,16 @@ Date Logic::get_curDate() const
 
 bool Logic::userLogin(string usr, string passw)
 {
-	return (usr == "test" && passw == "1234");
+	for(int i=0;i<regUsers.size();i++)
+	{
+		if(regUsers[i]->getUsern()==usr && regUsers[i]->getPassw()==passw){
+			curr_user=regUsers[i];
+			cout << "Logged in with User: " << regUsers[i]->getUsern() << endl;
+			return true;
+		}
+	}
+	cout << "User not found " << endl;
+	return false;
 }
 
 /**

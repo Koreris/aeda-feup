@@ -7,7 +7,7 @@
 #include "Logic.h"
 
 
-Logic l;
+Logic l("config");
 
 enum states
 {
@@ -60,6 +60,8 @@ void displayMainMenu()
 	string user_in;
 	long user_in_;
 	bool validInput=false;
+	while(!validInput)
+	{
 	cout << "\n Welcome to LyFtEr! \n\n" << endl
 					<< " +============================================================================+" << endl <<
 					" | 1.  Login!                                                                 |" << endl <<
@@ -68,8 +70,7 @@ void displayMainMenu()
 					" | 4.  Payment options                                                        |" << endl <<
 					" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
-	while(!validInput)
-	{
+
 		getline(cin, user_in);
 		cin.clear();
 		cin.ignore(10000, '\n');
@@ -87,7 +88,9 @@ void displayMainMenu()
 				}
 				else
 				{
+					curr_state=prev_state;
 					validInput=false;
+
 				}
 				break;
 			case 2:
@@ -212,8 +215,10 @@ void addDestinationsTrip(Trip *t)
 bool createTrip()
 {
 
-	if(!(l.curr_user->getHasVehicle()))
+	if(!(l.curr_user->getHasVehicle())){
+		curr_state=prev_state;
 		return false;
+	}
 
 	Date start_date;
 	Date end_date;
@@ -276,7 +281,7 @@ bool createTrip()
 				continue;
 			}
 		//make date after confirming it's valid
-		start_date(begindate);
+		Date start_date(begindate);
 
 		if(start_date<l.get_curDate())
 			cout  << "Cannot make trips in the past, try again" << endl;
@@ -292,22 +297,23 @@ bool createTrip()
 		cin.clear();
 		cin.ignore(10000, '\n');
 		try {
-			Date start_date(finishdate);
+			Date end_date(finishdate);
 		} catch (Date::InvalidDate &d) {
 			cout << "Invalid input of Date format" << endl;
 			continue;
 		}
 
 		//make date after confirming it's valid
-		end_date(finishdate);
+		Date end_date(finishdate);
 		if(end_date<start_date)
 			cout  << "Cannot have end date earlier than start date, try again" << endl;
 		else validEndDate=true;
 	}
 
-	Trip * t = new Trip(usr, l.curr_user->getVehicles()[i], smoking,start_date,end_date);
+	Trip * t = new Trip(usr, l.curr_user->getVehicles()[i], smk,start_date,end_date);
 	addDestinationsTrip(t);
 	l.getCurTrips().push_back(t);
+	cout << "Successfully added the trip: " << t->toString() << endl;
 	return true;
 }
 
@@ -763,6 +769,8 @@ void displaySettingsMenu()
 
 int main()
 {
+
+	l.load_data();
 	cout << "     __ __  __ ______ ______ ______ ____  " << endl;
 	cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
 	cout << "   / /   \\  // /_     / /  / __/  / /_/ / " << endl;
@@ -794,6 +802,9 @@ int main()
 			displaySettingsMenu();
 			break;
 		case chooseTripMenu:
+			break;
+		case createTripMenu:
+			createTrip();
 			break;
 		case sortedDate:
 			break;
