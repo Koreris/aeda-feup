@@ -619,34 +619,44 @@ int main()
 	cout << " /_____//_//_/      /_/  /_____//_/ |_|   " << endl;
 	while(true)
 	{
-		/*switch(displayMainMenu())
+		switch(curr_state)
 		{
-			case 1:
-			{
-				displayLoginMenu();
-				break;
-			}
-			case 2:
-			{
-				atTripMenu();
-				break;
-			}
-			case 3:
-			{
-				atTripHistory();
-				break;
-			}
-			case 4:
-			{
-				displayPaymentMenu();
-				break;
-			}
-			default:
-			{
-				cout << "Invalid option, try again." << endl;
-				break;
-			}
-		}*/
+		case mainMenu:
+			displayMainMenu();
+			break;
+		case loginMenu:
+			displayLoginMenu();
+			break;
+		case searchTripMenu:
+			displayTripMenu();
+			break;
+		case historyMenu:
+			displayTripHistoryMenu();
+			break;
+		case paymentMenu:
+			displayPaymentMenu();
+			break;
+		case buddiesMenu:
+			displayBuddyMenu();
+			break;
+		case settingsMenu:
+			displaySettingsMenu();
+			break;
+			/*case chooseTripMenu:
+				sortedDate,
+				sortedName,
+				sortedScheduled,
+				allTripsMenu,
+				addBuddyState,
+				removeBuddyState,
+				allBuddiesState,
+				payState,
+				checkDebtState,
+				addVehicleState,
+				displayAllVehiclesState,
+				rmVehicleState,
+				changePasswState*/
+		}
 	}
 }
 
