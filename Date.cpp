@@ -391,7 +391,6 @@ int Date::numDays(Date d1, Date d2)
 		}
 	} else
 	{
-		//different year year
 		Date date1(d1);
 		Date date2(d2);
 

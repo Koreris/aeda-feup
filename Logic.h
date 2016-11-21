@@ -23,7 +23,6 @@ class Logic
 {
 private:
 	vector<RegPerson *> regUsers;
-	//vector<Person *> del_regUsers;
 	vector<Place *> destinations;
 	vector<Place *> del_destinations;
 	vector<Trip *> cur_trips;

@@ -25,7 +25,7 @@ Logic::Logic(string dir){
 }
 /**
  * Returns the current date, provided by the Date class
- * @brief Returns the Library's current date and time
+ * @brief Returns the current date and time
  * @return Date with the current date and time
  */
 Date Logic::get_curDate() const
