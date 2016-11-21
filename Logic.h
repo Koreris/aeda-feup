@@ -37,7 +37,11 @@ private:
 	string cfg_file_deltrips;
 public:
 	Logic();
+
 	Logic(string dir);
+
+	RegPerson* curr_user;
+
 	bool userLogin(string usr, string passw);
 	vector<Trip *> findDest(string dest);
 	vector<Trip *> tripSortByDate();
@@ -61,8 +65,11 @@ public:
 	vector<Place*>& getDestinations ();
 	void setDestinations (vector<Place*>& destinations);
 
+
 	vector<RegPerson*>& getRegUsers ();
 	void setRegUsers (vector<RegPerson*>& regUsers);
+
+	void deleteDestinations(int index);
 
 	RegPerson * findRegPerson (string username);
 	int load_regUsers();
@@ -110,6 +117,13 @@ class SaveFailed {
 public:
 	SaveFailed() {
 	}
+=======
+	vector<Person*>& getRegUsers ();
+	void setRegUsers (vector<Person*>& regUsers);
+
+	void deleteDestinations(int index);
+	vector<RegPerson *> findBuddy(string username);
+>>>>>>> origin/master
 };
 ///@}
 

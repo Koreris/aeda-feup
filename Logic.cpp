@@ -109,6 +109,26 @@ void Logic::setRegUsers (vector<RegPerson*>& regUsers)
 	this->regUsers = regUsers;
 }
 
+
+void Logic::deleteDestinations(int index)
+{
+	if(index<0 || index >= destinations.size())
+	{
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
+
+	vector<Place *>::iterator it=destinations.begin();
+
+	while (it!=destinations.end() && index != 0)
+	{
+		it++;
+		index--;
+	}
+	del_destinations.push_back(destinations[index]);
+	this->destinations.erase(it);
+}
+
 RegPerson * Logic::findRegPerson (string username)
 {
 	for(int i=0;i<regUsers.size();i++){
@@ -216,100 +236,10 @@ int Logic::load_regUsers()
 	fin.close();
 	return 0;
 }
-/*int Logic::load_del_regUsers(){
-	ifstream fin;
-	stringstream ss;
 
-	// -------------------
-	// DelRegUsers config file
-	// -------------------
 
-	fin.open(cfg_file_delregusers.c_str());
 
-	if (fin.fail()) {
-		cout << "Opening file failed " << cfg_file_delregusers.c_str() << endl;
-		return -1;
-	} else {
-		string line;
-		string key = "";
-		string value = "";
-		string name ="";
-		unsigned long phone=-1;
-		string username="";
-		string password="";
 
-		vector<Vehicle *> userVehicle = vector<Vehicle *>();
-
-		//vehicle stuff
-		string owner="";
-		string type="";
-		string brand="";
-		string license_plate="";
-		unsigned long seats= -1;
-		while (!fin.eof()) {
-			getline(fin, line);
-			if (line == "[DelRegUser]") {
-				name ="";
-				phone=-1;
-				username="";
-				userVehicle.clear();
-				password="";
-			} else if (line == "[/DelRegUser]") {
-				if (name == "" || phone == -1 || username == "" || password=="")
-								throw CorruptedRegUser();
-				RegPerson *user = new RegPerson(name, phone, username, password);
-				for(int i=0;i<userVehicle.size();i++)
-				{
-					user->getVehicles().push_back(userVehicle[i]);
-				}
-				del_regUsers.push_back(user);
-				del_regUsers[del_regUsers.size()-1]->printPerson();
-			}
-			else if (line == "[Vehicle]") {
-				owner="";
-				type="";
-				brand="";
-				license_plate="";
-				seats = -1;
-			} else if (line == "[/Vehicle]") {
-				if (owner == "" || type == "" || brand == "" || license_plate=="" || seats==-1)
-					throw CorruptedRegUser();
-				Vehicle *v = new Vehicle(owner, type, brand, license_plate,seats);
-				userVehicle.push_back(v);
-			}
-
-			else {
-				ss.str("");
-				ss.str(line + "\n");
-				getline(ss, key, '=');
-				getline(ss, value);
-
-				if (key == "name")
-					name = value;
-				else if (key == "phone")
-					phone = stol(value);
-				else if (key == "username")
-					username = value;
-				else if (key == "password")
-					password = value;
-				else if (key == "owner")
-					owner = value;
-				else if (key == "brand")
-					brand = value;
-				else if (key == "plate")
-					license_plate = value;
-				else if (key == "seats")
-					seats = stol(value);
-				else if (key == "type")
-					type = value;
-			}
-		}
-	}
-
-	fin.close();
-	return 0;
-}
-*/
 int Logic::load_destinations(){
 	ifstream fin;
 	stringstream ss;
@@ -318,10 +248,10 @@ int Logic::load_destinations(){
 	// Destinations file
 	// -------------------
 
-	fin.open(cfg_file_regusers.c_str());
+	fin.open(cfg_file_destinations.c_str());
 
 	if (fin.fail()) {
-		cout << "Opening file failed " << cfg_file_regusers.c_str() << endl;
+		cout << "Opening file failed " << cfg_file_destinations.c_str() << endl;
 		return -1;
 	} else {
 		string line;
@@ -394,7 +324,6 @@ catch(CorruptedDestination e){
 	return -1;
 }
  return 0;
-}
 
 
 

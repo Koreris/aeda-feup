@@ -72,6 +72,7 @@ public:
 	void removeBuddy(int index);
 	bool areMutualBuddies(RegPerson* other_person) const;
 
+
 	void addVehicle(Vehicle* v);
 	void removeVehicle(int index);
 	void printTripHistory();
