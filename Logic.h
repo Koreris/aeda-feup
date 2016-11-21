@@ -11,20 +11,37 @@
 
 using namespace std;
 
+const string CFG_FILE_REGUSERS = "RegUsers.txt";
+const string CFG_FILE_DEL_REGUSERS = "DelRegUsers.txt";
+const string CFG_FILE_DESTINATIONS = "Destinations.txt";
+const string CFG_FILE_DEL_DESTINATIONS = "DelDestinations.txt";
+const string CFG_FILE_CURTRIPS = "CurTrips.txt";
+const string CFG_FILE_DELTRIPS = "DelTrips.txt";
+
 
 class Logic
 {
 private:
-	vector<Person *> regUsers;
-	vector<Person *> del_regUsers;
+	vector<RegPerson *> regUsers;
+	//vector<Person *> del_regUsers;
 	vector<Place *> destinations;
 	vector<Place *> del_destinations;
 	vector<Trip *> cur_trips;
 	vector<Trip *> del_trips;
-
+	string cfg_dir;
+	string cfg_file_regusers;
+	string cfg_file_delregusers;
+	string cfg_file_destinations;
+	string cfg_file_deldestinations;
+	string cfg_file_curtrips;
+	string cfg_file_deltrips;
 public:
 	Logic();
+
+	Logic(string dir);
+
 	RegPerson* curr_user;
+
 	bool userLogin(string usr, string passw);
 	vector<Trip *> findDest(string dest);
 	vector<Trip *> tripSortByDate();
@@ -39,8 +56,8 @@ public:
 	vector<Place*>& getDelDestinations ();
 	void setDelDestinations (vector<Place*>& delDestinations);
 
-	vector<Person*>& getDelRegUsers ();
-	void setDelRegUsers (vector<Person*>& delRegUsers);
+	//vector<Person*>& getDelRegUsers ();
+	//void setDelRegUsers (vector<Person*>& delRegUsers);
 
 	vector<Trip*>& getDelTrips ();
 	void setDelTrips (vector<Trip*>& delTrips);
@@ -48,11 +65,70 @@ public:
 	vector<Place*>& getDestinations ();
 	void setDestinations (vector<Place*>& destinations);
 
-	vector<Person*>& getRegUsers ();
-	void setRegUsers (vector<Person*>& regUsers);
+
+	vector<RegPerson*>& getRegUsers ();
+	void setRegUsers (vector<RegPerson*>& regUsers);
 
 	void deleteDestinations(int index);
-	vector<RegPerson *> findBuddy(string username);
+
+	RegPerson * findRegPerson (string username);
+	vector<RegPerson *> findRegPersonVec (string username);
+
+	int load_regUsers();
+	//int load_del_regUsers();
+	int load_destinations();
+	int load_del_destinations();
+	int load_trips();
+	int load_data();
 };
+
+/** @name Exceptions
+ */
+///@{
+class CorruptedRegUser {
+public:
+	CorruptedRegUser() {
+	}
+};
+
+class CorruptedDestination{
+public:
+	CorruptedDestination() {
+	}
+};
+
+class CorruptedDelDestination {
+public:
+	CorruptedDelDestination() {
+	}
+};
+
+class CorruptedTrip {
+public:
+	CorruptedTrip() {
+	}
+};
+
+class CorruptedDelTrip {
+public:
+	CorruptedDelTrip() {
+	}
+};
+
+class SaveFailed {
+public:
+	SaveFailed() {
+	}
+};
+///@}
+
+vector<Person*>& getRegUsers ();
+void setRegUsers (vector<Person*>& regUsers);
+
+void deleteDestinations(int index);
+
+
+
+
 
 #endif //LOGIC_H_

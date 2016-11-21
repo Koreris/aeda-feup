@@ -69,3 +69,12 @@ unsigned int Vehicle::getCarSeats() const
 {
 	return car_seats;
 }
+
+string Vehicle::toString()
+{
+	stringstream ss;
+
+	ss << "owner:" << owner << "|type:" << type << "|brand:" << brand << "|Plate:" << license_plate << "|seats:" << car_seats;
+
+	return ss.str();
+}

@@ -31,6 +31,8 @@ public:
 	string getBrand() const;
 	string getLicensePlate() const;
 	unsigned int getCarSeats() const;
+
+	string toString();
 };
 
 #endif
