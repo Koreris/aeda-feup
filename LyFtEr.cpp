@@ -31,7 +31,8 @@ enum states
 	addVehicleState,
 	displayAllVehiclesState,
 	rmVehicleState,
-	changePasswState
+	changePasswState,
+	createTripMenu
 };
 states curr_state = mainMenu;
 states prev_state = mainMenu;
@@ -115,11 +116,12 @@ void displayLoginMenu()
 	cout << "You are logged in! Here are your options:" << endl
 					<< "|*****************************************************************|" << endl <<
 					"| 1.  Search for your next trip                                   |" << endl <<
-					"| 2.  Your trip history                                           |" << endl <<
-					"| 3.  Your buddies                                                |" << endl <<
-					"| 4.  Your payment options                                        |" << endl <<
-					"| 5.  Your settings                                               |" << endl <<
-					"| 6.  Log out                                                     |" << endl <<
+					"| 2.  Create a trip (driver's only)                               |" << endl <<
+					"| 3.  Your trip history                                           |" << endl <<
+					"| 4.  Your buddies                                                |" << endl <<
+					"| 5.  Your payment options                                        |" << endl <<
+					"| 6.  Your settings                                               |" << endl <<
+					"| 7.  Log out                                                     |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	while(!validInput)
@@ -128,7 +130,7 @@ void displayLoginMenu()
 		cin.clear();
 		cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_>= 1 && user_in_<= 6)
+		if(user_in_>= 1 && user_in_<= 7)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -139,21 +141,25 @@ void displayLoginMenu()
 				break;
 			case 2:
 				prev_state=curr_state;
-				curr_state=historyMenu;
+				curr_state=createTripMenu;
 				break;
 			case 3:
 				prev_state=curr_state;
-				curr_state=buddiesMenu;
+				curr_state=historyMenu;
 				break;
 			case 4:
 				prev_state=curr_state;
-				curr_state=paymentMenu;
+				curr_state=buddiesMenu;
 				break;
 			case 5:
 				prev_state=curr_state;
-				curr_state=settingsMenu;
+				curr_state=paymentMenu;
 				break;
 			case 6:
+				prev_state=curr_state;
+				curr_state=settingsMenu;
+				break;
+			case 7:
 				prev_state=curr_state;
 				curr_state=mainMenu;
 				break;
@@ -164,6 +170,43 @@ void displayLoginMenu()
 }
 //end of login section
 
+Trip* createTripMenu()
+{
+	string usr=l.curr_user->getUsern();
+	if(!(l.curr_user->getHasVehicle()))
+		break;
+	else
+	{
+		string index="";
+		string smoking="";
+		long smoke;
+		bool smk=false;
+		long index_;
+		int i;
+		bool validIndex=false;
+		cout << "Is smoking allowed on this trip? Input 0 for no, 1 for yes: " << endl;
+		getline(cin, smoking);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		smoke=stol(smoking);
+		smk=smoke;
+		displayVehicles(l.curr_user->getVehicles());
+		cout << "Input the index of the vehicle you want to use for this trip: " << endl;
+		getline(cin, index);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		index_=stol(index);
+		i=index_;
+		if(i<=l.curr_user->getVehicles().size())
+		{
+			validIndex=true;
+			return Trip*(usr, l.curr_user->getVehicles().at(i), smoking, );
+		}
+		cout << "Invalid index! Please input again." << endl;
+		return
+	}
+}
+
 //trip search section
 void displayTrips(vector<Trip *>)
 {
@@ -173,6 +216,7 @@ void displayTrips(vector<Trip *>)
 bool userDest()
 {
 	string dest="";
+	string origin="";
 	vector<Trip *> temp=vector<Trip *>();
 	bool found=false;
 
@@ -182,14 +226,18 @@ bool userDest()
 		getline(cin, dest);
 		cin.clear();
 		cin.ignore(10000, '\n');
-		temp=l.findDest(dest);
+		cout << "Input your origin: " << endl;
+		getline(cin, origin);
+		cin.clear();
+		cin.ignore(10000, '\n');
+		temp=l.findTrips(origin,dest);
 		if(temp.size()>0)
 		{
 			found=true;
 			displayTrips(temp);
 			return true;
 		}
-		cout << "Destination not found! Please input a new one." << endl;
+		cout << "Trips following that route not found! Please input new data." << endl;
 	}
 	return false;
 }
@@ -212,7 +260,7 @@ long displayTripMenu()
 		cin.clear();
 		cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_!= 1 && user_in_!= 2)
+		if(user_in_== 1 || user_in_== 2)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -642,20 +690,34 @@ int main()
 		case settingsMenu:
 			displaySettingsMenu();
 			break;
-			/*case chooseTripMenu:
-				sortedDate,
-				sortedName,
-				sortedScheduled,
-				allTripsMenu,
-				addBuddyState,
-				removeBuddyState,
-				allBuddiesState,
-				payState,
-				checkDebtState,
-				addVehicleState,
-				displayAllVehiclesState,
-				rmVehicleState,
-				changePasswState*/
+		case chooseTripMenu:
+			break;
+		case sortedDate:
+			break;
+		case sortedName:
+			break;
+		case sortedScheduled:
+			break;
+		case allTripsMenu:
+			break;
+		case addBuddyState:
+			break;
+		case removeBuddyState:
+			break;
+		case allBuddiesState:
+			break;
+		case payState:
+			break;
+		case checkDebtState:
+			break;
+		case addVehicleState:
+			break;
+		case displayAllVehiclesState:
+			break;
+		case rmVehicleState:
+			break;
+		case changePasswState:
+			break;
 		}
 	}
 }

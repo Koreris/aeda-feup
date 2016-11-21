@@ -8,7 +8,8 @@
 using namespace std;
 
 Logic::Logic()
-{}
+{
+}
 
 Logic::Logic(string dir){
 	if (dir != "")
@@ -51,7 +52,8 @@ vector<Trip *> Logic::findTrips(string src,string dest)
 
 vector<Trip *> Logic::tripSortByDate()
 {
-
+	vector<Trip *> sortedTrips=vector<Trip *>();
+	return sortedTrips;
 }
 
 vector<Trip *> Logic::tripSortByDriverName()
