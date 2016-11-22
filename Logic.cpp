@@ -72,6 +72,8 @@ vector<Trip *> Logic::findFutureTrips(Person * p)
 		if(cur_trips[i]->isTraveller(p)){
 			temp.push_back(cur_trips[i]);
 		}
+		if(cur_trips[i]->getDriver()==((RegPerson*)p)->getUsern())
+			temp.push_back(cur_trips[i]);
 	}
 	return temp;
 }

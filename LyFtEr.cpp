@@ -5,9 +5,31 @@
 #include "Trip.h"
 #include "Vehicle.h"
 #include "Logic.h"
+#include <windows.h>
+
 #include <algorithm>
 
+void pressEnter(){
+	cout << "Press Enter to continue..." << endl;
+	getchar();
+}
 
+void cls() {
+    COORD topLeft  = { 0, 0 };
+    HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO screen;
+    DWORD written;
+
+    GetConsoleScreenBufferInfo(console, &screen);
+    FillConsoleOutputCharacterA(
+        console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    FillConsoleOutputAttribute(
+        console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
+        screen.dwSize.X * screen.dwSize.Y, topLeft, &written
+    );
+    SetConsoleCursorPosition(console, topLeft);
+}
 Logic l("config");
 
 enum states
@@ -36,21 +58,6 @@ enum states
 states curr_state = mainMenu;
 states prev_state = mainMenu;
 
-void pressFtoPayRespects()
-{
-	bool pressed=false;
-	string input="";
-	cout << "Press F to continue..." << endl;
-	while(!pressed){
-		getline(cin,input);
-		cin.clear();
-		cin.ignore(10000,'\n');
-		if(input=="F"){
-			break;
-		}
-	}
-
-}
 //login section
 bool userLogin()
 {
@@ -60,11 +67,11 @@ bool userLogin()
 	cout << "Input your username: " << endl;
 	getline(cin, usr);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 	cout << "Input your password: " << endl;
 	getline(cin, passw);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 	return(l.userLogin(usr, passw));
 }
 
@@ -86,7 +93,7 @@ void displayMainMenu()
 
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 4)
 		{
@@ -98,6 +105,7 @@ void displayMainMenu()
 				{
 					prev_state=curr_state;
 					curr_state=loginMenu;
+					cls();
 				}
 				else
 				{
@@ -109,14 +117,17 @@ void displayMainMenu()
 			case 2:
 				prev_state=curr_state;
 				curr_state=searchTripMenuUnreg;
+				cls();
 				break;
 			case 3:
 				prev_state=curr_state;
 				curr_state=historyMenuUnreg;
+				cls();
 				break;
 			case 4:
 				prev_state=curr_state;
 				curr_state=paymentMenu;
+				cls();
 				break;
 			}
 		}
@@ -126,6 +137,7 @@ void displayMainMenu()
 
 void displayLoginMenu()
 {
+	cls();
 	string user_in;
 	long user_in_;
 	bool validInput=false;
@@ -144,7 +156,7 @@ void displayLoginMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 7)
 		{
@@ -154,30 +166,37 @@ void displayLoginMenu()
 			case 1:
 				prev_state=curr_state;
 				curr_state=searchTripMenu;
+				cls();
 				break;
 			case 2:
 				prev_state=curr_state;
 				curr_state=createTripMenu;
+				cls();
 				break;
 			case 3:
 				prev_state=curr_state;
 				curr_state=historyMenu;
+				cls();
 				break;
 			case 4:
 				prev_state=curr_state;
 				curr_state=buddiesMenu;
+				cls();
 				break;
 			case 5:
 				prev_state=curr_state;
 				curr_state=paymentMenu;
+				cls();
 				break;
 			case 6:
 				prev_state=curr_state;
 				curr_state=settingsMenu;
+				cls();
 				break;
 			case 7:
 				prev_state=curr_state;
 				curr_state=mainMenu;
+				cls();
 				break;
 			}
 		}
@@ -205,7 +224,7 @@ void addDestinationsTrip(Trip *t)
 	while(!pressFtoPayRespects){
 		getline(cin, place);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		if(place=="F")
 		{
 			t->addRoute(route);
@@ -253,7 +272,7 @@ bool createTrip()
 	while(!validSmoke){
 		getline(cin, smoking);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		if(stol(smoking)!=0 && stol(smoking)!=1)
 			continue;
 		smk=stol(smoking);
@@ -267,7 +286,7 @@ bool createTrip()
 	{
 		getline(cin, index);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		i=stol(index);
 
 
@@ -286,8 +305,9 @@ bool createTrip()
 	while(!validBeginDate)
 	{
 		getline(cin, begindate);
+		cout << begindate << endl;
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		try {
 				Date start_date(begindate);
 			} catch (Date::InvalidDate &d) {
@@ -296,7 +316,6 @@ bool createTrip()
 			}
 		//make date after confirming it's valid
 		Date start_date(begindate);
-
 		if(start_date<l.get_curDate())
 			cout  << "Cannot make trips in the past, try again" << endl;
 		else validBeginDate=true;
@@ -309,7 +328,8 @@ bool createTrip()
 	{
 		getline(cin, finishdate);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		cout << finishdate << endl;
+		//cin.ignore(10000, '\n');
 		try {
 			Date end_date(finishdate);
 		} catch (Date::InvalidDate &d) {
@@ -329,6 +349,8 @@ bool createTrip()
 	l.getCurTrips().push_back(t);
 	cout << "Successfully added the trip: " << t->toString() << endl;
 	curr_state=prev_state;
+	pressEnter();
+	cls();
 	return true;
 }
 
@@ -352,11 +374,11 @@ bool userDest()
 		cout << "Input your destination: " << endl;
 		getline(cin, dest);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		cout << "Input your origin: " << endl;
 		getline(cin, origin);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		temp=l.findTrips(origin,dest);
 		if(temp.size()>0)
 		{
@@ -385,7 +407,7 @@ long displayTripMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_== 1 || user_in_== 2)
 		{
@@ -450,9 +472,9 @@ void displayTripHistoryMenu()
 	bool validInput=false;
 	cout << "Do you want to filter your history? If so, pick your filters: " << endl
 					<< "|*****************************************************************|" << endl <<
-					"| 1.  Past Trips (from most recent to oldest)                                   |" << endl <<
+					"| 1.  Past Trips (from most recent to oldest)                     |" << endl <<
 					"| 2.  By driver name                                              |" << endl <<
-					"| 3.  Future trips (from most recent to oldest)                                                |" << endl <<
+					"| 3.  Future trips (from most recent to oldest)                   |" << endl <<
 					"| 4.  I don't want any of those, show me all of my trips          |" << endl <<
 					"| 5.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
@@ -461,7 +483,7 @@ void displayTripHistoryMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		////cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 5)
 		{
@@ -470,23 +492,28 @@ void displayTripHistoryMenu()
 			{
 			case 1:
 				displayPastTrips();
-				pressFtoPayRespects();
+				pressEnter();
+				cls();
 				break;
 			case 2:
 				tripSortByDriverName();
-				pressFtoPayRespects();
+				pressEnter();
+				cls();
 				break;
 			case 3:
 				displayFutureTrips();
-				pressFtoPayRespects();
+				pressEnter();
+				cls();
 				break;
 			case 4:
 				displayAllTrips();
-				pressFtoPayRespects();
+				pressEnter();
+				cls();
 				break;
 			case 5:
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=loginMenu;
+				cls();
 				break;
 			}
 		}
@@ -513,7 +540,7 @@ bool rmBuddyUsername()
 		cout << "Input the index of the friend you want to remove: " << endl;
 		getline(cin, index);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		index_=stol(index);
 		i=index_;
 		displayBuddies(l.curr_user->getBuddies());
@@ -539,7 +566,7 @@ bool findBuddyUsername()
 		cout << "Input the username you want to search for: " << endl;
 		getline(cin, usrn);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		buddies=l.findRegPersonVec(usrn);
 		RegPerson * user= buddies[0];
 		if(buddies.size()>0)
@@ -571,7 +598,7 @@ void displayBuddyMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 4)
 		{
@@ -620,7 +647,7 @@ void displayPaymentMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 3)
 		{
@@ -659,23 +686,23 @@ Vehicle* makeVehicle()
 	cout << "Input the car type (either van, sedan or hatchback): " << endl;
 	getline(cin,type);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 
 	cout << "Input the car brand: " << endl;
 	getline(cin,brand);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 
 	cout << "Input the car license plate: " << endl;
 	getline(cin,license_plate);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 
 	cout << "Input the car's number of seats: " << endl;
 	getline(cin,seats);
 	car_seats=stol(seats);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 
 	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,license_plate,car_seats);
 
@@ -694,7 +721,7 @@ bool rmVehicle()
 		cout << "Input the index of the vehicle you want to remove: " << endl;
 		getline(cin, index);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		index_=stol(index);
 		i=index_;
 		displayVehicles(l.curr_user->getVehicles());
@@ -717,11 +744,11 @@ bool changePassword(RegPerson* p)
 	cout << "Input your current password: " << endl;
 	getline(cin, curr_passw);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 	cout << "Input your new password: " << endl;
 	getline(cin, new_passw);
 	cin.clear();
-	cin.ignore(10000, '\n');
+	//cin.ignore(10000, '\n');
 	if(l.userLogin(p->getUsern(), curr_passw))
 	{
 		p->setPassw(new_passw);
@@ -748,7 +775,7 @@ void displaySettingsMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		cin.ignore(10000, '\n');
+		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
 		if(user_in_>= 1 && user_in_<= 5)
 		{

@@ -212,10 +212,14 @@ void RegPerson::addBill(float bill,string fee, float triplength){
 }
 
 void RegPerson::printTripHistory(){
+
+
 	sort(tripHistory.begin(),tripHistory.end(),Trip::compareTrips);
 	for(int i=0;i<tripHistory.size();i++)
 	{
-		cout <<i <<":" <<tripHistory[i]->toString() << endl;
+		if(username!=tripHistory[i]->getDriver())
+		cout <<i <<":" <<tripHistory[i]->toStringByPerson(name,telephone_nr) << endl;
+		else cout <<i <<":" <<tripHistory[i]->toString() << endl;
 	}
 }
 

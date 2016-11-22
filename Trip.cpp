@@ -272,3 +272,26 @@ string Trip::toString(){
 	return ss.str();
 }
 
+string Trip::toStringByPerson(string name, long nr){
+	stringstream ss;
+	unsigned int index=-1;
+	ss << "Driver: " << vehicleOwner  << "|Route: ";
+	for(unsigned int i=0; i<travellers.size();i++)
+	{
+		if(travellers[i].first->getName()==name && travellers[i].first->getTelNr()==nr)
+		{
+			index=i;
+			break;
+		}
+
+	}
+	for(unsigned int j=0;j<travellers[index].second.size();j++){
+		if(j==travellers[index].second.size()-1)
+			ss << travellers[index].second[j]->getName();
+		else ss << travellers[index].second[j]->getName() << "->";
+	}
+	ss << "|Initial Date: " << start.str() << "|End Date: " << end.str();
+
+	return ss.str();
+}
+

@@ -73,6 +73,7 @@ public:
 	//Printing
 	void printTravellers();
     string toString();
+    string toStringByPerson(string name, long nr);
 };
 
 #endif //TRIP_H_
