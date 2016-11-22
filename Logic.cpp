@@ -4,6 +4,7 @@
 #include "Trip.h"
 #include "Vehicle.h"
 #include "Logic.h"
+#include <algorithm>
 
 using namespace std;
 
@@ -23,6 +24,8 @@ Logic::Logic(string dir){
     cfg_file_deltrips=cfg_dir+CFG_FILE_DELTRIPS;
 
 }
+
+
 /**
  * Returns the current date, provided by the Date class
  * @brief Returns the current date and time
@@ -31,6 +34,65 @@ Logic::Logic(string dir){
 Date Logic::get_curDate() const
 {
 	return Date::curDate();
+}
+
+
+
+vector<Trip*>& Logic::getCurTrips ()
+{
+		return cur_trips;
+}
+
+vector<Trip*>& Logic::getDelTrips ()
+{
+	return del_trips;
+}
+
+vector<Place*>& Logic::getDestinations()
+{
+	return destinations;
+}
+
+vector<Place*>& Logic::getDelDestinations()
+{
+	return del_destinations;
+}
+
+
+/**
+ * Setter of current trips vector
+ * @brief Sets current trips vector
+ * @param vector of Trip *
+ */
+void Logic::setCurTrips (vector<Trip*>& curTrips)
+	{
+		cur_trips = curTrips;
+	}
+
+void Logic::setDelTrips (vector<Trip*>& delTrips)
+{
+	del_trips = delTrips;
+}
+
+
+void Logic::setDestinations (vector<Place*>& destinations)
+{
+	this->destinations = destinations;
+}
+
+vector<RegPerson*>& Logic::getRegUsers ()
+{
+	return regUsers;
+}
+
+void Logic::setRegUsers (vector<RegPerson*>& regUsers)
+{
+	this->regUsers = regUsers;
+}
+
+void Logic::setDelDestinations(vector<Place*>& del)
+{
+	del_destinations=del;
 }
 
 bool Logic::userLogin(string usr, string passw)
@@ -71,56 +133,6 @@ vector<Trip *> Logic::tripSortByDriverName(vector<Trip *>v)
 	return v;
 }
 
-
-vector<Trip*>& Logic::getCurTrips ()
-{
-		return cur_trips;
-}
-
-void Logic::setCurTrips (vector<Trip*>& curTrips)
-	{
-		cur_trips = curTrips;
-	}
-
-vector<Place*>& Logic::getDelDestinations()
-{
-	return del_destinations;
-}
-
-void Logic::setDelDestinations (vector<Place*>& delDestinations)
-{
-	del_destinations = delDestinations;
-}
-
-vector<Trip*>& Logic::getDelTrips ()
-{
-	return del_trips;
-}
-
-void Logic::setDelTrips (vector<Trip*>& delTrips)
-{
-	del_trips = delTrips;
-}
-
-vector<Place*>& Logic::getDestinations()
-{
-	return destinations;
-}
-
-void Logic::setDestinations (vector<Place*>& destinations)
-{
-	this->destinations = destinations;
-}
-
-vector<RegPerson*>& Logic::getRegUsers ()
-{
-	return regUsers;
-}
-
-void Logic::setRegUsers (vector<RegPerson*>& regUsers)
-{
-	this->regUsers = regUsers;
-}
 
 
 void Logic::deleteDestinations(int index)
@@ -226,6 +238,13 @@ vector<RegPerson *> Logic::findRegPersonVec (string username)
 	return temp;
 }
 
+/**
+ * Finds Place* of name destname
+ * @brief find a RegPerson by username
+ * @param destname The place name
+ * @param f optional argument, if "loading", gets destinations from deleted destinations
+ * @return pointer to the found place or NULL if not found
+ */
 Place * Logic::findDest(string destname,string f)
 {
 	for(int i=0;i<destinations.size();i++){
@@ -239,6 +258,13 @@ Place * Logic::findDest(string destname,string f)
 			}
 		return NULL;
 }
+
+/**
+ * Loads RegPerson data members from file and creates RegPerson * objects
+ * to push_back into the applications vector of registered users
+ * @brief loads RegPerson objects from file
+ * @return 0 on success, -1 otherwise
+ */
 int Logic::load_regUsers()
 {
 	ifstream fin;
@@ -338,7 +364,12 @@ int Logic::load_regUsers()
 	fin.close();
 	return 0;
 }
-
+/**
+ * Loads place data members from file and creates Place * objects
+ * to push_back into the applications vector of destinations
+ * @brief loads Place objects from file
+ * @return 0 on success, -1 otherwise
+ */
 int Logic::load_destinations(){
 	ifstream fin;
 	stringstream ss;
@@ -398,7 +429,14 @@ int Logic::load_destinations(){
 	return 0;
 
 }
-
+/**
+ * Loads place data members from file and creates Place * objects
+ * to push_back into the applications vector of deleted destinations
+ * These deleted destinations are useful to mantain integrity of trip history
+ * for each user in case a Place entry is deleted by the application admnistration
+ * @brief loads "deleted" Place objects from file
+ * @return 0 on success, -1 otherwise
+ */
 int Logic::load_del_destinations(){
 	ifstream fin;
 	stringstream ss;
@@ -457,7 +495,15 @@ int Logic::load_del_destinations(){
 	fin.close();
 	return 0;
 }
-
+/**
+ * Loads trip data members from file and creates Trip * objects
+ * to push_back into the applications vector of trips, if the trip's
+ * start date is lower than the current date, it will be added into the
+ * deleted trips vector instead and push_backed into the vector of tripHistory
+ * of the participants  of said trip
+ * @brief loads Trip objects from file
+ * @return 0 on success, -1 otherwise
+ */
 int Logic::load_trips()
 {
 	ifstream fin;

@@ -56,9 +56,6 @@ public:
 	vector<Place*>& getDelDestinations ();
 	void setDelDestinations (vector<Place*>& delDestinations);
 
-	//vector<Person*>& getDelRegUsers ();
-	//void setDelRegUsers (vector<Person*>& delRegUsers);
-
 	vector<Trip*>& getDelTrips ();
 	void setDelTrips (vector<Trip*>& delTrips);
 
