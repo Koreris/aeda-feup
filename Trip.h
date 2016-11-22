@@ -47,6 +47,7 @@ public:
 
 
 	static bool compareTrips (Trip* i,Trip* j);
+	static bool compareTripsDriverName (Trip* i,Trip* j);
 	//CRUDS
 	void addRoute(vector< pair<Place*,int> > rota);
 	//CRUD for travellers participating in trip

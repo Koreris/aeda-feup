@@ -44,8 +44,8 @@ public:
 
 	bool userLogin(string usr, string passw);
 
-	vector<Trip *> tripSortByDate();
-	vector<Trip *> tripSortByDriverName();
+	vector<Trip *> tripSortByDate(vector<Trip*>v);
+	vector<Trip *> tripSortByDriverName(vector<Trip*>v);
 	vector<Trip *> tripSortByScheduled();
 
 	Date get_curDate() const;

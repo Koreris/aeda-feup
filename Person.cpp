@@ -211,9 +211,8 @@ void RegPerson::addBill(float bill,string fee, float triplength){
 	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
 }
 
-void RegPerson::printTripHistory(){
-
-
+void RegPerson::printTripHistory()
+{
 	sort(tripHistory.begin(),tripHistory.end(),Trip::compareTrips);
 	for(int i=0;i<tripHistory.size();i++)
 	{

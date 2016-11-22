@@ -314,8 +314,7 @@ bool createTrip()
 				cout << "Invalid input of Date format" << endl;
 				continue;
 			}
-		//make date after confirming it's valid
-		Date start_date(begindate);
+
 		if(start_date<l.get_curDate())
 			cout  << "Cannot make trips in the past, try again" << endl;
 		else validBeginDate=true;
@@ -337,8 +336,6 @@ bool createTrip()
 			continue;
 		}
 
-		//make date after confirming it's valid
-		Date end_date(finishdate);
 		if(end_date<start_date)
 			cout  << "Cannot have end date earlier than start date, try again" << endl;
 		else validEndDate=true;
@@ -435,8 +432,14 @@ long displayTripMenu()
 
 void tripSortByDriverName()
 {
-	//fazer cout/tostring
-	l.tripSortByDriverName();
+	vector<Trip *> future = vector<Trip*>();
+	future = l.findFutureTrips(l.curr_user);
+	l.tripSortByDriverName(future);
+	for(int i=0;i<future.size();i++)
+	{
+		cout << "Future Trips:" << endl;
+		cout <<i<<":"<< future[i]->toString() << endl;
+	}
 }
 
 

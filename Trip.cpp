@@ -259,6 +259,10 @@ bool Trip::compareTrips (Trip* i,Trip* j)
 {
 	return (j->getStart()<i->getStart());
 }
+bool Trip::compareTripsDriverName (Trip* i,Trip* j)
+{
+	return (i->getDriver())<(j->getDriver());
+}
 string Trip::toString(){
 	stringstream ss;
 	ss << "Driver: " << vehicleOwner  << "|Route: ";

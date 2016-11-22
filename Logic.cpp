@@ -48,57 +48,34 @@ bool Logic::userLogin(string usr, string passw)
 	return false;
 }
 
+
+
 /**
- * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest
- * @brief finds trips with vacancies by giving start location and end location
- * @return vector of trips, empty if no trips found
+ * Sorts vector of trips by date
+ * @brief sort trips by date
+ * @return vector of trips
  */
-vector<Trip *> Logic::findTrips(string src,string dest)
+vector<Trip *> Logic::tripSortByDate(vector<Trip *>v)
 {
-	vector<Trip *> temp=vector<Trip *>();
-	for(int i=0;i<cur_trips.size();i++){
-		if(cur_trips[i]->hasDestination(src,dest)){
-			if(!cur_trips[i]->isFull(src,dest))
-				temp.push_back(cur_trips[i]);
-		}
-	}
-	return temp;
+	sort(v.begin(),v.end(),Trip::compareTrips);
+	return v;
+}
+/**
+ * Sorts vector of trips by driver name
+ * @brief sort trips by driver name
+ * @return vector of trips
+ */
+vector<Trip *> Logic::tripSortByDriverName(vector<Trip *>v)
+{
+	sort(v.begin(),v.end(),Trip::compareTripsDriverName);
+	return v;
 }
 
-vector<Trip *> Logic::findFutureTrips(Person * p)
-{
-	vector<Trip *> temp=vector<Trip *>();
-	for(int i=0;i<cur_trips.size();i++){
-		if(cur_trips[i]->isTraveller(p)){
-			temp.push_back(cur_trips[i]);
-		}
-		if(cur_trips[i]->getDriver()==((RegPerson*)p)->getUsern())
-			temp.push_back(cur_trips[i]);
-	}
-	return temp;
-}
-
-
-vector<Trip *> Logic::tripSortByDate()
-{
-	vector<Trip *> sortedTrips=vector<Trip *>();
-	return sortedTrips;
-}
-
-vector<Trip *> Logic::tripSortByDriverName()
-{
-
-}
-
-vector<Trip *> Logic::tripSortByScheduled()
-{
-
-}
 
 vector<Trip*>& Logic::getCurTrips ()
-	{
+{
 		return cur_trips;
-	}
+}
 
 void Logic::setCurTrips (vector<Trip*>& curTrips)
 	{
@@ -183,7 +160,46 @@ void Logic::deleteTrips(int index)
 	del_trips.push_back(cur_trips[index]);
 	this->cur_trips.erase(it);
 }
+/**
+ * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest
+ * @brief finds trips with vacancies by giving start location and end location
+ * @return vector of trips, empty if no trips found
+ */
+vector<Trip *> Logic::findTrips(string src,string dest)
+{
+	vector<Trip *> temp=vector<Trip *>();
+	for(int i=0;i<cur_trips.size();i++){
+		if(cur_trips[i]->hasDestination(src,dest)){
+			if(!cur_trips[i]->isFull(src,dest))
+				temp.push_back(cur_trips[i]);
+		}
+	}
+	return temp;
+}
+/**
+ * Finds all the trips scheduled for user P
+ * @brief find scheduled trips
+ * @return vector of trips, empty if no trips found
+ */
+vector<Trip *> Logic::findFutureTrips(Person * p)
+{
+	vector<Trip *> temp=vector<Trip *>();
+	for(int i=0;i<cur_trips.size();i++){
+		if(cur_trips[i]->isTraveller(p)){
+			temp.push_back(cur_trips[i]);
+		}
+		if(cur_trips[i]->getDriver()==((RegPerson*)p)->getUsern()){
+			temp.push_back(cur_trips[i]);
+		}
+	}
+	return temp;
+}
 
+/**
+ * Finds RegPerson pointer of user with username
+ * @brief find a RegPerson by username
+ * @return pointer to the RegPerson,NULL if not found
+ */
 RegPerson * Logic::findRegPerson (string username)
 {
 	for(int i=0;i<regUsers.size();i++){
@@ -193,6 +209,11 @@ RegPerson * Logic::findRegPerson (string username)
 	return NULL;
 }
 
+/**
+ * Finds RegPerson pointer of user with username
+ * @brief find a RegPerson by username
+ * @return vector with RegPerson or empty vector  if not found
+ */
 vector<RegPerson *> Logic::findRegPersonVec (string username)
 {
 	vector<RegPerson *> temp=vector<RegPerson *>();
