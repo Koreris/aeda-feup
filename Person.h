@@ -35,10 +35,12 @@ public:
 	float getBilling() const;
 
 	//billing
-	virtual void addBill(float bill,string fee, float triplength){};
+	virtual void addBill(string fee, float triplength){};
 	virtual void printPerson(){};
 	virtual void addTripHistory(Trip * t) {};
+	virtual string getUsern() const{};
 	void payBilling();
+
 };
 
 class RegPerson: public Person
@@ -66,6 +68,7 @@ public:
 	vector<RegPerson*>& getBuddies();
 	vector<Vehicle *>& getVehicles();
 	vector<string>& getNotifications();
+	vector<Trip*>& getTripHistory();
 
 	//crud
 	void insertBuddy(RegPerson* other_person);
@@ -78,7 +81,7 @@ public:
 	bool areMutualBuddies(RegPerson* other_person) const;
 	void addNotifications(string message);
 	void showNotifications(int howmany);
-	void addBill(float bill,string fee, float triplength);
+	void addBill(string fee, float triplength);
 
 	//Printing functions
 	void printPerson();
@@ -95,9 +98,12 @@ public:
 	~UnregPerson();
 
 	//crud
-	void addBill(float bill, string fee, float triplength);
+	void addBill(string fee, float triplength);
 	void printPerson();
 	void addTripHistory(Trip * t) {};
+	string getUsern() const{
+		return "";
+	}
 };
 
 #endif //PERSON_H_

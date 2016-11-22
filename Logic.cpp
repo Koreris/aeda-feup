@@ -36,8 +36,6 @@ Date Logic::get_curDate() const
 	return Date::curDate();
 }
 
-
-
 vector<Trip*>& Logic::getCurTrips ()
 {
 		return cur_trips;
@@ -133,8 +131,6 @@ vector<Trip *> Logic::tripSortByDriverName(vector<Trip *>v)
 	return v;
 }
 
-
-
 void Logic::deleteDestinations(int index)
 {
 	if(index<0 || index >= destinations.size())
@@ -173,17 +169,23 @@ void Logic::deleteTrips(int index)
 	this->cur_trips.erase(it);
 }
 /**
- * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest
+ * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest,
+ * also only returns trips where youre not a traveller or a driver
+ * @param src source destination
+ * @param dest target destination
+ * @param p Needed to check if already a traveller or driver in this trip
  * @brief finds trips with vacancies by giving start location and end location
  * @return vector of trips, empty if no trips found
  */
-vector<Trip *> Logic::findTrips(string src,string dest)
+vector<Trip *> Logic::findTrips(string src,string dest,Person* p)
 {
 	vector<Trip *> temp=vector<Trip *>();
 	for(int i=0;i<cur_trips.size();i++){
 		if(cur_trips[i]->hasDestination(src,dest)){
 			if(!cur_trips[i]->isFull(src,dest))
-				temp.push_back(cur_trips[i]);
+				if(!cur_trips[i]->isTraveller(p))
+					if(cur_trips[i]->getDriver()!=p->getUsern())
+						temp.push_back(cur_trips[i]);
 		}
 	}
 	return temp;

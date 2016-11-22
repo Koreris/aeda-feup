@@ -72,7 +72,7 @@ public:
 
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
-	vector<Trip *> findTrips(string src, string dest);
+	vector<Trip *> findTrips(string src, string dest,Person*p);
 	vector<Trip *> findFutureTrips(Person * p);
 	Place * findDest(string destname, string f="");
 

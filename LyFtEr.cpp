@@ -47,12 +47,6 @@ enum states
 	addBuddyState,
 	removeBuddyState,
 	allBuddiesState,
-	payState,
-	checkDebtState,
-	addVehicleState,
-	displayAllVehiclesState,
-	rmVehicleState,
-	changePasswState,
 	createTripMenu
 };
 states curr_state = mainMenu;
@@ -225,7 +219,7 @@ void addDestinationsTrip(Trip *t)
 		getline(cin, place);
 		cin.clear();
 		//cin.ignore(10000, '\n');
-		if(place=="F")
+		if(place=="F"|| place=="f")
 		{
 			t->addRoute(route);
 			pressFtoPayRespects=true;
@@ -309,12 +303,13 @@ bool createTrip()
 		cin.clear();
 		//cin.ignore(10000, '\n');
 		try {
-				Date start_date(begindate);
+				Date s(begindate);
+				start_date=s;
+
 			} catch (Date::InvalidDate &d) {
 				cout << "Invalid input of Date format" << endl;
 				continue;
 			}
-
 		if(start_date<l.get_curDate())
 			cout  << "Cannot make trips in the past, try again" << endl;
 		else validBeginDate=true;
@@ -330,12 +325,12 @@ bool createTrip()
 		cout << finishdate << endl;
 		//cin.ignore(10000, '\n');
 		try {
-			Date end_date(finishdate);
+			Date e(finishdate);
+			end_date=e;
 		} catch (Date::InvalidDate &d) {
 			cout << "Invalid input of Date format" << endl;
 			continue;
 		}
-
 		if(end_date<start_date)
 			cout  << "Cannot have end date earlier than start date, try again" << endl;
 		else validEndDate=true;
@@ -355,32 +350,67 @@ bool createTrip()
 
 //trip search section
 
-void chooseTrip(vector<Trip *> v)
+void chooseTrip(vector<Trip *> v,vector<Place*>p)
 {
-	//tentar inscrever  nesta trip
+	bool validIndex=false;
+	string index="";
+	int i;
+	for(unsigned int j=0;j<v.size();j++){
+		cout << j << ":" << v[j]->toString() << endl;
+	}
+	cout << "Input the index of the trip you want to sign up for: " << endl;
+	while(!validIndex)
+	{
+		getline(cin, index);
+		cin.clear();
+		//cin.ignore(10000, '\n');
+		i=stol(index);
+
+
+		if(i<=v.size()-1 && i>=0)
+		{
+			validIndex=true;
+			v[i]->addTraveller(l.curr_user,p);
+			l.curr_user->addBill("trip",v[i]->getDistance());
+			pressEnter();
+		}
+		if(!validIndex)
+			cout << "Invalid index! Please input again." << endl;
+	}
+
 }
 bool userDest()
 {
+	cls();
 	string dest="";
 	string origin="";
+	Place * place;
 	vector<Trip *> temp=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
 	bool found=false;
 
 	while(!found)
 	{
+		cout << "Input your origin:(or F to quit selection) " << endl;
+		getline(cin, origin);
+		cin.clear();
+
+		if(origin=="F"||origin=="f")
+			break;
 		cout << "Input your destination: " << endl;
 		getline(cin, dest);
 		cin.clear();
-		//cin.ignore(10000, '\n');
-		cout << "Input your origin: " << endl;
-		getline(cin, origin);
-		cin.clear();
-		//cin.ignore(10000, '\n');
-		temp=l.findTrips(origin,dest);
+		temp=l.findTrips(origin,dest,l.curr_user);
 		if(temp.size()>0)
 		{
+			cout << "Found possible trips" << endl;
+			place=l.findDest(origin);
+			places.push_back(place);
+			place=l.findDest(dest);
+			places.push_back(place);
 			found=true;
-			chooseTrip(temp);
+			chooseTrip(temp,places);
+			cls();
 			return true;
 		}
 		cout << "Trips following that route not found! Please input new data." << endl;
@@ -415,12 +445,13 @@ long displayTripMenu()
 				if(userDest())
 				{
 					prev_state=curr_state;
-					curr_state=chooseTripMenu;
+					curr_state=loginMenu;
 				}
+				else cls();
 				break;
 			case 2:
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=loginMenu;
 				break;
 			}
 		}
@@ -432,17 +463,34 @@ long displayTripMenu()
 
 void tripSortByDriverName()
 {
-	vector<Trip *> future = vector<Trip*>();
-	future = l.findFutureTrips(l.curr_user);
-	l.tripSortByDriverName(future);
-	for(int i=0;i<future.size();i++)
+	vector<Trip *> trips = vector<Trip*>();
+	trips = l.findFutureTrips(l.curr_user);
+	for(unsigned int i=0;i<l.curr_user->getTripHistory().size();i++)
 	{
-		cout << "Future Trips:" << endl;
-		cout <<i<<":"<< future[i]->toString() << endl;
+		trips.push_back(l.curr_user->getTripHistory()[i]);
+	}
+	trips=l.tripSortByDriverName(trips);
+	cout << "All Trips sorted by driver name:" << endl;
+	for(unsigned int i=0;i<trips.size();i++)
+	{
+		cout <<i<<":"<< trips[i]->toString() << endl;
 	}
 }
 
-
+void displayTripsDriving()
+{
+	vector<Trip *> future = vector<Trip*>();
+	for(unsigned int i=0;i<l.getCurTrips().size();i++){
+		if(l.getCurTrips()[i]->getDriver()==l.curr_user->getUsern())
+			future.push_back(l.getCurTrips()[i]);
+	}
+	sort(future.begin(),future.end(),Trip::compareTrips);
+	cout << "Future Trips Im driving:" << endl;
+	for(int i=0;i<future.size();i++)
+	{
+		cout <<i<<":"<< future[i]->toString() << endl;
+	}
+}
 void displayFutureTrips()
 {
 	vector<Trip *> future = vector<Trip*>();
@@ -467,7 +515,6 @@ void displayAllTrips()
 	displayPastTrips();
 }
 
-
 void displayTripHistoryMenu()
 {
 	string user_in="";
@@ -478,8 +525,9 @@ void displayTripHistoryMenu()
 					"| 1.  Past Trips (from most recent to oldest)                     |" << endl <<
 					"| 2.  By driver name                                              |" << endl <<
 					"| 3.  Future trips (from most recent to oldest)                   |" << endl <<
-					"| 4.  I don't want any of those, show me all of my trips          |" << endl <<
-					"| 5.  Go back to previous menu                                    |" << endl <<
+					"| 4.  Trips I'm driving in the future                             |"  << endl <<
+					"| 5.  I don't want any of those, show me all of my trips          |" << endl <<
+					"| 6.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	while(!validInput)
@@ -488,7 +536,7 @@ void displayTripHistoryMenu()
 		cin.clear();
 		////cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_>= 1 && user_in_<= 5)
+		if(user_in_>= 1 && user_in_<= 6)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -509,11 +557,16 @@ void displayTripHistoryMenu()
 				cls();
 				break;
 			case 4:
-				displayAllTrips();
+				displayTripsDriving();
 				pressEnter();
 				cls();
 				break;
 			case 5:
+				displayAllTrips();
+				pressEnter();
+				cls();
+				break;
+			case 6:
 				prev_state=curr_state;
 				curr_state=loginMenu;
 				cls();
@@ -659,17 +712,17 @@ void displayPaymentMenu()
 			{
 			case 1:
 				l.curr_user->payBilling();
-				prev_state=curr_state;
-				curr_state=payState;
+				pressEnter();
+				cls();
 				break;
 			case 2:
 				cout << "Your current debt is: " << l.curr_user->getBilling() << endl;
-				prev_state=curr_state;
-				curr_state=checkDebtState;
+				pressEnter();
+				cls();
 				break;
 			case 3:
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=loginMenu;
 				break;
 			}
 		}
@@ -727,7 +780,6 @@ bool rmVehicle()
 		//cin.ignore(10000, '\n');
 		index_=stol(index);
 		i=index_;
-		displayVehicles(l.curr_user->getVehicles());
 		if(i<=l.curr_user->getVehicles().size())
 		{
 			validIndex=true;
@@ -741,6 +793,7 @@ bool rmVehicle()
 
 bool changePassword(RegPerson* p)
 {
+	cls();
 	string curr_passw="";
 	string new_passw="";
 
@@ -755,9 +808,15 @@ bool changePassword(RegPerson* p)
 	if(l.userLogin(p->getUsern(), curr_passw))
 	{
 		p->setPassw(new_passw);
+		cout << "Changed password successfully" << endl;
+		pressEnter();
+		cls();
 		return true;
 	}
 	cout << "Current password is incorrect! Try again later." << endl;
+	pressEnter();
+	cls();
+	return false;
 }
 
 void displaySettingsMenu()
@@ -786,29 +845,26 @@ void displaySettingsMenu()
 			switch(user_in_)
 			{
 			case 1:
-				makeVehicle();
 				l.curr_user->addVehicle(makeVehicle());
-				prev_state=curr_state;
-				curr_state=addVehicleState;
+				pressEnter();
+				cls();
 				break;
 			case 2:
 				rmVehicle();
-				prev_state=curr_state;
-				curr_state=rmVehicleState;
+				pressEnter();
+				cls();
 				break;
 			case 3:
 				displayVehicles(l.curr_user->getVehicles());
-				prev_state=curr_state;
-				curr_state=displayAllVehiclesState;
+				pressEnter();
+				cls();
 				break;
 			case 4:
 				changePassword(l.curr_user);
-				prev_state=curr_state;
-				curr_state=changePasswState;
 				break;
 			case 5:
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=loginMenu;
 				break;
 			}
 		}
@@ -861,18 +917,7 @@ int main()
 			break;
 		case allBuddiesState:
 			break;
-		case payState:
-			break;
-		case checkDebtState:
-			break;
-		case addVehicleState:
-			break;
-		case displayAllVehiclesState:
-			break;
-		case rmVehicleState:
-			break;
-		case changePasswState:
-			break;
+
 		}
 	}
 }

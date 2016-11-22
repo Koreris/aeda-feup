@@ -109,7 +109,9 @@ vector<Vehicle *>& RegPerson::getVehicles()
 {
 	return vehicles;
 }
-
+vector<Trip*>& RegPerson::getTripHistory(){
+	return tripHistory;
+}
 //crud
 bool RegPerson::areMutualBuddies(RegPerson* other_person) const
 {
@@ -197,7 +199,7 @@ void RegPerson::printPerson()
 	}
 }
 
-void RegPerson::addBill(float bill,string fee, float triplength){
+void RegPerson::addBill(string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="monthly"){
 		billing+=10;
@@ -240,7 +242,7 @@ void UnregPerson::printPerson()
 	cout << ss.str();
 }
 
-void UnregPerson::addBill(float bill,string fee, float triplength){
+void UnregPerson::addBill(string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="trip"){
 		billing+=5+triplength*0.4;
