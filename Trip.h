@@ -45,12 +45,15 @@ public:
 	void setStart(Date s);
 	void setEnd(Date e);
 
+
+	static bool compareTrips (Trip* i,Trip* j);
 	//CRUDS
 	void addRoute(vector< pair<Place*,int> > rota);
 	//CRUD for travellers participating in trip
 	void addTraveller(Person * t,vector<Place *>);
 	void removeTraveller(Person * t);
 	void updateTravellerRoute(Person *t,vector<Place *>r);
+	bool isTraveller(Person * p);
 
 
 	 /*
@@ -64,6 +67,7 @@ public:
 	void incrementVacancies(int b, int e);
 	bool hasDestination(string src,string dest);
 	bool isFull(string src,string dest);
+
 
 
 	//Printing

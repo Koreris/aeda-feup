@@ -39,6 +39,7 @@ bool Logic::userLogin(string usr, string passw)
 	{
 		if(regUsers[i]->getUsern()==usr && regUsers[i]->getPassw()==passw){
 			curr_user=regUsers[i];
+			UnregPerson* curr_unreg=NULL;
 			cout << "Logged in with User: " << regUsers[i]->getUsern() << endl;
 			return true;
 		}
@@ -63,6 +64,18 @@ vector<Trip *> Logic::findTrips(string src,string dest)
 	}
 	return temp;
 }
+
+vector<Trip *> Logic::findFutureTrips(Person * p)
+{
+	vector<Trip *> temp=vector<Trip *>();
+	for(int i=0;i<cur_trips.size();i++){
+		if(cur_trips[i]->isTraveller(p)){
+			temp.push_back(cur_trips[i]);
+		}
+	}
+	return temp;
+}
+
 
 vector<Trip *> Logic::tripSortByDate()
 {

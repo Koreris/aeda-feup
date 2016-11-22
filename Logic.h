@@ -40,6 +40,7 @@ public:
 	Logic(string dir);
 
 	RegPerson* curr_user;
+	UnregPerson* curr_unreg;
 
 	bool userLogin(string usr, string passw);
 
@@ -75,6 +76,7 @@ public:
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest);
+	vector<Trip *> findFutureTrips(Person * p);
 	Place * findDest(string destname, string f="");
 
 	int load_regUsers();

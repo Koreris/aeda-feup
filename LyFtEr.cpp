@@ -5,6 +5,7 @@
 #include "Trip.h"
 #include "Vehicle.h"
 #include "Logic.h"
+#include <algorithm>
 
 
 Logic l("config");
@@ -14,15 +15,13 @@ enum states
 	mainMenu,
 	loginMenu,
 	searchTripMenu,
+	searchTripMenuUnreg,
 	historyMenu,
+	historyMenuUnreg,
 	paymentMenu,
 	buddiesMenu,
 	settingsMenu,
 	chooseTripMenu,
-	sortedDate,
-	sortedName,
-	sortedScheduled,
-	allTripsMenu,
 	addBuddyState,
 	removeBuddyState,
 	allBuddiesState,
@@ -37,7 +36,21 @@ enum states
 states curr_state = mainMenu;
 states prev_state = mainMenu;
 
+void pressFtoPayRespects()
+{
+	bool pressed=false;
+	string input="";
+	cout << "Press F to continue..." << endl;
+	while(!pressed){
+		getline(cin,input);
+		cin.clear();
+		cin.ignore(10000,'\n');
+		if(input=="F"){
+			break;
+		}
+	}
 
+}
 //login section
 bool userLogin()
 {
@@ -95,11 +108,11 @@ void displayMainMenu()
 				break;
 			case 2:
 				prev_state=curr_state;
-				curr_state=searchTripMenu;
+				curr_state=searchTripMenuUnreg;
 				break;
 			case 3:
 				prev_state=curr_state;
-				curr_state=historyMenu;
+				curr_state=historyMenuUnreg;
 				break;
 			case 4:
 				prev_state=curr_state;
@@ -323,12 +336,10 @@ bool createTrip()
 
 //trip search section
 
-
-void displayTrips(vector<Trip *>)
+void chooseTrip(vector<Trip *> v)
 {
-	//separate smoking from non smoking
+	//tentar inscrever  nesta trip
 }
-
 bool userDest()
 {
 	string dest="";
@@ -350,7 +361,7 @@ bool userDest()
 		if(temp.size()>0)
 		{
 			found=true;
-			displayTrips(temp);
+			chooseTrip(temp);
 			return true;
 		}
 		cout << "Trips following that route not found! Please input new data." << endl;
@@ -399,11 +410,6 @@ long displayTripMenu()
 //end of trip search section
 
 //trip history section
-void tripSortByDate()
-{
-	//fazer cout/tostring
-	l.tripSortByDate();
-}
 
 void tripSortByDriverName()
 {
@@ -411,17 +417,31 @@ void tripSortByDriverName()
 	l.tripSortByDriverName();
 }
 
-void tripSortByScheduled()
+
+void displayFutureTrips()
 {
-	l.tripSortByScheduled();
+	vector<Trip *> future = vector<Trip*>();
+	future = l.findFutureTrips(l.curr_user);
+	sort(future.begin(),future.end(),Trip::compareTrips);
+	for(int i=0;i<future.size();i++)
+	{
+		cout << "Future Trips:" << endl;
+		cout <<i<<":"<< future[i]->toString() << endl;
+	}
 }
 
-void allTrips()
+void displayPastTrips()
 {
-	//cout
-	l.getCurTrips();
-	//to string trip
+	cout << "Past Trips:" << endl;
+	l.curr_user->printTripHistory();
 }
+
+void displayAllTrips()
+{
+	displayFutureTrips();
+	displayPastTrips();
+}
+
 
 void displayTripHistoryMenu()
 {
@@ -430,9 +450,9 @@ void displayTripHistoryMenu()
 	bool validInput=false;
 	cout << "Do you want to filter your history? If so, pick your filters: " << endl
 					<< "|*****************************************************************|" << endl <<
-					"| 1.  Sort by date (descending)                                   |" << endl <<
+					"| 1.  Past Trips (from most recent to oldest)                                   |" << endl <<
 					"| 2.  By driver name                                              |" << endl <<
-					"| 3.  Future trips                                                |" << endl <<
+					"| 3.  Future trips (from most recent to oldest)                                                |" << endl <<
 					"| 4.  I don't want any of those, show me all of my trips          |" << endl <<
 					"| 5.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
@@ -449,24 +469,20 @@ void displayTripHistoryMenu()
 			switch(user_in_)
 			{
 			case 1:
-				tripSortByDate();
-				prev_state=curr_state;
-				curr_state=sortedDate;
+				displayPastTrips();
+				pressFtoPayRespects();
 				break;
 			case 2:
 				tripSortByDriverName();
-				prev_state=curr_state;
-				curr_state=sortedName;
+				pressFtoPayRespects();
 				break;
 			case 3:
-				tripSortByScheduled();
-				prev_state=curr_state;
-				curr_state=sortedScheduled;
+				displayFutureTrips();
+				pressFtoPayRespects();
 				break;
 			case 4:
-				allTrips();
-				prev_state=curr_state;
-				curr_state=allTripsMenu;
+				displayAllTrips();
+				pressFtoPayRespects();
 				break;
 			case 5:
 				prev_state=curr_state;
@@ -804,17 +820,10 @@ int main()
 			displaySettingsMenu();
 			break;
 		case chooseTripMenu:
+			userDest();
 			break;
 		case createTripMenu:
 			createTrip();
-			break;
-		case sortedDate:
-			break;
-		case sortedName:
-			break;
-		case sortedScheduled:
-			break;
-		case allTripsMenu:
 			break;
 		case addBuddyState:
 			break;

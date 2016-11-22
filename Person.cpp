@@ -212,9 +212,10 @@ void RegPerson::addBill(float bill,string fee, float triplength){
 }
 
 void RegPerson::printTripHistory(){
+	sort(tripHistory.begin(),tripHistory.end(),Trip::compareTrips);
 	for(int i=0;i<tripHistory.size();i++)
 	{
-		cout << tripHistory[i]->toString() << endl;
+		cout <<i <<":" <<tripHistory[i]->toString() << endl;
 	}
 }
 

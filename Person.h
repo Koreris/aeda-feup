@@ -89,6 +89,7 @@ class UnregPerson: public Person
 {
 
 public:
+	vector <Trip*> trips;
 	UnregPerson();
 	UnregPerson(string n, unsigned long t_nr);
 	~UnregPerson();

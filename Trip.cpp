@@ -245,6 +245,20 @@ bool Trip::isFull(string src, string dest)
 	return true;
 }
 
+bool Trip::isTraveller(Person * p)
+{
+	for(unsigned int i=0;i<travellers.size();i++)
+	{
+		if(travellers[i].first->getName()==p->getName())
+			if(travellers[i].first->getTelNr()==p->getTelNr())
+			return true;
+	}
+	return false;
+}
+bool Trip::compareTrips (Trip* i,Trip* j)
+{
+	return (j->getStart()<i->getStart());
+}
 string Trip::toString(){
 	stringstream ss;
 	ss << "Driver: " << vehicleOwner  << "|Route: ";
