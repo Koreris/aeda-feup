@@ -219,6 +219,7 @@ void displaySignUpMenu()
 						prev_state=curr_state;
 						curr_state=adminMenu;
 						cls();
+						break;
 					}
 					else cout <<"Failed to login into admin" << endl;
 					pressEnter();
