@@ -88,7 +88,80 @@ bool guestLogin()
 	return true;
 }
 
+bool adminLogin(){
+	string usr="";
+	string passw="";
 
+	cout << "Input your username: " << endl;
+	getline(cin, usr);
+	cin.clear();
+	cout << "Input your password: " << endl;
+	getline(cin, passw);
+	cin.clear();
+	return usr=="admin" && passw=="admin";
+}
+void displayAdminMenu()
+{
+	string user_in;
+		long user_in_;
+		bool validInput=false;
+		while(!validInput)
+		{
+		cout << "\n Welcome to LyFtEr! \n\n" << endl
+						<< " +============================================================================+" << endl <<
+						" | 1.  Add destinations                                                          |" << endl <<
+						" | 2.  Delete destinations                                                       |" << endl <<
+						" | 3.  Update destination coordinates                                            |" << endl <<
+						" | 4.  List Destinations                                                         |" << endl <<
+						" | 5.  List Registered Users                                                     |" << endl <<
+						" | 6.  Back to Sign Up                                                           |" << endl <<
+						" +============================================================================+\n" << endl;
+		cout << "\n Selected number from menu:\n";
+
+			getline(cin, user_in);
+			cin.clear();
+			//cin.ignore(10000, '\n');
+			user_in_=stol(user_in);
+			if(user_in_>= 1 && user_in_<= 6)
+			{
+				validInput=true;
+				switch(user_in_)
+				{
+				case 1:
+					//addDestination();
+					pressEnter();
+					cls();
+					break;
+				case 2:
+					//deleteDestination();
+					pressEnter();
+					cls();
+					break;
+				case 3:
+					//updateDestination();
+					pressEnter();
+					cls();
+					break;
+				case 4:
+					//displayDestinations()
+					pressEnter();
+					cls();
+					break;
+				case 5:
+					//displayRegisteredUsers();
+					pressEnter();
+					cls();
+					break;
+				case 6:
+					prev_state=curr_state;
+					curr_state=signUpMenu;
+					cls();
+				    break;
+				}
+			}
+		}
+		return;
+}
 void displaySignUpMenu()
 {
 	string user_in;
@@ -142,7 +215,13 @@ void displaySignUpMenu()
 					cls();
 					break;
 				case 4:
-					//adminLogin();
+					if(adminLogin()){
+						prev_state=curr_state;
+						curr_state=adminMenu;
+						cls();
+					}
+					else cout <<"Failed to login into admin" << endl;
+					pressEnter();
 					cls();
 					break;
 				case 5:
@@ -1164,7 +1243,7 @@ int main()
 			createTrip();
 			break;
 		case adminMenu:
-			//displayAdminMenu();
+			displayAdminMenu();
 			break;
 		}
 	}
