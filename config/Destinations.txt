@@ -4,6 +4,11 @@ x=0
 y=90
 [/Place]
 [Place]
+name=S.Mamede
+x=88
+y=2
+[/Place]
+[Place]
 name=Lisboa
 x=20
 y=20
@@ -21,5 +26,15 @@ y=100
 [Place]
 name=Aveiro
 x=0
+y=80
+[/Place]
+[Place]
+name=Madrid
+x=400
+y=80
+[/Place]
+[Place]
+name=Viseu
+x=70
 y=80
 [/Place]

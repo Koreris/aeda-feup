@@ -72,6 +72,10 @@ void Logic::setDelTrips (vector<Trip*>& delTrips)
 	del_trips = delTrips;
 }
 
+void Logic::setLogin(bool b)
+{
+	login=b;
+}
 
 void Logic::setDestinations (vector<Place*>& destinations)
 {
@@ -101,6 +105,7 @@ bool Logic::userLogin(string usr, string passw)
 			curr_user=regUsers[i];
 			UnregPerson* curr_unreg=NULL;
 			cout << "Logged in with User: " << regUsers[i]->getUsern() << endl;
+			setLogin(true);
 			return true;
 		}
 	}
@@ -188,6 +193,26 @@ vector<Trip *> Logic::findTrips(string src,string dest,Person* p)
 						temp.push_back(cur_trips[i]);
 		}
 	}
+	return temp;
+}
+/**
+ * Finds all the trips with vacancies
+ * returns trips where youre not already a traveller or a driver
+ * @param p Needed to check if already a traveller or driver in this trip
+ * @brief finds trips with vacancies
+ * @return vector of trips, empty if no trips found
+ */
+vector<Trip *> Logic::findVacantTrips(Person* p)
+{
+
+	vector<Trip *> temp=vector<Trip *>();
+	for(unsigned int i=0;i<cur_trips.size();i++){
+			if(!cur_trips[i]->isFull(cur_trips[i]->getRoute()[0].first->getName(),cur_trips[i]->getRoute()[cur_trips[i]->getRoute().size()-1].first->getName()))
+				if(!cur_trips[i]->isTraveller(p))
+					if(cur_trips[i]->getDriver()!=p->getUsern())
+						temp.push_back(cur_trips[i]);
+	}
+
 	return temp;
 }
 /**
@@ -689,28 +714,28 @@ int Logic::load_data() {
 try{
 	load_regUsers();
 }
-catch(CorruptedRegUser e){
+catch(CorruptedRegUser& e){
 	return -1;
 }
 
 try{
 	load_destinations();
 }
-catch(CorruptedDestination e){
+catch(CorruptedDestination& e){
 	return -1;
 }
 
 try{
 	load_del_destinations();
 }
-catch(CorruptedDelDestination e){
+catch(CorruptedDelDestination& e){
 	return -1;
 }
 
 try{
 	load_trips();
 }
-catch(CorruptedTrip e){
+catch(CorruptedTrip& e){
 	return -1;
 }
  return 0;

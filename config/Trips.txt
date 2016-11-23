@@ -110,8 +110,8 @@ tplace=Chaves
 vehicleOwner=user3
 seats=5
 place=Lisboa
-place=Porto
-place=Chaves
+place=OAZ
+place=SJM
 smoking=1
 begindate=2014 11 10 19 30 0
 finishdate=2014 11 10 21 10 0
@@ -123,13 +123,90 @@ tplace=SJM
 [/Traveler]
 [Traveler]
 traveller=user2
-tplace=Porto
-tplace=Chaves
+tplace=OAZ
+tplace=SJM
 [/Traveler]
 [Traveler]
 traveller=user3
+tplace=OAZ
 tplace=SJM
-tplace=Chaves
+[/Traveler]
+[/Trip]
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+seats=2
+place=Porto
+place=S.Mamede
+smoking=0
+begindate=2016 12 10 19 30 0
+finishdate=2016 12 10 19 50 0
+[/Trip]
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+seats=2
+place=S.Mamede
+place=Porto
+smoking=0
+begindate=2016 12 11 17 30 0
+finishdate=2016 12 11 17 45 0
+[/Trip]
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+seats=2
+place=S.Mamede
+place=Chaves
+smoking=0
+begindate=2016 12 13 17 30 0
+finishdate=2016 12 13 19 45 0
+[/Trip]
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+seats=5
+place=Lisboa
+place=Viseu
+place=Madrid
+smoking=0
+begindate=2016 11 30 19 30 0
+finishdate=2016 11 30 21 10 0
+[Traveler]
+traveller=user
+tplace=Lisboa
+tplace=Viseu
+[/Traveler]
+[Traveler]
+traveller=user2
+tplace=Lisboa
+tplace=Madrid
+[/Traveler]
+[Traveler]
+traveller=user
+tplace=Lisboa
+tplace=Madrid
+[/Traveler]
+[/Trip]
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+seats=7
+place=Lisboa
+place=S.Mamede
+place=Madrid
+smoking=0
+begindate=2018 12 10 19 30 0
+finishdate=2018 12 10 21 10 0
+[Traveler]
+traveller=john
+tplace=S.Mamede
+tplace=Madrid
+[/Traveler]
+[Traveler]
+traveller=user2
+tplace=Lisboa
+tplace=Madrid
+[/Traveler]
+[Traveler]
+traveller=user3
+tplace=Lisboa
+tplace=S.Mamede
 [/Traveler]
 [/Trip]
 [Trip]
@@ -157,7 +234,7 @@ traveller=user3
 tplace=Lisboa
 tplace=Chaves
 [/Traveler]
-[/Trip
+[/Trip]
 [Trip]
 vehicleOwner=user5
 seats=4

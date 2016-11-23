@@ -37,20 +37,17 @@ enum states
 	mainMenu,
 	loginMenu,
 	searchTripMenu,
-	searchTripMenuUnreg,
 	historyMenu,
-	historyMenuUnreg,
 	paymentMenu,
 	buddiesMenu,
 	settingsMenu,
 	chooseTripMenu,
-	addBuddyState,
-	removeBuddyState,
-	allBuddiesState,
-	createTripMenu
+	adminMenu,
+	createTripMenu,
+	signUpMenu
 };
-states curr_state = mainMenu;
-states prev_state = mainMenu;
+states curr_state = signUpMenu;
+states prev_state = signUpMenu;
 
 //login section
 bool userLogin()
@@ -69,6 +66,92 @@ bool userLogin()
 	return(l.userLogin(usr, passw));
 }
 
+bool guestLogin()
+{
+	string usr="";
+	string phone="";
+	long phonenr=0;
+
+	cout << "Input your Name: " << endl;
+	getline(cin, usr);
+	cin.clear();
+	if(usr==""){
+		cout <<"Invalid name" << endl;
+		return false;
+	}
+	//cin.ignore(10000, '\n');
+	cout << "Input your telephone number: " << endl;
+	getline(cin, phone);
+	phonenr=stol(phone);
+	cin.clear();
+	l.curr_unreg=new UnregPerson(usr,phonenr);
+	return true;
+}
+
+
+void displaySignUpMenu()
+{
+	string user_in;
+		long user_in_;
+		bool validInput=false;
+		while(!validInput)
+		{
+		cout << "\n Welcome to LyFtEr! \n\n" << endl
+						<< " +============================================================================+" << endl <<
+						" | 1.  Login                                                                     |" << endl <<
+						" | 2.  Use as guest                                                              |" << endl <<
+						" | 3.  Create an account                                                         |" << endl <<
+						" | 4.  Administration                                                            |" << endl <<
+						" | 5.  Exit                                                                      |" << endl <<
+						" +============================================================================+\n" << endl;
+		cout << "\n Selected number from menu:\n";
+
+			getline(cin, user_in);
+			cin.clear();
+			//cin.ignore(10000, '\n');
+			user_in_=stol(user_in);
+			if(user_in_>= 1 && user_in_<= 5)
+			{
+				validInput=true;
+				switch(user_in_)
+				{
+				case 1:
+					if(userLogin())
+					{
+						prev_state=curr_state;
+						curr_state=loginMenu;
+						cls();
+					}
+					else
+					{
+						curr_state=prev_state;
+						validInput=false;
+
+					}
+					break;
+				case 2:
+					if(guestLogin())
+					{
+						prev_state=curr_state;
+						curr_state=mainMenu;
+					}
+					cls();
+					break;
+				case 3:
+					//registerUser();
+					cls();
+					break;
+				case 4:
+					//adminLogin();
+					cls();
+					break;
+				case 5:
+					exit(0);
+				}
+			}
+		}
+		return;
+}
 void displayMainMenu()
 {
 	string user_in;
@@ -77,11 +160,11 @@ void displayMainMenu()
 	while(!validInput)
 	{
 	cout << "\n Welcome to LyFtEr! \n\n" << endl
-					<< " +============================================================================+" << endl <<
-					" | 1.  Login!                                                                 |" << endl <<
-					" | 2.  Search for next trip                                                   |" << endl <<
-					" | 3.  Trip history                                                           |" << endl <<
-					" | 4.  Payment options                                                        |" << endl <<
+				 << " +============================================================================+" << endl <<
+					" | 1.  Search for next trip                                                   |" << endl <<
+					" | 2.  Trip history                                                           |" << endl <<
+					" | 3.  Payment options                                                        |" << endl <<
+					" | 4.  Exit guest                                                             |" << endl <<
 					" +============================================================================+\n" << endl;
 	cout << "\n Selected number from menu:\n";
 
@@ -94,33 +177,34 @@ void displayMainMenu()
 			validInput=true;
 			switch(user_in_)
 			{
-			case 1:
-				if(userLogin())
-				{
-					prev_state=curr_state;
-					curr_state=loginMenu;
-					cls();
-				}
-				else
-				{
-					curr_state=prev_state;
-					validInput=false;
 
-				}
+			case 1:
+				prev_state=curr_state;
+				curr_state=searchTripMenu;
+				cls();
 				break;
 			case 2:
 				prev_state=curr_state;
-				curr_state=searchTripMenuUnreg;
+				curr_state=historyMenu;
 				cls();
 				break;
 			case 3:
 				prev_state=curr_state;
-				curr_state=historyMenuUnreg;
+				curr_state=paymentMenu;
 				cls();
 				break;
 			case 4:
+				if(l.curr_unreg->getBilling()>0){
+					cout << "Sir/Madam " << l.curr_unreg->getName() << ", Pay your debts first!" << endl;
+					pressEnter();
+					cls();
+					break;
+				}
+				cout << "Goodbye " << l.curr_unreg->getName() << endl;
+				l.curr_unreg=NULL;
 				prev_state=curr_state;
-				curr_state=paymentMenu;
+				curr_state=signUpMenu;
+				pressEnter();
 				cls();
 				break;
 			}
@@ -188,8 +272,9 @@ void displayLoginMenu()
 				cls();
 				break;
 			case 7:
+				l.setLogin(false);
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=signUpMenu;
 				cls();
 				break;
 			}
@@ -370,8 +455,19 @@ void chooseTrip(vector<Trip *> v,vector<Place*>p)
 		if(i<=v.size()-1 && i>=0)
 		{
 			validIndex=true;
-			v[i]->addTraveller(l.curr_user,p);
-			l.curr_user->addBill("trip",v[i]->getDistance());
+			if(p.size()==0){
+				p.push_back(v[i]->getRoute()[0].first);
+				p.push_back(v[i]->getRoute()[v[i]->getRoute().size()-1].first);
+			}
+			if(l.login){
+				p.push_back(v[i]->getRoute()[0].first);
+				v[i]->addTraveller(l.curr_user,p);
+				l.curr_user->addBill("trip",v[i]->getDistance());
+			}
+			else {
+				v[i]->addTraveller(l.curr_unreg,p);
+				l.curr_unreg->addBill("trip",v[i]->getDistance());
+			}
 			pressEnter();
 		}
 		if(!validIndex)
@@ -400,7 +496,9 @@ bool userDest()
 		cout << "Input your destination: " << endl;
 		getline(cin, dest);
 		cin.clear();
+		if(l.login)
 		temp=l.findTrips(origin,dest,l.curr_user);
+		else temp=l.findTrips(origin,dest,l.curr_unreg);
 		if(temp.size()>0)
 		{
 			cout << "Found possible trips" << endl;
@@ -418,6 +516,34 @@ bool userDest()
 	return false;
 }
 
+bool allVacantTrips()
+{
+	cls();
+	string dest="";
+	string origin="";
+	Place * place;
+	vector<Trip *> temp=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
+	bool found=false;
+
+	while(!found)
+	{
+		if(l.login)
+		temp=l.findVacantTrips(l.curr_user);
+		else temp=l.findVacantTrips(l.curr_unreg);
+		if(temp.size()>0)
+		{
+			cout <<" found " <<temp.size() <<" trips" <<endl;
+			found=true;
+			chooseTrip(temp,places);
+			cls();
+			return true;
+		}
+		cout << "No vacant trips where you aren't currently signed up for found" << endl;
+	}
+	return false;
+}
+
 long displayTripMenu()
 {
 	string user_in="";
@@ -427,7 +553,8 @@ long displayTripMenu()
 					<< "|*****************************************************************|" << endl <<
 					"| +.  During your next trip you'll want to go to...               |" << endl <<
 					"| 1.  X destination                                               |" << endl <<
-					"| 2.  Go back to previous menu                                    |" << endl <<
+					"| 2.  I dont care where I go, show all trips with vacancies!      |" << endl <<
+					"| 3.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	while(!validInput)
@@ -445,13 +572,28 @@ long displayTripMenu()
 				if(userDest())
 				{
 					prev_state=curr_state;
+					if(l.login)
 					curr_state=loginMenu;
+					else curr_state=mainMenu;
 				}
 				else cls();
 				break;
 			case 2:
+				if(allVacantTrips())
+				{
+					prev_state=curr_state;
+					if(l.login)
+						curr_state=loginMenu;
+					else curr_state=mainMenu;
+				}
+				else cls();
+				break;
+			case 3:
 				prev_state=curr_state;
+				if(l.login)
 				curr_state=loginMenu;
+				else curr_state=mainMenu;
+				cls();
 				break;
 			}
 		}
@@ -464,16 +606,44 @@ long displayTripMenu()
 void tripSortByDriverName()
 {
 	vector<Trip *> trips = vector<Trip*>();
-	trips = l.findFutureTrips(l.curr_user);
-	for(unsigned int i=0;i<l.curr_user->getTripHistory().size();i++)
-	{
-		trips.push_back(l.curr_user->getTripHistory()[i]);
+	if(l.login){
+		trips = l.findFutureTrips(l.curr_user);
+		for(unsigned int i=0;i<l.curr_user->getTripHistory().size();i++)
+		{
+			trips.push_back(l.curr_user->getTripHistory()[i]);
+		}
 	}
+	else trips = l.findFutureTrips(l.curr_unreg);
+
 	trips=l.tripSortByDriverName(trips);
 	cout << "All Trips sorted by driver name:" << endl;
 	for(unsigned int i=0;i<trips.size();i++)
 	{
 		cout <<i<<":"<< trips[i]->toString() << endl;
+	}
+}
+
+void displayBySmoking()
+{
+	vector<Trip *> trips = vector<Trip*>();
+	if(l.login){
+		trips = l.findFutureTrips(l.curr_user);
+		for(unsigned int i=0;i<l.curr_user->getTripHistory().size();i++)
+		{
+			trips.push_back(l.curr_user->getTripHistory()[i]);
+		}
+	}
+	else trips = l.findFutureTrips(l.curr_unreg);
+	sort(trips.begin(),trips.end(),Trip::compareTrips);
+	for(unsigned int i=0;i<trips.size();i++)
+	{
+		if (trips[i]->getSmokingSign())
+		cout << "Smoking Allowed" <<":"<< trips[i]->toString() << endl;
+	}
+	for(unsigned int i=0;i<trips.size();i++)
+	{
+		if (!trips[i]->getSmokingSign())
+		cout << "Smoking not Allowed" <<":"<< trips[i]->toString() << endl;
 	}
 }
 
@@ -493,8 +663,11 @@ void displayTripsDriving()
 }
 void displayFutureTrips()
 {
+
 	vector<Trip *> future = vector<Trip*>();
+	if(l.login)
 	future = l.findFutureTrips(l.curr_user);
+	else future = l.findFutureTrips(l.curr_unreg);
 	sort(future.begin(),future.end(),Trip::compareTrips);
 	for(int i=0;i<future.size();i++)
 	{
@@ -520,23 +693,73 @@ void displayTripHistoryMenu()
 	string user_in="";
 	long user_in_;
 	bool validInput=false;
-	cout << "Do you want to filter your history? If so, pick your filters: " << endl
-					<< "|*****************************************************************|" << endl <<
-					"| 1.  Past Trips (from most recent to oldest)                     |" << endl <<
-					"| 2.  By driver name                                              |" << endl <<
-					"| 3.  Future trips (from most recent to oldest)                   |" << endl <<
-					"| 4.  Trips I'm driving in the future                             |"  << endl <<
-					"| 5.  I don't want any of those, show me all of my trips          |" << endl <<
-					"| 6.  Go back to previous menu                                    |" << endl <<
-					"|*****************************************************************|" << endl;
-	cout << "Selected number from menu: ";
+	if(l.login){
+		cout << "Do you want to filter your history? If so, pick your filters: " << endl
+						<< "|*****************************************************************|" << endl <<
+						"| 1.  Past Trips (from most recent to oldest)                     |" << endl <<
+						"| 2.  By driver name                                              |" << endl <<
+						"| 3.  Future trips (from most recent to oldest)                   |" << endl <<
+						"| 4.  Trips I'm driving in the future                             |"  << endl <<
+						"| 5.  Trips by Smoking conditions                                 |"  << endl <<
+						"| 6.  I don't want any of those, show me all of my trips          |" << endl <<
+						"| 7.  Go back to previous menu                                    |" << endl <<
+						"|*****************************************************************|" << endl;
+		cout << "Selected number from menu: ";
+	}
+	else
+	{
+		cout << "Do you want to filter your history? If so, pick your filters: " << endl
+								<< "|*****************************************************************|" << endl <<
+								"| 1.  By driver name                                              |" << endl <<
+								"| 2.  Future trips (from most recent to oldest)                   |" << endl <<
+								"| 3.  Display by smoking and non Smoking		                   |" << endl <<
+								"| 4.  Go back to previous menu                                    |" << endl <<
+								"|*****************************************************************|" << endl;
+		cout << "Selected number from menu: ";
+				while(!validInput)
+				{
+					getline(cin, user_in);
+					cin.clear();
+					////cin.ignore(10000, '\n');
+					user_in_=stol(user_in);
+					if(user_in_>= 1 && user_in_<= 6)
+					{
+						validInput=true;
+						switch(user_in_)
+						{
+
+						case 1:
+							tripSortByDriverName();
+							pressEnter();
+							cls();
+							break;
+						case 2:
+							displayFutureTrips();
+							pressEnter();
+							cls();
+							break;
+						case 3:
+							displayBySmoking();
+							pressEnter();
+							cls();
+							break;
+						case 4:
+							prev_state=curr_state;
+							curr_state=mainMenu;
+							cls();
+							break;
+						}
+					}
+				}
+
+	}
 	while(!validInput)
 	{
 		getline(cin, user_in);
 		cin.clear();
 		////cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_>= 1 && user_in_<= 6)
+		if(user_in_>= 1 && user_in_<= 7)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -562,11 +785,16 @@ void displayTripHistoryMenu()
 				cls();
 				break;
 			case 5:
-				displayAllTrips();
+				displayBySmoking();
 				pressEnter();
 				cls();
 				break;
 			case 6:
+				displayAllTrips();
+				pressEnter();
+				cls();
+				break;
+			case 7:
 				prev_state=curr_state;
 				curr_state=loginMenu;
 				cls();
@@ -581,7 +809,10 @@ void displayTripHistoryMenu()
 //buddy section
 void displayBuddies(vector <RegPerson *> buds)
 {
-	//cout
+	for(unsigned int i=0;i<buds.size();i++)
+	{
+		cout << "Buddy username: " << buds[i]->getUsern() << endl;
+	}
 }
 
 bool rmBuddyUsername()
@@ -590,20 +821,28 @@ bool rmBuddyUsername()
 	bool validIndex=false;
 	long index_;
 	unsigned int i;
-
+	displayBuddies(l.curr_user->getBuddies());
+	cout << "Input the index of the friend you want to remove:(or input F to leave) " << endl;
 	while(!validIndex)
 	{
-		cout << "Input the index of the friend you want to remove: " << endl;
+
 		getline(cin, index);
 		cin.clear();
+		if(index=="F"||index=="f")
+		{
+			cls();
+			break;
+		}
 		//cin.ignore(10000, '\n');
 		index_=stol(index);
 		i=index_;
-		displayBuddies(l.curr_user->getBuddies());
 		if(i<=l.curr_user->getBuddies().size())
 		{
 			validIndex=true;
 			l.curr_user->removeBuddy(i);
+			cout << "Buddy removed successfully"<<endl;
+			pressEnter();
+			cls();
 			return true;
 		}
 		cout << "Invalid index! Please input again." << endl;
@@ -615,21 +854,27 @@ bool findBuddyUsername()
 	string usrn="";
 	vector<RegPerson *> buddies=vector<RegPerson *>();
 	bool found=false;
-	RegPerson * empty=new RegPerson();
-
 	while(!found)
 	{
-		cout << "Input the username you want to search for: " << endl;
+		cout << "Input the username you want to search for:(or input F to leave) " << endl;
 		getline(cin, usrn);
 		cin.clear();
+		if(usrn=="F"||usrn=="f")
+			{
+				cls();
+				break;
+			}
 		//cin.ignore(10000, '\n');
 		buddies=l.findRegPersonVec(usrn);
-		RegPerson * user= buddies[0];
+
 		if(buddies.size()>0)
 		{
-			found=true;
+			RegPerson * user= buddies[0];
 			displayBuddies(buddies);
+			cout << "Added "<< user->getUsern() << "successfully" << endl;
 			l.curr_user->insertBuddy(user);
+			pressEnter();
+			cls();
 			return true;
 		}
 		cout << "Username not found! Please input again." << endl;
@@ -663,22 +908,18 @@ void displayBuddyMenu()
 			{
 			case 1:
 				findBuddyUsername();
-				prev_state=curr_state;
-				curr_state=addBuddyState;
 				break;
 			case 2:
 				rmBuddyUsername();
-				prev_state=curr_state;
-				curr_state=removeBuddyState;
 				break;
 			case 3:
 				displayBuddies(l.curr_user->getBuddies());
-				prev_state=curr_state;
-				curr_state=allBuddiesState;
+				pressEnter();
+				cls();
 				break;
 			case 4:
 				prev_state=curr_state;
-				curr_state=mainMenu;
+				curr_state=loginMenu;
 				break;
 			}
 		}
@@ -711,18 +952,25 @@ void displayPaymentMenu()
 			switch(user_in_)
 			{
 			case 1:
+				if(l.login)
 				l.curr_user->payBilling();
+				else l.curr_unreg->payBilling();
 				pressEnter();
 				cls();
 				break;
 			case 2:
+				if(l.login)
 				cout << "Your current debt is: " << l.curr_user->getBilling() << endl;
+				else cout << "Your current debt is: " << l.curr_unreg->getBilling() << endl;
 				pressEnter();
 				cls();
 				break;
 			case 3:
 				prev_state=curr_state;
+				if(l.login)
 				curr_state=loginMenu;
+				else curr_state=mainMenu;
+				cls();
 				break;
 			}
 		}
@@ -771,15 +1019,16 @@ bool rmVehicle()
 	bool validIndex=false;
 	long index_;
 	unsigned int i;
-
+	cout << "Input the index of the vehicle you want to remove: " << endl;
+	displayVehicles(l.curr_user->getVehicles());
 	while(!validIndex)
 	{
-		cout << "Input the index of the vehicle you want to remove: " << endl;
 		getline(cin, index);
 		cin.clear();
 		//cin.ignore(10000, '\n');
 		index_=stol(index);
 		i=index_;
+
 		if(i<=l.curr_user->getVehicles().size())
 		{
 			validIndex=true;
@@ -884,6 +1133,9 @@ int main()
 	{
 		switch(curr_state)
 		{
+		case signUpMenu:
+			displaySignUpMenu();
+			break;
 		case mainMenu:
 			displayMainMenu();
 			break;
@@ -911,13 +1163,9 @@ int main()
 		case createTripMenu:
 			createTrip();
 			break;
-		case addBuddyState:
+		case adminMenu:
+			//displayAdminMenu();
 			break;
-		case removeBuddyState:
-			break;
-		case allBuddiesState:
-			break;
-
 		}
 	}
 }

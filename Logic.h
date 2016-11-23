@@ -38,7 +38,7 @@ public:
 	Logic();
 
 	Logic(string dir);
-
+	bool login;
 	RegPerson* curr_user;
 	UnregPerson* curr_unreg;
 
@@ -66,6 +66,8 @@ public:
 	vector<RegPerson*>& getRegUsers ();
 	void setRegUsers (vector<RegPerson*>& regUsers);
 
+	void setLogin(bool p);
+
 	void deleteDestinations(int index);
 
 	void deleteTrips(int index);
@@ -74,6 +76,7 @@ public:
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest,Person*p);
 	vector<Trip *> findFutureTrips(Person * p);
+	vector<Trip *> findVacantTrips(Person * p);
 	Place * findDest(string destname, string f="");
 
 	int load_regUsers();
