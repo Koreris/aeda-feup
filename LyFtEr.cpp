@@ -107,14 +107,14 @@ void displayAdminMenu()
 		bool validInput=false;
 		while(!validInput)
 		{
-		cout << "\n Welcome to LyFtEr! \n\n" << endl
+		cout << "\n Administration Menu \n\n" << endl
 						<< " +============================================================================+" << endl <<
-						" | 1.  Add destinations                                                          |" << endl <<
-						" | 2.  Delete destinations                                                       |" << endl <<
-						" | 3.  Update destination coordinates                                            |" << endl <<
-						" | 4.  List Destinations                                                         |" << endl <<
-						" | 5.  List Registered Users                                                     |" << endl <<
-						" | 6.  Back to Sign Up                                                           |" << endl <<
+						" | 1.  Add destinations                                                       |" << endl <<
+						" | 2.  Delete destinations                                                    |" << endl <<
+						" | 3.  Update destination coordinates                                         |" << endl <<
+						" | 4.  List Destinations                                                      |" << endl <<
+						" | 5.  List Registered Users                                                  |" << endl <<
+						" | 6.  Back to Sign Up                                                        |" << endl <<
 						" +============================================================================+\n" << endl;
 		cout << "\n Selected number from menu:\n";
 
