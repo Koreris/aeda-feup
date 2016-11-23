@@ -19,7 +19,10 @@ void Place::setName(string n)
 {
 	name=n;
 }
-
+void Place::setCoords(int x,int y)
+{
+	coordinates=pair<int,int>(x,y);
+}
 string Place::getName() const
 {
 	return name;

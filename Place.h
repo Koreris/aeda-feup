@@ -18,6 +18,7 @@ public:
 
 	//setters
 	void setName(string n);
+	void setCoords(int x, int y);
 
 	//getters
 	string getName() const;

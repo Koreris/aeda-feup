@@ -173,6 +173,15 @@ void Logic::deleteTrips(int index)
 	del_trips.push_back(cur_trips[index]);
 	this->cur_trips.erase(it);
 }
+
+bool Logic::usernameExists(string n)
+{
+	for(unsigned int i=0;i<regUsers.size();i++){
+		if(regUsers[i]->getUsern()==n)
+			return true;
+	}
+	return false;
+}
 /**
  * Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest,
  * also only returns trips where youre not a traveller or a driver

@@ -72,6 +72,7 @@ public:
 
 	void deleteTrips(int index);
 
+	bool usernameExists(string n);
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest,Person*p);

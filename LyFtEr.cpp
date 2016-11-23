@@ -49,44 +49,116 @@ enum states
 states curr_state = signUpMenu;
 states prev_state = signUpMenu;
 
-//login section
-bool userLogin()
+//admin stuff
+
+void displayDestinations()
 {
-	string usr="";
-	string passw="";
-
-	cout << "Input your username: " << endl;
-	getline(cin, usr);
-	cin.clear();
-	//cin.ignore(10000, '\n');
-	cout << "Input your password: " << endl;
-	getline(cin, passw);
-	cin.clear();
-	//cin.ignore(10000, '\n');
-	return(l.userLogin(usr, passw));
-}
-
-bool guestLogin()
-{
-	string usr="";
-	string phone="";
-	long phonenr=0;
-
-	cout << "Input your Name: " << endl;
-	getline(cin, usr);
-	cin.clear();
-	if(usr==""){
-		cout <<"Invalid name" << endl;
-		return false;
+	for(unsigned int i=0;i<l.getDestinations().size();i++)
+	{
+		cout << i << ":" <<l.getDestinations()[i]->toString() << endl;
 	}
-	//cin.ignore(10000, '\n');
-	cout << "Input your telephone number: " << endl;
-	getline(cin, phone);
-	phonenr=stol(phone);
-	cin.clear();
-	l.curr_unreg=new UnregPerson(usr,phonenr);
-	return true;
 }
+void displayRegisteredUsers()
+{
+	for(unsigned int i=0;i<l.getRegUsers().size();i++)
+	{
+		cout << i << ":";
+		l.getRegUsers()[i]->printPerson();
+	}
+}
+
+bool removeDestination()
+{
+	string index="";
+	bool validIndex=false;
+	long index_;
+	unsigned int i;
+	displayDestinations();
+	cout << "Input the index of the destination you want to remove:(or input F to leave) " << endl;
+	while(!validIndex)
+	{
+
+		getline(cin, index);
+		cin.clear();
+		if(index=="F"||index=="f")
+		{
+			cls();
+			break;
+		}
+		//cin.ignore(10000, '\n');
+		index_=stol(index);
+		i=index_;
+		if(i<=l.getDestinations().size()-1 && i>=0)
+		{
+			validIndex=true;
+			cout << "Destination " << l.getDestinations()[i]<< " removed successfully"<<endl;
+			l.deleteDestinations(i);
+			return true;
+		}
+		cout << "Invalid index! Please input again." << endl;
+	}
+	return false;
+}
+
+bool updateDestination()
+{
+	string index="";
+	string x="";
+	string y="";
+	bool validIndex=false;
+	long index_;
+	unsigned int i;
+	displayDestinations();
+	cout << "Input the index of the destination you want to update:(or input F to leave) " << endl;
+	while(!validIndex)
+	{
+
+		getline(cin, index);
+		cin.clear();
+		//cin.ignore(10000, '\n');
+		index_=stol(index);
+		i=index_;
+		if(i<=l.getDestinations().size()-1 && i>=0)
+		{
+			cout << "Input x coord:(or input F to leave) " << endl;
+			getline(cin, x);
+			cin.clear();
+			cout << "Input y coord:(or input F to leave) " << endl;
+			getline(cin, y);
+			cin.clear();
+			l.getDestinations()[i]->setCoords(stol(x),stol(y));
+			cout << l.getDestinations()[i]->getName() <<"(" << x << "," << y << ") "<<" updated successfully" <<endl;
+		}
+		cout << "Invalid index! Please input again." << endl;
+	}
+	return false;
+}
+
+bool addDestination()
+{
+	string destname="";
+	string x="";
+	string y="";
+	bool found=false;
+	while(!found)
+	{
+		cout << "Input the destination name:(or input F to leave) " << endl;
+		getline(cin, destname);
+		cin.clear();
+		cout << "Input x coord:(or input F to leave) " << endl;
+		getline(cin, x);
+		cin.clear();
+		cout << "Input y coord:(or input F to leave) " << endl;
+		getline(cin, y);
+		cin.clear();
+		Place * p = new Place(destname,pair<int,int>(stol(x),stol(y)));
+		l.getDestinations().push_back(p);
+		cout << destname <<"(" <<x << "," << y << ") "<<" added successfully" <<endl;
+		return true;
+	}
+	return false;
+}
+
 
 bool adminLogin(){
 	string usr="";
@@ -128,27 +200,27 @@ void displayAdminMenu()
 				switch(user_in_)
 				{
 				case 1:
-					//addDestination();
+					addDestination();
 					pressEnter();
 					cls();
 					break;
 				case 2:
-					//deleteDestination();
+					removeDestination();
 					pressEnter();
 					cls();
 					break;
 				case 3:
-					//updateDestination();
+					updateDestination();
 					pressEnter();
 					cls();
 					break;
 				case 4:
-					//displayDestinations()
+					displayDestinations();
 					pressEnter();
 					cls();
 					break;
 				case 5:
-					//displayRegisteredUsers();
+					displayRegisteredUsers();
 					pressEnter();
 					cls();
 					break;
@@ -161,6 +233,84 @@ void displayAdminMenu()
 			}
 		}
 		return;
+}
+
+
+//login section
+bool userLogin()
+{
+	string usr="";
+	string passw="";
+
+	cout << "Input your username: " << endl;
+	getline(cin, usr);
+	cin.clear();
+	//cin.ignore(10000, '\n');
+	cout << "Input your password: " << endl;
+	getline(cin, passw);
+	cin.clear();
+	//cin.ignore(10000, '\n');
+	return(l.userLogin(usr, passw));
+}
+
+bool guestLogin()
+{
+	string usr="";
+	string phone="";
+	long phonenr=0;
+
+	cout << "Input your Name: " << endl;
+	getline(cin, usr);
+	cin.clear();
+	if(usr==""){
+		cout <<"Invalid name" << endl;
+		return false;
+	}
+	//cin.ignore(10000, '\n');
+	cout << "Input your telephone number: " << endl;
+	getline(cin, phone);
+	phonenr=stol(phone);
+	cin.clear();
+	l.curr_unreg=new UnregPerson(usr,phonenr);
+	return true;
+}
+
+bool registerUser(){
+	string usr="";
+	string passw="";
+	string name="";
+	string phone="";
+	long phonenr;
+	bool validUser=false;
+	cout << "Input your desired username: " << endl;
+	while(!validUser){
+		getline(cin, usr);
+		cin.clear();
+		if(l.usernameExists(usr))
+			cout << "Username already exists, try another one" << endl;
+		else validUser=true;
+	}
+	cout << "Input your password: " << endl;
+	getline(cin, passw);
+	cin.clear();
+
+	cout << "Input your real name: " << endl;
+		getline(cin, name);
+		cin.clear();
+		if(usr==""){
+			cout <<"Invalid name" << endl;
+			return false;
+		}
+		//cin.ignore(10000, '\n');
+		cout << "Input your telephone number: " << endl;
+		getline(cin, phone);
+		phonenr=stol(phone);
+		cin.clear();
+		RegPerson * user = new RegPerson(name,phonenr,usr,passw);
+		l.getRegUsers().push_back(user);
+		cout << "Added user:";
+		user->printPerson();
+
 }
 void displaySignUpMenu()
 {
@@ -211,7 +361,8 @@ void displaySignUpMenu()
 					cls();
 					break;
 				case 3:
-					//registerUser();
+					registerUser();
+					pressEnter();
 					cls();
 					break;
 				case 4:
