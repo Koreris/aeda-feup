@@ -172,6 +172,10 @@ bool adminLogin(){
 	cin.clear();
 	return usr=="admin" && passw=="admin";
 }
+
+void chargeMonthlyFee(){
+
+}
 void displayAdminMenu()
 {
 	string user_in;
@@ -186,7 +190,8 @@ void displayAdminMenu()
 						" | 3.  Update destination coordinates                                         |" << endl <<
 						" | 4.  List Destinations                                                      |" << endl <<
 						" | 5.  List Registered Users                                                  |" << endl <<
-						" | 6.  Back to Sign Up                                                        |" << endl <<
+						" | 6.  Charge Registered Users Monthly Fee                                                  |" << endl <<
+						" | 7.  Back to Sign Up                                                        |" << endl <<
 						" +============================================================================+\n" << endl;
 		cout << "\n Selected number from menu:\n";
 
@@ -194,7 +199,7 @@ void displayAdminMenu()
 			cin.clear();
 			//cin.ignore(10000, '\n');
 			user_in_=stol(user_in);
-			if(user_in_>= 1 && user_in_<= 6)
+			if(user_in_>= 1 && user_in_<= 7)
 			{
 				validInput=true;
 				switch(user_in_)
@@ -225,6 +230,11 @@ void displayAdminMenu()
 					cls();
 					break;
 				case 6:
+					chargeMonthlyFee();
+					pressEnter();
+					cls();
+					break;
+				case 7:
 					prev_state=curr_state;
 					curr_state=signUpMenu;
 					cls();
