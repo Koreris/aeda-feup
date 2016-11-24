@@ -320,7 +320,7 @@ int Date::daysInMonth(int month, int year)
 }
 
 /**
- * @brief Checks if year it is leap year
+ * @brief Checks if year is leap year
  * @param year year
  * @return true if it is leap year, false otherwise
  */
