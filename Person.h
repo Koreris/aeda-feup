@@ -11,6 +11,11 @@
 using namespace std;
 
 class Trip;
+/**
+ * @brief Person class
+ *
+ * A generic person class, functions as superclass to RegPerson and UnregPerson
+ */
 class Person
 {
 
@@ -33,16 +38,24 @@ public:
 	string getName() const;
 	unsigned long getTelNr() const;
 	float getBilling() const;
-
-	//billing
+	void payBilling();
+	/** @name Polymorphic functions
+	*/
+	///@{
 	virtual void addBill(string fee, float triplength){};
 	virtual void printPerson(){};
 	virtual void addTripHistory(Trip * t) {};
 	virtual string getUsern() const{};
-	void payBilling();
+	///@}
+
 
 };
 
+/**
+ * @brief UnregPerson class
+ *
+ * Person subclass, represents registered users in the application
+ */
 class RegPerson: public Person
 {
 private:
@@ -88,22 +101,26 @@ public:
 	void printTripHistory();
 };
 
+/**
+ * @brief UnregPerson class
+ *
+ * Person subclass, represents unregistered users in the application
+ */
 class UnregPerson: public Person
 {
 
 public:
-	vector <Trip*> trips;
 	UnregPerson();
 	UnregPerson(string n, unsigned long t_nr);
 	~UnregPerson();
 
-	//crud
+	//polymorphic methods
 	void addBill(string fee, float triplength);
-	void printPerson();
 	void addTripHistory(Trip * t) {};
 	string getUsern() const{
 		return "";
 	}
+	void printPerson();
 };
 
 #endif //PERSON_H_

@@ -90,7 +90,7 @@ float Person::getBilling() const
 
 
 /**
- * @brief RegPerson constructor
+ * @brief RegPerson default constructor
  */
 RegPerson::RegPerson()
 :Person()
@@ -120,13 +120,15 @@ RegPerson::~RegPerson(){}
 //setters
 
 /**
- * @brief RegPerson destructor
+ * @brief Sets username to usrn
  */
 void RegPerson::setUsern(string usrn)
 {
 	username=usrn;
 }
-
+/**
+ * @brief Sets password to pw
+ */
 void RegPerson::setPassw(string pw)
 {
 	password=pw;
@@ -135,54 +137,93 @@ void RegPerson::setPassw(string pw)
 
 //getters
 
+/**
+ * @brief Returns the username
+ * @return string with username
+ */
 string RegPerson::getUsern() const
 {
 	return username;
 }
-
+/**
+ * @brief Returns the password
+ * @return string with password
+ */
 string RegPerson::getPassw() const
 {
 	return password;
 }
 
+/**
+ * @brief returns buddies
+ * @return vector of buddies
+ */
+vector<RegPerson*>& RegPerson::getBuddies()
+{
+	return buddies;
+}
+/**
+ * @brief returns vehicles
+ * @return vector of vehicles
+ */
+vector<Vehicle *>& RegPerson::getVehicles()
+{
+	return vehicles;
+}
+/**
+ * @brief get user trip history
+ * @return returns vector of trips
+ */
+vector<Trip*>& RegPerson::getTripHistory(){
+	return tripHistory;
+}
+/**
+ * @brief check if user has vehicles
+ * @return bool true if he has vehicles, false otherwise
+ */
 bool RegPerson::getHasVehicle() const
 {
 	return vehicles.size()>0;
 }
 
 
-
-vector<RegPerson*>& RegPerson::getBuddies()
-{
-	return buddies;
-}
-
-vector<Vehicle *>& RegPerson::getVehicles()
-{
-	return vehicles;
-}
-vector<Trip*>& RegPerson::getTripHistory(){
-	return tripHistory;
-}
 //crud
+
+/**
+ * @brief check if user is mutual buddy with other person
+ * @return bool true if mutual buddies, false otherwise
+ */
 bool RegPerson::areMutualBuddies(RegPerson* other_person) const
 {
 	return (find(other_person->getBuddies().begin(),other_person->getBuddies().end(), this) != other_person->getBuddies().end());
 }
-
+/**
+ * @brief get user notifications
+ * @return return the vector of strings with notifications
+ */
 vector<string>& RegPerson::getNotifications()
 {
 	return notifications;
 }
+/**
+ * @brief Add a trip to trip history vector
+ */
 void RegPerson::addTripHistory(Trip * t)
 {
 	tripHistory.push_back(t);
 }
+/**
+ * @brief Add message to notifications vector
+ */
 void RegPerson::addNotifications(string message)
 {
 	notifications.insert(notifications.begin(),message);
 }
 
+/**
+ * @brief Displays specified number of notifications
+ * @param int howmany - number of notifications to display
+ */
 void RegPerson::showNotifications(int howmany)
 {
 	if(howmany<0)
@@ -196,11 +237,19 @@ void RegPerson::showNotifications(int howmany)
 	}
 }
 
+/**
+ * @brief Add other_person to user's buddy vector
+ * @param RegPerson* other_person - buddy to add
+ */
 void RegPerson::insertBuddy(RegPerson* other_person)
 {
 	buddies.push_back(other_person);
 }
 
+/**
+ * @brief Remove a buddy from vector
+ * @param int index - index of buddy to delete from vector
+ */
 void RegPerson::removeBuddy(int index)
 {
 	if(index<0 || index >= buddies.size()){
@@ -218,11 +267,20 @@ void RegPerson::removeBuddy(int index)
 	this->buddies.erase(it);
 }
 
+
+/**
+ * @brief Add vehicle to user's vehicle vector
+ * @param Vehicle * v - vehicle to add
+ */
 void RegPerson::addVehicle(Vehicle* v)
 {
 	this->vehicles.push_back(v);
 }
 
+/**
+ * @brief Remove a vehicle from vector
+ * @param int index - index of vehicle to delete from vector
+ */
 void RegPerson::removeVehicle(int index)
 {
 	if(index<0 || index >= vehicles.size()){
@@ -240,6 +298,9 @@ void RegPerson::removeVehicle(int index)
 	this->vehicles.erase(it);
 }
 
+/**
+ * @brief Prints registered person's information
+ */
 void RegPerson::printPerson()
 {
 	stringstream ss,ssn;
@@ -251,6 +312,12 @@ void RegPerson::printPerson()
 	}
 }
 
+
+/**
+ * @brief Adds bill to billing, if user has vehicles, trips are free of charge
+ * @param string fee - what kind of fee to charge
+ * @param float triplength - distance of the trip produces higher charges
+ */
 void RegPerson::addBill(string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="monthly"){
@@ -265,6 +332,9 @@ void RegPerson::addBill(string fee, float triplength){
 	cout << "Charged " << billing-prevbilling << " -> Total billing : " << billing << endl;
 }
 
+/**
+ * @brief prints the vector of trip history of user
+ */
 void RegPerson::printTripHistory()
 {
 	sort(tripHistory.begin(),tripHistory.end(),Trip::compareTrips);
@@ -277,16 +347,31 @@ void RegPerson::printTripHistory()
 }
 
 //UnregPerson
+
+/**
+ * @brief UnregPerson default constructor
+ */
 UnregPerson::UnregPerson()
 :Person()
 {
 }
+/**
+ * @brief UnregPerson constructor
+ * @param n name of unregistered person
+ * @param t_nr phone number of unregistered person
+ */
 UnregPerson::UnregPerson(string n, unsigned long t_nr)
 :Person(n,t_nr)
 {
 }
+/**
+ * @brief UnregPerson destructor
+ */
 UnregPerson::~UnregPerson(){}
 
+/**
+ * @brief Prints unregistered person's information
+ */
 void UnregPerson::printPerson()
 {
 	stringstream ss;
@@ -294,6 +379,11 @@ void UnregPerson::printPerson()
 	cout << ss.str();
 }
 
+/**
+ * @brief Adds bill to billing of unregistered person
+ * @param string fee - what kind of fee to charge
+ * @param float triplength - distance of the trip produces higher charges
+ */
 void UnregPerson::addBill(string fee, float triplength){
 	float prevbilling { billing };
 	if(fee=="trip"){
