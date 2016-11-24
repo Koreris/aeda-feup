@@ -7,11 +7,16 @@
 #include <algorithm>
 
 using namespace std;
-
+/*
+ * @brief default logic constructor
+ */
 Logic::Logic()
 {
 }
-
+/*
+ * @brief logic constructor
+ * @param dir directory of where the files for loading will be. Directory must be in same directory as program executable!
+ */
 Logic::Logic(string dir){
 	if (dir != "")
 		dir += "\\";
@@ -28,7 +33,6 @@ Logic::Logic(string dir){
 
 
 /**
- * Returns the current date, provided by the Date class
  * @brief Returns the current date and time
  * @return Date with the current date and time
  */
@@ -36,22 +40,42 @@ Date Logic::get_curDate() const
 {
 	return Date::curDate();
 }
-
+/**
+ * @brief Returns the vector of registered users
+ * @return registered users vector
+ */
+vector<RegPerson*>& Logic::getRegUsers ()
+{
+	return regUsers;
+}
+/**
+ * @brief Returns the vector of current trips
+ * @return current trips vector
+ */
 vector<Trip*>& Logic::getCurTrips ()
 {
 		return cur_trips;
 }
-
+/**
+ * @brief Returns the vector of old trips
+ * @return old trips vector
+ */
 vector<Trip*>& Logic::getDelTrips ()
 {
 	return del_trips;
 }
-
+/**
+ * @brief Returns the vector of destinations
+ * @return destinations vector
+ */
 vector<Place*>& Logic::getDestinations()
 {
 	return destinations;
 }
-
+/**
+ * @brief Returns the vector of deleted destinations
+ * @return deleted destinations vector
+ */
 vector<Place*>& Logic::getDelDestinations()
 {
 	return del_destinations;
@@ -59,45 +83,61 @@ vector<Place*>& Logic::getDelDestinations()
 
 
 /**
- * Setter of current trips vector
  * @brief Sets current trips vector
- * @param vector of Trip *
+ * @param Reference to vector of Trip *
  */
 void Logic::setCurTrips (vector<Trip*>& curTrips)
 	{
 		cur_trips = curTrips;
 	}
-
+/**
+ * @brief Sets deleted trips vector
+ * @param Reference to vector of Trip *
+ */
 void Logic::setDelTrips (vector<Trip*>& delTrips)
 {
 	del_trips = delTrips;
 }
-
+/**
+ * @brief Sets login boolean
+ * @param b true or false
+ */
 void Logic::setLogin(bool b)
 {
 	login=b;
 }
-
+/**
+ * @brief Sets destinations vector
+ * @param Reference to vector of Place *
+ */
 void Logic::setDestinations (vector<Place*>& destinations)
 {
 	this->destinations = destinations;
 }
-
-vector<RegPerson*>& Logic::getRegUsers ()
+/**
+ * @brief Sets deleted destinations vector
+ * @param Reference to vector of Place *
+ */
+void Logic::setDelDestinations(vector<Place*>& del)
 {
-	return regUsers;
+	del_destinations=del;
 }
-
+/**
+ * @brief Sets RegUsers vector
+ * @param Reference to vector of RegPerson *
+ */
 void Logic::setRegUsers (vector<RegPerson*>& regUsers)
 {
 	this->regUsers = regUsers;
 }
 
-void Logic::setDelDestinations(vector<Place*>& del)
-{
-	del_destinations=del;
-}
 
+/**
+ * @brief Receives user and password combination and validates them
+ * @param usr username to validate
+ * @param passw password to validates
+ * @return returns true if it found the user/password combination in registered users, false otherwise
+ */
 bool Logic::userLogin(string usr, string passw)
 {
 	for(int i=0;i<regUsers.size();i++)
@@ -113,8 +153,50 @@ bool Logic::userLogin(string usr, string passw)
 	cout << "User not found " << endl;
 	return false;
 }
+/**
+ * @brief Deletes destination in index of destinations vector and puts it in deleted destinations
+ * @param index index of destination to delete
+ */
+void Logic::deleteDestinations(int index)
+{
+	if(index<0 || index >= destinations.size())
+	{
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
 
+	vector<Place *>::iterator it=destinations.begin();
 
+	while (it!=destinations.end() && index != 0)
+	{
+		it++;
+		index--;
+	}
+	del_destinations.push_back(destinations[index]);
+	this->destinations.erase(it);
+}
+/**
+ * @brief Deletes trip in index of current trips vector and puts it in deleted trips
+ * @param index index of trip to delete
+ */
+void Logic::deleteTrips(int index)
+{
+	if(index<0 || index >= cur_trips.size())
+	{
+		cout << "Invalid index chosen" << endl;
+		return;
+	}
+
+	vector<Trip *>::iterator it=cur_trips.begin();
+
+	while (it!=cur_trips.end() && index != 0)
+	{
+		it++;
+		index--;
+	}
+	del_trips.push_back(cur_trips[index]);
+	this->cur_trips.erase(it);
+}
 
 /**
  * Sorts vector of trips by date
@@ -137,44 +219,11 @@ vector<Trip *> Logic::tripSortByDriverName(vector<Trip *>v)
 	return v;
 }
 
-void Logic::deleteDestinations(int index)
-{
-	if(index<0 || index >= destinations.size())
-	{
-		cout << "Invalid index chosen" << endl;
-		return;
-	}
-
-	vector<Place *>::iterator it=destinations.begin();
-
-	while (it!=destinations.end() && index != 0)
-	{
-		it++;
-		index--;
-	}
-	del_destinations.push_back(destinations[index]);
-	this->destinations.erase(it);
-}
-
-void Logic::deleteTrips(int index)
-{
-	if(index<0 || index >= cur_trips.size())
-	{
-		cout << "Invalid index chosen" << endl;
-		return;
-	}
-
-	vector<Trip *>::iterator it=cur_trips.begin();
-
-	while (it!=cur_trips.end() && index != 0)
-	{
-		it++;
-		index--;
-	}
-	del_trips.push_back(cur_trips[index]);
-	this->cur_trips.erase(it);
-}
-
+/**
+ * @brief checks is username exists
+ * @param n username to check
+ * @return true if username n exists, false otherwise
+ */
 bool Logic::usernameExists(string n)
 {
 	for(unsigned int i=0;i<regUsers.size();i++){
@@ -243,7 +292,6 @@ vector<Trip *> Logic::findFutureTrips(Person * p)
 	}
 	return temp;
 }
-
 /**
  * Finds RegPerson pointer of user with username
  * @brief find a RegPerson by username
@@ -257,7 +305,6 @@ RegPerson * Logic::findRegPerson (string username)
 	}
 	return NULL;
 }
-
 /**
  * Finds RegPerson pointer of user with username
  * @brief find a RegPerson by username
@@ -274,7 +321,6 @@ vector<RegPerson *> Logic::findRegPersonVec (string username)
 	}
 	return temp;
 }
-
 /**
  * Finds Place* of name destname
  * @brief find a RegPerson by username
@@ -295,7 +341,6 @@ Place * Logic::findDest(string destname,string f)
 			}
 		return NULL;
 }
-
 /**
  * Loads RegPerson data members from file and creates RegPerson * objects
  * to push_back into the applications vector of registered users
@@ -711,7 +756,6 @@ int Logic::load_trips()
 	fin.close();
 	return 0;
 }
-
 /**
  * Loads all the program information from the files (their names are defined in the top of Logic.h as constants).\n
  * This includes the registeredUsers, destinations(the ones that exist and a record of deleted ones) and trips \n\n

@@ -18,7 +18,15 @@ const string CFG_FILE_DEL_DESTINATIONS = "DelDestinations.txt";
 const string CFG_FILE_CURTRIPS = "Trips.txt";
 const string CFG_FILE_DELTRIPS = "DelTrips.txt";
 
-
+/**
+ * @brief Logic class
+ *
+ * Contains all of the programs main information(including login stuff),
+ * functioning as a sort of database having utilities to filter
+ * information in different ways and methods to look up
+ * data in the vectors with conditions.
+ * Contains all the methods that read data from files.
+ */
 class Logic
 {
 private:
@@ -42,50 +50,62 @@ public:
 	RegPerson* curr_user;
 	UnregPerson* curr_unreg;
 
-	bool userLogin(string usr, string passw);
-
-	vector<Trip *> tripSortByDate(vector<Trip*>v);
-	vector<Trip *> tripSortByDriverName(vector<Trip*>v);
-	vector<Trip *> tripSortByScheduled();
-
+	/** @name Getters
+	*/
+	///@{
 	Date get_curDate() const;
-
 	vector<Trip*>& getCurTrips ();
-	void setCurTrips (vector<Trip*>& curTrips);
-
 	vector<Place*>& getDelDestinations ();
-	void setDelDestinations (vector<Place*>& delDestinations);
-
 	vector<Trip*>& getDelTrips ();
-	void setDelTrips (vector<Trip*>& delTrips);
-
 	vector<Place*>& getDestinations ();
-	void setDestinations (vector<Place*>& destinations);
-
-
 	vector<RegPerson*>& getRegUsers ();
-	void setRegUsers (vector<RegPerson*>& regUsers);
+	///@}
 
+	/** @name Setters
+	*/
+	///@{
+	void setDestinations (vector<Place*>& destinations);
+	void setDelTrips (vector<Trip*>& delTrips);
+	void setDelDestinations (vector<Place*>& delDestinations);
+	void setCurTrips (vector<Trip*>& curTrips);
+	void setRegUsers (vector<RegPerson*>& regUsers);
 	void setLogin(bool p);
 
 	void deleteDestinations(int index);
-
 	void deleteTrips(int index);
+	bool userLogin(string usr, string passw);
+	///@}
 
-	bool usernameExists(string n);
+
+	/** @name Lookups
+	*/
+	///@{
 	RegPerson * findRegPerson (string username);
 	vector<RegPerson *> findRegPersonVec (string username);
 	vector<Trip *> findTrips(string src, string dest,Person*p);
 	vector<Trip *> findFutureTrips(Person * p);
 	vector<Trip *> findVacantTrips(Person * p);
 	Place * findDest(string destname, string f="");
+	bool usernameExists(string n);
+	///@}
 
+	/** @name sorting
+	 */
+	///@{
+	vector<Trip *> tripSortByDate(vector<Trip*>v);
+	vector<Trip *> tripSortByDriverName(vector<Trip*>v);
+	///@}
+
+	/** @name File loading
+	 */
+	///@{
 	int load_regUsers();
 	//int load_del_regUsers();
 	int load_destinations();
 	int load_del_destinations();
 	int load_trips();
 	int load_data();
+	///@}
 };
 
 /** @name Exceptions
@@ -128,10 +148,6 @@ public:
 };
 ///@}
 
-vector<Person*>& getRegUsers ();
-void setRegUsers (vector<Person*>& regUsers);
-
-void deleteDestinations(int index);
 
 
 
