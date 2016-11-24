@@ -310,6 +310,11 @@ bool Lyfter::guestLogin()
 	l.curr_unreg=new UnregPerson(usr,phonenr);
 	return true;
 }
+/**
+ * Prompts for user credentials,creates new user and registers them if it doesn't exist
+ * @brief prompts for user credentials and registers new user
+ * @return if user succesfully registered
+ */
 bool Lyfter::registerUser(){
 	string usr="";
 	string passw="";
@@ -345,8 +350,11 @@ bool Lyfter::registerUser(){
 		l.getRegUsers().push_back(user);
 		cout << "Added user:";
 		user->printPerson();
-
+		return true;
 }
+/**
+ * @brief  Displays sign up menu and changes states accordingly to user input
+ */
 void Lyfter::displaySignUpMenu()
 {
 	string user_in;
@@ -418,6 +426,9 @@ void Lyfter::displaySignUpMenu()
 		}
 		return;
 }
+/**
+ * @brief  Displays guest menu and changes states accordingly to user input
+ */
 void Lyfter::displayMainMenu()
 {
 	string user_in;
@@ -478,6 +489,9 @@ void Lyfter::displayMainMenu()
 	}
 	return;
 }
+/**
+ * @brief  Displays user logged in menu and changes states accordingly to user input
+ */
 void Lyfter::displayLoginMenu()
 {
 	cls();
@@ -551,6 +565,10 @@ void Lyfter::displayLoginMenu()
 
 
 ///create trips section
+/**
+ * @brief Adds destinations to trip route vector
+ * @param t trip we want to add destinations to
+ */
 void Lyfter::addDestinationsTrip(Trip *t)
 {
 	string place="";
@@ -582,6 +600,10 @@ void Lyfter::addDestinationsTrip(Trip *t)
 
 	}
 }
+/**
+ * Prompts for user input of necessary data to create a new trip, user is the driver
+ * @brief create a new trip, current user is driver
+ */
 bool Lyfter::createTrip()
 {
 
@@ -692,6 +714,13 @@ bool Lyfter::createTrip()
 
 
 ///trip search section
+/**
+ * Displays trips in vector v and prompts user to choose the index of the trip he wants to sign up for.
+ * Adds the user as traveller in said trip's traveller vector
+ * @brief sign up for a trip with destinations of choice
+ * @param v vector of trips that the user can choose
+ * @param p vector of places with start and end destinations of the user, needed to add traveller info to trip
+ */
 void Lyfter::chooseTrip(vector<Trip *> v,vector<Place*>p)
 {
 	bool validIndex=false;
@@ -732,6 +761,11 @@ void Lyfter::chooseTrip(vector<Trip *> v,vector<Place*>p)
 	}
 
 }
+/**
+ * Prompts user for desired begin destination and end destination
+ * @brief choose begin and end destinations
+ * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ */
 bool Lyfter::userDest()
 {
 	cls();
@@ -772,6 +806,13 @@ bool Lyfter::userDest()
 	}
 	return false;
 }
+/**
+* Displays all trips with vacancies
+* Prompts user to choose the index of the trip he wants to sign up for.
+* Adds the user as traveller in said trip's traveller vector
+* @brief sign up for a trip
+* @return true if signed up for trip, false if there are no currently vacant trips
+*/
 bool Lyfter::allVacantTrips()
 {
 	cls();
@@ -796,6 +837,9 @@ bool Lyfter::allVacantTrips()
 
 
 }
+/**
+ * @brief  Displays search for trips menu and changes states accordingly to user input
+ */
 long Lyfter::displayTripMenu()
 {
 	string user_in="";
@@ -858,6 +902,9 @@ long Lyfter::displayTripMenu()
 ///end of trip search section
 
 ///trip history section
+/**
+ * @brief  displays old and future trips of user sorted by driver name
+ */
 void Lyfter::tripSortByDriverName()
 {
 	vector<Trip *> trips = vector<Trip*>();
@@ -877,6 +924,9 @@ void Lyfter::tripSortByDriverName()
 		cout <<i<<":"<< trips[i]->toString() << endl;
 	}
 }
+/**
+ * @brief  displays old and future trips of user organized by smoking rules
+ */
 void Lyfter::displayBySmoking()
 {
 	vector<Trip *> trips = vector<Trip*>();
@@ -900,6 +950,9 @@ void Lyfter::displayBySmoking()
 		cout << "Smoking not Allowed" <<":"<< trips[i]->toString() << endl;
 	}
 }
+/**
+ * @brief  displays future trips of user will be driving sorted by most recent
+ */
 void Lyfter::displayTripsDriving()
 {
 	vector<Trip *> future = vector<Trip*>();
@@ -914,6 +967,9 @@ void Lyfter::displayTripsDriving()
 		cout <<i<<":"<< future[i]->toString() << endl;
 	}
 }
+/**
+ * @brief  displays future trips of user sorted by most recent
+ */
 void Lyfter::displayFutureTrips()
 {
 
@@ -928,16 +984,25 @@ void Lyfter::displayFutureTrips()
 		cout <<i<<":"<< future[i]->toString() << endl;
 	}
 }
+/**
+ * @brief  displays past trips of user sorted by most recent to oldest
+ */
 void Lyfter::displayPastTrips()
 {
 	cout << "Past Trips:" << endl;
 	l.curr_user->printTripHistory();
 }
+/**
+ * @brief  displays all of users trips unfiltered
+ */
 void Lyfter::displayAllTrips()
 {
 	displayFutureTrips();
 	displayPastTrips();
 }
+/**
+ * @brief  Displays trip history menu and changes states accordingly to user input
+ */
 void Lyfter::displayTripHistoryMenu()
 {
 	string user_in="";
@@ -1056,6 +1121,10 @@ void Lyfter::displayTripHistoryMenu()
 ///end of trip history section
 
 ///buddy section
+/**
+ * @brief  Displays vector of buddies
+ * @param buds vector of buddies to display
+ */
 void Lyfter::displayBuddies(vector <RegPerson *> buds)
 {
 	for(unsigned int i=0;i<buds.size();i++)
@@ -1063,6 +1132,11 @@ void Lyfter::displayBuddies(vector <RegPerson *> buds)
 		cout << "Buddy username: " << buds[i]->getUsern() << endl;
 	}
 }
+/**
+ * Displays list of the user's current buddies and prompts for index of the one to delete
+ * @brief  remove a budy with inputted index
+ * @return if buddy successfully deleted
+ */
 bool Lyfter::rmBuddyUsername()
 {
 	string index="";
@@ -1097,6 +1171,11 @@ bool Lyfter::rmBuddyUsername()
 	}
 	return false;
 }
+/**
+ * Prompts for the username of buddy to add
+ * @brief  finds and adds buddy
+ * @return if buddy successfully found and added
+ */
 bool Lyfter::findBuddyUsername()
 {
 	string usrn="";
@@ -1129,6 +1208,9 @@ bool Lyfter::findBuddyUsername()
 	}
 	return false;
 }
+/**
+ * @brief  Displays buddy menu and changes states accordingly to user input
+ */
 void Lyfter::displayBuddyMenu()
 {
 	string user_in="";
@@ -1174,6 +1256,10 @@ void Lyfter::displayBuddyMenu()
 }
 ///end of buddies section
 
+///payment section
+/**
+ * @brief  Displays payments menu,executes commands and changes states accordingly to user input
+ */
 ///payment section
 void Lyfter::displayPaymentMenu()
 {
@@ -1226,6 +1312,11 @@ void Lyfter::displayPaymentMenu()
 ///end of payment section
 
 ///settings section
+/**
+ * Prompts user for necessary data to create a new vehicle, creates it
+ * @brief create new vehicle for user
+ * @return pointer to created vehicle
+ */
 Vehicle* Lyfter::makeVehicle()
 {
 	string type="";
@@ -1259,6 +1350,10 @@ Vehicle* Lyfter::makeVehicle()
 
 	return v;
 }
+/**
+ * @brief Displays vector of vehicles
+ * @param v vector of vehicles to display
+ */
 void Lyfter::displayVehicles(vector<Vehicle *>v)
 {
 	for(int i=0;i<v.size();i++)
@@ -1266,6 +1361,11 @@ void Lyfter::displayVehicles(vector<Vehicle *>v)
 		cout << i <<": " << v[i]->toString() << endl;
 	}
 }
+/**
+ * Displays users vehicles and prompts for index of vehicle to delete
+ * @brief Delete user vehicle
+ * @return if vehicle successfully deleted
+ */
 bool Lyfter::rmVehicle()
 {
 	string index="";
@@ -1292,6 +1392,12 @@ bool Lyfter::rmVehicle()
 	}
 	return false;
 }
+/**
+ * Prompts for new password and changes password
+ * @brief Change user password
+ * @param p user to change the password of
+ * @return if password successfully changed
+ */
 bool Lyfter::changePassword(RegPerson* p)
 {
 	cls();
@@ -1319,6 +1425,9 @@ bool Lyfter::changePassword(RegPerson* p)
 	cls();
 	return false;
 }
+/**
+ * @brief  Displays user settings menu and changes states accordingly to user input
+ */
 void Lyfter::displaySettingsMenu()
 {
 	string user_in="";
@@ -1370,7 +1479,8 @@ void Lyfter::displaySettingsMenu()
 		}
 	}
 }
-///nd of settings section
+///end settings section
+
 int main()
 {
 	Logic l("config");
