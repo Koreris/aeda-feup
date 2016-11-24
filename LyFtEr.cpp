@@ -766,24 +766,21 @@ bool allVacantTrips()
 	Place * place;
 	vector<Trip *> temp=vector<Trip *>();
 	vector<Place *> places=vector<Place*>();
-	bool found=false;
 
-	while(!found)
-	{
-		if(l.login)
+	if(l.login)
 		temp=l.findVacantTrips(l.curr_user);
-		else temp=l.findVacantTrips(l.curr_unreg);
-		if(temp.size()>0)
-		{
-			cout <<" found " <<temp.size() <<" trips" <<endl;
-			found=true;
-			chooseTrip(temp,places);
-			cls();
-			return true;
-		}
-		cout << "No vacant trips where you aren't currently signed up for found" << endl;
+	else temp=l.findVacantTrips(l.curr_unreg);
+	if(temp.size()>0)
+	{
+		cout <<" found " <<temp.size() <<" trips" <<endl;
+		chooseTrip(temp,places);
+		cls();
+		return true;
 	}
+	cout << "No vacant trips where you aren't currently signed up for found" << endl;
 	return false;
+
+
 }
 
 long displayTripMenu()

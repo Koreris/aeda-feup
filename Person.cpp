@@ -87,6 +87,11 @@ float Person::getBilling() const
 }
 
 //RegPerson
+
+
+/**
+ * @brief RegPerson constructor
+ */
 RegPerson::RegPerson()
 :Person()
 {
@@ -109,7 +114,7 @@ RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
 	tripHistory = vector<Trip *>();
 }
 /**
- * @brief
+ * @brief RegPerson destructor
  */
 RegPerson::~RegPerson(){}
 //setters
