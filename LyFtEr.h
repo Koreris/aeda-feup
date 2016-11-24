@@ -31,8 +31,11 @@ enum states
 				createTripMenu,
 				signUpMenu
 			};
-
-
+/**
+ * @brief Lyfter class
+ *
+ * Class that defines the highest layer of the application, UI and user interaction handling
+ */
 class Lyfter
 {
 private:
@@ -41,43 +44,65 @@ public:
 	states curr_state;
 	states prev_state;
 	Lyfter(Logic logic);
-	void displayDestinations();
-	void displayRegisteredUsers();
-	bool removeDestination();
-	bool updateDestination();
-	bool addDestination();
-	bool adminLogin();
-	void chargeMonthlyFee();
+
+
+	/** @name Contains the display functions of the UI
+	 */
+	///@{
+	//all the menus
 	void displayAdminMenu();
-	bool userLogin();
-	bool guestLogin();
-	bool registerUser();
 	void displaySignUpMenu();
 	void displayMainMenu();
 	void displayLoginMenu();
-	void displayVehicles(vector<Vehicle *>v);
-	void addDestinationsTrip(Trip *t);
-	bool createTrip();
-	void chooseTrip(vector<Trip *> v,vector<Place*>p);
-	bool userDest();
-	bool allVacantTrips();
+	void displayBuddyMenu();
+	void displayPaymentMenu();
 	long displayTripMenu();
-	void tripSortByDriverName();
+	void displaySettingsMenu();
+	///@}
+
+	/** @name Menu display utilities, many with filters and sorted methods
+	 */
+	///@{
+	//display utilities
+	void displayVehicles(vector<Vehicle *>v);
+	void displayDestinations();
+	void displayRegisteredUsers();
 	void displayBySmoking();
 	void displayTripsDriving();
+	void tripSortByDriverName();
 	void displayFutureTrips();
 	void displayPastTrips();
 	void displayAllTrips();
 	void displayTripHistoryMenu();
 	void displayBuddies(vector <RegPerson *> buds);
+	///@}
+
+	/** @name Menu functionalities - Including CRUDS and searching/choosing trips
+	 */
+	///@{
+	//Admin functionalities
+	bool removeDestination();
+	bool updateDestination();
+	bool addDestination();
+	void chargeMonthlyFee();
+	//Choose trips
+	bool allVacantTrips();
+	void chooseTrip(vector<Trip *> v,vector<Place*>p);
+	bool userDest();
+	bool createTrip();
+	void addDestinationsTrip(Trip *t);
+	//User functionalities
+	bool registerUser();
+	bool changePassword(RegPerson* p);
+	bool adminLogin();
+	bool userLogin();
+	bool guestLogin();
 	bool rmBuddyUsername();
 	bool findBuddyUsername();
-	void displayBuddyMenu();
-	void displayPaymentMenu();
 	Vehicle* makeVehicle();
 	bool rmVehicle();
-	bool changePassword(RegPerson* p);
-	void displaySettingsMenu();
+	///@}
+
 
 
 };
