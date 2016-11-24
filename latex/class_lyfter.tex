@@ -1,0 +1,483 @@
+\hypertarget{class_lyfter}{\section{Lyfter Class Reference}
+\label{class_lyfter}\index{Lyfter@{Lyfter}}
+}
+
+
+\hyperlink{class_lyfter}{Lyfter} class.  
+
+
+
+
+{\ttfamily \#include $<$Ly\+Ft\+Er.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lyfter_a18926c2dc4ede883dd8253c0fb6bdab6}{Lyfter} (\hyperlink{class_logic}{Logic} logic)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_lyfter}{Lyfter} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Contains the display functions of the U\+I}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_lyfter_a9ec8e4fbb667039eb991b66a46d7d40a}{void \hyperlink{class_lyfter_a9ec8e4fbb667039eb991b66a46d7d40a}{display\+Admin\+Menu} ()}\label{class_lyfter_a9ec8e4fbb667039eb991b66a46d7d40a}
+
+\begin{DoxyCompactList}\small\item\em Displays administration menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a48eb1bcbe6efb13a3532148bf1e39b5a}{void \hyperlink{class_lyfter_a48eb1bcbe6efb13a3532148bf1e39b5a}{display\+Sign\+Up\+Menu} ()}\label{class_lyfter_a48eb1bcbe6efb13a3532148bf1e39b5a}
+
+\begin{DoxyCompactList}\small\item\em Displays sign up menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a82f947743d9c85b6239689c3825ff035}{void \hyperlink{class_lyfter_a82f947743d9c85b6239689c3825ff035}{display\+Main\+Menu} ()}\label{class_lyfter_a82f947743d9c85b6239689c3825ff035}
+
+\begin{DoxyCompactList}\small\item\em Displays guest menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_aa4fd1663553d3e3a81519c720854477e}{void \hyperlink{class_lyfter_aa4fd1663553d3e3a81519c720854477e}{display\+Login\+Menu} ()}\label{class_lyfter_aa4fd1663553d3e3a81519c720854477e}
+
+\begin{DoxyCompactList}\small\item\em Displays user logged in menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_ac84f43d2e513c9a4e9290d6a255a7229}{void \hyperlink{class_lyfter_ac84f43d2e513c9a4e9290d6a255a7229}{display\+Buddy\+Menu} ()}\label{class_lyfter_ac84f43d2e513c9a4e9290d6a255a7229}
+
+\begin{DoxyCompactList}\small\item\em Displays buddy menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_a81ff33cecdd84e8816e6147491b399ee}{display\+Payment\+Menu} ()
+\begin{DoxyCompactList}\small\item\em end of buddies section \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a9831b8942eb1a1bea143b7d066fad9ec}{long \hyperlink{class_lyfter_a9831b8942eb1a1bea143b7d066fad9ec}{display\+Trip\+Menu} ()}\label{class_lyfter_a9831b8942eb1a1bea143b7d066fad9ec}
+
+\begin{DoxyCompactList}\small\item\em Displays search for trips menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a1d5004c8609000cb802466a3392e9a0e}{void \hyperlink{class_lyfter_a1d5004c8609000cb802466a3392e9a0e}{display\+Settings\+Menu} ()}\label{class_lyfter_a1d5004c8609000cb802466a3392e9a0e}
+
+\begin{DoxyCompactList}\small\item\em Displays user settings menu and changes states accordingly to user input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Menu display utilities, many with filters and sorted methods}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_lyfter_aeb8ac80cae0b949f669f94c411ad5075}{display\+Vehicles} (vector$<$ \hyperlink{class_vehicle}{Vehicle} $\ast$ $>$v)
+\begin{DoxyCompactList}\small\item\em Displays vector of vehicles. \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_a930bb53c14718ab927781fe465dd22de}{display\+Destinations} ()
+\begin{DoxyCompactList}\small\item\em admin stuff \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_afbef582a4f2dacdd39e5ef989655a9c6}{display\+Registered\+Users} ()
+\begin{DoxyCompactList}\small\item\em displays registered \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a76675994f2464369d074e54aaa3afba2}{void \hyperlink{class_lyfter_a76675994f2464369d074e54aaa3afba2}{display\+By\+Smoking} ()}\label{class_lyfter_a76675994f2464369d074e54aaa3afba2}
+
+\begin{DoxyCompactList}\small\item\em displays old and future trips of user organized by smoking rules \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a6467d063455ec01e5af4730d2ac307d4}{void \hyperlink{class_lyfter_a6467d063455ec01e5af4730d2ac307d4}{display\+Trips\+Driving} ()}\label{class_lyfter_a6467d063455ec01e5af4730d2ac307d4}
+
+\begin{DoxyCompactList}\small\item\em displays future trips of user will be driving sorted by most recent \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_a14f295fbbdabcd83bd93e39c18261495}{trip\+Sort\+By\+Driver\+Name} ()
+\begin{DoxyCompactList}\small\item\em end of trip search section \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_aaed629ebf68d9de1422b019d5d659152}{void \hyperlink{class_lyfter_aaed629ebf68d9de1422b019d5d659152}{display\+Future\+Trips} ()}\label{class_lyfter_aaed629ebf68d9de1422b019d5d659152}
+
+\begin{DoxyCompactList}\small\item\em displays future trips of user sorted by most recent \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a781109b2b8a2d3a1b8b0525e370bf6e5}{void \hyperlink{class_lyfter_a781109b2b8a2d3a1b8b0525e370bf6e5}{display\+Past\+Trips} ()}\label{class_lyfter_a781109b2b8a2d3a1b8b0525e370bf6e5}
+
+\begin{DoxyCompactList}\small\item\em displays past trips of user sorted by most recent to oldest \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_a73267daf6170342010d49f047ae15990}{void \hyperlink{class_lyfter_a73267daf6170342010d49f047ae15990}{display\+All\+Trips} ()}\label{class_lyfter_a73267daf6170342010d49f047ae15990}
+
+\begin{DoxyCompactList}\small\item\em displays all of users trips unfiltered \end{DoxyCompactList}\item 
+\hypertarget{class_lyfter_ae8b47c657a5c6eb935cc0c32d951619a}{void \hyperlink{class_lyfter_ae8b47c657a5c6eb935cc0c32d951619a}{display\+Trip\+History\+Menu} ()}\label{class_lyfter_ae8b47c657a5c6eb935cc0c32d951619a}
+
+\begin{DoxyCompactList}\small\item\em Displays trip history menu and changes states accordingly to user input. \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_a4d746413f6c4d5ea96e6ba39c75ec64a}{display\+Buddies} (vector$<$ \hyperlink{class_reg_person}{Reg\+Person} $\ast$ $>$ buds)
+\begin{DoxyCompactList}\small\item\em end of trip history section \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Menu functionalities -\/ Including C\+R\+U\+D\+S and searching/choosing trips}\par
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_lyfter_a229f84ba040c5f42d9e00d1f50fbb079}{remove\+Destination} ()
+\begin{DoxyCompactList}\small\item\em prompts user for index of destination he wants to deletes \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a3e284ab6e91636535556871e32e64b39}{update\+Destination} ()
+\begin{DoxyCompactList}\small\item\em prompts user for index of destination he wants to update the coordinates of \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a1824e5cd2a1fd794e9686f436bb71aca}{add\+Destination} ()
+\begin{DoxyCompactList}\small\item\em prompts user for info to create a new destination and adds it \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_adbcaa02b69b1649d845f93c7915a21c4}{charge\+Monthly\+Fee} ()
+\begin{DoxyCompactList}\small\item\em charges maintenance fee \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a4497de43f6d28891c8588d6906a689a3}{all\+Vacant\+Trips} ()
+\begin{DoxyCompactList}\small\item\em sign up for a trip \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_a9d5db3a3374d3335f52af762bbcdeb55}{choose\+Trip} (vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ v, vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$p)
+\begin{DoxyCompactList}\small\item\em end create trips section \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a95f36b59a7d75af33274a0caf2d68901}{user\+Dest} ()
+\begin{DoxyCompactList}\small\item\em choose begin and end destinations \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a7ee30f5ef911aa0348fa3485b8164ba5}{create\+Trip} ()
+\begin{DoxyCompactList}\small\item\em create a new trip, current user is driver \end{DoxyCompactList}\item 
+void \hyperlink{class_lyfter_ad2ecd0bcf3ddd27c1a5626b0d861da9d}{add\+Destinations\+Trip} (\hyperlink{class_trip}{Trip} $\ast$t)
+\begin{DoxyCompactList}\small\item\em end of login section \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a6bafddb8f1f0454760043680b6bdf335}{register\+User} ()
+\begin{DoxyCompactList}\small\item\em prompts for user credentials and registers new user \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a89a0f7a32777dc12037a70daac106c94}{change\+Password} (\hyperlink{class_reg_person}{Reg\+Person} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Change user password. \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a15872daf41782dbb38de3e29ea95204b}{admin\+Login} ()
+\begin{DoxyCompactList}\small\item\em prompts for admin credentials \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a04520c7df207c976a1aa4e15800ef601}{user\+Login} ()
+\begin{DoxyCompactList}\small\item\em end of admin stuff \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a897b495004f661b50fe2d7951998db94}{guest\+Login} ()
+\begin{DoxyCompactList}\small\item\em prompts guest credentials and login as guest \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a899ee0ce766e90d8fae4aaba85bd55e0}{rm\+Buddy\+Username} ()
+\begin{DoxyCompactList}\small\item\em remove a budy with inputted index \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a44f94095d4dee5f0aa72f2f006cf8cf1}{find\+Buddy\+Username} ()
+\begin{DoxyCompactList}\small\item\em finds and adds buddy \end{DoxyCompactList}\item 
+\hyperlink{class_vehicle}{Vehicle} $\ast$ \hyperlink{class_lyfter_ac4db1316849a3ba398c18e26121fcc88}{make\+Vehicle} ()
+\begin{DoxyCompactList}\small\item\em end of payment section \end{DoxyCompactList}\item 
+bool \hyperlink{class_lyfter_a1d40c249564dcd18149a3496841ad5d8}{rm\+Vehicle} ()
+\begin{DoxyCompactList}\small\item\em Delete user vehicle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_lyfter_af20bf300400934c0417a362e7987f691}{states {\bfseries curr\+\_\+state}}\label{class_lyfter_af20bf300400934c0417a362e7987f691}
+
+\item 
+\hypertarget{class_lyfter_a2302c66a77c787d94d256326f99a9286}{states {\bfseries prev\+\_\+state}}\label{class_lyfter_a2302c66a77c787d94d256326f99a9286}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_lyfter}{Lyfter} class. 
+
+Class that defines the highest layer of the application, U\+I and user interaction handling including the display of all the menus and listings, the crud functions that require user input. Connects with logic class to be the main hub of the program 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_lyfter_a18926c2dc4ede883dd8253c0fb6bdab6}{\index{Lyfter@{Lyfter}!Lyfter@{Lyfter}}
+\index{Lyfter@{Lyfter}!Lyfter@{Lyfter}}
+\subsubsection[{Lyfter}]{\setlength{\rightskip}{0pt plus 5cm}Lyfter\+::\+Lyfter (
+\begin{DoxyParamCaption}
+\item[{{\bf Logic}}]{logic}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a18926c2dc4ede883dd8253c0fb6bdab6}
+
+
+\hyperlink{class_lyfter}{Lyfter} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em logic} & logic object \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lyfter_a1824e5cd2a1fd794e9686f436bb71aca}{\index{Lyfter@{Lyfter}!add\+Destination@{add\+Destination}}
+\index{add\+Destination@{add\+Destination}!Lyfter@{Lyfter}}
+\subsubsection[{add\+Destination}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::add\+Destination (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a1824e5cd2a1fd794e9686f436bb71aca}
+
+
+prompts user for info to create a new destination and adds it 
+
+Prompts user to input necessary info to create a new destination, adds to destinations vector \hypertarget{class_lyfter_ad2ecd0bcf3ddd27c1a5626b0d861da9d}{\index{Lyfter@{Lyfter}!add\+Destinations\+Trip@{add\+Destinations\+Trip}}
+\index{add\+Destinations\+Trip@{add\+Destinations\+Trip}!Lyfter@{Lyfter}}
+\subsubsection[{add\+Destinations\+Trip}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::add\+Destinations\+Trip (
+\begin{DoxyParamCaption}
+\item[{{\bf Trip} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_ad2ecd0bcf3ddd27c1a5626b0d861da9d}
+
+
+end of login section 
+
+create trips section Adds destinations to trip route vector 
+\begin{DoxyParams}{Parameters}
+{\em t} & trip we want to add destinations to \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_lyfter_a15872daf41782dbb38de3e29ea95204b}{\index{Lyfter@{Lyfter}!admin\+Login@{admin\+Login}}
+\index{admin\+Login@{admin\+Login}!Lyfter@{Lyfter}}
+\subsubsection[{admin\+Login}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::admin\+Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a15872daf41782dbb38de3e29ea95204b}
+
+
+prompts for admin credentials 
+
+Prompts for admin credentials and returns true if valid credentials \begin{DoxyReturn}{Returns}
+if admin credentials are correct or not 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a4497de43f6d28891c8588d6906a689a3}{\index{Lyfter@{Lyfter}!all\+Vacant\+Trips@{all\+Vacant\+Trips}}
+\index{all\+Vacant\+Trips@{all\+Vacant\+Trips}!Lyfter@{Lyfter}}
+\subsubsection[{all\+Vacant\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::all\+Vacant\+Trips (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a4497de43f6d28891c8588d6906a689a3}
+
+
+sign up for a trip 
+
+Displays all trips with vacancies Prompts user to choose the index of the trip he wants to sign up for. Adds the user as traveller in said trip's traveller vector \begin{DoxyReturn}{Returns}
+true if signed up for trip, false if there are no currently vacant trips 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a89a0f7a32777dc12037a70daac106c94}{\index{Lyfter@{Lyfter}!change\+Password@{change\+Password}}
+\index{change\+Password@{change\+Password}!Lyfter@{Lyfter}}
+\subsubsection[{change\+Password}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::change\+Password (
+\begin{DoxyParamCaption}
+\item[{{\bf Reg\+Person} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a89a0f7a32777dc12037a70daac106c94}
+
+
+Change user password. 
+
+Prompts for new password and changes password 
+\begin{DoxyParams}{Parameters}
+{\em p} & user to change the password of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if password successfully changed 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_adbcaa02b69b1649d845f93c7915a21c4}{\index{Lyfter@{Lyfter}!charge\+Monthly\+Fee@{charge\+Monthly\+Fee}}
+\index{charge\+Monthly\+Fee@{charge\+Monthly\+Fee}!Lyfter@{Lyfter}}
+\subsubsection[{charge\+Monthly\+Fee}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::charge\+Monthly\+Fee (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_adbcaa02b69b1649d845f93c7915a21c4}
+
+
+charges maintenance fee 
+
+Adds bill to all registered users of monthly maintenance fee \hypertarget{class_lyfter_a9d5db3a3374d3335f52af762bbcdeb55}{\index{Lyfter@{Lyfter}!choose\+Trip@{choose\+Trip}}
+\index{choose\+Trip@{choose\+Trip}!Lyfter@{Lyfter}}
+\subsubsection[{choose\+Trip}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::choose\+Trip (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Trip} $\ast$ $>$}]{v, }
+\item[{vector$<$ {\bf Place} $\ast$ $>$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a9d5db3a3374d3335f52af762bbcdeb55}
+
+
+end create trips section 
+
+trip search section Displays trips in vector v and prompts user to choose the index of the trip he wants to sign up for. Adds the user as traveller in said trip's traveller vector sign up for a trip with destinations of choice 
+\begin{DoxyParams}{Parameters}
+{\em v} & vector of trips that the user can choose \\
+\hline
+{\em p} & vector of places with start and end destinations of the user, needed to add traveller info to trip \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_lyfter_a7ee30f5ef911aa0348fa3485b8164ba5}{\index{Lyfter@{Lyfter}!create\+Trip@{create\+Trip}}
+\index{create\+Trip@{create\+Trip}!Lyfter@{Lyfter}}
+\subsubsection[{create\+Trip}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::create\+Trip (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a7ee30f5ef911aa0348fa3485b8164ba5}
+
+
+create a new trip, current user is driver 
+
+Prompts for user input of necessary data to create a new trip, user is the driver \hypertarget{class_lyfter_a4d746413f6c4d5ea96e6ba39c75ec64a}{\index{Lyfter@{Lyfter}!display\+Buddies@{display\+Buddies}}
+\index{display\+Buddies@{display\+Buddies}!Lyfter@{Lyfter}}
+\subsubsection[{display\+Buddies}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::display\+Buddies (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Reg\+Person} $\ast$ $>$}]{buds}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a4d746413f6c4d5ea96e6ba39c75ec64a}
+
+
+end of trip history section 
+
+buddy section Displays vector of buddies 
+\begin{DoxyParams}{Parameters}
+{\em buds} & vector of buddies to display \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_lyfter_a930bb53c14718ab927781fe465dd22de}{\index{Lyfter@{Lyfter}!display\+Destinations@{display\+Destinations}}
+\index{display\+Destinations@{display\+Destinations}!Lyfter@{Lyfter}}
+\subsubsection[{display\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::display\+Destinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a930bb53c14718ab927781fe465dd22de}
+
+
+admin stuff 
+
+Displays destinations displays destinations \hypertarget{class_lyfter_a81ff33cecdd84e8816e6147491b399ee}{\index{Lyfter@{Lyfter}!display\+Payment\+Menu@{display\+Payment\+Menu}}
+\index{display\+Payment\+Menu@{display\+Payment\+Menu}!Lyfter@{Lyfter}}
+\subsubsection[{display\+Payment\+Menu}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::display\+Payment\+Menu (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a81ff33cecdd84e8816e6147491b399ee}
+
+
+end of buddies section 
+
+payment section Displays payments menu,executes commands and changes states accordingly to user inputpayment section \hypertarget{class_lyfter_afbef582a4f2dacdd39e5ef989655a9c6}{\index{Lyfter@{Lyfter}!display\+Registered\+Users@{display\+Registered\+Users}}
+\index{display\+Registered\+Users@{display\+Registered\+Users}!Lyfter@{Lyfter}}
+\subsubsection[{display\+Registered\+Users}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::display\+Registered\+Users (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_afbef582a4f2dacdd39e5ef989655a9c6}
+
+
+displays registered 
+
+Displays registered users \hypertarget{class_lyfter_aeb8ac80cae0b949f669f94c411ad5075}{\index{Lyfter@{Lyfter}!display\+Vehicles@{display\+Vehicles}}
+\index{display\+Vehicles@{display\+Vehicles}!Lyfter@{Lyfter}}
+\subsubsection[{display\+Vehicles}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::display\+Vehicles (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Vehicle} $\ast$ $>$}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_aeb8ac80cae0b949f669f94c411ad5075}
+
+
+Displays vector of vehicles. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector of vehicles to display \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_lyfter_a44f94095d4dee5f0aa72f2f006cf8cf1}{\index{Lyfter@{Lyfter}!find\+Buddy\+Username@{find\+Buddy\+Username}}
+\index{find\+Buddy\+Username@{find\+Buddy\+Username}!Lyfter@{Lyfter}}
+\subsubsection[{find\+Buddy\+Username}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::find\+Buddy\+Username (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a44f94095d4dee5f0aa72f2f006cf8cf1}
+
+
+finds and adds buddy 
+
+Prompts for the username of buddy to add \begin{DoxyReturn}{Returns}
+if buddy successfully found and added 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a897b495004f661b50fe2d7951998db94}{\index{Lyfter@{Lyfter}!guest\+Login@{guest\+Login}}
+\index{guest\+Login@{guest\+Login}!Lyfter@{Lyfter}}
+\subsubsection[{guest\+Login}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::guest\+Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a897b495004f661b50fe2d7951998db94}
+
+
+prompts guest credentials and login as guest 
+
+Prompts for guest credentials,creates guest, logins as guest \begin{DoxyReturn}{Returns}
+if successful login 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_ac4db1316849a3ba398c18e26121fcc88}{\index{Lyfter@{Lyfter}!make\+Vehicle@{make\+Vehicle}}
+\index{make\+Vehicle@{make\+Vehicle}!Lyfter@{Lyfter}}
+\subsubsection[{make\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vehicle} $\ast$ Lyfter\+::make\+Vehicle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_ac4db1316849a3ba398c18e26121fcc88}
+
+
+end of payment section 
+
+settings section Prompts user for necessary data to create a new vehicle, creates it create new vehicle for user \begin{DoxyReturn}{Returns}
+pointer to created vehicle 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a6bafddb8f1f0454760043680b6bdf335}{\index{Lyfter@{Lyfter}!register\+User@{register\+User}}
+\index{register\+User@{register\+User}!Lyfter@{Lyfter}}
+\subsubsection[{register\+User}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::register\+User (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a6bafddb8f1f0454760043680b6bdf335}
+
+
+prompts for user credentials and registers new user 
+
+Prompts for user credentials,creates new user and registers them if it doesn't exist \begin{DoxyReturn}{Returns}
+if user succesfully registered 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a229f84ba040c5f42d9e00d1f50fbb079}{\index{Lyfter@{Lyfter}!remove\+Destination@{remove\+Destination}}
+\index{remove\+Destination@{remove\+Destination}!Lyfter@{Lyfter}}
+\subsubsection[{remove\+Destination}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::remove\+Destination (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a229f84ba040c5f42d9e00d1f50fbb079}
+
+
+prompts user for index of destination he wants to deletes 
+
+Displays destinations and prompts user for an index of destination to delete \hypertarget{class_lyfter_a899ee0ce766e90d8fae4aaba85bd55e0}{\index{Lyfter@{Lyfter}!rm\+Buddy\+Username@{rm\+Buddy\+Username}}
+\index{rm\+Buddy\+Username@{rm\+Buddy\+Username}!Lyfter@{Lyfter}}
+\subsubsection[{rm\+Buddy\+Username}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::rm\+Buddy\+Username (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a899ee0ce766e90d8fae4aaba85bd55e0}
+
+
+remove a budy with inputted index 
+
+Displays list of the user's current buddies and prompts for index of the one to delete \begin{DoxyReturn}{Returns}
+if buddy successfully deleted 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a1d40c249564dcd18149a3496841ad5d8}{\index{Lyfter@{Lyfter}!rm\+Vehicle@{rm\+Vehicle}}
+\index{rm\+Vehicle@{rm\+Vehicle}!Lyfter@{Lyfter}}
+\subsubsection[{rm\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::rm\+Vehicle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a1d40c249564dcd18149a3496841ad5d8}
+
+
+Delete user vehicle. 
+
+Displays users vehicles and prompts for index of vehicle to delete \begin{DoxyReturn}{Returns}
+if vehicle successfully deleted 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a14f295fbbdabcd83bd93e39c18261495}{\index{Lyfter@{Lyfter}!trip\+Sort\+By\+Driver\+Name@{trip\+Sort\+By\+Driver\+Name}}
+\index{trip\+Sort\+By\+Driver\+Name@{trip\+Sort\+By\+Driver\+Name}!Lyfter@{Lyfter}}
+\subsubsection[{trip\+Sort\+By\+Driver\+Name}]{\setlength{\rightskip}{0pt plus 5cm}void Lyfter\+::trip\+Sort\+By\+Driver\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a14f295fbbdabcd83bd93e39c18261495}
+
+
+end of trip search section 
+
+trip history section displays old and future trips of user sorted by driver name \hypertarget{class_lyfter_a3e284ab6e91636535556871e32e64b39}{\index{Lyfter@{Lyfter}!update\+Destination@{update\+Destination}}
+\index{update\+Destination@{update\+Destination}!Lyfter@{Lyfter}}
+\subsubsection[{update\+Destination}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::update\+Destination (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a3e284ab6e91636535556871e32e64b39}
+
+
+prompts user for index of destination he wants to update the coordinates of 
+
+Displays destinations and prompts user for an index of destination to update coordinates of \hypertarget{class_lyfter_a95f36b59a7d75af33274a0caf2d68901}{\index{Lyfter@{Lyfter}!user\+Dest@{user\+Dest}}
+\index{user\+Dest@{user\+Dest}!Lyfter@{Lyfter}}
+\subsubsection[{user\+Dest}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::user\+Dest (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a95f36b59a7d75af33274a0caf2d68901}
+
+
+choose begin and end destinations 
+
+Prompts user for desired begin destination and end destination \begin{DoxyReturn}{Returns}
+true if destinations inputted are valid and exist and that there are trips with said destinations 
+\end{DoxyReturn}
+\hypertarget{class_lyfter_a04520c7df207c976a1aa4e15800ef601}{\index{Lyfter@{Lyfter}!user\+Login@{user\+Login}}
+\index{user\+Login@{user\+Login}!Lyfter@{Lyfter}}
+\subsubsection[{user\+Login}]{\setlength{\rightskip}{0pt plus 5cm}bool Lyfter\+::user\+Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_lyfter_a04520c7df207c976a1aa4e15800ef601}
+
+
+end of admin stuff 
+
+login section Prompts for user credentials,validates them and does the actual login prompts for user credentials and logins \begin{DoxyReturn}{Returns}
+if successful login 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Ly\+Ft\+Er.\+h\item 
+Ly\+Ft\+Er.\+cpp\end{DoxyCompactItemize}

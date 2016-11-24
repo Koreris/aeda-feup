@@ -1,0 +1,254 @@
+\hypertarget{class_vehicle}{\section{Vehicle Class Reference}
+\label{class_vehicle}\index{Vehicle@{Vehicle}}
+}
+
+
+\hyperlink{class_vehicle}{Vehicle} class.  
+
+
+
+
+{\ttfamily \#include $<$Vehicle.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vehicle_abaad8187d9f2ede4fb8ea18de0a6764c}{\hyperlink{class_vehicle_abaad8187d9f2ede4fb8ea18de0a6764c}{Vehicle} ()}\label{class_vehicle_abaad8187d9f2ede4fb8ea18de0a6764c}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_vehicle}{Vehicle} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_vehicle_a95edd9343b3e76eade8df5a44be799e5}{Vehicle} (string o, string t, string b, string l\+\_\+p, unsigned int c\+\_\+s)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_vehicle}{Vehicle} constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_vehicle_a61ab140c755b8e0e824d54117cf4546f}{\hyperlink{class_vehicle_a61ab140c755b8e0e824d54117cf4546f}{$\sim$\+Vehicle} ()}\label{class_vehicle_a61ab140c755b8e0e824d54117cf4546f}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_vehicle}{Vehicle} default destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_vehicle_ad39892e6ee302c039e06c3e629802d0f}{set\+Owner} (string o)
+\begin{DoxyCompactList}\small\item\em Sets the vehicle's owner name. \end{DoxyCompactList}\item 
+void \hyperlink{class_vehicle_a344f7cc363febf23d205877b544efef8}{set\+Type} (string t)
+\begin{DoxyCompactList}\small\item\em Sets the vehicle's type. \end{DoxyCompactList}\item 
+void \hyperlink{class_vehicle_af8466ac38dc2d48a1d65b8037b667d6b}{set\+Brand} (string b)
+\begin{DoxyCompactList}\small\item\em Sets the vehicle's brand. \end{DoxyCompactList}\item 
+void \hyperlink{class_vehicle_a048147fc584afa2bcb7abed044476a3c}{set\+License\+Plate} (string l\+\_\+p)
+\begin{DoxyCompactList}\small\item\em Sets the vehicle's license plate. \end{DoxyCompactList}\item 
+void \hyperlink{class_vehicle_ae5b5d36f539e0fad3d37466ffa2ec9dc}{set\+Car\+Seats} (unsigned int c\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Sets the vehicle's seats. \end{DoxyCompactList}\item 
+string \hyperlink{class_vehicle_a02d081f322381db9695e30aa5bb4116b}{get\+Owner} () const 
+\begin{DoxyCompactList}\small\item\em Returns the name of the owner. \end{DoxyCompactList}\item 
+string \hyperlink{class_vehicle_ab3c3d57639bae4a51ea193582e26c5e7}{get\+Type} () const 
+\begin{DoxyCompactList}\small\item\em Returns the type of the vehicle. \end{DoxyCompactList}\item 
+string \hyperlink{class_vehicle_a7c479d1f5be8a00a1e765345e1e2bf13}{get\+Brand} () const 
+\begin{DoxyCompactList}\small\item\em Returns the vehicle's brand. \end{DoxyCompactList}\item 
+string \hyperlink{class_vehicle_a70ea176477f0552924460029e6077708}{get\+License\+Plate} () const 
+\begin{DoxyCompactList}\small\item\em Returns the vehicle's license plate. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_vehicle_ad64b4f6e3fa9f215354c78a5bb74dd5c}{get\+Car\+Seats} () const 
+\begin{DoxyCompactList}\small\item\em Returns the number of car seats. \end{DoxyCompactList}\item 
+string \hyperlink{class_vehicle_abd9381537867c1a98430ab06ce51898f}{to\+String} ()
+\begin{DoxyCompactList}\small\item\em Writes all the information about a vehicle to a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_vehicle}{Vehicle} class. 
+
+Contains the vehicle related functions, including getters, setters and to\+String functions. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_vehicle_a95edd9343b3e76eade8df5a44be799e5}{\index{Vehicle@{Vehicle}!Vehicle@{Vehicle}}
+\index{Vehicle@{Vehicle}!Vehicle@{Vehicle}}
+\subsubsection[{Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}Vehicle\+::\+Vehicle (
+\begin{DoxyParamCaption}
+\item[{string}]{o, }
+\item[{string}]{t, }
+\item[{string}]{b, }
+\item[{string}]{l\+\_\+p, }
+\item[{unsigned int}]{c\+\_\+s}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_a95edd9343b3e76eade8df5a44be799e5}
+
+
+\hyperlink{class_vehicle}{Vehicle} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & owner's name \\
+\hline
+{\em t} & vehicle's type \\
+\hline
+{\em b} & vehicle's brand \\
+\hline
+{\em b} & vehicle's license plate \\
+\hline
+{\em c\+\_\+s} & car seats of vehicle \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_vehicle_a7c479d1f5be8a00a1e765345e1e2bf13}{\index{Vehicle@{Vehicle}!get\+Brand@{get\+Brand}}
+\index{get\+Brand@{get\+Brand}!Vehicle@{Vehicle}}
+\subsubsection[{get\+Brand}]{\setlength{\rightskip}{0pt plus 5cm}string Vehicle\+::get\+Brand (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vehicle_a7c479d1f5be8a00a1e765345e1e2bf13}
+
+
+Returns the vehicle's brand. 
+
+\begin{DoxyReturn}{Returns}
+string with the vehicle's brand 
+\end{DoxyReturn}
+\hypertarget{class_vehicle_ad64b4f6e3fa9f215354c78a5bb74dd5c}{\index{Vehicle@{Vehicle}!get\+Car\+Seats@{get\+Car\+Seats}}
+\index{get\+Car\+Seats@{get\+Car\+Seats}!Vehicle@{Vehicle}}
+\subsubsection[{get\+Car\+Seats}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Vehicle\+::get\+Car\+Seats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vehicle_ad64b4f6e3fa9f215354c78a5bb74dd5c}
+
+
+Returns the number of car seats. 
+
+\begin{DoxyReturn}{Returns}
+unsigned int with the number of car seats 
+\end{DoxyReturn}
+\hypertarget{class_vehicle_a70ea176477f0552924460029e6077708}{\index{Vehicle@{Vehicle}!get\+License\+Plate@{get\+License\+Plate}}
+\index{get\+License\+Plate@{get\+License\+Plate}!Vehicle@{Vehicle}}
+\subsubsection[{get\+License\+Plate}]{\setlength{\rightskip}{0pt plus 5cm}string Vehicle\+::get\+License\+Plate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vehicle_a70ea176477f0552924460029e6077708}
+
+
+Returns the vehicle's license plate. 
+
+\begin{DoxyReturn}{Returns}
+string with the license plate 
+\end{DoxyReturn}
+\hypertarget{class_vehicle_a02d081f322381db9695e30aa5bb4116b}{\index{Vehicle@{Vehicle}!get\+Owner@{get\+Owner}}
+\index{get\+Owner@{get\+Owner}!Vehicle@{Vehicle}}
+\subsubsection[{get\+Owner}]{\setlength{\rightskip}{0pt plus 5cm}string Vehicle\+::get\+Owner (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vehicle_a02d081f322381db9695e30aa5bb4116b}
+
+
+Returns the name of the owner. 
+
+\begin{DoxyReturn}{Returns}
+string with the owner's name 
+\end{DoxyReturn}
+\hypertarget{class_vehicle_ab3c3d57639bae4a51ea193582e26c5e7}{\index{Vehicle@{Vehicle}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!Vehicle@{Vehicle}}
+\subsubsection[{get\+Type}]{\setlength{\rightskip}{0pt plus 5cm}string Vehicle\+::get\+Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vehicle_ab3c3d57639bae4a51ea193582e26c5e7}
+
+
+Returns the type of the vehicle. 
+
+\begin{DoxyReturn}{Returns}
+string with the vehicle's type 
+\end{DoxyReturn}
+\hypertarget{class_vehicle_af8466ac38dc2d48a1d65b8037b667d6b}{\index{Vehicle@{Vehicle}!set\+Brand@{set\+Brand}}
+\index{set\+Brand@{set\+Brand}!Vehicle@{Vehicle}}
+\subsubsection[{set\+Brand}]{\setlength{\rightskip}{0pt plus 5cm}void Vehicle\+::set\+Brand (
+\begin{DoxyParamCaption}
+\item[{string}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_af8466ac38dc2d48a1d65b8037b667d6b}
+
+
+Sets the vehicle's brand. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & string with the vehicle's brand \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vehicle_ae5b5d36f539e0fad3d37466ffa2ec9dc}{\index{Vehicle@{Vehicle}!set\+Car\+Seats@{set\+Car\+Seats}}
+\index{set\+Car\+Seats@{set\+Car\+Seats}!Vehicle@{Vehicle}}
+\subsubsection[{set\+Car\+Seats}]{\setlength{\rightskip}{0pt plus 5cm}void Vehicle\+::set\+Car\+Seats (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{c\+\_\+s}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_ae5b5d36f539e0fad3d37466ffa2ec9dc}
+
+
+Sets the vehicle's seats. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c\+\_\+s} & unsigned int with the vehicle's seats. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vehicle_a048147fc584afa2bcb7abed044476a3c}{\index{Vehicle@{Vehicle}!set\+License\+Plate@{set\+License\+Plate}}
+\index{set\+License\+Plate@{set\+License\+Plate}!Vehicle@{Vehicle}}
+\subsubsection[{set\+License\+Plate}]{\setlength{\rightskip}{0pt plus 5cm}void Vehicle\+::set\+License\+Plate (
+\begin{DoxyParamCaption}
+\item[{string}]{l\+\_\+p}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_a048147fc584afa2bcb7abed044476a3c}
+
+
+Sets the vehicle's license plate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em l\+\_\+p} & string with the vehicle's license\+\_\+plate \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vehicle_ad39892e6ee302c039e06c3e629802d0f}{\index{Vehicle@{Vehicle}!set\+Owner@{set\+Owner}}
+\index{set\+Owner@{set\+Owner}!Vehicle@{Vehicle}}
+\subsubsection[{set\+Owner}]{\setlength{\rightskip}{0pt plus 5cm}void Vehicle\+::set\+Owner (
+\begin{DoxyParamCaption}
+\item[{string}]{o}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_ad39892e6ee302c039e06c3e629802d0f}
+
+
+Sets the vehicle's owner name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & string with the owner's name \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vehicle_a344f7cc363febf23d205877b544efef8}{\index{Vehicle@{Vehicle}!set\+Type@{set\+Type}}
+\index{set\+Type@{set\+Type}!Vehicle@{Vehicle}}
+\subsubsection[{set\+Type}]{\setlength{\rightskip}{0pt plus 5cm}void Vehicle\+::set\+Type (
+\begin{DoxyParamCaption}
+\item[{string}]{t}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_a344f7cc363febf23d205877b544efef8}
+
+
+Sets the vehicle's type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & string with the vehicle's type \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vehicle_abd9381537867c1a98430ab06ce51898f}{\index{Vehicle@{Vehicle}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Vehicle@{Vehicle}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}string Vehicle\+::to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vehicle_abd9381537867c1a98430ab06ce51898f}
+
+
+Writes all the information about a vehicle to a string. 
+
+\begin{DoxyReturn}{Returns}
+string with the vehicle's information 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Vehicle.\+h\item 
+Vehicle.\+cpp\end{DoxyCompactItemize}

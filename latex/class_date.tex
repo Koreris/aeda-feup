@@ -1,0 +1,557 @@
+\hypertarget{class_date}{\section{Date Class Reference}
+\label{class_date}\index{Date@{Date}}
+}
+
+
+\hyperlink{class_date}{Date} class.  
+
+
+
+
+{\ttfamily \#include $<$Date.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{class_date_a13151b0c602df2d15d069aa810ba545a}{str} () const 
+\begin{DoxyCompactList}\small\item\em Formatted date string. \end{DoxyCompactList}\item 
+string \hyperlink{class_date_a45c077b993feb35975d12c5c32848b5b}{cfg\+\_\+str} () const 
+\begin{DoxyCompactList}\small\item\em Space separated date. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Constructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}{Date} ()
+\begin{DoxyCompactList}\small\item\em Invalid \hyperlink{class_date}{Date} empty constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_date_a32f8887c45cf92c7ca14458b0f7dc417}{Date} (string \hyperlink{class_date_a45c077b993feb35975d12c5c32848b5b}{cfg\+\_\+str})
+\begin{DoxyCompactList}\small\item\em Constructor to make date object out of string. \end{DoxyCompactList}\item 
+\hyperlink{class_date_a294e64b7015eae07a7c15147822520ab}{Date} (int year, int month, int day, int hour, int minute, int second)
+\begin{DoxyCompactList}\small\item\em Valid \hyperlink{class_date}{Date} constructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Getters}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_date_acbe0df036d53e8ddcfa96523177bbd23}{get\+Year} () const 
+\begin{DoxyCompactList}\small\item\em Returns the year. \end{DoxyCompactList}\item 
+int \hyperlink{class_date_a378143c24ab06d9dd38712fc515056dc}{get\+Month} () const 
+\begin{DoxyCompactList}\small\item\em Returns the month. \end{DoxyCompactList}\item 
+int \hyperlink{class_date_a9114656893af6950f86e9438c9d01c77}{get\+Day} () const 
+\begin{DoxyCompactList}\small\item\em Returns the day. \end{DoxyCompactList}\item 
+int \hyperlink{class_date_aa83005b132598f7af8fb70e5407e150c}{get\+Hour} () const 
+\begin{DoxyCompactList}\small\item\em Returns the hour. \end{DoxyCompactList}\item 
+int \hyperlink{class_date_a881f2c9fe6134e162277ecaa7a0f849b}{get\+Minute} () const 
+\begin{DoxyCompactList}\small\item\em Returns the minute. \end{DoxyCompactList}\item 
+int \hyperlink{class_date_ac05e321dbaeb598267d8163bc042f4c0}{get\+Second} () const 
+\begin{DoxyCompactList}\small\item\em Returns the second. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Setters}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_date_a895c4ae9868e43577cf59d9c679d7a71}{set\+Year} (int year)
+\begin{DoxyCompactList}\small\item\em Sets the year. \end{DoxyCompactList}\item 
+void \hyperlink{class_date_a23aa56014dd581d691607df5d4474f64}{set\+Month} (int month)
+\begin{DoxyCompactList}\small\item\em Sets the month. \end{DoxyCompactList}\item 
+void \hyperlink{class_date_a2f97b9d1ac5ef0ef6b6cab3335c5303d}{set\+Day} (int day)
+\begin{DoxyCompactList}\small\item\em Sets the day. \end{DoxyCompactList}\item 
+void \hyperlink{class_date_a39aed5716d41cecafc37be6a11556112}{set\+Hour} (int hour)
+\begin{DoxyCompactList}\small\item\em Sets the hour. \end{DoxyCompactList}\item 
+void \hyperlink{class_date_a41af48d9de47a30f77281c453bbec529}{set\+Minute} (int minute)
+\begin{DoxyCompactList}\small\item\em Sets the minute. \end{DoxyCompactList}\item 
+void \hyperlink{class_date_a3dc2a55fa440645bd9612b8b5bb8ec31}{set\+Second} (int second)
+\begin{DoxyCompactList}\small\item\em Sets the second. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Static Public Member Functions}
+\begin{Indent}{\bf Static functions}\par
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{class_date_ab59a4fe6057aabe5caa8d53dc03e2a3a}{days\+In\+Month} (int month, int year)
+\begin{DoxyCompactList}\small\item\em Static function. \end{DoxyCompactList}\item 
+static bool \hyperlink{class_date_a6fc6234821bfcd26f77b4510e116d611}{is\+Leap\+Year} (int year)
+\begin{DoxyCompactList}\small\item\em Checks if year is leap year. \end{DoxyCompactList}\item 
+static \hyperlink{class_date}{Date} \hyperlink{class_date_a56bfc49258eebcf21a410633e1e84e29}{cur\+Date} ()
+\begin{DoxyCompactList}\small\item\em Current local date and time. \end{DoxyCompactList}\item 
+static int \hyperlink{class_date_a6c59bb1b4c2f47710712563a5c05aa51}{num\+Days} (\hyperlink{class_date}{Date} d1, \hyperlink{class_date}{Date} d2)
+\begin{DoxyCompactList}\small\item\em Number of days difference between two dates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Operator overloads}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{class_date_a1629ad0fa9f5272f887cbe399d0d2458}{operator$<$} (\hyperlink{class_date}{Date} date2) const 
+\begin{DoxyCompactList}\small\item\em Less than operator. \end{DoxyCompactList}\item 
+bool \hyperlink{class_date_ac4959607f38ae31aa1096d7ffc71e871}{operator$>$} (\hyperlink{class_date}{Date} date2) const 
+\begin{DoxyCompactList}\small\item\em Greater than operator. \end{DoxyCompactList}\item 
+bool \hyperlink{class_date_a4a2facbaa5e9a131387c1fec733dfe2a}{operator==} (\hyperlink{class_date}{Date} date2) const 
+\begin{DoxyCompactList}\small\item\em Equal comparison operator. \end{DoxyCompactList}\item 
+ostream \& \hyperlink{class_date_a8e8b3d76200d2f9bc2eefc5c30b1f326}{operator$<$$<$} (ostream \&os, const \hyperlink{class_date}{Date} \&d)
+\begin{DoxyCompactList}\small\item\em Bitshift operator $<$$<$. \end{DoxyCompactList}\item 
+istream \& \hyperlink{class_date_a15e1a93c6cc284b431e2d865fd193e18}{operator$>$$>$} (istream \&is, \hyperlink{class_date}{Date} \&date)
+\begin{DoxyCompactList}\small\item\em Bitshift operator $>$$>$ \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_date}{Date} class. 
+
+A date object consists of basically 6 integers, which hold the year, month, day, hour, minute and second.~\newline
+It has the necessary member functions for handling those variables, compare dates, and misc functions. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}{\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}Date\+::\+Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_date_a4e59ed4ba66eec61c27460c5d09fa1bd}
+
+
+Invalid \hyperlink{class_date}{Date} empty constructor. 
+
+This constructor leads to an invalid date, not possible with setters or the other constructors because of the exceptions \hypertarget{class_date_a32f8887c45cf92c7ca14458b0f7dc417}{\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}Date\+::\+Date (
+\begin{DoxyParamCaption}
+\item[{string}]{cfg\+\_\+str}
+\end{DoxyParamCaption}
+)}}\label{class_date_a32f8887c45cf92c7ca14458b0f7dc417}
+
+
+Constructor to make date object out of string. 
+
+This constructor makes a date object out of a properly formatted string 
+\begin{DoxyParams}{Parameters}
+{\em cfg\+\_\+str} & formatted string to make a \hyperlink{class_date}{Date} object \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a294e64b7015eae07a7c15147822520ab}{\index{Date@{Date}!Date@{Date}}
+\index{Date@{Date}!Date@{Date}}
+\subsubsection[{Date}]{\setlength{\rightskip}{0pt plus 5cm}Date\+::\+Date (
+\begin{DoxyParamCaption}
+\item[{int}]{year, }
+\item[{int}]{month, }
+\item[{int}]{day, }
+\item[{int}]{hour, }
+\item[{int}]{minute, }
+\item[{int}]{second}
+\end{DoxyParamCaption}
+)}}\label{class_date_a294e64b7015eae07a7c15147822520ab}
+
+
+Valid \hyperlink{class_date}{Date} constructor. 
+
+Throws an appropriate exception if any of the parameters are invalid 
+\begin{DoxyParams}{Parameters}
+{\em year} & Year \\
+\hline
+{\em month} & Month \\
+\hline
+{\em day} & Day \\
+\hline
+{\em hour} & Hour \\
+\hline
+{\em minute} & Minute \\
+\hline
+{\em second} & Second \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_date_a45c077b993feb35975d12c5c32848b5b}{\index{Date@{Date}!cfg\+\_\+str@{cfg\+\_\+str}}
+\index{cfg\+\_\+str@{cfg\+\_\+str}!Date@{Date}}
+\subsubsection[{cfg\+\_\+str}]{\setlength{\rightskip}{0pt plus 5cm}string Date\+::cfg\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a45c077b993feb35975d12c5c32848b5b}
+
+
+Space separated date. 
+
+Returns a string in the format Y\+Y\+Y\+Y M\+M D\+D hh mm ss to be used in the config file \begin{DoxyReturn}{Returns}
+a string with the date 
+\end{DoxyReturn}
+\hypertarget{class_date_a56bfc49258eebcf21a410633e1e84e29}{\index{Date@{Date}!cur\+Date@{cur\+Date}}
+\index{cur\+Date@{cur\+Date}!Date@{Date}}
+\subsubsection[{cur\+Date}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} Date\+::cur\+Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_date_a56bfc49258eebcf21a410633e1e84e29}
+
+
+Current local date and time. 
+
+Returns a date with the current computer local date and time \begin{DoxyReturn}{Returns}
+date corresponding to the current date 
+\end{DoxyReturn}
+\hypertarget{class_date_ab59a4fe6057aabe5caa8d53dc03e2a3a}{\index{Date@{Date}!days\+In\+Month@{days\+In\+Month}}
+\index{days\+In\+Month@{days\+In\+Month}!Date@{Date}}
+\subsubsection[{days\+In\+Month}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::days\+In\+Month (
+\begin{DoxyParamCaption}
+\item[{int}]{month, }
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_date_ab59a4fe6057aabe5caa8d53dc03e2a3a}
+
+
+Static function. 
+
+Returns the number of days in a month, taking into account if it is a leap year or not Number of days in a month 
+\begin{DoxyParams}{Parameters}
+{\em month} & month (1-\/12) \\
+\hline
+{\em year} & year \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of days 
+\end{DoxyReturn}
+\hypertarget{class_date_a9114656893af6950f86e9438c9d01c77}{\index{Date@{Date}!get\+Day@{get\+Day}}
+\index{get\+Day@{get\+Day}!Date@{Date}}
+\subsubsection[{get\+Day}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Day (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a9114656893af6950f86e9438c9d01c77}
+
+
+Returns the day. 
+
+\begin{DoxyReturn}{Returns}
+integer with the day 
+\end{DoxyReturn}
+\hypertarget{class_date_aa83005b132598f7af8fb70e5407e150c}{\index{Date@{Date}!get\+Hour@{get\+Hour}}
+\index{get\+Hour@{get\+Hour}!Date@{Date}}
+\subsubsection[{get\+Hour}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Hour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_aa83005b132598f7af8fb70e5407e150c}
+
+
+Returns the hour. 
+
+\begin{DoxyReturn}{Returns}
+integer with the hour 
+\end{DoxyReturn}
+\hypertarget{class_date_a881f2c9fe6134e162277ecaa7a0f849b}{\index{Date@{Date}!get\+Minute@{get\+Minute}}
+\index{get\+Minute@{get\+Minute}!Date@{Date}}
+\subsubsection[{get\+Minute}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Minute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a881f2c9fe6134e162277ecaa7a0f849b}
+
+
+Returns the minute. 
+
+\begin{DoxyReturn}{Returns}
+integer with the minute 
+\end{DoxyReturn}
+\hypertarget{class_date_a378143c24ab06d9dd38712fc515056dc}{\index{Date@{Date}!get\+Month@{get\+Month}}
+\index{get\+Month@{get\+Month}!Date@{Date}}
+\subsubsection[{get\+Month}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Month (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a378143c24ab06d9dd38712fc515056dc}
+
+
+Returns the month. 
+
+\begin{DoxyReturn}{Returns}
+integer with the month 
+\end{DoxyReturn}
+\hypertarget{class_date_ac05e321dbaeb598267d8163bc042f4c0}{\index{Date@{Date}!get\+Second@{get\+Second}}
+\index{get\+Second@{get\+Second}!Date@{Date}}
+\subsubsection[{get\+Second}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Second (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_ac05e321dbaeb598267d8163bc042f4c0}
+
+
+Returns the second. 
+
+\begin{DoxyReturn}{Returns}
+integer with the second 
+\end{DoxyReturn}
+\hypertarget{class_date_acbe0df036d53e8ddcfa96523177bbd23}{\index{Date@{Date}!get\+Year@{get\+Year}}
+\index{get\+Year@{get\+Year}!Date@{Date}}
+\subsubsection[{get\+Year}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::get\+Year (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_acbe0df036d53e8ddcfa96523177bbd23}
+
+
+Returns the year. 
+
+\begin{DoxyReturn}{Returns}
+integer with the year 
+\end{DoxyReturn}
+\hypertarget{class_date_a6fc6234821bfcd26f77b4510e116d611}{\index{Date@{Date}!is\+Leap\+Year@{is\+Leap\+Year}}
+\index{is\+Leap\+Year@{is\+Leap\+Year}!Date@{Date}}
+\subsubsection[{is\+Leap\+Year}]{\setlength{\rightskip}{0pt plus 5cm}bool Date\+::is\+Leap\+Year (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_date_a6fc6234821bfcd26f77b4510e116d611}
+
+
+Checks if year is leap year. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em year} & year \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it is leap year, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_date_a6c59bb1b4c2f47710712563a5c05aa51}{\index{Date@{Date}!num\+Days@{num\+Days}}
+\index{num\+Days@{num\+Days}!Date@{Date}}
+\subsubsection[{num\+Days}]{\setlength{\rightskip}{0pt plus 5cm}int Date\+::num\+Days (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{d1, }
+\item[{{\bf Date}}]{d2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_date_a6c59bb1b4c2f47710712563a5c05aa51}
+
+
+Number of days difference between two dates. 
+
+Returns the number of days difference between two dates 
+\begin{DoxyParams}{Parameters}
+{\em d1} & a date \\
+\hline
+{\em d2} & a date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of days 
+\end{DoxyReturn}
+\hypertarget{class_date_a1629ad0fa9f5272f887cbe399d0d2458}{\index{Date@{Date}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Date@{Date}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool Date\+::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{date2}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a1629ad0fa9f5272f887cbe399d0d2458}
+
+
+Less than operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date2} & Right hand side date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if left hand side date is previous in time from the right hand side one, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_date_a4a2facbaa5e9a131387c1fec733dfe2a}{\index{Date@{Date}!operator==@{operator==}}
+\index{operator==@{operator==}!Date@{Date}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Date\+::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{date2}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a4a2facbaa5e9a131387c1fec733dfe2a}
+
+
+Equal comparison operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date2} & Right hand side date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if the dates are the same, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_date_ac4959607f38ae31aa1096d7ffc71e871}{\index{Date@{Date}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!Date@{Date}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool Date\+::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{date2}
+\end{DoxyParamCaption}
+) const}}\label{class_date_ac4959607f38ae31aa1096d7ffc71e871}
+
+
+Greater than operator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date2} & Right hand side date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if left hand side date is after the right hand side one in time, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{class_date_a2f97b9d1ac5ef0ef6b6cab3335c5303d}{\index{Date@{Date}!set\+Day@{set\+Day}}
+\index{set\+Day@{set\+Day}!Date@{Date}}
+\subsubsection[{set\+Day}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Day (
+\begin{DoxyParamCaption}
+\item[{int}]{day}
+\end{DoxyParamCaption}
+)}}\label{class_date_a2f97b9d1ac5ef0ef6b6cab3335c5303d}
+
+
+Sets the day. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the day is invalid 
+\begin{DoxyParams}{Parameters}
+{\em day} & Day \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a39aed5716d41cecafc37be6a11556112}{\index{Date@{Date}!set\+Hour@{set\+Hour}}
+\index{set\+Hour@{set\+Hour}!Date@{Date}}
+\subsubsection[{set\+Hour}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Hour (
+\begin{DoxyParamCaption}
+\item[{int}]{hour}
+\end{DoxyParamCaption}
+)}}\label{class_date_a39aed5716d41cecafc37be6a11556112}
+
+
+Sets the hour. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the hour is invalid 
+\begin{DoxyParams}{Parameters}
+{\em hour} & Hour \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a41af48d9de47a30f77281c453bbec529}{\index{Date@{Date}!set\+Minute@{set\+Minute}}
+\index{set\+Minute@{set\+Minute}!Date@{Date}}
+\subsubsection[{set\+Minute}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Minute (
+\begin{DoxyParamCaption}
+\item[{int}]{minute}
+\end{DoxyParamCaption}
+)}}\label{class_date_a41af48d9de47a30f77281c453bbec529}
+
+
+Sets the minute. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the minute is invalid 
+\begin{DoxyParams}{Parameters}
+{\em minute} & Minute \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a23aa56014dd581d691607df5d4474f64}{\index{Date@{Date}!set\+Month@{set\+Month}}
+\index{set\+Month@{set\+Month}!Date@{Date}}
+\subsubsection[{set\+Month}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Month (
+\begin{DoxyParamCaption}
+\item[{int}]{month}
+\end{DoxyParamCaption}
+)}}\label{class_date_a23aa56014dd581d691607df5d4474f64}
+
+
+Sets the month. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the month is invalid 
+\begin{DoxyParams}{Parameters}
+{\em month} & Month \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a3dc2a55fa440645bd9612b8b5bb8ec31}{\index{Date@{Date}!set\+Second@{set\+Second}}
+\index{set\+Second@{set\+Second}!Date@{Date}}
+\subsubsection[{set\+Second}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Second (
+\begin{DoxyParamCaption}
+\item[{int}]{second}
+\end{DoxyParamCaption}
+)}}\label{class_date_a3dc2a55fa440645bd9612b8b5bb8ec31}
+
+
+Sets the second. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the second is invalid 
+\begin{DoxyParams}{Parameters}
+{\em second} & Second \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a895c4ae9868e43577cf59d9c679d7a71}{\index{Date@{Date}!set\+Year@{set\+Year}}
+\index{set\+Year@{set\+Year}!Date@{Date}}
+\subsubsection[{set\+Year}]{\setlength{\rightskip}{0pt plus 5cm}void Date\+::set\+Year (
+\begin{DoxyParamCaption}
+\item[{int}]{year}
+\end{DoxyParamCaption}
+)}}\label{class_date_a895c4ae9868e43577cf59d9c679d7a71}
+
+
+Sets the year. 
+
+Throws \hyperlink{class_date_1_1_invalid_date}{Invalid\+Date} exception if the year is invalid 
+\begin{DoxyParams}{Parameters}
+{\em year} & Year \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_date_a13151b0c602df2d15d069aa810ba545a}{\index{Date@{Date}!str@{str}}
+\index{str@{str}!Date@{Date}}
+\subsubsection[{str}]{\setlength{\rightskip}{0pt plus 5cm}string Date\+::str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_date_a13151b0c602df2d15d069aa810ba545a}
+
+
+Formatted date string. 
+
+Returns a string with a date in the format Y\+Y\+Y\+Y/\+M\+M/\+D\+D -\/ hh\+:mm\+:ss \begin{DoxyReturn}{Returns}
+a string with the formatted date 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_date_a8e8b3d76200d2f9bc2eefc5c30b1f326}{\index{Date@{Date}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Date@{Date}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{os, }
+\item[{const {\bf Date} \&}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_date_a8e8b3d76200d2f9bc2eefc5c30b1f326}
+
+
+Bitshift operator $<$$<$. 
+
+Sends to the output stream the string with the date, returned by \hyperlink{class_date_a45c077b993feb35975d12c5c32848b5b}{cfg\+\_\+str()} 
+\begin{DoxyParams}{Parameters}
+{\em os} & left hand side output stream \\
+\hline
+{\em d} & right hand side date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the output stream os 
+\end{DoxyReturn}
+\hypertarget{class_date_a15e1a93c6cc284b431e2d865fd193e18}{\index{Date@{Date}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!Date@{Date}}
+\subsubsection[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}istream\& operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{istream \&}]{is, }
+\item[{{\bf Date} \&}]{date}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_date_a15e1a93c6cc284b431e2d865fd193e18}
+
+
+Bitshift operator $>$$>$ 
+
+Reads a date from the input stream is in the format Y\+Y\+Y\+Y M\+M D\+D hh mm ss 
+\begin{DoxyParams}{Parameters}
+{\em is} & left hand side input stream \\
+\hline
+{\em date} & right hand side date \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the input stream is 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Date.\+h\item 
+Date.\+cpp\end{DoxyCompactItemize}

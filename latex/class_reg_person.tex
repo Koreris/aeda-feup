@@ -1,0 +1,337 @@
+\hypertarget{class_reg_person}{\section{Reg\+Person Class Reference}
+\label{class_reg_person}\index{Reg\+Person@{Reg\+Person}}
+}
+
+
+\hyperlink{class_unreg_person}{Unreg\+Person} class.  
+
+
+
+
+{\ttfamily \#include $<$Person.\+h$>$}
+
+Inheritance diagram for Reg\+Person\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_reg_person}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_reg_person_a607b780b62f25aba32b0b1292949e8d8}{\hyperlink{class_reg_person_a607b780b62f25aba32b0b1292949e8d8}{Reg\+Person} ()}\label{class_reg_person_a607b780b62f25aba32b0b1292949e8d8}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_reg_person}{Reg\+Person} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_reg_person_aa584be9f308b5f0257817ac9b015c1b4}{Reg\+Person} (string n, unsigned long t\+\_\+nr, string uname, string passw)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_reg_person}{Reg\+Person} constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_acc2f3a1c7f87cbb947f76642b0208b62}{\hyperlink{class_reg_person_acc2f3a1c7f87cbb947f76642b0208b62}{$\sim$\+Reg\+Person} ()}\label{class_reg_person_acc2f3a1c7f87cbb947f76642b0208b62}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_reg_person}{Reg\+Person} destructor. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_abd22f72e4d87ce17c58e0b674160285e}{void \hyperlink{class_reg_person_abd22f72e4d87ce17c58e0b674160285e}{set\+Passw} (string pw)}\label{class_reg_person_abd22f72e4d87ce17c58e0b674160285e}
+
+\begin{DoxyCompactList}\small\item\em Sets password to pw. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_a6a67d8f2dc03110d57f475e17ee330d8}{void \hyperlink{class_reg_person_a6a67d8f2dc03110d57f475e17ee330d8}{set\+Usern} (string usrn)}\label{class_reg_person_a6a67d8f2dc03110d57f475e17ee330d8}
+
+\begin{DoxyCompactList}\small\item\em Sets username to usrn. \end{DoxyCompactList}\item 
+string \hyperlink{class_reg_person_a3b2b617680af61b9af7fac6a4d2a69fb}{get\+Passw} () const 
+\begin{DoxyCompactList}\small\item\em Returns the password. \end{DoxyCompactList}\item 
+string \hyperlink{class_reg_person_ab2ea80db160779902c00c65e07249d18}{get\+Usern} () const 
+\begin{DoxyCompactList}\small\item\em Returns the username. \end{DoxyCompactList}\item 
+bool \hyperlink{class_reg_person_ae1c37bdaecf7775c657680e10d5819cc}{get\+Has\+Vehicle} () const 
+\begin{DoxyCompactList}\small\item\em check if user has vehicles \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_reg_person}{Reg\+Person} $\ast$ $>$ \& \hyperlink{class_reg_person_a498a20eb4a5869a3a4d4266ec76a2356}{get\+Buddies} ()
+\begin{DoxyCompactList}\small\item\em returns buddies \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_vehicle}{Vehicle} $\ast$ $>$ \& \hyperlink{class_reg_person_ae1ef0364b2731ddd51460a3c37054457}{get\+Vehicles} ()
+\begin{DoxyCompactList}\small\item\em returns vehicles \end{DoxyCompactList}\item 
+vector$<$ string $>$ \& \hyperlink{class_reg_person_a523aef12cf566320a97d19f6dcc15a11}{get\+Notifications} ()
+\begin{DoxyCompactList}\small\item\em get user notifications \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \& \hyperlink{class_reg_person_a352a761ffdd5f3bd9f0a4c10538789a6}{get\+Trip\+History} ()
+\begin{DoxyCompactList}\small\item\em get user trip history \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_ab3aceab8edc0a7a68dcb56184709cea3}{insert\+Buddy} (\hyperlink{class_reg_person}{Reg\+Person} $\ast$other\+\_\+person)
+\begin{DoxyCompactList}\small\item\em Add other\+\_\+person to user's buddy vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_af84c947ee794a662d27b6437edfb16f5}{remove\+Buddy} (int index)
+\begin{DoxyCompactList}\small\item\em Remove a buddy from vector. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_ac3ba518d24465719eb3e10ab8689d380}{void \hyperlink{class_reg_person_ac3ba518d24465719eb3e10ab8689d380}{add\+Trip\+History} (\hyperlink{class_trip}{Trip} $\ast$t)}\label{class_reg_person_ac3ba518d24465719eb3e10ab8689d380}
+
+\begin{DoxyCompactList}\small\item\em Add a trip to trip history vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_a1e4f00c8000681e45b95bbf8b91e2e98}{add\+Vehicle} (\hyperlink{class_vehicle}{Vehicle} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Add vehicle to user's vehicle vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_afa8a8ed022555e8b0c780712627f5c25}{remove\+Vehicle} (int index)
+\begin{DoxyCompactList}\small\item\em Remove a vehicle from vector. \end{DoxyCompactList}\item 
+bool \hyperlink{class_reg_person_a33a4f3d04487aa4857a791d82e967e98}{are\+Mutual\+Buddies} (\hyperlink{class_reg_person}{Reg\+Person} $\ast$other\+\_\+person) const 
+\begin{DoxyCompactList}\small\item\em check if user is mutual buddy with other person \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_a7ad9eadc18f0f9492c3bcaca195bd08d}{void \hyperlink{class_reg_person_a7ad9eadc18f0f9492c3bcaca195bd08d}{add\+Notifications} (string message)}\label{class_reg_person_a7ad9eadc18f0f9492c3bcaca195bd08d}
+
+\begin{DoxyCompactList}\small\item\em Add message to notifications vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_a5013a9edcbfd91a172f94a5c6a707442}{show\+Notifications} (int howmany)
+\begin{DoxyCompactList}\small\item\em Displays specified number of notifications. \end{DoxyCompactList}\item 
+void \hyperlink{class_reg_person_a79fe3960ee3518cca16a94535852b2c1}{add\+Bill} (string fee, float triplength)
+\begin{DoxyCompactList}\small\item\em Adds bill to billing, if user has vehicles, trips are free of charge. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_a83b75667247384c8f2e083ca17f095e0}{void \hyperlink{class_reg_person_a83b75667247384c8f2e083ca17f095e0}{print\+Person} ()}\label{class_reg_person_a83b75667247384c8f2e083ca17f095e0}
+
+\begin{DoxyCompactList}\small\item\em Prints registered person's information. \end{DoxyCompactList}\item 
+\hypertarget{class_reg_person_a3daa5293f513d5b7a30477a044d3ff6f}{void \hyperlink{class_reg_person_a3daa5293f513d5b7a30477a044d3ff6f}{print\+Trip\+History} ()}\label{class_reg_person_a3daa5293f513d5b7a30477a044d3ff6f}
+
+\begin{DoxyCompactList}\small\item\em prints the vector of trip history of user \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_unreg_person}{Unreg\+Person} class. 
+
+\hyperlink{class_person}{Person} subclass, represents registered users in the application 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_reg_person_aa584be9f308b5f0257817ac9b015c1b4}{\index{Reg\+Person@{Reg\+Person}!Reg\+Person@{Reg\+Person}}
+\index{Reg\+Person@{Reg\+Person}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{Reg\+Person}]{\setlength{\rightskip}{0pt plus 5cm}Reg\+Person\+::\+Reg\+Person (
+\begin{DoxyParamCaption}
+\item[{string}]{n, }
+\item[{unsigned long}]{t\+\_\+nr, }
+\item[{string}]{uname, }
+\item[{string}]{passw}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_aa584be9f308b5f0257817ac9b015c1b4}
+
+
+\hyperlink{class_reg_person}{Reg\+Person} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & person's name \\
+\hline
+{\em t\+\_\+nr} & person's phone \\
+\hline
+{\em uname} & person's username \\
+\hline
+{\em passw} & person's password \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_reg_person_a79fe3960ee3518cca16a94535852b2c1}{\index{Reg\+Person@{Reg\+Person}!add\+Bill@{add\+Bill}}
+\index{add\+Bill@{add\+Bill}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{add\+Bill}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::add\+Bill (
+\begin{DoxyParamCaption}
+\item[{string}]{fee, }
+\item[{float}]{triplength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_reg_person_a79fe3960ee3518cca16a94535852b2c1}
+
+
+Adds bill to billing, if user has vehicles, trips are free of charge. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em string} & fee -\/ what kind of fee to charge \\
+\hline
+{\em float} & triplength -\/ distance of the trip produces higher charges \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{class_person}{Person}.
+
+\hypertarget{class_reg_person_a1e4f00c8000681e45b95bbf8b91e2e98}{\index{Reg\+Person@{Reg\+Person}!add\+Vehicle@{add\+Vehicle}}
+\index{add\+Vehicle@{add\+Vehicle}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{add\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::add\+Vehicle (
+\begin{DoxyParamCaption}
+\item[{{\bf Vehicle} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_a1e4f00c8000681e45b95bbf8b91e2e98}
+
+
+Add vehicle to user's vehicle vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \hyperlink{class_vehicle}{Vehicle}} & $\ast$ v -\/ vehicle to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_reg_person_a33a4f3d04487aa4857a791d82e967e98}{\index{Reg\+Person@{Reg\+Person}!are\+Mutual\+Buddies@{are\+Mutual\+Buddies}}
+\index{are\+Mutual\+Buddies@{are\+Mutual\+Buddies}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{are\+Mutual\+Buddies}]{\setlength{\rightskip}{0pt plus 5cm}bool Reg\+Person\+::are\+Mutual\+Buddies (
+\begin{DoxyParamCaption}
+\item[{{\bf Reg\+Person} $\ast$}]{other\+\_\+person}
+\end{DoxyParamCaption}
+) const}}\label{class_reg_person_a33a4f3d04487aa4857a791d82e967e98}
+
+
+check if user is mutual buddy with other person 
+
+\begin{DoxyReturn}{Returns}
+bool true if mutual buddies, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_a498a20eb4a5869a3a4d4266ec76a2356}{\index{Reg\+Person@{Reg\+Person}!get\+Buddies@{get\+Buddies}}
+\index{get\+Buddies@{get\+Buddies}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Buddies}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Reg\+Person} $\ast$ $>$ \& Reg\+Person\+::get\+Buddies (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_a498a20eb4a5869a3a4d4266ec76a2356}
+
+
+returns buddies 
+
+\begin{DoxyReturn}{Returns}
+vector of buddies 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_ae1c37bdaecf7775c657680e10d5819cc}{\index{Reg\+Person@{Reg\+Person}!get\+Has\+Vehicle@{get\+Has\+Vehicle}}
+\index{get\+Has\+Vehicle@{get\+Has\+Vehicle}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Has\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}bool Reg\+Person\+::get\+Has\+Vehicle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_reg_person_ae1c37bdaecf7775c657680e10d5819cc}
+
+
+check if user has vehicles 
+
+\begin{DoxyReturn}{Returns}
+bool true if he has vehicles, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_a523aef12cf566320a97d19f6dcc15a11}{\index{Reg\+Person@{Reg\+Person}!get\+Notifications@{get\+Notifications}}
+\index{get\+Notifications@{get\+Notifications}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Notifications}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ string $>$ \& Reg\+Person\+::get\+Notifications (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_a523aef12cf566320a97d19f6dcc15a11}
+
+
+get user notifications 
+
+\begin{DoxyReturn}{Returns}
+return the vector of strings with notifications 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_a3b2b617680af61b9af7fac6a4d2a69fb}{\index{Reg\+Person@{Reg\+Person}!get\+Passw@{get\+Passw}}
+\index{get\+Passw@{get\+Passw}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Passw}]{\setlength{\rightskip}{0pt plus 5cm}string Reg\+Person\+::get\+Passw (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_reg_person_a3b2b617680af61b9af7fac6a4d2a69fb}
+
+
+Returns the password. 
+
+\begin{DoxyReturn}{Returns}
+string with password 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_a352a761ffdd5f3bd9f0a4c10538789a6}{\index{Reg\+Person@{Reg\+Person}!get\+Trip\+History@{get\+Trip\+History}}
+\index{get\+Trip\+History@{get\+Trip\+History}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Trip\+History}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ \& Reg\+Person\+::get\+Trip\+History (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_a352a761ffdd5f3bd9f0a4c10538789a6}
+
+
+get user trip history 
+
+\begin{DoxyReturn}{Returns}
+returns vector of trips 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_ab2ea80db160779902c00c65e07249d18}{\index{Reg\+Person@{Reg\+Person}!get\+Usern@{get\+Usern}}
+\index{get\+Usern@{get\+Usern}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Usern}]{\setlength{\rightskip}{0pt plus 5cm}string Reg\+Person\+::get\+Usern (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_reg_person_ab2ea80db160779902c00c65e07249d18}
+
+
+Returns the username. 
+
+\begin{DoxyReturn}{Returns}
+string with username 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_person}{Person}.
+
+\hypertarget{class_reg_person_ae1ef0364b2731ddd51460a3c37054457}{\index{Reg\+Person@{Reg\+Person}!get\+Vehicles@{get\+Vehicles}}
+\index{get\+Vehicles@{get\+Vehicles}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{get\+Vehicles}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Vehicle} $\ast$ $>$ \& Reg\+Person\+::get\+Vehicles (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_ae1ef0364b2731ddd51460a3c37054457}
+
+
+returns vehicles 
+
+\begin{DoxyReturn}{Returns}
+vector of vehicles 
+\end{DoxyReturn}
+\hypertarget{class_reg_person_ab3aceab8edc0a7a68dcb56184709cea3}{\index{Reg\+Person@{Reg\+Person}!insert\+Buddy@{insert\+Buddy}}
+\index{insert\+Buddy@{insert\+Buddy}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{insert\+Buddy}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::insert\+Buddy (
+\begin{DoxyParamCaption}
+\item[{{\bf Reg\+Person} $\ast$}]{other\+\_\+person}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_ab3aceab8edc0a7a68dcb56184709cea3}
+
+
+Add other\+\_\+person to user's buddy vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reg\+Person$\ast$} & other\+\_\+person -\/ buddy to add \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_reg_person_af84c947ee794a662d27b6437edfb16f5}{\index{Reg\+Person@{Reg\+Person}!remove\+Buddy@{remove\+Buddy}}
+\index{remove\+Buddy@{remove\+Buddy}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{remove\+Buddy}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::remove\+Buddy (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_af84c947ee794a662d27b6437edfb16f5}
+
+
+Remove a buddy from vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index -\/ index of buddy to delete from vector \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_reg_person_afa8a8ed022555e8b0c780712627f5c25}{\index{Reg\+Person@{Reg\+Person}!remove\+Vehicle@{remove\+Vehicle}}
+\index{remove\+Vehicle@{remove\+Vehicle}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{remove\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::remove\+Vehicle (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_afa8a8ed022555e8b0c780712627f5c25}
+
+
+Remove a vehicle from vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & index -\/ index of vehicle to delete from vector \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_reg_person_a5013a9edcbfd91a172f94a5c6a707442}{\index{Reg\+Person@{Reg\+Person}!show\+Notifications@{show\+Notifications}}
+\index{show\+Notifications@{show\+Notifications}!Reg\+Person@{Reg\+Person}}
+\subsubsection[{show\+Notifications}]{\setlength{\rightskip}{0pt plus 5cm}void Reg\+Person\+::show\+Notifications (
+\begin{DoxyParamCaption}
+\item[{int}]{howmany}
+\end{DoxyParamCaption}
+)}}\label{class_reg_person_a5013a9edcbfd91a172f94a5c6a707442}
+
+
+Displays specified number of notifications. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em int} & howmany -\/ number of notifications to display \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Person.\+h\item 
+Person.\+cpp\end{DoxyCompactItemize}

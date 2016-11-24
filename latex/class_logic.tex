@@ -1,0 +1,584 @@
+\hypertarget{class_logic}{\section{Logic Class Reference}
+\label{class_logic}\index{Logic@{Logic}}
+}
+
+
+\hyperlink{class_logic}{Logic} class.  
+
+
+
+
+{\ttfamily \#include $<$Logic.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_logic_ae5d9fec13e88b0182b3d45f33404f826}{{\bfseries Logic} (string dir)}\label{class_logic_ae5d9fec13e88b0182b3d45f33404f826}
+
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Getters}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_date}{Date} \hyperlink{class_logic_a0bff2c63fd9cbbf7be9db9f551045c96}{get\+\_\+cur\+Date} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current date and time. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \& \hyperlink{class_logic_a9cf4f76206c9df41e74ef36675854012}{get\+Cur\+Trips} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector of current trips. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$ \& \hyperlink{class_logic_a297112503dec7a8453cb4ad8c810f10e}{get\+Del\+Destinations} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector of deleted destinations. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \& \hyperlink{class_logic_a87dea89ef7617620d84deeab9a26879a}{get\+Del\+Trips} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector of old trips. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$ \& \hyperlink{class_logic_a044198f83942209c8ba58fd8fc478be7}{get\+Destinations} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector of destinations. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_reg_person}{Reg\+Person} $\ast$ $>$ \& \hyperlink{class_logic_aeee57ae85000766bde4884e54575e705}{get\+Reg\+Users} ()
+\begin{DoxyCompactList}\small\item\em Returns the vector of registered users. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Setters}\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_logic_a4a9be2e73420f5a8598213b879d17ebe}{set\+Destinations} (vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$ \&destinations)
+\begin{DoxyCompactList}\small\item\em Sets destinations vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a523cdc227c59eb80c1e46176c66f1ac0}{set\+Del\+Trips} (vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \&del\+Trips)
+\begin{DoxyCompactList}\small\item\em Sets deleted trips vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a145bd484d1d24209680040e5786b0f45}{set\+Del\+Destinations} (vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$ \&del\+Destinations)
+\begin{DoxyCompactList}\small\item\em Sets deleted destinations vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a09a3f9b2cff30ce084ebf0f6f7349c61}{set\+Cur\+Trips} (vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \&cur\+Trips)
+\begin{DoxyCompactList}\small\item\em Sets current trips vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a7488585d2b9b45664914ba30f2ac05c5}{set\+Reg\+Users} (vector$<$ \hyperlink{class_reg_person}{Reg\+Person} $\ast$ $>$ \&reg\+Users)
+\begin{DoxyCompactList}\small\item\em Sets Reg\+Users vector. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a08edb05c231e1b371ac5794c3f362ffb}{set\+Login} (bool p)
+\begin{DoxyCompactList}\small\item\em Sets login boolean. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a4ef9baca3ed6362b7a918a2ed0ce0183}{delete\+Destinations} (int index)
+\begin{DoxyCompactList}\small\item\em Deletes destination in index of destinations vector and puts it in deleted destinations. \end{DoxyCompactList}\item 
+void \hyperlink{class_logic_a238109760ceaa4cfc8aa6d52398b192d}{delete\+Trips} (int index)
+\begin{DoxyCompactList}\small\item\em Deletes trip in index of current trips vector and puts it in deleted trips. \end{DoxyCompactList}\item 
+bool \hyperlink{class_logic_a3279f61ab5921d7a52d327cf4cc4c12c}{user\+Login} (string usr, string passw)
+\begin{DoxyCompactList}\small\item\em Receives user and password combination and validates them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Lookups}\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_reg_person}{Reg\+Person} $\ast$ \hyperlink{class_logic_a0ecfaa0682e8f25903808ffd573f57bf}{find\+Reg\+Person} (string username)
+\begin{DoxyCompactList}\small\item\em find a \hyperlink{class_reg_person}{Reg\+Person} by username \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_reg_person}{Reg\+Person} $\ast$ $>$ \hyperlink{class_logic_af68bcaf14c12304f97b69948d99a28c6}{find\+Reg\+Person\+Vec} (string username)
+\begin{DoxyCompactList}\small\item\em find a \hyperlink{class_reg_person}{Reg\+Person} by username \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \hyperlink{class_logic_adbeb6ad7da6ceb43a5449e66e822c2f6}{find\+Trips} (string src, string dest, \hyperlink{class_person}{Person} $\ast$p)
+\begin{DoxyCompactList}\small\item\em finds trips with vacancies by giving start location and end location \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \hyperlink{class_logic_afa015531387fb891159d98181812f14e}{find\+Future\+Trips} (\hyperlink{class_person}{Person} $\ast$p)
+\begin{DoxyCompactList}\small\item\em find scheduled trips \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \hyperlink{class_logic_ab8d6c8b52e668d84d1ba1f950608dc20}{find\+Vacant\+Trips} (\hyperlink{class_person}{Person} $\ast$p)
+\begin{DoxyCompactList}\small\item\em finds trips with vacancies \end{DoxyCompactList}\item 
+\hyperlink{class_place}{Place} $\ast$ \hyperlink{class_logic_ab4f100d8430cf4bd57dee36a7df83870}{find\+Dest} (string destname, string f=\char`\"{}\char`\"{})
+\begin{DoxyCompactList}\small\item\em find a \hyperlink{class_reg_person}{Reg\+Person} by username \end{DoxyCompactList}\item 
+bool \hyperlink{class_logic_a7d80debeadfc549257e632523be1916a}{username\+Exists} (string n)
+\begin{DoxyCompactList}\small\item\em checks is username exists \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf sorting}\par
+\begin{DoxyCompactItemize}
+\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \hyperlink{class_logic_a702ca737bf6241f57a58b971842e7a26}{trip\+Sort\+By\+Date} (vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$v)
+\begin{DoxyCompactList}\small\item\em sort trips by date \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$ \hyperlink{class_logic_abd57bee14eeff956fd3aef9d1e4ea5f3}{trip\+Sort\+By\+Driver\+Name} (vector$<$ \hyperlink{class_trip}{Trip} $\ast$ $>$v)
+\begin{DoxyCompactList}\small\item\em sort trips by driver name \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf File loading}\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_logic_acf0953ed1a6d05d15ef1eeb6e532c87b}{load\+\_\+reg\+Users} ()
+\begin{DoxyCompactList}\small\item\em loads \hyperlink{class_reg_person}{Reg\+Person} objects from file \end{DoxyCompactList}\item 
+int \hyperlink{class_logic_a91b8242891b029e665d567314282b9a8}{load\+\_\+destinations} ()
+\begin{DoxyCompactList}\small\item\em loads \hyperlink{class_place}{Place} objects from file \end{DoxyCompactList}\item 
+int \hyperlink{class_logic_ab22c4d90d9907c40e8c2a7cb767c79a0}{load\+\_\+del\+\_\+destinations} ()
+\begin{DoxyCompactList}\small\item\em loads \char`\"{}deleted\char`\"{} \hyperlink{class_place}{Place} objects from file \end{DoxyCompactList}\item 
+int \hyperlink{class_logic_a1aaf09e6ea84b53e52083a25c65e7557}{load\+\_\+trips} ()
+\begin{DoxyCompactList}\small\item\em loads \hyperlink{class_trip}{Trip} objects from file \end{DoxyCompactList}\item 
+int \hyperlink{class_logic_a805cbb28970a1667199e4a251830b40d}{load\+\_\+data} ()
+\begin{DoxyCompactList}\small\item\em Loads all the Program information from files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_logic_afc80dc00ccd52ee0aab1de3c9c940ed1}{bool {\bfseries login}}\label{class_logic_afc80dc00ccd52ee0aab1de3c9c940ed1}
+
+\item 
+\hypertarget{class_logic_a47e9c3a81d6b15f873bac14ab7050b87}{\hyperlink{class_reg_person}{Reg\+Person} $\ast$ {\bfseries curr\+\_\+user}}\label{class_logic_a47e9c3a81d6b15f873bac14ab7050b87}
+
+\item 
+\hypertarget{class_logic_a6d4ff351659642230d894c71fa52a4b0}{\hyperlink{class_unreg_person}{Unreg\+Person} $\ast$ {\bfseries curr\+\_\+unreg}}\label{class_logic_a6d4ff351659642230d894c71fa52a4b0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_logic}{Logic} class. 
+
+Contains all of the programs main information(including login stuff), functioning as a sort of database having utilities to filter information in different ways and methods to look up data in the vectors with conditions. Contains all the methods that read data from files. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_logic_a4ef9baca3ed6362b7a918a2ed0ce0183}{\index{Logic@{Logic}!delete\+Destinations@{delete\+Destinations}}
+\index{delete\+Destinations@{delete\+Destinations}!Logic@{Logic}}
+\subsubsection[{delete\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::delete\+Destinations (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a4ef9baca3ed6362b7a918a2ed0ce0183}
+
+
+Deletes destination in index of destinations vector and puts it in deleted destinations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & index of destination to delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a238109760ceaa4cfc8aa6d52398b192d}{\index{Logic@{Logic}!delete\+Trips@{delete\+Trips}}
+\index{delete\+Trips@{delete\+Trips}!Logic@{Logic}}
+\subsubsection[{delete\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::delete\+Trips (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a238109760ceaa4cfc8aa6d52398b192d}
+
+
+Deletes trip in index of current trips vector and puts it in deleted trips. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & index of trip to delete \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_ab4f100d8430cf4bd57dee36a7df83870}{\index{Logic@{Logic}!find\+Dest@{find\+Dest}}
+\index{find\+Dest@{find\+Dest}!Logic@{Logic}}
+\subsubsection[{find\+Dest}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Place} $\ast$ Logic\+::find\+Dest (
+\begin{DoxyParamCaption}
+\item[{string}]{destname, }
+\item[{string}]{f = {\ttfamily \char`\"{}\char`\"{}}}
+\end{DoxyParamCaption}
+)}}\label{class_logic_ab4f100d8430cf4bd57dee36a7df83870}
+
+
+find a \hyperlink{class_reg_person}{Reg\+Person} by username 
+
+Finds Place$\ast$ of name destname 
+\begin{DoxyParams}{Parameters}
+{\em destname} & The place name \\
+\hline
+{\em f} & optional argument, if \char`\"{}loading\char`\"{}, gets destinations from deleted destinations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the found place or N\+U\+L\+L if not found 
+\end{DoxyReturn}
+\hypertarget{class_logic_afa015531387fb891159d98181812f14e}{\index{Logic@{Logic}!find\+Future\+Trips@{find\+Future\+Trips}}
+\index{find\+Future\+Trips@{find\+Future\+Trips}!Logic@{Logic}}
+\subsubsection[{find\+Future\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ Logic\+::find\+Future\+Trips (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_logic_afa015531387fb891159d98181812f14e}
+
+
+find scheduled trips 
+
+Finds all the trips scheduled for user P \begin{DoxyReturn}{Returns}
+vector of trips, empty if no trips found 
+\end{DoxyReturn}
+\hypertarget{class_logic_a0ecfaa0682e8f25903808ffd573f57bf}{\index{Logic@{Logic}!find\+Reg\+Person@{find\+Reg\+Person}}
+\index{find\+Reg\+Person@{find\+Reg\+Person}!Logic@{Logic}}
+\subsubsection[{find\+Reg\+Person}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Reg\+Person} $\ast$ Logic\+::find\+Reg\+Person (
+\begin{DoxyParamCaption}
+\item[{string}]{username}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a0ecfaa0682e8f25903808ffd573f57bf}
+
+
+find a \hyperlink{class_reg_person}{Reg\+Person} by username 
+
+Finds \hyperlink{class_reg_person}{Reg\+Person} pointer of user with username \begin{DoxyReturn}{Returns}
+pointer to the \hyperlink{class_reg_person}{Reg\+Person},N\+U\+L\+L if not found 
+\end{DoxyReturn}
+\hypertarget{class_logic_af68bcaf14c12304f97b69948d99a28c6}{\index{Logic@{Logic}!find\+Reg\+Person\+Vec@{find\+Reg\+Person\+Vec}}
+\index{find\+Reg\+Person\+Vec@{find\+Reg\+Person\+Vec}!Logic@{Logic}}
+\subsubsection[{find\+Reg\+Person\+Vec}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Reg\+Person} $\ast$ $>$ Logic\+::find\+Reg\+Person\+Vec (
+\begin{DoxyParamCaption}
+\item[{string}]{username}
+\end{DoxyParamCaption}
+)}}\label{class_logic_af68bcaf14c12304f97b69948d99a28c6}
+
+
+find a \hyperlink{class_reg_person}{Reg\+Person} by username 
+
+Finds \hyperlink{class_reg_person}{Reg\+Person} pointer of user with username \begin{DoxyReturn}{Returns}
+vector with \hyperlink{class_reg_person}{Reg\+Person} or empty vector if not found 
+\end{DoxyReturn}
+\hypertarget{class_logic_adbeb6ad7da6ceb43a5449e66e822c2f6}{\index{Logic@{Logic}!find\+Trips@{find\+Trips}}
+\index{find\+Trips@{find\+Trips}!Logic@{Logic}}
+\subsubsection[{find\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ Logic\+::find\+Trips (
+\begin{DoxyParamCaption}
+\item[{string}]{src, }
+\item[{string}]{dest, }
+\item[{{\bf Person} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_logic_adbeb6ad7da6ceb43a5449e66e822c2f6}
+
+
+finds trips with vacancies by giving start location and end location 
+
+Finds all the trips with vacancies that have a possible itenerary starting from place src and going through or ending in place dest, also only returns trips where youre not a traveller or a driver 
+\begin{DoxyParams}{Parameters}
+{\em src} & source destination \\
+\hline
+{\em dest} & target destination \\
+\hline
+{\em p} & Needed to check if already a traveller or driver in this trip \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of trips, empty if no trips found 
+\end{DoxyReturn}
+\hypertarget{class_logic_ab8d6c8b52e668d84d1ba1f950608dc20}{\index{Logic@{Logic}!find\+Vacant\+Trips@{find\+Vacant\+Trips}}
+\index{find\+Vacant\+Trips@{find\+Vacant\+Trips}!Logic@{Logic}}
+\subsubsection[{find\+Vacant\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ Logic\+::find\+Vacant\+Trips (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_logic_ab8d6c8b52e668d84d1ba1f950608dc20}
+
+
+finds trips with vacancies 
+
+Finds all the trips with vacancies returns trips where youre not already a traveller or a driver 
+\begin{DoxyParams}{Parameters}
+{\em p} & Needed to check if already a traveller or driver in this trip \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of trips, empty if no trips found 
+\end{DoxyReturn}
+\hypertarget{class_logic_a0bff2c63fd9cbbf7be9db9f551045c96}{\index{Logic@{Logic}!get\+\_\+cur\+Date@{get\+\_\+cur\+Date}}
+\index{get\+\_\+cur\+Date@{get\+\_\+cur\+Date}!Logic@{Logic}}
+\subsubsection[{get\+\_\+cur\+Date}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} Logic\+::get\+\_\+cur\+Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_logic_a0bff2c63fd9cbbf7be9db9f551045c96}
+
+
+Returns the current date and time. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_date}{Date} with the current date and time 
+\end{DoxyReturn}
+\hypertarget{class_logic_a9cf4f76206c9df41e74ef36675854012}{\index{Logic@{Logic}!get\+Cur\+Trips@{get\+Cur\+Trips}}
+\index{get\+Cur\+Trips@{get\+Cur\+Trips}!Logic@{Logic}}
+\subsubsection[{get\+Cur\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ \& Logic\+::get\+Cur\+Trips (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a9cf4f76206c9df41e74ef36675854012}
+
+
+Returns the vector of current trips. 
+
+\begin{DoxyReturn}{Returns}
+current trips vector 
+\end{DoxyReturn}
+\hypertarget{class_logic_a297112503dec7a8453cb4ad8c810f10e}{\index{Logic@{Logic}!get\+Del\+Destinations@{get\+Del\+Destinations}}
+\index{get\+Del\+Destinations@{get\+Del\+Destinations}!Logic@{Logic}}
+\subsubsection[{get\+Del\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Place} $\ast$ $>$ \& Logic\+::get\+Del\+Destinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a297112503dec7a8453cb4ad8c810f10e}
+
+
+Returns the vector of deleted destinations. 
+
+\begin{DoxyReturn}{Returns}
+deleted destinations vector 
+\end{DoxyReturn}
+\hypertarget{class_logic_a87dea89ef7617620d84deeab9a26879a}{\index{Logic@{Logic}!get\+Del\+Trips@{get\+Del\+Trips}}
+\index{get\+Del\+Trips@{get\+Del\+Trips}!Logic@{Logic}}
+\subsubsection[{get\+Del\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ \& Logic\+::get\+Del\+Trips (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a87dea89ef7617620d84deeab9a26879a}
+
+
+Returns the vector of old trips. 
+
+\begin{DoxyReturn}{Returns}
+old trips vector 
+\end{DoxyReturn}
+\hypertarget{class_logic_a044198f83942209c8ba58fd8fc478be7}{\index{Logic@{Logic}!get\+Destinations@{get\+Destinations}}
+\index{get\+Destinations@{get\+Destinations}!Logic@{Logic}}
+\subsubsection[{get\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Place} $\ast$ $>$ \& Logic\+::get\+Destinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a044198f83942209c8ba58fd8fc478be7}
+
+
+Returns the vector of destinations. 
+
+\begin{DoxyReturn}{Returns}
+destinations vector 
+\end{DoxyReturn}
+\hypertarget{class_logic_aeee57ae85000766bde4884e54575e705}{\index{Logic@{Logic}!get\+Reg\+Users@{get\+Reg\+Users}}
+\index{get\+Reg\+Users@{get\+Reg\+Users}!Logic@{Logic}}
+\subsubsection[{get\+Reg\+Users}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Reg\+Person} $\ast$ $>$ \& Logic\+::get\+Reg\+Users (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_aeee57ae85000766bde4884e54575e705}
+
+
+Returns the vector of registered users. 
+
+\begin{DoxyReturn}{Returns}
+registered users vector 
+\end{DoxyReturn}
+\hypertarget{class_logic_a805cbb28970a1667199e4a251830b40d}{\index{Logic@{Logic}!load\+\_\+data@{load\+\_\+data}}
+\index{load\+\_\+data@{load\+\_\+data}!Logic@{Logic}}
+\subsubsection[{load\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int Logic\+::load\+\_\+data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a805cbb28970a1667199e4a251830b40d}
+
+
+Loads all the Program information from files. 
+
+Loads all the program information from the files (their names are defined in the top of \hyperlink{_logic_8h_source}{Logic.\+h} as constants).~\newline
+This includes the registered\+Users, destinations(the ones that exist and a record of deleted ones) and trips ~\newline
+~\newline
+ \begin{DoxyReturn}{Returns}
+0 upon success, non-\/zero otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_ab22c4d90d9907c40e8c2a7cb767c79a0}{\index{Logic@{Logic}!load\+\_\+del\+\_\+destinations@{load\+\_\+del\+\_\+destinations}}
+\index{load\+\_\+del\+\_\+destinations@{load\+\_\+del\+\_\+destinations}!Logic@{Logic}}
+\subsubsection[{load\+\_\+del\+\_\+destinations}]{\setlength{\rightskip}{0pt plus 5cm}int Logic\+::load\+\_\+del\+\_\+destinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_ab22c4d90d9907c40e8c2a7cb767c79a0}
+
+
+loads \char`\"{}deleted\char`\"{} \hyperlink{class_place}{Place} objects from file 
+
+Loads place data members from file and creates \hyperlink{class_place}{Place} $\ast$ objects to push\+\_\+back into the applications vector of deleted destinations These deleted destinations are useful to mantain integrity of trip history for each user in case a \hyperlink{class_place}{Place} entry is deleted by the application admnistration \begin{DoxyReturn}{Returns}
+0 on success, -\/1 otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_a91b8242891b029e665d567314282b9a8}{\index{Logic@{Logic}!load\+\_\+destinations@{load\+\_\+destinations}}
+\index{load\+\_\+destinations@{load\+\_\+destinations}!Logic@{Logic}}
+\subsubsection[{load\+\_\+destinations}]{\setlength{\rightskip}{0pt plus 5cm}int Logic\+::load\+\_\+destinations (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a91b8242891b029e665d567314282b9a8}
+
+
+loads \hyperlink{class_place}{Place} objects from file 
+
+Loads place data members from file and creates \hyperlink{class_place}{Place} $\ast$ objects to push\+\_\+back into the applications vector of destinations \begin{DoxyReturn}{Returns}
+0 on success, -\/1 otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_acf0953ed1a6d05d15ef1eeb6e532c87b}{\index{Logic@{Logic}!load\+\_\+reg\+Users@{load\+\_\+reg\+Users}}
+\index{load\+\_\+reg\+Users@{load\+\_\+reg\+Users}!Logic@{Logic}}
+\subsubsection[{load\+\_\+reg\+Users}]{\setlength{\rightskip}{0pt plus 5cm}int Logic\+::load\+\_\+reg\+Users (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_acf0953ed1a6d05d15ef1eeb6e532c87b}
+
+
+loads \hyperlink{class_reg_person}{Reg\+Person} objects from file 
+
+Loads \hyperlink{class_reg_person}{Reg\+Person} data members from file and creates \hyperlink{class_reg_person}{Reg\+Person} $\ast$ objects to push\+\_\+back into the applications vector of registered users \begin{DoxyReturn}{Returns}
+0 on success, -\/1 otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_a1aaf09e6ea84b53e52083a25c65e7557}{\index{Logic@{Logic}!load\+\_\+trips@{load\+\_\+trips}}
+\index{load\+\_\+trips@{load\+\_\+trips}!Logic@{Logic}}
+\subsubsection[{load\+\_\+trips}]{\setlength{\rightskip}{0pt plus 5cm}int Logic\+::load\+\_\+trips (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a1aaf09e6ea84b53e52083a25c65e7557}
+
+
+loads \hyperlink{class_trip}{Trip} objects from file 
+
+Loads trip data members from file and creates \hyperlink{class_trip}{Trip} $\ast$ objects to push\+\_\+back into the applications vector of trips, if the trip's start date is lower than the current date, it will be added into the deleted trips vector instead and push\+\_\+backed into the vector of trip\+History of the participants of said trip \begin{DoxyReturn}{Returns}
+0 on success, -\/1 otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_a09a3f9b2cff30ce084ebf0f6f7349c61}{\index{Logic@{Logic}!set\+Cur\+Trips@{set\+Cur\+Trips}}
+\index{set\+Cur\+Trips@{set\+Cur\+Trips}!Logic@{Logic}}
+\subsubsection[{set\+Cur\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Cur\+Trips (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Trip} $\ast$ $>$ \&}]{cur\+Trips}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a09a3f9b2cff30ce084ebf0f6f7349c61}
+
+
+Sets current trips vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to vector of \hyperlink{class_trip}{Trip} $\ast$ \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a145bd484d1d24209680040e5786b0f45}{\index{Logic@{Logic}!set\+Del\+Destinations@{set\+Del\+Destinations}}
+\index{set\+Del\+Destinations@{set\+Del\+Destinations}!Logic@{Logic}}
+\subsubsection[{set\+Del\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Del\+Destinations (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Place} $\ast$ $>$ \&}]{del}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a145bd484d1d24209680040e5786b0f45}
+
+
+Sets deleted destinations vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to vector of \hyperlink{class_place}{Place} $\ast$ \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a523cdc227c59eb80c1e46176c66f1ac0}{\index{Logic@{Logic}!set\+Del\+Trips@{set\+Del\+Trips}}
+\index{set\+Del\+Trips@{set\+Del\+Trips}!Logic@{Logic}}
+\subsubsection[{set\+Del\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Del\+Trips (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Trip} $\ast$ $>$ \&}]{del\+Trips}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a523cdc227c59eb80c1e46176c66f1ac0}
+
+
+Sets deleted trips vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to vector of \hyperlink{class_trip}{Trip} $\ast$ \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a4a9be2e73420f5a8598213b879d17ebe}{\index{Logic@{Logic}!set\+Destinations@{set\+Destinations}}
+\index{set\+Destinations@{set\+Destinations}!Logic@{Logic}}
+\subsubsection[{set\+Destinations}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Destinations (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Place} $\ast$ $>$ \&}]{destinations}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a4a9be2e73420f5a8598213b879d17ebe}
+
+
+Sets destinations vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to vector of \hyperlink{class_place}{Place} $\ast$ \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a08edb05c231e1b371ac5794c3f362ffb}{\index{Logic@{Logic}!set\+Login@{set\+Login}}
+\index{set\+Login@{set\+Login}!Logic@{Logic}}
+\subsubsection[{set\+Login}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Login (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a08edb05c231e1b371ac5794c3f362ffb}
+
+
+Sets login boolean. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & true or false \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a7488585d2b9b45664914ba30f2ac05c5}{\index{Logic@{Logic}!set\+Reg\+Users@{set\+Reg\+Users}}
+\index{set\+Reg\+Users@{set\+Reg\+Users}!Logic@{Logic}}
+\subsubsection[{set\+Reg\+Users}]{\setlength{\rightskip}{0pt plus 5cm}void Logic\+::set\+Reg\+Users (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Reg\+Person} $\ast$ $>$ \&}]{reg\+Users}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a7488585d2b9b45664914ba30f2ac05c5}
+
+
+Sets Reg\+Users vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Reference} & to vector of \hyperlink{class_reg_person}{Reg\+Person} $\ast$ \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_logic_a702ca737bf6241f57a58b971842e7a26}{\index{Logic@{Logic}!trip\+Sort\+By\+Date@{trip\+Sort\+By\+Date}}
+\index{trip\+Sort\+By\+Date@{trip\+Sort\+By\+Date}!Logic@{Logic}}
+\subsubsection[{trip\+Sort\+By\+Date}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ Logic\+::trip\+Sort\+By\+Date (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Trip} $\ast$ $>$}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a702ca737bf6241f57a58b971842e7a26}
+
+
+sort trips by date 
+
+Sorts vector of trips by date \begin{DoxyReturn}{Returns}
+vector of trips 
+\end{DoxyReturn}
+\hypertarget{class_logic_abd57bee14eeff956fd3aef9d1e4ea5f3}{\index{Logic@{Logic}!trip\+Sort\+By\+Driver\+Name@{trip\+Sort\+By\+Driver\+Name}}
+\index{trip\+Sort\+By\+Driver\+Name@{trip\+Sort\+By\+Driver\+Name}!Logic@{Logic}}
+\subsubsection[{trip\+Sort\+By\+Driver\+Name}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Trip} $\ast$ $>$ Logic\+::trip\+Sort\+By\+Driver\+Name (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Trip} $\ast$ $>$}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_logic_abd57bee14eeff956fd3aef9d1e4ea5f3}
+
+
+sort trips by driver name 
+
+Sorts vector of trips by driver name \begin{DoxyReturn}{Returns}
+vector of trips 
+\end{DoxyReturn}
+\hypertarget{class_logic_a3279f61ab5921d7a52d327cf4cc4c12c}{\index{Logic@{Logic}!user\+Login@{user\+Login}}
+\index{user\+Login@{user\+Login}!Logic@{Logic}}
+\subsubsection[{user\+Login}]{\setlength{\rightskip}{0pt plus 5cm}bool Logic\+::user\+Login (
+\begin{DoxyParamCaption}
+\item[{string}]{usr, }
+\item[{string}]{passw}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a3279f61ab5921d7a52d327cf4cc4c12c}
+
+
+Receives user and password combination and validates them. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em usr} & username to validate \\
+\hline
+{\em passw} & password to validates \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns true if it found the user/password combination in registered users, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_logic_a7d80debeadfc549257e632523be1916a}{\index{Logic@{Logic}!username\+Exists@{username\+Exists}}
+\index{username\+Exists@{username\+Exists}!Logic@{Logic}}
+\subsubsection[{username\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}bool Logic\+::username\+Exists (
+\begin{DoxyParamCaption}
+\item[{string}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_logic_a7d80debeadfc549257e632523be1916a}
+
+
+checks is username exists 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & username to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if username n exists, false otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Logic.\+h\item 
+Logic.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,658 @@
+\hypertarget{class_trip}{\section{Trip Class Reference}
+\label{class_trip}\index{Trip@{Trip}}
+}
+
+
+\hyperlink{class_trip}{Trip} class Contains all of the trip related functions, including getters, setters and C\+R\+U\+D functions.  
+
+
+
+
+{\ttfamily \#include $<$Trip.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_trip_aa67b77d0d2de622ed5eb9e9cad34db8f}{\hyperlink{class_trip_aa67b77d0d2de622ed5eb9e9cad34db8f}{Trip} ()}\label{class_trip_aa67b77d0d2de622ed5eb9e9cad34db8f}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_trip}{Trip} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_trip_a0d0fce19644be21e8baec31492ad58fa}{Trip} (string Vehicle\+Owner, \hyperlink{class_vehicle}{Vehicle} $\ast$vehicle, bool smoke, \hyperlink{class_date}{Date} s, \hyperlink{class_date}{Date} e)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_trip}{Trip} constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_trip_a71b15d051b75c1d1eee38a5c38191920}{Trip} (string Vehicle\+Owner, unsigned int seats, bool smoke, \hyperlink{class_date}{Date} s, \hyperlink{class_date}{Date} e)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_trip}{Trip} constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_trip_a2376daed3b03469163782ef0d0533d52}{\hyperlink{class_trip_a2376daed3b03469163782ef0d0533d52}{$\sim$\+Trip} ()}\label{class_trip_a2376daed3b03469163782ef0d0533d52}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_trip}{Trip} default destructor. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_trip_a48282720f54aa5d56d5ba872868396e6}{get\+Available\+Seats} () const 
+\begin{DoxyCompactList}\small\item\em Returns the number of available seats in the trip. \end{DoxyCompactList}\item 
+float \hyperlink{class_trip_a40b102c05b9f11486affb653d289503a}{get\+Distance} () const 
+\begin{DoxyCompactList}\small\item\em Returns the trip's distance. \end{DoxyCompactList}\item 
+vector$<$ pair$<$ \hyperlink{class_place}{Place} $\ast$, int $>$ $>$ \hyperlink{class_trip_a4b1a35b6c36433ce982d7a42b6df796d}{get\+Route} () const 
+\begin{DoxyCompactList}\small\item\em Returns the trip's route. \end{DoxyCompactList}\item 
+bool \hyperlink{class_trip_a842bbff21be74ba2dbd121728b383653}{get\+Smoking\+Sign} () const 
+\begin{DoxyCompactList}\small\item\em Returns if the trip allows smoking. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_trip_af48effa8c9d9ff4b8e2e0ff5225d6f60}{get\+Start} () const 
+\begin{DoxyCompactList}\small\item\em Returns the trip's start date. \end{DoxyCompactList}\item 
+\hyperlink{class_date}{Date} \hyperlink{class_trip_a254a9341368c276926164e0d2cee4748}{get\+End} () const 
+\begin{DoxyCompactList}\small\item\em Returns the trip's end date. \end{DoxyCompactList}\item 
+\hypertarget{class_trip_a6e2a07b62197450f6e7158d1c3b882bb}{vector$<$ \hyperlink{class_person}{Person} $\ast$ $>$ \& {\bfseries get\+Travellers} ()}\label{class_trip_a6e2a07b62197450f6e7158d1c3b882bb}
+
+\item 
+string \hyperlink{class_trip_add7c86d5ee780f49b44df1d936229687}{get\+Driver} () const 
+\begin{DoxyCompactList}\small\item\em Returns the name of the driver. \end{DoxyCompactList}\item 
+\hyperlink{class_vehicle}{Vehicle} $\ast$ \hyperlink{class_trip_a7a2776544c9600f2e6a355e04f17e67b}{get\+Vehicle} () const 
+\begin{DoxyCompactList}\small\item\em Returns the vehicle used in the trip. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a0166bf54e1fab842e494615041fb5bcd}{set\+Available\+Seats} (unsigned int a\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Sets the trip's available seats. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a011f6b53b9bdaf4f08106362fe0e391b}{set\+Vehicle} (\hyperlink{class_vehicle}{Vehicle} $\ast$v)
+\begin{DoxyCompactList}\small\item\em Sets the trip's vehicle. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a17637add14f81f30c8f59f5812da2232}{set\+Distance} (float d)
+\begin{DoxyCompactList}\small\item\em Sets the trip's distance. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a1df5fa0bd340a624e732c9452b62b4cb}{set\+Smoking\+Sign} (bool s)
+\begin{DoxyCompactList}\small\item\em Sets the trip's distance. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a45b53f2a30771184c7a8491453cfa3da}{set\+Start} (\hyperlink{class_date}{Date} s)
+\begin{DoxyCompactList}\small\item\em Sets the trip's start date. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a3d1b06fb96cbffd00cf16b4fe8ea1331}{set\+End} (\hyperlink{class_date}{Date} e)
+\begin{DoxyCompactList}\small\item\em Sets the trip's end date. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_adae7ef5a06244525d607f96bee531c49}{add\+Route} (vector$<$ pair$<$ \hyperlink{class_place}{Place} $\ast$, int $>$ $>$ rota)
+\begin{DoxyCompactList}\small\item\em sets a route to the trip and the corresponding distance \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a670b6fd9f234cb0448bc72454f0e546d}{add\+Traveller} (\hyperlink{class_person}{Person} $\ast$t, vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$)
+\begin{DoxyCompactList}\small\item\em adds a traveller to a trip, recalculates the number of available seats \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_ad3f71fd3cc8c5adeb9fc19779725081e}{remove\+Traveller} (\hyperlink{class_person}{Person} $\ast$t)
+\begin{DoxyCompactList}\small\item\em removes a traveller from a trip, recalculates the number of available seats \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a2d345864b78ff8ad01af06a981f1443b}{update\+Traveller\+Route} (\hyperlink{class_person}{Person} $\ast$t, vector$<$ \hyperlink{class_place}{Place} $\ast$ $>$r)
+\begin{DoxyCompactList}\small\item\em updates a traveller's trip \end{DoxyCompactList}\item 
+bool \hyperlink{class_trip_a96a633cf3d950759c6734041efc8fe8e}{is\+Traveller} (\hyperlink{class_person}{Person} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Checks if a person is a traveller. \end{DoxyCompactList}\item 
+float \hyperlink{class_trip_ab93540a771191027779e587968c7da8a}{calculate\+Distance} (\hyperlink{class_place}{Place} $\ast$begin, \hyperlink{class_place}{Place} $\ast$end)
+\begin{DoxyCompactList}\small\item\em calculates the distance between two places through the coordinate values \end{DoxyCompactList}\item 
+\hypertarget{class_trip_a1f1f9373099f83a3b8b30eb706f757b7}{void \hyperlink{class_trip_a1f1f9373099f83a3b8b30eb706f757b7}{recalculate\+Route\+Seats} ()}\label{class_trip_a1f1f9373099f83a3b8b30eb706f757b7}
+
+\begin{DoxyCompactList}\small\item\em Must be called if change\+Traveller\+Route or add\+Traveller or remove\+Traveller is called, goes through travellers vector and changes available seats for each place in route vector. \end{DoxyCompactList}\item 
+int \hyperlink{class_trip_a63a140b56758f30d8e998a11e70dbcfb}{find\+Place\+Index} (\hyperlink{class_place}{Place} $\ast$p)
+\begin{DoxyCompactList}\small\item\em finds a place's index in the route \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a724c6dcaf124441f5abdc9704e197ec5}{increment\+Vacancies} (int b, int e)
+\begin{DoxyCompactList}\small\item\em increments the number of vacant seats in a trip \end{DoxyCompactList}\item 
+bool \hyperlink{class_trip_ad7d5ff318768408eafe7206c41086814}{has\+Destination} (string src, string dest)
+\begin{DoxyCompactList}\small\item\em Checks if a trip has a certain itinerary. \end{DoxyCompactList}\item 
+bool \hyperlink{class_trip_adc0c1ce8dd300b09c0f01893df0deb04}{is\+Full} (string src, string dest)
+\begin{DoxyCompactList}\small\item\em Checks if a trip is full for a certain itinerary. \end{DoxyCompactList}\item 
+void \hyperlink{class_trip_a828dfd3992601e083f974e489ae66255}{print\+Travellers} ()
+\begin{DoxyCompactList}\small\item\em Writes all the information about a trip's travellers to a string. \end{DoxyCompactList}\item 
+string \hyperlink{class_trip_a8394f34452552c84d48c755279a65662}{to\+String} ()
+\begin{DoxyCompactList}\small\item\em Writes all the information about a trip to a string. \end{DoxyCompactList}\item 
+string \hyperlink{class_trip_a0ea71b8e1cbf3f6f87e668f58c365c41}{to\+String\+By\+Person} (string name, long nr)
+\begin{DoxyCompactList}\small\item\em Writes all the information about a trip of a person to a string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \hyperlink{class_trip_abf6a33c2be23b5f535d89032889dd720}{compare\+Trips} (\hyperlink{class_trip}{Trip} $\ast$i, \hyperlink{class_trip}{Trip} $\ast$j)
+\begin{DoxyCompactList}\small\item\em Compares the start dates of two trips. \end{DoxyCompactList}\item 
+static bool \hyperlink{class_trip_a12861eca75a22dd4cff8c60bf4da903f}{compare\+Trips\+Driver\+Name} (\hyperlink{class_trip}{Trip} $\ast$i, \hyperlink{class_trip}{Trip} $\ast$j)
+\begin{DoxyCompactList}\small\item\em Compares the driver names of two trips. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_trip}{Trip} class Contains all of the trip related functions, including getters, setters and C\+R\+U\+D functions. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_trip_a0d0fce19644be21e8baec31492ad58fa}{\index{Trip@{Trip}!Trip@{Trip}}
+\index{Trip@{Trip}!Trip@{Trip}}
+\subsubsection[{Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\+::\+Trip (
+\begin{DoxyParamCaption}
+\item[{string}]{Vehicle\+Owner, }
+\item[{{\bf Vehicle} $\ast$}]{v, }
+\item[{bool}]{smoke, }
+\item[{{\bf Date}}]{s, }
+\item[{{\bf Date}}]{e}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a0d0fce19644be21e8baec31492ad58fa}
+
+
+\hyperlink{class_trip}{Trip} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vehicle\+Owner} & vehicle owner's name \\
+\hline
+{\em v} & vehicle \\
+\hline
+{\em smoke} & smoking allowed or not \\
+\hline
+{\em s} & start date \\
+\hline
+{\em e} & end date \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a71b15d051b75c1d1eee38a5c38191920}{\index{Trip@{Trip}!Trip@{Trip}}
+\index{Trip@{Trip}!Trip@{Trip}}
+\subsubsection[{Trip}]{\setlength{\rightskip}{0pt plus 5cm}Trip\+::\+Trip (
+\begin{DoxyParamCaption}
+\item[{string}]{Vehicle\+Owner, }
+\item[{unsigned int}]{seats, }
+\item[{bool}]{smoke, }
+\item[{{\bf Date}}]{s, }
+\item[{{\bf Date}}]{e}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a71b15d051b75c1d1eee38a5c38191920}
+
+
+\hyperlink{class_trip}{Trip} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Vehicle\+Owner} & vehicle owner's name /driver's \\
+\hline
+{\em seats} & car seats \\
+\hline
+{\em smoke} & smoking allowed or not \\
+\hline
+{\em s} & start date \\
+\hline
+{\em e} & end date \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_trip_adae7ef5a06244525d607f96bee531c49}{\index{Trip@{Trip}!add\+Route@{add\+Route}}
+\index{add\+Route@{add\+Route}!Trip@{Trip}}
+\subsubsection[{add\+Route}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::add\+Route (
+\begin{DoxyParamCaption}
+\item[{vector$<$ pair$<$ {\bf Place} $\ast$, int $>$ $>$}]{rota}
+\end{DoxyParamCaption}
+)}}\label{class_trip_adae7ef5a06244525d607f96bee531c49}
+
+
+sets a route to the trip and the corresponding distance 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rota} & vector$<$ pair$<$\+Place$\ast$,int$>$ $>$ with the trip's route \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a670b6fd9f234cb0448bc72454f0e546d}{\index{Trip@{Trip}!add\+Traveller@{add\+Traveller}}
+\index{add\+Traveller@{add\+Traveller}!Trip@{Trip}}
+\subsubsection[{add\+Traveller}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::add\+Traveller (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{t, }
+\item[{vector$<$ {\bf Place} $\ast$ $>$}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a670b6fd9f234cb0448bc72454f0e546d}
+
+
+adds a traveller to a trip, recalculates the number of available seats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \hyperlink{class_person}{Person} $\ast$ person to be added \\
+\hline
+{\em r} & vector$<$\+Place $\ast$$>$ person's itinerary \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_ab93540a771191027779e587968c7da8a}{\index{Trip@{Trip}!calculate\+Distance@{calculate\+Distance}}
+\index{calculate\+Distance@{calculate\+Distance}!Trip@{Trip}}
+\subsubsection[{calculate\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}float Trip\+::calculate\+Distance (
+\begin{DoxyParamCaption}
+\item[{{\bf Place} $\ast$}]{begin, }
+\item[{{\bf Place} $\ast$}]{end}
+\end{DoxyParamCaption}
+)}}\label{class_trip_ab93540a771191027779e587968c7da8a}
+
+
+calculates the distance between two places through the coordinate values 
+
+
+\begin{DoxyParams}{Parameters}
+{\em begin} & \hyperlink{class_place}{Place} $\ast$ initial place \\
+\hline
+{\em end} & \hyperlink{class_place}{Place} $\ast$ final destination \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+float the distance between two places 
+\end{DoxyReturn}
+\hypertarget{class_trip_abf6a33c2be23b5f535d89032889dd720}{\index{Trip@{Trip}!compare\+Trips@{compare\+Trips}}
+\index{compare\+Trips@{compare\+Trips}!Trip@{Trip}}
+\subsubsection[{compare\+Trips}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::compare\+Trips (
+\begin{DoxyParamCaption}
+\item[{{\bf Trip} $\ast$}]{i, }
+\item[{{\bf Trip} $\ast$}]{j}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_trip_abf6a33c2be23b5f535d89032889dd720}
+
+
+Compares the start dates of two trips. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Trip$\ast$ trip to compare \\
+\hline
+{\em j} & Trip$\ast$ other trip to compare the first one to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the first trip is more recent than the other one 
+\end{DoxyReturn}
+\hypertarget{class_trip_a12861eca75a22dd4cff8c60bf4da903f}{\index{Trip@{Trip}!compare\+Trips\+Driver\+Name@{compare\+Trips\+Driver\+Name}}
+\index{compare\+Trips\+Driver\+Name@{compare\+Trips\+Driver\+Name}!Trip@{Trip}}
+\subsubsection[{compare\+Trips\+Driver\+Name}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::compare\+Trips\+Driver\+Name (
+\begin{DoxyParamCaption}
+\item[{{\bf Trip} $\ast$}]{i, }
+\item[{{\bf Trip} $\ast$}]{j}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_trip_a12861eca75a22dd4cff8c60bf4da903f}
+
+
+Compares the driver names of two trips. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Trip$\ast$ trip to compare \\
+\hline
+{\em j} & Trip$\ast$ other trip to compare the first one to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the first trip's driver has a name with alphabetical precedence over the other 
+\end{DoxyReturn}
+\hypertarget{class_trip_a63a140b56758f30d8e998a11e70dbcfb}{\index{Trip@{Trip}!find\+Place\+Index@{find\+Place\+Index}}
+\index{find\+Place\+Index@{find\+Place\+Index}!Trip@{Trip}}
+\subsubsection[{find\+Place\+Index}]{\setlength{\rightskip}{0pt plus 5cm}int Trip\+::find\+Place\+Index (
+\begin{DoxyParamCaption}
+\item[{{\bf Place} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a63a140b56758f30d8e998a11e70dbcfb}
+
+
+finds a place's index in the route 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \hyperlink{class_place}{Place} $\ast$ place to know index of \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int index, in case of success, else -\/1 
+\end{DoxyReturn}
+\hypertarget{class_trip_a48282720f54aa5d56d5ba872868396e6}{\index{Trip@{Trip}!get\+Available\+Seats@{get\+Available\+Seats}}
+\index{get\+Available\+Seats@{get\+Available\+Seats}!Trip@{Trip}}
+\subsubsection[{get\+Available\+Seats}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Trip\+::get\+Available\+Seats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a48282720f54aa5d56d5ba872868396e6}
+
+
+Returns the number of available seats in the trip. 
+
+\begin{DoxyReturn}{Returns}
+unsigned int with the trip's available seats 
+\end{DoxyReturn}
+\hypertarget{class_trip_a40b102c05b9f11486affb653d289503a}{\index{Trip@{Trip}!get\+Distance@{get\+Distance}}
+\index{get\+Distance@{get\+Distance}!Trip@{Trip}}
+\subsubsection[{get\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}float Trip\+::get\+Distance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a40b102c05b9f11486affb653d289503a}
+
+
+Returns the trip's distance. 
+
+\begin{DoxyReturn}{Returns}
+float with the trip's distance 
+\end{DoxyReturn}
+\hypertarget{class_trip_add7c86d5ee780f49b44df1d936229687}{\index{Trip@{Trip}!get\+Driver@{get\+Driver}}
+\index{get\+Driver@{get\+Driver}!Trip@{Trip}}
+\subsubsection[{get\+Driver}]{\setlength{\rightskip}{0pt plus 5cm}string Trip\+::get\+Driver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_add7c86d5ee780f49b44df1d936229687}
+
+
+Returns the name of the driver. 
+
+\begin{DoxyReturn}{Returns}
+string with the driver's name 
+\end{DoxyReturn}
+\hypertarget{class_trip_a254a9341368c276926164e0d2cee4748}{\index{Trip@{Trip}!get\+End@{get\+End}}
+\index{get\+End@{get\+End}!Trip@{Trip}}
+\subsubsection[{get\+End}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} Trip\+::get\+End (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a254a9341368c276926164e0d2cee4748}
+
+
+Returns the trip's end date. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_date}{Date} with the trip's end date 
+\end{DoxyReturn}
+\hypertarget{class_trip_a4b1a35b6c36433ce982d7a42b6df796d}{\index{Trip@{Trip}!get\+Route@{get\+Route}}
+\index{get\+Route@{get\+Route}!Trip@{Trip}}
+\subsubsection[{get\+Route}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ pair$<$ {\bf Place} $\ast$, int $>$ $>$ Trip\+::get\+Route (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a4b1a35b6c36433ce982d7a42b6df796d}
+
+
+Returns the trip's route. 
+
+\begin{DoxyReturn}{Returns}
+vector$<$pair$<$\+Place$\ast$, int$>$$>$ with the trip's route 
+\end{DoxyReturn}
+\hypertarget{class_trip_a842bbff21be74ba2dbd121728b383653}{\index{Trip@{Trip}!get\+Smoking\+Sign@{get\+Smoking\+Sign}}
+\index{get\+Smoking\+Sign@{get\+Smoking\+Sign}!Trip@{Trip}}
+\subsubsection[{get\+Smoking\+Sign}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::get\+Smoking\+Sign (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a842bbff21be74ba2dbd121728b383653}
+
+
+Returns if the trip allows smoking. 
+
+\begin{DoxyReturn}{Returns}
+bool with the allow value 
+\end{DoxyReturn}
+\hypertarget{class_trip_af48effa8c9d9ff4b8e2e0ff5225d6f60}{\index{Trip@{Trip}!get\+Start@{get\+Start}}
+\index{get\+Start@{get\+Start}!Trip@{Trip}}
+\subsubsection[{get\+Start}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Date} Trip\+::get\+Start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_af48effa8c9d9ff4b8e2e0ff5225d6f60}
+
+
+Returns the trip's start date. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{class_date}{Date} with the trip's start date 
+\end{DoxyReturn}
+\hypertarget{class_trip_a7a2776544c9600f2e6a355e04f17e67b}{\index{Trip@{Trip}!get\+Vehicle@{get\+Vehicle}}
+\index{get\+Vehicle@{get\+Vehicle}!Trip@{Trip}}
+\subsubsection[{get\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vehicle} $\ast$ Trip\+::get\+Vehicle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_trip_a7a2776544c9600f2e6a355e04f17e67b}
+
+
+Returns the vehicle used in the trip. 
+
+\begin{DoxyReturn}{Returns}
+Vehicle$\ast$ with the trip's vehicle 
+\end{DoxyReturn}
+\hypertarget{class_trip_ad7d5ff318768408eafe7206c41086814}{\index{Trip@{Trip}!has\+Destination@{has\+Destination}}
+\index{has\+Destination@{has\+Destination}!Trip@{Trip}}
+\subsubsection[{has\+Destination}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::has\+Destination (
+\begin{DoxyParamCaption}
+\item[{string}]{src, }
+\item[{string}]{dest}
+\end{DoxyParamCaption}
+)}}\label{class_trip_ad7d5ff318768408eafe7206c41086814}
+
+
+Checks if a trip has a certain itinerary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & string with the origin place's name \\
+\hline
+{\em dest} & string with the end place's name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the itinerary was found 
+\end{DoxyReturn}
+\hypertarget{class_trip_a724c6dcaf124441f5abdc9704e197ec5}{\index{Trip@{Trip}!increment\+Vacancies@{increment\+Vacancies}}
+\index{increment\+Vacancies@{increment\+Vacancies}!Trip@{Trip}}
+\subsubsection[{increment\+Vacancies}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::increment\+Vacancies (
+\begin{DoxyParamCaption}
+\item[{int}]{b, }
+\item[{int}]{e}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a724c6dcaf124441f5abdc9704e197ec5}
+
+
+increments the number of vacant seats in a trip 
+
+
+\begin{DoxyParams}{Parameters}
+{\em b} & int index of beginning place to alter \\
+\hline
+{\em e} & int index of end place to alter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_adc0c1ce8dd300b09c0f01893df0deb04}{\index{Trip@{Trip}!is\+Full@{is\+Full}}
+\index{is\+Full@{is\+Full}!Trip@{Trip}}
+\subsubsection[{is\+Full}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::is\+Full (
+\begin{DoxyParamCaption}
+\item[{string}]{src, }
+\item[{string}]{dest}
+\end{DoxyParamCaption}
+)}}\label{class_trip_adc0c1ce8dd300b09c0f01893df0deb04}
+
+
+Checks if a trip is full for a certain itinerary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & string with the origin place's name \\
+\hline
+{\em dest} & string with the end place's name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the itinerary is full 
+\end{DoxyReturn}
+\hypertarget{class_trip_a96a633cf3d950759c6734041efc8fe8e}{\index{Trip@{Trip}!is\+Traveller@{is\+Traveller}}
+\index{is\+Traveller@{is\+Traveller}!Trip@{Trip}}
+\subsubsection[{is\+Traveller}]{\setlength{\rightskip}{0pt plus 5cm}bool Trip\+::is\+Traveller (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a96a633cf3d950759c6734041efc8fe8e}
+
+
+Checks if a person is a traveller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \hyperlink{class_person}{Person} $\ast$ with the person to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+if the person is a traveller 
+\end{DoxyReturn}
+\hypertarget{class_trip_a828dfd3992601e083f974e489ae66255}{\index{Trip@{Trip}!print\+Travellers@{print\+Travellers}}
+\index{print\+Travellers@{print\+Travellers}!Trip@{Trip}}
+\subsubsection[{print\+Travellers}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::print\+Travellers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a828dfd3992601e083f974e489ae66255}
+
+
+Writes all the information about a trip's travellers to a string. 
+
+\begin{DoxyReturn}{Returns}
+string with the traveller's information 
+\end{DoxyReturn}
+\hypertarget{class_trip_ad3f71fd3cc8c5adeb9fc19779725081e}{\index{Trip@{Trip}!remove\+Traveller@{remove\+Traveller}}
+\index{remove\+Traveller@{remove\+Traveller}!Trip@{Trip}}
+\subsubsection[{remove\+Traveller}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::remove\+Traveller (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{t}
+\end{DoxyParamCaption}
+)}}\label{class_trip_ad3f71fd3cc8c5adeb9fc19779725081e}
+
+
+removes a traveller from a trip, recalculates the number of available seats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \hyperlink{class_person}{Person} $\ast$ person to be removed \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a0166bf54e1fab842e494615041fb5bcd}{\index{Trip@{Trip}!set\+Available\+Seats@{set\+Available\+Seats}}
+\index{set\+Available\+Seats@{set\+Available\+Seats}!Trip@{Trip}}
+\subsubsection[{set\+Available\+Seats}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+Available\+Seats (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{a\+\_\+s}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a0166bf54e1fab842e494615041fb5bcd}
+
+
+Sets the trip's available seats. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a\+\_\+s} & unsigned int with the trip's seats \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a17637add14f81f30c8f59f5812da2232}{\index{Trip@{Trip}!set\+Distance@{set\+Distance}}
+\index{set\+Distance@{set\+Distance}!Trip@{Trip}}
+\subsubsection[{set\+Distance}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+Distance (
+\begin{DoxyParamCaption}
+\item[{float}]{d}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a17637add14f81f30c8f59f5812da2232}
+
+
+Sets the trip's distance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & float with the trip's distance \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a3d1b06fb96cbffd00cf16b4fe8ea1331}{\index{Trip@{Trip}!set\+End@{set\+End}}
+\index{set\+End@{set\+End}!Trip@{Trip}}
+\subsubsection[{set\+End}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+End (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{e}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a3d1b06fb96cbffd00cf16b4fe8ea1331}
+
+
+Sets the trip's end date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & \hyperlink{class_date}{Date} with the trip's end date \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a1df5fa0bd340a624e732c9452b62b4cb}{\index{Trip@{Trip}!set\+Smoking\+Sign@{set\+Smoking\+Sign}}
+\index{set\+Smoking\+Sign@{set\+Smoking\+Sign}!Trip@{Trip}}
+\subsubsection[{set\+Smoking\+Sign}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+Smoking\+Sign (
+\begin{DoxyParamCaption}
+\item[{bool}]{s}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a1df5fa0bd340a624e732c9452b62b4cb}
+
+
+Sets the trip's distance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & bool with value for allowing or disallowing smoking in the trip \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a45b53f2a30771184c7a8491453cfa3da}{\index{Trip@{Trip}!set\+Start@{set\+Start}}
+\index{set\+Start@{set\+Start}!Trip@{Trip}}
+\subsubsection[{set\+Start}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+Start (
+\begin{DoxyParamCaption}
+\item[{{\bf Date}}]{s}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a45b53f2a30771184c7a8491453cfa3da}
+
+
+Sets the trip's start date. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & \hyperlink{class_date}{Date} with the trip's start date \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a011f6b53b9bdaf4f08106362fe0e391b}{\index{Trip@{Trip}!set\+Vehicle@{set\+Vehicle}}
+\index{set\+Vehicle@{set\+Vehicle}!Trip@{Trip}}
+\subsubsection[{set\+Vehicle}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::set\+Vehicle (
+\begin{DoxyParamCaption}
+\item[{{\bf Vehicle} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a011f6b53b9bdaf4f08106362fe0e391b}
+
+
+Sets the trip's vehicle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \hyperlink{class_vehicle}{Vehicle} $\ast$ with the intended vehicle for the trip \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_trip_a8394f34452552c84d48c755279a65662}{\index{Trip@{Trip}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Trip@{Trip}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}string Trip\+::to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a8394f34452552c84d48c755279a65662}
+
+
+Writes all the information about a trip to a string. 
+
+\begin{DoxyReturn}{Returns}
+string with the trip's information 
+\end{DoxyReturn}
+\hypertarget{class_trip_a0ea71b8e1cbf3f6f87e668f58c365c41}{\index{Trip@{Trip}!to\+String\+By\+Person@{to\+String\+By\+Person}}
+\index{to\+String\+By\+Person@{to\+String\+By\+Person}!Trip@{Trip}}
+\subsubsection[{to\+String\+By\+Person}]{\setlength{\rightskip}{0pt plus 5cm}string Trip\+::to\+String\+By\+Person (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{long}]{nr}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a0ea71b8e1cbf3f6f87e668f58c365c41}
+
+
+Writes all the information about a trip of a person to a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & string with the person's name \\
+\hline
+{\em nr} & long with the person's telephone number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string with the person's trip information 
+\end{DoxyReturn}
+\hypertarget{class_trip_a2d345864b78ff8ad01af06a981f1443b}{\index{Trip@{Trip}!update\+Traveller\+Route@{update\+Traveller\+Route}}
+\index{update\+Traveller\+Route@{update\+Traveller\+Route}!Trip@{Trip}}
+\subsubsection[{update\+Traveller\+Route}]{\setlength{\rightskip}{0pt plus 5cm}void Trip\+::update\+Traveller\+Route (
+\begin{DoxyParamCaption}
+\item[{{\bf Person} $\ast$}]{t, }
+\item[{vector$<$ {\bf Place} $\ast$ $>$}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_trip_a2d345864b78ff8ad01af06a981f1443b}
+
+
+updates a traveller's trip 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & \hyperlink{class_person}{Person} $\ast$ person which trip should be altered \\
+\hline
+{\em r} & vector$<$\+Place $\ast$$>$ person's itinerary \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Trip.\+h\item 
+Trip.\+cpp\end{DoxyCompactItemize}

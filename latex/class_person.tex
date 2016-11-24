@@ -1,0 +1,198 @@
+\hypertarget{class_person}{\section{Person Class Reference}
+\label{class_person}\index{Person@{Person}}
+}
+
+
+\hyperlink{class_person}{Person} class.  
+
+
+
+
+{\ttfamily \#include $<$Person.\+h$>$}
+
+Inheritance diagram for Person\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_person}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_person_a0397c6f89fafc12e738923f612bc41a3}{\hyperlink{class_person_a0397c6f89fafc12e738923f612bc41a3}{Person} ()}\label{class_person_a0397c6f89fafc12e738923f612bc41a3}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_person}{Person} default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_person_add253b6da1826be37fb9769eb2df2121}{Person} (string n, unsigned long t\+\_\+nr)
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_person}{Person} constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_person_a700ffd693321c5fe6880262acf43d4da}{virtual \hyperlink{class_person_a700ffd693321c5fe6880262acf43d4da}{$\sim$\+Person} ()}\label{class_person_a700ffd693321c5fe6880262acf43d4da}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_person}{Person} destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_person_a62b6b1cc2b0ce6dfa92786cfe2857362}{set\+Name} (string n)
+\begin{DoxyCompactList}\small\item\em Sets the person's name. \end{DoxyCompactList}\item 
+void \hyperlink{class_person_a7f178b2627a33e86c965bfaa0cc77ff0}{set\+Tel\+Nr} (unsigned long t\+\_\+nr)
+\begin{DoxyCompactList}\small\item\em Sets the person's phone. \end{DoxyCompactList}\item 
+void \hyperlink{class_person_ac52c35916ca323635f9b58cceaf7bfad}{set\+Billing} (float f)
+\begin{DoxyCompactList}\small\item\em Sets the person's billing debt. \end{DoxyCompactList}\item 
+string \hyperlink{class_person_a5c06a41731a2656caec65e3bc39f5ebe}{get\+Name} () const 
+\begin{DoxyCompactList}\small\item\em Returns the name. \end{DoxyCompactList}\item 
+unsigned long \hyperlink{class_person_a1b3237d0eba60fa12437ad8794729b16}{get\+Tel\+Nr} () const 
+\begin{DoxyCompactList}\small\item\em Returns the phone. \end{DoxyCompactList}\item 
+float \hyperlink{class_person_ad84e50825f66a2ab7f2571698f07cbbf}{get\+Billing} () const 
+\begin{DoxyCompactList}\small\item\em Returns the billing debt. \end{DoxyCompactList}\item 
+\hypertarget{class_person_a0dcd76e4e697490120f0c3417414c1a6}{void \hyperlink{class_person_a0dcd76e4e697490120f0c3417414c1a6}{pay\+Billing} ()}\label{class_person_a0dcd76e4e697490120f0c3417414c1a6}
+
+\begin{DoxyCompactList}\small\item\em Outputs message that bill was paid, resets billing to 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{Indent}{\bf Polymorphic functions}\par
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_person_ab2e01c5852e65685b30c7f93af5a82e2}{virtual void {\bfseries add\+Bill} (string fee, float triplength)}\label{class_person_ab2e01c5852e65685b30c7f93af5a82e2}
+
+\item 
+\hypertarget{class_person_afe5e1da83f868d72cb9c49b371b066b4}{virtual void {\bfseries print\+Person} ()}\label{class_person_afe5e1da83f868d72cb9c49b371b066b4}
+
+\item 
+\hypertarget{class_person_a28b1defaeb5d84515f5c27674b2a3007}{virtual void {\bfseries add\+Trip\+History} (\hyperlink{class_trip}{Trip} $\ast$t)}\label{class_person_a28b1defaeb5d84515f5c27674b2a3007}
+
+\item 
+\hypertarget{class_person_a81e8251d01b54f58ae26e8dc18520eb1}{virtual string {\bfseries get\+Usern} () const }\label{class_person_a81e8251d01b54f58ae26e8dc18520eb1}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_person_a669b64897b4d823a27bb5866368d4dfa}{string {\bfseries name}}\label{class_person_a669b64897b4d823a27bb5866368d4dfa}
+
+\item 
+\hypertarget{class_person_a0118ba61947248bceca632314dc4ed64}{unsigned long {\bfseries telephone\+\_\+nr}}\label{class_person_a0118ba61947248bceca632314dc4ed64}
+
+\item 
+\hypertarget{class_person_ac9185a4fc1e41fc19b4a2059d000cb98}{float {\bfseries billing}}\label{class_person_ac9185a4fc1e41fc19b4a2059d000cb98}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_person}{Person} class. 
+
+A generic person class, functions as superclass to \hyperlink{class_reg_person}{Reg\+Person} and \hyperlink{class_unreg_person}{Unreg\+Person} 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_person_add253b6da1826be37fb9769eb2df2121}{\index{Person@{Person}!Person@{Person}}
+\index{Person@{Person}!Person@{Person}}
+\subsubsection[{Person}]{\setlength{\rightskip}{0pt plus 5cm}Person\+::\+Person (
+\begin{DoxyParamCaption}
+\item[{string}]{n, }
+\item[{unsigned long}]{t\+\_\+nr}
+\end{DoxyParamCaption}
+)}}\label{class_person_add253b6da1826be37fb9769eb2df2121}
+
+
+\hyperlink{class_person}{Person} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & person's name \\
+\hline
+{\em t\+\_\+nr} & person's phone \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_person_ad84e50825f66a2ab7f2571698f07cbbf}{\index{Person@{Person}!get\+Billing@{get\+Billing}}
+\index{get\+Billing@{get\+Billing}!Person@{Person}}
+\subsubsection[{get\+Billing}]{\setlength{\rightskip}{0pt plus 5cm}float Person\+::get\+Billing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_person_ad84e50825f66a2ab7f2571698f07cbbf}
+
+
+Returns the billing debt. 
+
+\begin{DoxyReturn}{Returns}
+float with billing debt 
+\end{DoxyReturn}
+\hypertarget{class_person_a5c06a41731a2656caec65e3bc39f5ebe}{\index{Person@{Person}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Person@{Person}}
+\subsubsection[{get\+Name}]{\setlength{\rightskip}{0pt plus 5cm}string Person\+::get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_person_a5c06a41731a2656caec65e3bc39f5ebe}
+
+
+Returns the name. 
+
+\begin{DoxyReturn}{Returns}
+string with the person's name 
+\end{DoxyReturn}
+\hypertarget{class_person_a1b3237d0eba60fa12437ad8794729b16}{\index{Person@{Person}!get\+Tel\+Nr@{get\+Tel\+Nr}}
+\index{get\+Tel\+Nr@{get\+Tel\+Nr}!Person@{Person}}
+\subsubsection[{get\+Tel\+Nr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long Person\+::get\+Tel\+Nr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_person_a1b3237d0eba60fa12437ad8794729b16}
+
+
+Returns the phone. 
+
+\begin{DoxyReturn}{Returns}
+long with the person's phone 
+\end{DoxyReturn}
+\hypertarget{class_person_ac52c35916ca323635f9b58cceaf7bfad}{\index{Person@{Person}!set\+Billing@{set\+Billing}}
+\index{set\+Billing@{set\+Billing}!Person@{Person}}
+\subsubsection[{set\+Billing}]{\setlength{\rightskip}{0pt plus 5cm}void Person\+::set\+Billing (
+\begin{DoxyParamCaption}
+\item[{float}]{f}
+\end{DoxyParamCaption}
+)}}\label{class_person_ac52c35916ca323635f9b58cceaf7bfad}
+
+
+Sets the person's billing debt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & float with wanted value \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_person_a62b6b1cc2b0ce6dfa92786cfe2857362}{\index{Person@{Person}!set\+Name@{set\+Name}}
+\index{set\+Name@{set\+Name}!Person@{Person}}
+\subsubsection[{set\+Name}]{\setlength{\rightskip}{0pt plus 5cm}void Person\+::set\+Name (
+\begin{DoxyParamCaption}
+\item[{string}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_person_a62b6b1cc2b0ce6dfa92786cfe2857362}
+
+
+Sets the person's name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & string with the person's name \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_person_a7f178b2627a33e86c965bfaa0cc77ff0}{\index{Person@{Person}!set\+Tel\+Nr@{set\+Tel\+Nr}}
+\index{set\+Tel\+Nr@{set\+Tel\+Nr}!Person@{Person}}
+\subsubsection[{set\+Tel\+Nr}]{\setlength{\rightskip}{0pt plus 5cm}void Person\+::set\+Tel\+Nr (
+\begin{DoxyParamCaption}
+\item[{unsigned long}]{t\+\_\+nr}
+\end{DoxyParamCaption}
+)}}\label{class_person_a7f178b2627a33e86c965bfaa0cc77ff0}
+
+
+Sets the person's phone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+\_\+nr} & unsigned long with the person's phone \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Person.\+h\item 
+Person.\+cpp\end{DoxyCompactItemize}
