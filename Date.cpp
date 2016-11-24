@@ -28,7 +28,11 @@ Date::Date()
 	minute = -1;
 	second = -1;
 }
-
+/**
+ * This constructor makes a date object out of a properly formatted string
+ * @brief Constructor to make date object out of string
+ * @param cfg_str formatted string to make a Date object
+ */
 Date::Date(string cfg_str)
 {
 	cfg_str += "\n";
@@ -67,7 +71,17 @@ Date::Date(string cfg_str)
 	if (second < 0 || second > 59)
 		throw InvalidDate();
 }
-
+/**
+ * Throws an appropriate exception if any of the parameters are invalid
+ * @brief Valid Date constructor
+ *
+ * @param year Year
+ * @param month Month
+ * @param day Day
+ * @param hour Hour
+ * @param minute Minute
+ * @param second Second
+ */
 Date::Date(int year, int month, int day, int hour, int minute, int second)
 {
 	if (year < 1900)
@@ -92,37 +106,69 @@ Date::Date(int year, int month, int day, int hour, int minute, int second)
 }
 
 // Getters
+/**
+ * @brief Returns the year
+ *
+ * @return integer with the year
+ */
 int Date::getYear() const
 {
 	return this->year;
 }
-
+/**
+ * @brief Returns the month
+ *
+ * @return integer with the month
+ */
 int Date::getMonth() const
 {
 	return this->month;
 }
-
+/**
+ * @brief Returns the day
+ *
+ * @return integer with the day
+ */
 int Date::getDay() const
 {
 	return this->day;
 }
-
+/**
+ * @brief Returns the hour
+ *
+ * @return integer with the hour
+ */
 int Date::getHour() const
 {
 	return this->hour;
 }
-
+/**
+ * @brief Returns the minute
+ *
+ * @return integer with the minute
+ */
 int Date::getMinute() const
 {
 	return this->minute;
 }
-
+/**
+ * @brief Returns the second
+ *
+ * @return integer with the second
+ */
 int Date::getSecond() const
 {
 	return this->second;
 }
 
 // Setters
+
+/**
+ * Throws InvalidDate exception if the year is invalid
+ * @brief Sets the year
+ *
+ * @param year Year
+ */
 void Date::setYear(int year)
 {
 	if (year < 1900)
@@ -132,7 +178,7 @@ void Date::setYear(int year)
 }
 
 /**
- * Throws InvalidMonth exception if the month is invalid
+ * Throws InvalidDate exception if the month is invalid
  * @brief Sets the month
  *
  * @param month Month
@@ -146,7 +192,7 @@ void Date::setMonth(int month)
 }
 
 /**
- * Throws InvalidDay exception if the day is invalid
+ * Throws InvalidDate exception if the day is invalid
  * @brief Sets the day
  *
  * @param day Day
@@ -160,7 +206,7 @@ void Date::setDay(int day)
 }
 
 /**
- * Throws InvalidHour exception if the hour is invalid
+ * Throws InvalidDate exception if the hour is invalid
  * @brief Sets the hour
  *
  * @param hour Hour
@@ -174,7 +220,7 @@ void Date::setHour(int hour)
 }
 
 /**
- * Throws InvalidMinute exception if the minute is invalid
+ * Throws InvalidDate exception if the minute is invalid
  * @brief Sets the minute
  *
  * @param minute Minute
@@ -188,7 +234,7 @@ void Date::setMinute(int minute)
 }
 
 /**
- * Throws InvalidSecond exception if the second is invalid
+ * Throws InvalidDate exception if the second is invalid
  * @brief Sets the second
  *
  * @param second Second
@@ -202,6 +248,12 @@ void Date::setSecond(int second)
 }
 
 // Operator overloads
+/**
+ * @brief Less than operator
+ *
+ * @param date2 Right hand side date
+ * @return Returns true if left hand side date is previous in time from the right hand side one, false otherwise.
+ */
 bool Date::operator<(Date date2) const
 {
 	if (this->year < date2.year)
@@ -229,7 +281,12 @@ bool Date::operator<(Date date2) const
 	else
 		return false;
 }
-
+/**
+ * @brief Greater than operator
+ *
+ * @param date2 Right hand side date
+ * @return Returns true if left hand side date is after the right hand side one in time, false otherwise.
+ */
 bool Date::operator>(Date date2) const
 {
 	if (this->year > date2.year)
@@ -257,17 +314,34 @@ bool Date::operator>(Date date2) const
 	else
 		return false;
 }
-
+/**
+ * @brief Equal comparison operator
+ *
+ * @param date2 Right hand side date
+ * @return Returns true if the dates are the same, false otherwise
+ */
 bool Date::operator== (Date date2) const
 {
 	return (year == date2.year && month == date2.month && day == date2.day && hour == date2.hour && minute == date2.minute && second == date2.second);
 }
-
+/**
+ * Sends to the output stream the string with the date, returned by cfg_str()
+ * @brief Bitshift operator <<
+ * @param os left hand side output stream
+ * @param d right hand side date
+ * @return the output stream os
+ */
 ostream& operator<<(ostream& os, const Date& d)
 {
 	return os << d.cfg_str();
 }
-
+/**
+ * Reads a date from the input stream is in the format YYYY MM DD hh mm ss
+ * @brief Bitshift operator >>
+ * @param is left hand side input stream
+ * @param date right hand side date
+ * @return the input stream is
+ */
 istream& operator >>(istream &is, Date& date)
 {
 	char c1 { ' ' };
@@ -286,7 +360,12 @@ istream& operator >>(istream &is, Date& date)
 
 	return is;
 }
-
+/**
+ * Returns a string with a date in the format YYYY/MM/DD - hh:mm:ss
+ * @brief Formatted date string
+ *
+ * @return a string with the formatted date
+ */
 string Date::str() const
 {
 	stringstream ss;
@@ -295,7 +374,11 @@ string Date::str() const
 
 	return ss.str();
 }
-
+/**
+ * Returns a string in the format YYYY MM DD hh mm ss to be used in the config file
+ * @brief Space separated date
+ * @return a string with the date
+ */
 string Date::cfg_str() const
 {
 	stringstream ss;
@@ -305,7 +388,14 @@ string Date::cfg_str() const
 	return ss.str();
 }
 
-// Static function
+/// Static function
+/**
+ * Returns the number of days in a month, taking into account if it is a leap year or not
+ * @brief Number of days in a month
+ * @param month month (1-12)
+ * @param year year
+ * @return number of days
+ */
 int Date::daysInMonth(int month, int year)
 {
 	if (month == 4 || month == 6 || month == 9 || month == 11)
@@ -350,7 +440,13 @@ Date Date::curDate()
 
 	return temp;
 }
-
+/**
+ * Returns the number of days difference between two dates
+ * @brief Number of days difference between two dates
+ * @param d1 a date
+ * @param d2 a date
+ * @return number of days
+ */
 int Date::numDays(Date d1, Date d2)
 {
 	if (d1.getYear() == d2.getYear())
