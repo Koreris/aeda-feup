@@ -112,7 +112,6 @@ bool updateDestination()
 	cout << "Input the index of the destination you want to update:(or input F to leave) " << endl;
 	while(!validIndex)
 	{
-
 		getline(cin, index);
 		cin.clear();
 		//cin.ignore(10000, '\n');
@@ -174,7 +173,9 @@ bool adminLogin(){
 }
 
 void chargeMonthlyFee(){
-
+	for(int i=0;i<l.getRegUsers().size();i++){
+		l.getRegUsers()[i]->addBill("monthly",0);
+	}
 }
 void displayAdminMenu()
 {
@@ -190,7 +191,7 @@ void displayAdminMenu()
 						" | 3.  Update destination coordinates                                         |" << endl <<
 						" | 4.  List Destinations                                                      |" << endl <<
 						" | 5.  List Registered Users                                                  |" << endl <<
-						" | 6.  Charge Registered Users Monthly Fee                                                  |" << endl <<
+						" | 6.  Charge Registered Users Monthly Fee                                    |" << endl <<
 						" | 7.  Back to Sign Up                                                        |" << endl <<
 						" +============================================================================+\n" << endl;
 		cout << "\n Selected number from menu:\n";
@@ -331,11 +332,11 @@ void displaySignUpMenu()
 		{
 		cout << "\n Welcome to LyFtEr! \n\n" << endl
 						<< " +============================================================================+" << endl <<
-						" | 1.  Login                                                                     |" << endl <<
-						" | 2.  Use as guest                                                              |" << endl <<
-						" | 3.  Create an account                                                         |" << endl <<
-						" | 4.  Administration                                                            |" << endl <<
-						" | 5.  Exit                                                                      |" << endl <<
+						" | 1.  Login                                                                  |" << endl <<
+						" | 2.  Use as guest                                                           |" << endl <<
+						" | 3.  Create an account                                                      |" << endl <<
+						" | 4.  Administration                                                         |" << endl <<
+						" | 5.  Exit                                                                   |" << endl <<
 						" +============================================================================+\n" << endl;
 		cout << "\n Selected number from menu:\n";
 
