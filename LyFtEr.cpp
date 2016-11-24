@@ -821,7 +821,6 @@ bool Lyfter::allVacantTrips()
 	Place * place;
 	vector<Trip *> temp=vector<Trip *>();
 	vector<Place *> places=vector<Place*>();
-
 	if(l.login)
 		temp=l.findVacantTrips(l.curr_user);
 	else temp=l.findVacantTrips(l.curr_unreg);
@@ -829,10 +828,12 @@ bool Lyfter::allVacantTrips()
 	{
 		cout <<" found " <<temp.size() <<" trips" <<endl;
 		chooseTrip(temp,places);
+		pressEnter();
 		cls();
 		return true;
 	}
 	cout << "No vacant trips where you aren't currently signed up for found" << endl;
+	pressEnter();
 	return false;
 
 
@@ -857,9 +858,8 @@ long Lyfter::displayTripMenu()
 	{
 		getline(cin, user_in);
 		cin.clear();
-		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_== 1 || user_in_== 3)
+		if(user_in_>=1 && user_in_<=3)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -875,6 +875,7 @@ long Lyfter::displayTripMenu()
 				else cls();
 				break;
 			case 2:
+				cout << "CASE 2 " << endl;
 				if(allVacantTrips())
 				{
 
