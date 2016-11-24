@@ -5,7 +5,11 @@
 
 using namespace std;
 
-
+/**
+ * @brief Vehicle class
+ *
+ * Contains the vehicle related functions, including getters, setters and toString functions.
+ */
 class Vehicle
 {
 private:

@@ -5,6 +5,13 @@
 
 using namespace std;
 
+
+/**
+ * @brief Place class
+ *
+ * Contains the place related functions, including getters, setters and toString functions.
+ */
+
 class Place
 {
 private:

@@ -10,6 +10,12 @@ using namespace std;
 class Person;
 class RegPerson;
 class UnregPerson;
+
+/**
+ * @brief Trip class
+ * Contains all of the trip related functions, including getters, setters and CRUD functions.
+ */
+
 class Trip
 {
 private:
