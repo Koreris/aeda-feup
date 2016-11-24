@@ -35,6 +35,8 @@ enum states
  * @brief Lyfter class
  *
  * Class that defines the highest layer of the application, UI and user interaction handling
+ * including the display of all the menus and listings, the crud functions that require user input.
+ * Connects with logic class to be the main hub of the program
  */
 class Lyfter
 {

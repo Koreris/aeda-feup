@@ -12,7 +12,7 @@ long stol(string txt);
 /**
  * @brief Date class
  *
- *  * A date object consists of basically 6 integers, which hold the year, month, day, hour, minute and second.\n
+ * A date object consists of basically 6 integers, which hold the year, month, day, hour, minute and second.\n
  * It has the necessary member functions for handling those variables, compare dates, and misc functions.
  */
 class Date

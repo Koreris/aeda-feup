@@ -1,11 +1,17 @@
 
 #include "LyFtEr.h"
-
+/**
+ * Prompts user to press enter, mimicking a paused state until user presses enter
+ * @brief press enter to continue
+ */
 void pressEnter(){
 	cout << "Press Enter to continue..." << endl;
 	getchar();
 }
-
+/**
+ * Uses windows related functions to clear console screen
+ * @brief clears console screen
+ */
 void cls() {
     COORD topLeft  = { 0, 0 };
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -23,16 +29,21 @@ void cls() {
     SetConsoleCursorPosition(console, topLeft);
 }
 
-
-
-
-
-//admin stuff
+/**
+ * @brief Lyfter constructor
+ * @param logic logic object
+ */
 Lyfter::Lyfter(Logic logic){
 	l=logic;
 	curr_state = signUpMenu;
 	prev_state = signUpMenu;
 }
+
+///admin stuff
+/**
+ * Displays destinations
+ * @brief displays destinations
+ */
 void Lyfter::displayDestinations()
 {
 	for(unsigned int i=0;i<l.getDestinations().size();i++)
@@ -40,6 +51,10 @@ void Lyfter::displayDestinations()
 		cout << i << ":" <<l.getDestinations()[i]->toString() << endl;
 	}
 }
+/**
+ * Displays registered users
+ * @brief displays registered
+ */
 void Lyfter::displayRegisteredUsers()
 {
 	for(unsigned int i=0;i<l.getRegUsers().size();i++)
@@ -48,7 +63,10 @@ void Lyfter::displayRegisteredUsers()
 		l.getRegUsers()[i]->printPerson();
 	}
 }
-
+/**
+ * Displays destinations and prompts user for an index of destination to delete
+ * @brief prompts user for index of destination he wants to deletes
+ */
 bool Lyfter::removeDestination()
 {
 	string index="";
@@ -81,7 +99,10 @@ bool Lyfter::removeDestination()
 	}
 	return false;
 }
-
+/**
+ * Displays destinations and prompts user for an index of destination to update coordinates of
+ * @brief prompts user for index of destination he wants to update the coordinates of
+ */
 bool Lyfter::updateDestination()
 {
 	string index="";
@@ -114,7 +135,10 @@ bool Lyfter::updateDestination()
 	}
 	return false;
 }
-
+/**
+ * Prompts user to input necessary info to create a new destination, adds to destinations vector
+ * @brief prompts user for info to create a new destination and adds it
+ */
 bool Lyfter::addDestination()
 {
 	string destname="";
@@ -139,8 +163,11 @@ bool Lyfter::addDestination()
 	}
 	return false;
 }
-
-
+/**
+ * Prompts for admin credentials and returns true if valid credentials
+ * @brief prompts for admin credentials
+ * @return if admin credentials are correct or not
+ */
 bool Lyfter::adminLogin(){
 	string usr="";
 	string passw="";
@@ -153,12 +180,18 @@ bool Lyfter::adminLogin(){
 	cin.clear();
 	return usr=="admin" && passw=="admin";
 }
-
+/**
+ * Adds bill to all registered users of monthly maintenance fee
+ * @brief charges maintenance fee
+ */
 void Lyfter::chargeMonthlyFee(){
 	for(int i=0;i<l.getRegUsers().size();i++){
 		l.getRegUsers()[i]->addBill("monthly",0);
 	}
 }
+/**
+ * @brief  Displays administration menu and changes states accordingly to user input
+ */
 void Lyfter::displayAdminMenu()
 {
 	string user_in;
@@ -227,9 +260,14 @@ void Lyfter::displayAdminMenu()
 		}
 		return;
 }
+///end of admin stuff
 
-
-//login section
+///login section
+/**
+ * Prompts for user credentials,validates them and does the actual login
+ * @brief prompts for user credentials and logins
+ * @return if successful login
+ */
 bool Lyfter::userLogin()
 {
 	string usr="";
@@ -245,7 +283,11 @@ bool Lyfter::userLogin()
 	//cin.ignore(10000, '\n');
 	return(l.userLogin(usr, passw));
 }
-
+/**
+ * Prompts for guest credentials,creates guest, logins as guest
+ * @brief prompts guest credentials and login as guest
+ * @return if successful login
+ */
 bool Lyfter::guestLogin()
 {
 	string usr="";
@@ -268,7 +310,6 @@ bool Lyfter::guestLogin()
 	l.curr_unreg=new UnregPerson(usr,phonenr);
 	return true;
 }
-
 bool Lyfter::registerUser(){
 	string usr="";
 	string passw="";
@@ -437,7 +478,6 @@ void Lyfter::displayMainMenu()
 	}
 	return;
 }
-
 void Lyfter::displayLoginMenu()
 {
 	cls();
@@ -507,16 +547,10 @@ void Lyfter::displayLoginMenu()
 	}
 	return;
 }
-//end of login section
+///end of login section
 
-void Lyfter::displayVehicles(vector<Vehicle *>v)
-{
-	for(int i=0;i<v.size();i++)
-	{
-		cout << i <<": " << v[i]->toString() << endl;
-	}
-}
 
+///create trips section
 void Lyfter::addDestinationsTrip(Trip *t)
 {
 	string place="";
@@ -548,7 +582,6 @@ void Lyfter::addDestinationsTrip(Trip *t)
 
 	}
 }
-
 bool Lyfter::createTrip()
 {
 
@@ -655,11 +688,10 @@ bool Lyfter::createTrip()
 	cls();
 	return true;
 }
+///end create trips section
 
 
-
-//trip search section
-
+///trip search section
 void Lyfter::chooseTrip(vector<Trip *> v,vector<Place*>p)
 {
 	bool validIndex=false;
@@ -740,7 +772,6 @@ bool Lyfter::userDest()
 	}
 	return false;
 }
-
 bool Lyfter::allVacantTrips()
 {
 	cls();
@@ -765,7 +796,6 @@ bool Lyfter::allVacantTrips()
 
 
 }
-
 long Lyfter::displayTripMenu()
 {
 	string user_in="";
@@ -825,10 +855,9 @@ long Lyfter::displayTripMenu()
 		}
 	}
 }
-//end of trip search section
+///end of trip search section
 
-//trip history section
-
+///trip history section
 void Lyfter::tripSortByDriverName()
 {
 	vector<Trip *> trips = vector<Trip*>();
@@ -848,7 +877,6 @@ void Lyfter::tripSortByDriverName()
 		cout <<i<<":"<< trips[i]->toString() << endl;
 	}
 }
-
 void Lyfter::displayBySmoking()
 {
 	vector<Trip *> trips = vector<Trip*>();
@@ -872,7 +900,6 @@ void Lyfter::displayBySmoking()
 		cout << "Smoking not Allowed" <<":"<< trips[i]->toString() << endl;
 	}
 }
-
 void Lyfter::displayTripsDriving()
 {
 	vector<Trip *> future = vector<Trip*>();
@@ -901,19 +928,16 @@ void Lyfter::displayFutureTrips()
 		cout <<i<<":"<< future[i]->toString() << endl;
 	}
 }
-
 void Lyfter::displayPastTrips()
 {
 	cout << "Past Trips:" << endl;
 	l.curr_user->printTripHistory();
 }
-
 void Lyfter::displayAllTrips()
 {
 	displayFutureTrips();
 	displayPastTrips();
 }
-
 void Lyfter::displayTripHistoryMenu()
 {
 	string user_in="";
@@ -1029,10 +1053,9 @@ void Lyfter::displayTripHistoryMenu()
 		}
 	}
 }
+///end of trip history section
 
-//end of trip history section
-
-//buddy section
+///buddy section
 void Lyfter::displayBuddies(vector <RegPerson *> buds)
 {
 	for(unsigned int i=0;i<buds.size();i++)
@@ -1040,7 +1063,6 @@ void Lyfter::displayBuddies(vector <RegPerson *> buds)
 		cout << "Buddy username: " << buds[i]->getUsern() << endl;
 	}
 }
-
 bool Lyfter::rmBuddyUsername()
 {
 	string index="";
@@ -1107,7 +1129,6 @@ bool Lyfter::findBuddyUsername()
 	}
 	return false;
 }
-
 void Lyfter::displayBuddyMenu()
 {
 	string user_in="";
@@ -1151,9 +1172,9 @@ void Lyfter::displayBuddyMenu()
 		}
 	}
 }
-//end of buddies section
+///end of buddies section
 
-//payment section
+///payment section
 void Lyfter::displayPaymentMenu()
 {
 	string user_in="";
@@ -1202,9 +1223,9 @@ void Lyfter::displayPaymentMenu()
 		}
 	}
 }
-//end of payment section
+///end of payment section
 
-//settings section
+///settings section
 Vehicle* Lyfter::makeVehicle()
 {
 	string type="";
@@ -1238,7 +1259,13 @@ Vehicle* Lyfter::makeVehicle()
 
 	return v;
 }
-
+void Lyfter::displayVehicles(vector<Vehicle *>v)
+{
+	for(int i=0;i<v.size();i++)
+	{
+		cout << i <<": " << v[i]->toString() << endl;
+	}
+}
 bool Lyfter::rmVehicle()
 {
 	string index="";
@@ -1265,7 +1292,6 @@ bool Lyfter::rmVehicle()
 	}
 	return false;
 }
-
 bool Lyfter::changePassword(RegPerson* p)
 {
 	cls();
@@ -1293,7 +1319,6 @@ bool Lyfter::changePassword(RegPerson* p)
 	cls();
 	return false;
 }
-
 void Lyfter::displaySettingsMenu()
 {
 	string user_in="";
@@ -1345,7 +1370,7 @@ void Lyfter::displaySettingsMenu()
 		}
 	}
 }
-
+///nd of settings section
 int main()
 {
 	Logic l("config");
