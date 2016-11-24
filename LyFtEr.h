@@ -1,8 +1,6 @@
 /*
  * LyFtEr.h
  *
- *  Created on: Nov 24, 2016
- *      Author: Holykael1
  */
 
 #ifndef LYFTER_H_
