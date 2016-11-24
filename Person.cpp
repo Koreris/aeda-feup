@@ -2,51 +2,85 @@
 #include "Trip.h"
 #include <algorithm>
 
+/**
+ * @brief Person default constructor
+ */
 Person::Person()
 {
 	telephone_nr=000000000;
 	billing=0;
 	name="emptyName";
 }
-
+/**
+ * @brief Person constructor
+ * @param n person's name
+ * @param t_nr person's phone
+ */
 Person::Person(string n, unsigned long t_nr)
 {
 	name=n;
 	telephone_nr=t_nr;
 	billing = 0;
 }
+/**
+ * @brief Person destructor
+ **/
 Person::~Person(){}
 //setters
+
+/**
+ * @brief Sets the person's name
+ * @param n string with the person's name
+ */
 void Person::setName(string n)
 {
 	name=n;
 }
-
+/**
+ * @brief Sets the person's phone
+ * @param t_nr unsigned long with the person's phone
+ */
 void Person::setTelNr(unsigned long t_nr)
 {
 	telephone_nr=t_nr;
 }
-
+/**
+ * @brief Sets the person's billing debt
+ * @param f float with wanted value
+ */
 void Person::setBilling(float f)
 {
 	billing=f;
 }
-
+/**
+ * @brief Outputs message that bill was paid, resets billing to 0
+ */
 void Person::payBilling(){
 	cout << "Paid " << billing << " € : All bills paid" << endl;
 	billing = 0;
 }
 //getters
+
+/**
+ * @brief Returns the name
+ * @return string with the person's name
+ */
 string Person::getName() const
 {
 	return name;
 }
-
+/**
+ * @brief Returns the phone
+ * @return long with the person's phone
+ */
 unsigned long Person::getTelNr() const
 {
 	return telephone_nr;
 }
-
+/**
+ * @brief Returns the billing debt
+ * @return float with billing debt
+ */
 float Person::getBilling() const
 {
 	return billing;
@@ -58,6 +92,13 @@ RegPerson::RegPerson()
 {
 	username="empty";
 }
+/**
+ * @brief RegPerson constructor
+ * @param n person's name
+ * @param t_nr person's phone
+ * @param uname person's username
+ * @param passw person's password
+ */
 RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
 :Person(n,t_nr)
 {
@@ -67,6 +108,9 @@ RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
 	buddies = vector<RegPerson *>();
 	tripHistory = vector<Trip *>();
 }
+/**
+ * @brief
+ */
 RegPerson::~RegPerson(){}
 //setters
 
