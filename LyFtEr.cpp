@@ -820,12 +820,16 @@ long displayTripMenu()
 			case 2:
 				if(allVacantTrips())
 				{
+
 					prev_state=curr_state;
 					if(l.login)
 						curr_state=loginMenu;
 					else curr_state=mainMenu;
 				}
-				else cls();
+				else{
+					pressEnter();
+					cls();
+				}
 				break;
 			case 3:
 				prev_state=curr_state;
