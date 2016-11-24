@@ -78,36 +78,61 @@ void Vehicle::setCarSeats(unsigned int c_s)
 }
 
 //getters
+
+/**
+ * @brief Returns the name of the owner
+ * @return string with the owner's name
+ */
 string Vehicle::getOwner() const
 {
 	return owner;
 }
 
+/**
+ * @brief Returns the type of the vehicle
+ * @return string with the vehicle's type
+ */
 string Vehicle::getType() const
 {
 	return type;
 }
 
+/**
+ * @brief Returns the vehicle's brand
+ * @return string with the vehicle's brand
+ */
 string Vehicle::getBrand() const
 {
 	return brand;
 }
 
+/**
+ * @brief Returns the vehicle's license plate
+ * @return string with the license plate
+ */
 string Vehicle::getLicensePlate() const
 {
 	return license_plate;
 }
 
+/**
+ * @brief Returns the number of car seats
+ * @return unsigned int with the number of car seats
+ */
 unsigned int Vehicle::getCarSeats() const
 {
 	return car_seats;
 }
 
+/**
+ * @brief Writes all the information about a vehicle to a string
+ * @return string with the vehicle's information
+ */
 string Vehicle::toString()
 {
 	stringstream ss;
 
-	ss << "owner:" << owner << "|type:" << type << "|brand:" << brand << "|Plate:" << license_plate << "|seats:" << car_seats;
+	ss << "owner: " << owner << " |type: " << type << " |brand: " << brand << " |Plate: " << license_plate << " |seats: " << car_seats;
 
 	return ss.str();
 }

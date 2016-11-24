@@ -1097,7 +1097,7 @@ bool Lyfter::findBuddyUsername()
 		{
 			RegPerson * user= buddies[0];
 			displayBuddies(buddies);
-			cout << "Added "<< user->getUsern() << "successfully" << endl;
+			cout << "Added "<< user->getUsern() << " successfully" << endl;
 			l.curr_user->insertBuddy(user);
 			pressEnter();
 			cls();
