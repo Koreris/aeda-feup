@@ -8,7 +8,7 @@
 #include <windows.h>
 
 #include <algorithm>
-
+Logic l;
 void pressEnter(){
 	cout << "Press Enter to continue..." << endl;
 	getchar();
@@ -30,7 +30,7 @@ void cls() {
     );
     SetConsoleCursorPosition(console, topLeft);
 }
-Logic l("config");
+
 
 enum states
 {
@@ -1364,7 +1364,7 @@ void displaySettingsMenu()
 
 int main()
 {
-
+	Logic l("config");
 	l.load_data();
 	cout << "     __ __  __ ______ ______ ______ ____  " << endl;
 	cout << "    / / \\ \\/ // ____//_  __// ____// __ \\ " << endl;
