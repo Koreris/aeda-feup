@@ -5,7 +5,7 @@
 #include "Trip.h"
 #include "Vehicle.h"
 #include "Logic.h"
-
+#include <windows.h>
 
 #include <algorithm>
 
@@ -15,7 +15,7 @@ void pressEnter(){
 }
 
 void cls() {
-    /*COORD topLeft  = { 0, 0 };
+    COORD topLeft  = { 0, 0 };
     HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO screen;
     DWORD written;
@@ -28,8 +28,7 @@ void cls() {
         console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE,
         screen.dwSize.X * screen.dwSize.Y, topLeft, &written
     );
-    SetConsoleCursorPosition(console, topLeft);*/
-	 cout << string( 100, '\n' );
+    SetConsoleCursorPosition(console, topLeft);
 }
 Logic l("config");
 
