@@ -501,7 +501,7 @@ void Lyfter::displayLoginMenu()
 	cout << "You are logged in! Here are your options:" << endl
 					<< "|*****************************************************************|" << endl <<
 					"| 1.  Search for your next trip                                   |" << endl <<
-					"| 2.  Create a trip (driver's only)                               |" << endl <<
+					"| 2.  Create a trip (drivers only)                               |" << endl <<
 					"| 3.  Your trip history                                           |" << endl <<
 					"| 4.  Your buddies                                                |" << endl <<
 					"| 5.  Your payment options                                        |" << endl <<
