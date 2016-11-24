@@ -119,6 +119,9 @@ RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
 RegPerson::~RegPerson(){}
 //setters
 
+/**
+ * @brief RegPerson destructor
+ */
 void RegPerson::setUsern(string usrn)
 {
 	username=usrn;

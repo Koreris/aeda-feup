@@ -22,6 +22,7 @@ Logic::Logic(string dir){
 	cfg_file_deldestinations=cfg_dir+CFG_FILE_DEL_DESTINATIONS;
     cfg_file_curtrips=cfg_dir+CFG_FILE_CURTRIPS;
     cfg_file_deltrips=cfg_dir+CFG_FILE_DELTRIPS;
+    login=false;
 
 }
 
