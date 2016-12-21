@@ -15,7 +15,10 @@ viatura própria e a partilham no sistema, pagam apenas uma taxa de manutenção
 
 O sistema, para além de guardar as relações de amizade (“buddies”) dos utilizadores registados, também                               mantém o histórico das viagens realizadas, incluindo o nome do utilizador proprietário da viatura, os pontos de                         origem e destino da viagem, a hora de início e de fim, assim como o dia emque foi realizada. Adicionalmente                               poderá considerar veículos diferentes, nomeadamente veículos ligeiros (5 lugares), vans (de 7 lugares), entre                             outras opções. 
 
------------ Parte II ------------
+
+--------------------- Parte II ----------------------
+
+
 ● A empresa decidiu disponibilizar aos clientes informação sobre as viaturas disponíveis; alguns clientes
 poderão condicionar suas opções de parlha
 de viagem em função do po
