@@ -61,22 +61,25 @@ class RegPerson: public Person
 private:
 	string password;
 	string username;
+	string address;
 	vector <RegPerson*> buddies;
 	vector <Vehicle *> vehicles;
 	vector <Trip*> tripHistory;
 	vector<string> notifications;
 public:
 	RegPerson();
-	RegPerson(string n, unsigned long t_nr, string uname, string passw);
+	RegPerson(string n, string a, unsigned long t_nr, string uname, string passw);
 	~RegPerson();
 
 	//setters
 	void setPassw(string pw);
 	void setUsern(string usrn);
+	void setAddress(string ad);
 
 	//getters
 	string getPassw() const;
 	string getUsern() const;
+	string getAddress() const;
 	bool getHasVehicle() const;
 	vector<RegPerson*>& getBuddies();
 	vector<Vehicle *>& getVehicles();

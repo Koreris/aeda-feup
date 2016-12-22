@@ -1,5 +1,6 @@
 
 #include "LyFtEr.h"
+
 /**
  * Prompts user to press enter, mimicking a paused state until user presses enter
  * @brief press enter to continue
@@ -320,6 +321,7 @@ bool Lyfter::registerUser(){
 	string passw="";
 	string name="";
 	string phone="";
+	string addr="";
 	long phonenr;
 	bool validUser=false;
 	cout << "Input your desired username: " << endl;
@@ -334,23 +336,28 @@ bool Lyfter::registerUser(){
 	getline(cin, passw);
 	cin.clear();
 
+	cout << "Input your address: " << endl;
+	getline(cin, addr);
+	cin.clear();
+
 	cout << "Input your real name: " << endl;
-		getline(cin, name);
-		cin.clear();
-		if(usr==""){
-			cout <<"Invalid name" << endl;
-			return false;
-		}
-		//cin.ignore(10000, '\n');
-		cout << "Input your telephone number: " << endl;
-		getline(cin, phone);
-		phonenr=stol(phone);
-		cin.clear();
-		RegPerson * user = new RegPerson(name,phonenr,usr,passw);
-		l.getRegUsers().push_back(user);
-		cout << "Added user:";
-		user->printPerson();
-		return true;
+	getline(cin, name);
+	cin.clear();
+	if(usr=="")
+	{
+		cout <<"Invalid name" << endl;
+		return false;
+	}
+	//cin.ignore(10000, '\n');
+	cout << "Input your telephone number: " << endl;
+	getline(cin, phone);
+	phonenr=stol(phone);
+	cin.clear();
+	RegPerson * user = new RegPerson(name,addr,phonenr,usr,passw);
+	l.getRegUsers().push_back(user);
+	cout << "Added user: ";
+	user->printPerson();
+	return true;
 }
 /**
  * @brief  Displays sign up menu and changes states accordingly to user input
@@ -1322,21 +1329,33 @@ Vehicle* Lyfter::makeVehicle()
 {
 	string type="";
 	string brand="";
+	string model="";
+	unsigned short int year=-1;
 	string license_plate="";
 	string seats="";
 	unsigned int car_seats;
 
-	cout << "Input the car type (either van, sedan or hatchback): " << endl;
+	cout << "Input the vehicle type (either van, sedan, hatchback, supercar or bike): " << endl;
 	getline(cin,type);
 	cin.clear();
 	//cin.ignore(10000, '\n');
 
-	cout << "Input the car brand: " << endl;
+	cout << "Input the vehicle brand: " << endl;
 	getline(cin,brand);
 	cin.clear();
 	//cin.ignore(10000, '\n');
 
-	cout << "Input the car license plate: " << endl;
+	cout << "Input the vehicle model: " << endl;
+	getline(cin,brand);
+	cin.clear();
+	//cin.ignore(10000, '\n');
+
+	cout << "Input the vehicle year: " << endl;
+	getline(cin,brand);
+	cin.clear();
+	//cin.ignore(10000, '\n');
+
+	cout << "Input the vehicle license plate: " << endl;
 	getline(cin,license_plate);
 	cin.clear();
 	//cin.ignore(10000, '\n');
@@ -1347,7 +1366,7 @@ Vehicle* Lyfter::makeVehicle()
 	cin.clear();
 	//cin.ignore(10000, '\n');
 
-	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,license_plate,car_seats);
+	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,model,year,license_plate,car_seats);
 
 	return v;
 }

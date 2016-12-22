@@ -100,13 +100,15 @@ RegPerson::RegPerson()
 /**
  * @brief RegPerson constructor
  * @param n person's name
+ * @param a person's address
  * @param t_nr person's phone
  * @param uname person's username
  * @param passw person's password
  */
-RegPerson::RegPerson(string n, unsigned long t_nr, string uname,string passw)
+RegPerson::RegPerson(string n, string a, unsigned long t_nr, string uname,string passw)
 :Person(n,t_nr)
 {
+	address=a;
 	password=passw;
 	username=uname;
 	vehicles = vector<Vehicle *>();
@@ -126,6 +128,15 @@ void RegPerson::setUsern(string usrn)
 {
 	username=usrn;
 }
+
+/**
+ * @brief Sets address to addr
+ */
+void RegPerson::setAddress(string addr)
+{
+	address=addr;
+}
+
 /**
  * @brief Sets password to pw
  */
@@ -152,6 +163,15 @@ string RegPerson::getUsern() const
 string RegPerson::getPassw() const
 {
 	return password;
+}
+
+/**
+ * @brief Returns the address
+ * @return string with address
+ */
+string RegPerson::getAddress() const
+{
+	return address;
 }
 
 /**
@@ -304,7 +324,7 @@ void RegPerson::removeVehicle(int index)
 void RegPerson::printPerson()
 {
 	stringstream ss,ssn;
-	ss << "Name:" << name << "| Phone:" << telephone_nr << "| Username:" << username << "| Password:" << password;
+	ss << "Name:" << name << " | Address:" << address << " | Phone:" << telephone_nr << " | Username:" << username << " | Password:" << password;
 	cout << ss.str() << endl;
 	for(int i=0;i<vehicles.size();i++)
 	{

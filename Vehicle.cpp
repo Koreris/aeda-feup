@@ -6,6 +6,7 @@
 Vehicle::Vehicle()
 {
 	car_seats=0;
+	year=1886;
 }
 
 /**
@@ -13,14 +14,18 @@ Vehicle::Vehicle()
  * @param o owner's name
  * @param t vehicle's type
  * @param b vehicle's brand
+ * @param m vehicle's model
+ * @param y vehicle's year
  * @param b vehicle's license plate
  * @param c_s car seats of vehicle
  */
-Vehicle::Vehicle(string o, string t, string b, string l_p, unsigned int c_s)
+Vehicle::Vehicle(string o, string t, string b, string m, unsigned short int y, string l_p, unsigned int c_s)
 {
 	owner=o;
 	type=t;
 	brand=b;
+	model=m;
+	year=y;
 	license_plate=l_p;
 	car_seats=c_s;
 }
@@ -57,6 +62,24 @@ void Vehicle::setType(string t)
 void Vehicle::setBrand(string b)
 {
 	brand=b;
+}
+
+/**
+ * @brief Sets the vehicle's model
+ * @param t string with the vehicle's model
+ */
+void Vehicle::setModel(string m)
+{
+	model=m;
+}
+
+/**
+ * @brief Sets the vehicle's year
+ * @param t unsigned short int with the vehicle's year
+ */
+void Vehicle::setYear(unsigned short int y)
+{
+	year=y;
 }
 
 /**
@@ -107,6 +130,24 @@ string Vehicle::getBrand() const
 }
 
 /**
+ * @brief Returns the vehicle's model
+ * @return string with the vehicle's model
+ */
+string Vehicle::getModel() const
+{
+	return model;
+}
+
+/**
+ * @brief Returns the vehicle's year
+ * @return unsigned short int with the vehicle's year
+ */
+unsigned short int Vehicle::getYear() const
+{
+	return year;
+}
+
+/**
  * @brief Returns the vehicle's license plate
  * @return string with the license plate
  */
@@ -132,7 +173,7 @@ string Vehicle::toString()
 {
 	stringstream ss;
 
-	ss << "owner: " << owner << " |type: " << type << " |brand: " << brand << " |Plate: " << license_plate << " |seats: " << car_seats;
+	ss << "Owner: " << owner << " |Type: " << type << " |Brand: " << brand << " |Model: " << model << " |Year: " << year << " |License Plate: " << license_plate << " |seats: " << car_seats;
 
 	return ss.str();
 }
