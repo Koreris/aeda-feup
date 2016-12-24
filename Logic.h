@@ -110,6 +110,17 @@ public:
 	int load_trips();
 	int load_data();
 	///@}
+
+	/** @name Saving to file
+	 */
+	///@{
+	int save_regUsers();
+	//int save_del_regUsers();
+	int save_destinations();
+	int save_del_destinations();
+	int save_trips();
+	int save_data();
+	///@}
 };
 
 /** @name Exceptions
