@@ -41,6 +41,7 @@ public:
 	unsigned short int getYear() const;
 	string getLicensePlate() const;
 	unsigned int getCarSeats() const;
+	bool operator<(const Vehicle& vc1);
 
 	string toString();
 };

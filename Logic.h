@@ -35,6 +35,8 @@ private:
 	vector<Place *> del_destinations;
 	vector<Trip *> cur_trips;
 	vector<Trip *> del_trips;
+	//BST<VehicleWrapper> available_vehicles;
+
 	string cfg_dir;
 	string cfg_file_regusers;
 	string cfg_file_delregusers;
@@ -53,12 +55,14 @@ public:
 	/** @name Getters
 	*/
 	///@{
+
 	Date get_curDate() const;
 	vector<Trip*>& getCurTrips ();
 	vector<Place*>& getDelDestinations ();
 	vector<Trip*>& getDelTrips ();
 	vector<Place*>& getDestinations ();
 	vector<RegPerson*>& getRegUsers ();
+
 	///@}
 
 	/** @name Setters

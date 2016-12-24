@@ -338,14 +338,18 @@ void RegPerson::printPerson()
  * @param string fee - what kind of fee to charge
  * @param float triplength - distance of the trip produces higher charges
  */
-void RegPerson::addBill(string fee, float triplength){
+void RegPerson::addBill(string fee, float triplength)
+{
 	float prevbilling { billing };
-	if(fee=="monthly"){
+	if(fee=="monthly")
+	{
 		billing+=10;
 	}
 
-	if(fee=="trip"){
-		if(!this->getHasVehicle()){
+	if(fee=="trip")
+	{
+		if(!this->getHasVehicle())
+		{
 			billing+=4+triplength*0.2;
 		}
 	}

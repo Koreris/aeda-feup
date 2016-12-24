@@ -817,36 +817,45 @@ int Logic::load_trips()
  * @brief Loads all the Program information from files
  * @return 0 upon success, non-zero otherwise
  */
-int Logic::load_data() {
+int
+Logic::load_data ()
+{
+	try
+	{
+		load_regUsers ();
+	}
+	catch (CorruptedRegUser& e)
+	{
+		return -1;
+	}
 
-try{
-	load_regUsers();
-}
-catch(CorruptedRegUser& e){
-	return -1;
-}
+	try
+	{
+		load_destinations ();
+	}
+	catch (CorruptedDestination& e)
+	{
+		return -1;
+	}
 
-try{
-	load_destinations();
-}
-catch(CorruptedDestination& e){
-	return -1;
-}
+	try
+	{
+		load_del_destinations ();
+	}
+	catch (CorruptedDelDestination& e)
+	{
+		return -1;
+	}
 
-try{
-	load_del_destinations();
-}
-catch(CorruptedDelDestination& e){
-	return -1;
-}
-
-try{
-	load_trips();
-}
-catch(CorruptedTrip& e){
-	return -1;
-}
- return 0;
+	try
+	{
+		load_trips ();
+	}
+	catch (CorruptedTrip& e)
+	{
+		return -1;
+	}
+	return 0;
 }
 
 

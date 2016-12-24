@@ -1,4 +1,5 @@
 #include "Vehicle.h"
+#include "VehicleWrapper.h"
 
 /**
  * @brief Vehicle default constructor
@@ -177,3 +178,22 @@ string Vehicle::toString()
 
 	return ss.str();
 }
+
+bool Vehicle::operator<(const Vehicle& vc1)
+	{
+		if (this->getBrand() == vc1.getBrand())
+		{
+			if (this->getModel() == vc1.getModel())
+			{
+				return this->getYear() < vc1.getYear();
+			}
+			else
+			{
+				return this->getModel() == vc1.getModel();
+			}
+		}
+		else
+		{
+			return this->getBrand() < vc1.getBrand();
+		}
+	}

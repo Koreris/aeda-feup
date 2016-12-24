@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <iomanip>
 #include <cstdlib>
 #include <string>
@@ -11,3 +12,4 @@
 #include <windows.h>
 #include <fstream>
 #include <list>
+#include "BST.h"

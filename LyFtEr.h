@@ -12,9 +12,7 @@
 #include "Trip.h"
 #include "Vehicle.h"
 #include "Logic.h"
-#include <windows.h>
 
-#include <algorithm>
 enum states
 			{
 				mainMenu,
