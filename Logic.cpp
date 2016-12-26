@@ -905,10 +905,10 @@ int Logic::save_regUsers()
 					fout << "year=" << regUsers[i]->getVehicles().at(j)->getYear() << endl;
 					fout << "plate=" << regUsers[i]->getVehicles().at(j)->getLicensePlate() << endl;
 					fout << "seats=" << regUsers[i]->getVehicles().at(j)->getCarSeats() << endl;
-					fout << "[\Vehicle]\n";
+					fout << "[/Vehicle]\n";
 				}
 			}
-			fout << "[RegUser]\n";
+			fout << "[/RegUser]\n";
 		}
 	}
 	fout.close();
@@ -944,7 +944,7 @@ int Logic::save_destinations()
 			fout << "name=" << destinations[i]->getName() << endl;
 			fout << "x=" << destinations[i]->getCoords().first << endl;
 			fout << "y=" << destinations[i]->getCoords().second << endl;
-			fout << "[\Place]\n";
+			fout << "[/Place]\n";
 		}
 	}
 	fout.close();
@@ -981,7 +981,7 @@ int Logic::save_del_destinations()
 				fout << "name=" << del_destinations[i]->getName() << endl;
 				fout << "x=" << del_destinations[i]->getCoords().first << endl;
 				fout << "y=" << del_destinations[i]->getCoords().second << endl;
-				fout << "[\DelPlace]\n";
+				fout << "[/DelPlace]\n";
 			}
 		}
 		fout.close();
@@ -1050,7 +1050,7 @@ int Logic::save_trips()
 				{
 					fout << "tplace=" << (*it).second.at(t)->getName() << endl;
 				}
-				fout << "[\Traveller]\n";
+				fout << "[/Traveller]\n";
 			}
 			fout << "[/Trip]\n";
 		}

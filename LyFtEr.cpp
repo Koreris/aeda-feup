@@ -1369,7 +1369,8 @@ Vehicle* Lyfter::makeVehicle()
 	//cin.ignore(10000, '\n');
 
 	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,model,year,license_plate,car_seats);
-
+	l.save_data();
+	l.load_data();
 	return v;
 }
 /**
@@ -1439,6 +1440,8 @@ bool Lyfter::changePassword(RegPerson* p)
 	if(l.userLogin(p->getUsern(), curr_passw))
 	{
 		p->setPassw(new_passw);
+		l.save_data();
+		l.load_data();
 		cout << "Changed password successfully" << endl;
 		pressEnter();
 		cls();
