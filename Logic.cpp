@@ -858,7 +858,7 @@ Logic::load_data ()
 	return 0;
 }
 
-//--fix comments from here
+////////////////--fix comments from here
 
 /**
  * Loads RegPerson data members from file and creates RegPerson * objects
@@ -869,7 +869,6 @@ Logic::load_data ()
 int Logic::save_regUsers()
 {
 	ofstream fout;
-	stringstream ss;
 
 	// -------------------
 	// RegUsers file
@@ -877,111 +876,41 @@ int Logic::save_regUsers()
 
 	fout.open(cfg_file_regusers.c_str());
 
-	if (fout.fail()) {
+	if (fout.fail())
+	{
 		cout << "Opening file failed " << cfg_file_regusers.c_str() << endl;
-		return -1;
+		throw CorruptedRegUser();
 	}
+
 	else
 	{
-		string line;
+		for(int i=0; i<regUsers.size(); i++)
+		{
+			fout << "[RegUser]\n";
+			fout << "name=" << regUsers[i]->getName() << endl;
+			fout << "address=" << regUsers[i]->getAddress() << endl;
+			fout << "phone=" << regUsers[i]->getTelNr() << endl;
+			fout << "username=" << regUsers[i]->getUsern() << endl;
+			fout << "password=" << regUsers[i]->getPassw() << endl;
 
-		string key = "";
-		string value = "";
-
-		string name ="";
-		unsigned long phone=-1;
-		string username="";
-		string password="";
-		string address="";
-
-		vector<Vehicle *> userVehicle = vector<Vehicle *>();
-
-		//vehicle stuff
-		string owner="";
-		string type="";
-		string brand="";
-		string model="";
-		unsigned short int year=-1;
-		string license_plate="";
-		unsigned long seats = -1;
-
-
-
-		while (!fout.eof()) {
-			if (line == "[RegUser]")
+			if(regUsers[i]->getHasVehicle())
 			{
-				name ="";
-				phone=-1;
-				userVehicle.clear();
-				username="";
-				password="";
-				address="";
-			}
-			else if (line == "[/RegUser]")
-			{
-				if (name == "" || phone == -1 || username == "" || password=="")
-					throw CorruptedRegUser();
-				RegPerson *user = new RegPerson(name, address, phone, username, password);
-				for(int i=0;i<userVehicle.size();i++)
+				for(int j=0; j<regUsers[i]->getVehicles().size(); j++)
 				{
-					user->getVehicles().push_back(userVehicle[i]);
+					fout << "[Vehicle]\n";
+					fout << "owner=" << regUsers[i]->getVehicles().at(j)->getOwner() << endl;
+					fout << "type=" << regUsers[i]->getVehicles().at(j)->getType() << endl;
+					fout << "brand=" << regUsers[i]->getVehicles().at(j)->getBrand() << endl;
+					fout << "model=" << regUsers[i]->getVehicles().at(j)->getModel() << endl;
+					fout << "year=" << regUsers[i]->getVehicles().at(j)->getYear() << endl;
+					fout << "plate=" << regUsers[i]->getVehicles().at(j)->getLicensePlate() << endl;
+					fout << "seats=" << regUsers[i]->getVehicles().at(j)->getCarSeats() << endl;
+					fout << "[\Vehicle]\n";
 				}
-				regUsers.push_back(user);
-				regUsers[regUsers.size()-1]->printPerson();
 			}
-			else if (line == "[Vehicle]")
-			{
-				owner="";
-				type="";
-				brand="";
-				model="";
-				year=-1;
-				license_plate="";
-				unsigned long seats = -1;
-			}
-			else if (line == "[/Vehicle]")
-			{
-				if (owner == "" || type == "" || brand == "" || model == "" || year == -1 || license_plate=="" || seats==-1)
-					throw CorruptedRegUser();
-				Vehicle *v = new Vehicle(owner, type, brand, model, year, license_plate,seats);
-				userVehicle.push_back(v);
-			}
-
-			else
-			{
-				ss.str("");
-				ss.str(line + "\n");
-				getline(ss, key, '=');
-				getline(ss, value);
-
-				if (key == "name")
-					name = value;
-				else if (key == "phone")
-					phone = stol(value);
-				else if (key == "username")
-					username = value;
-				else if (key == "password")
-					password = value;
-				else if (key == "address")
-					address = value;
-				else if (key == "owner")
-					owner = value;
-				else if (key == "brand")
-					brand = value;
-				else if (key == "model")
-					model = value;
-				else if (key == "year")
-					year = stol(value);
-				else if (key == "plate")
-					license_plate = value;
-				else if (key == "seats")
-					seats = stol(value);
-				else if (key == "type")
-					type = value;
-			}
+			fout << "[RegUser]\n";
 		}
 	}
-
 	fout.close();
 	return 0;
 }
@@ -992,72 +921,34 @@ int Logic::save_regUsers()
  * @brief loads Place objects from file
  * @return 0 on success, -1 otherwise
  */
-int Logic::save_destinations(){
-	ifstream fin;
-	stringstream ss;
+int Logic::save_destinations()
+{
+	ofstream fout;
 
 	// -------------------
 	// Destinations file
 	// -------------------
 
-	fin.open(cfg_file_destinations.c_str());
+	fout.open(cfg_file_destinations.c_str());
 
-	if (fin.fail())
+	if (fout.fail())
 	{
 		cout << "Opening file failed " << cfg_file_destinations.c_str() << endl;
-		return -1;
+		throw CorruptedDestination();
 	}
 	else
 	{
-		string line;
-
-		string key = "";
-		string value = "";
-
-		string name ="";
-		int x=-1;
-		int y=-1;
-
-		while (!fin.eof())
+		for(int i=0; i<destinations.size(); i++)
 		{
-			getline(fin, line);
-			if (line == "[Place]")
-			{
-				name ="";
-				x=-1;
-				y=-1;
-			}
-			else if (line == "[/Place]")
-			{
-				if (name == "" ||x == -1 || y == -1)
-					throw CorruptedDestination();
-
-				pair<int,int> coord(x,y);
-				Place *pl = new Place(name,coord);
-				destinations.push_back(pl);
-				cout << destinations[destinations.size()-1]->toString() << endl;
-			}
-			else
-			{
-				ss.str("");
-				ss.str(line + "\n");
-				getline(ss, key, '=');
-				getline(ss, value);
-
-				if (key == "name")
-					name = value;
-				else if (key == "x")
-					x = stol(value);
-				else if (key == "y")
-					y = stol(value);
-
-			}
+			fout << "[Place]\n";
+			fout << "name=" << destinations[i]->getName() << endl;
+			fout << "x=" << destinations[i]->getCoords().first << endl;
+			fout << "y=" << destinations[i]->getCoords().second << endl;
+			fout << "[\Place]\n";
 		}
 	}
-
-	fin.close();
+	fout.close();
 	return 0;
-
 }
 /**
  * Loads place data members from file and creates Place * objects
@@ -1067,71 +958,34 @@ int Logic::save_destinations(){
  * @brief loads "deleted" Place objects from file
  * @return 0 on success, -1 otherwise
  */
-int Logic::save_del_destinations(){
-	ifstream fin;
-	stringstream ss;
+int Logic::save_del_destinations()
+{
+	ofstream fout;
 
-	// -------------------
-	// Destinations file
-	// -------------------
+		// -------------------
+		// Destinations file
+		// -------------------
 
-	fin.open(cfg_file_deldestinations.c_str());
+		fout.open(cfg_file_deldestinations.c_str());
 
-	if (fin.fail())
-	{
-		cout << "Opening file failed " << cfg_file_deldestinations.c_str() << endl;
-		return -1;
-	}
-	else
-	{
-		string line;
-
-		string key = "";
-		string value = "";
-
-		string name ="";
-		int x=-1;
-		int y=-1;
-
-		while (!fin.eof())
+		if (fout.fail())
 		{
-			getline(fin, line);
-			if (line == "[DelPlace]")
+			cout << "Opening file failed " << cfg_file_deldestinations.c_str() << endl;
+			throw CorruptedDelDestination();
+		}
+		else
+		{
+			for(int i=0; i<del_destinations.size(); i++)
 			{
-				name ="";
-				x=-1;
-				y=-1;
-			}
-			else if (line == "[/DelPlace]")
-			{
-				if (name == "" ||x == -1 || y == -1)
-					throw CorruptedDelDestination();
-
-				pair<int,int> coord(x,y);
-				Place *pl = new Place(name,coord);
-				del_destinations.push_back(pl);
-				cout << del_destinations[del_destinations.size()-1]->toString() << endl;
-			}
-			else
-			{
-				ss.str("");
-				ss.str(line + "\n");
-				getline(ss, key, '=');
-				getline(ss, value);
-
-				if (key == "name")
-					name = value;
-				else if (key == "x")
-					x = stol(value);
-				else if (key == "y")
-					y = stol(value);
-
+				fout << "[DelPlace]\n";
+				fout << "name=" << del_destinations[i]->getName() << endl;
+				fout << "x=" << del_destinations[i]->getCoords().first << endl;
+				fout << "y=" << del_destinations[i]->getCoords().second << endl;
+				fout << "[\DelPlace]\n";
 			}
 		}
-	}
-
-	fin.close();
-	return 0;
+		fout.close();
+		return 0;
 }
 /**
  * Loads trip data members from file and creates Trip * objects
@@ -1144,189 +998,64 @@ int Logic::save_del_destinations(){
  */
 int Logic::save_trips()
 {
-	ifstream fin;
-	stringstream ss;
+	ofstream fout;
 
 	// -------------------
 	// Trips file
 	// -------------------
 
-	fin.open(cfg_file_curtrips.c_str());
+	fout.open(cfg_file_curtrips.c_str());
 
-	if (fin.fail())
+	if (fout.fail())
 	{
 		cout << "Opening file failed " << cfg_file_curtrips.c_str() << endl;
-		return -1;
-	} else
+		throw CorruptedTrip();
+	}
+	else
 	{
-		string line;
 
-		string key = "";
-		string value = "";
-
-		string vehicleowner ="";
-		unsigned long seats=-1;
-		string place="";
-		bool smoking=false;
-		string beginDate = "";
-		string endDate = "";
-
-		vector<pair<Place *,int> > route = vector<pair<Place *,int> >();
-
-		Person * driverP;
-		//Traveller stuff
-		string tuser="";
-		string tplace="";
-		vector<Place *> tplaces = vector<Place*>();
-		vector<pair<Person *,vector<Place *> > > travellers = vector<pair<Person *,vector<Place *> > >();
-
-
-		while (!fin.eof())
+		for(int i=0; i<cur_trips.size(); i++)
 		{
-			getline(fin, line);
-			if (line == "[Trip]")
+			fout << "[Trip]\n";
+			fout << "vehicleOwner=" << cur_trips[i]->getDriver() << endl;
+			fout << "seats=" << cur_trips[i]->getAvailableSeats() << endl;
+
+			unsigned int route_size = cur_trips[i]->getRoute().size();
+
+			for(int k=0; k<route_size; k++)
 			{
-				vehicleowner ="";
-				seats=-1;
-				smoking=false;
-				place="";
-				beginDate = "";
-				endDate = "";
-				route.clear();
-				travellers.clear();
-			}
-			else if (line == "[/Trip]")
-			{
-				if (vehicleowner == "" || seats == -1 || route.size()==0)
-					throw CorruptedTrip();
-				try
-				{
-					Date start_date(beginDate);
-				}
-				catch (Date::InvalidDate &d)
-				{
-					cout << "Invalid start Date in file" << endl;
-					throw CorruptedTrip();
-				}
-
-				try
-				{
-					Date end_date(endDate);
-				}
-				catch (Date::InvalidDate &d)
-				{
-					cout << "Invalid  finish in file" << endl;
-					throw CorruptedTrip();
-				}
-				//make dates after confirming they're valid
-				Date start_date(beginDate);
-				Date end_date(endDate);
-
-				Trip *trip = new Trip(vehicleowner, seats, smoking,start_date,end_date);
-				trip->addRoute(route);
-				if(driverP!=NULL)
-				{
-					driverP->addTripHistory(trip);
-				}
-				for(int i=0;i<travellers.size();i++)
-				{
-					trip->addTraveller(travellers[i].first,travellers[i].second);
-					travellers[i].first->addTripHistory(trip);
-
-				}
-
-
-				if(trip->getStart()<get_curDate()){
-					del_trips.push_back(trip);
-					cout <<"OLD_TRIP:"<<trip->toString() << endl;
-				}
-				else
-				{
-					cur_trips.push_back(trip);
-					cout <<"CUR_TRIP:"<<trip->toString() << endl;
-				}
-			}
-			else if (line == "[Traveler]")
-			{
-				tuser="";
-				tplace="";
-				tplaces.clear();
-			}
-			else if (line == "[/Traveler]")
-			{
-				if (tuser == "" || tplace == "")
-					throw CorruptedTrip();
-				Person * passenger;
-				if(tuser=="unregistered")
-				{
-
-					passenger= new UnregPerson();
-				}
-				else
-				{
-					passenger = findRegPerson(tuser);
-					if(passenger==NULL){
-						cout << "Invalid traveler: " << tuser << endl;
-						throw CorruptedTrip();
-					}
-				}
-				pair<Person *,vector<Place *> > traveler(passenger,tplaces);
-				travellers.push_back(traveler);
-
+				fout << "place=" << cur_trips[i]->getRoute().at(k).first->getName() << endl;
 			}
 
-			else
+			if(cur_trips[i]->getSmokingSign()==true)
 			{
-				ss.str("");
-				ss.str(line + "\n");
-				getline(ss, key, '=');
-				getline(ss, value);
-
-				if (key == "vehicleOwner")
-				{
-					vehicleowner = value;
-					driverP=findRegPerson(value);
-
-				}
-				else if (key == "seats")
-					seats = stol(value);
-				else if (key == "place"){
-					place = value;
-					Place * p = findDest(value,"loading");
-					if(p==NULL)
-					{
-						cout << "Invalid place in trips file " << endl;
-						throw CorruptedTrip();
-					}
-					pair <Place *, int> r(p,0);
-					route.push_back(r);
-				}
-				else if (key == "tplace"){
-					tplace = value;
-					Place * p = findDest(value,"loading");
-					if(p==NULL)
-					{
-						cout << "Invalid place in trips file " << endl;
-						throw CorruptedTrip();
-					}
-					tplaces.push_back(p);
-				}
-				else if (key == "smoking")
-				{
-					smoking=stol(value);
-				}
-
-				else if (key == "begindate")
-					beginDate = value;
-				else if (key == "finishdate")
-					endDate = value;
-				else if (key == "traveller")
-					tuser=value;
+				fout << "smoking=1" << endl;
 			}
+
+			else if(cur_trips[i]->getSmokingSign()==false)
+			{
+				fout << "smoking=0" << endl;
+			}
+
+			fout << "begindate=" << cur_trips[i]->getStart() << endl;
+			fout << "finishdate=" << cur_trips[i]->getEnd() << endl;
+
+			vector< pair <Person*, vector<Place*> > >::iterator it;
+			for(it=cur_trips[i]->getTravellers().begin(); it!=cur_trips[i]->getTravellers().end(); it++)
+			{
+				fout << "[Traveller]\n";
+				fout << "traveller=" << (*it).first->getUsern() << endl;
+
+				for(int t=0; t<(*it).second.size(); t++)
+				{
+					fout << "tplace=" << (*it).second.at(t)->getName() << endl;
+				}
+				fout << "[\Traveller]\n";
+			}
+			fout << "[/Trip]\n";
 		}
 	}
-
-	fin.close();
+	fout.close();
 	return 0;
 }
 /**
@@ -1336,12 +1065,11 @@ int Logic::save_trips()
  * @brief Loads all the Program information from files
  * @return 0 upon success, non-zero otherwise
  */
-int
-Logic::save_data ()
+int Logic::save_data ()
 {
 	try
 	{
-		load_regUsers ();
+		save_regUsers ();
 	}
 	catch (CorruptedRegUser& e)
 	{
@@ -1350,7 +1078,7 @@ Logic::save_data ()
 
 	try
 	{
-		load_destinations ();
+		save_destinations ();
 	}
 	catch (CorruptedDestination& e)
 	{
@@ -1359,7 +1087,7 @@ Logic::save_data ()
 
 	try
 	{
-		load_del_destinations ();
+		save_del_destinations ();
 	}
 	catch (CorruptedDelDestination& e)
 	{
@@ -1368,7 +1096,7 @@ Logic::save_data ()
 
 	try
 	{
-		load_trips ();
+		save_trips ();
 	}
 	catch (CorruptedTrip& e)
 	{

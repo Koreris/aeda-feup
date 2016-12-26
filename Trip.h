@@ -40,7 +40,7 @@ public:
 	bool getSmokingSign() const;
 	Date getStart() const;
 	Date getEnd() const;
-	vector<Person*> & getTravellers();
+	vector< pair <Person*, vector<Place*> > > & getTravellers();
 	string getDriver() const;
 	Vehicle* getVehicle() const;
 

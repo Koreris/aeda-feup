@@ -8,6 +8,8 @@
 #ifndef _VEHICLEWRAPPER_H_
 #define _VEHICLEWRAPPER_H_
 
+#include "Vehicle.h"
+
 class VehicleWrapper
 {
 public:

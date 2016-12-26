@@ -94,6 +94,8 @@ bool Lyfter::removeDestination()
 			validIndex=true;
 			cout << "Destination " << l.getDestinations()[i]<< " removed successfully"<<endl;
 			l.deleteDestinations(i);
+			l.save_data();
+			l.load_data();
 			return true;
 		}
 		cout << "Invalid index! Please input again." << endl;
@@ -1406,6 +1408,8 @@ bool Lyfter::rmVehicle()
 		{
 			validIndex=true;
 			l.curr_user->removeVehicle(i);
+			l.save_data();
+			l.load_data();
 			return true;
 		}
 		cout << "Invalid index! Please input again." << endl;

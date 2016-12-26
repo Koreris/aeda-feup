@@ -169,6 +169,15 @@ vector<pair<Place *,int> > Trip::getRoute() const
 }
 
 /**
+ * @brief Returns the trip's travellers
+ * @return vector< pair <Person*, vector<Place*> > >  with the trip's travellers and routes
+ */
+vector< pair <Person*, vector<Place*> > > & Trip::getTravellers()
+{
+	return travellers;
+}
+
+/**
  * @brief Returns if the trip allows smoking
  * @return bool with the allow value
  */
