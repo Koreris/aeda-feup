@@ -102,6 +102,9 @@ public:
 	//Printing functions
 	void printPerson();
 	void printTripHistory();
+
+	//operators
+		bool operator<(RegPerson*);
 };
 
 /**

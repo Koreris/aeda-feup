@@ -370,6 +370,14 @@ void RegPerson::printTripHistory()
 	}
 }
 
+bool RegPerson::operator<(RegPerson* a){
+	for(int i = 0; i < buddies.size(); i++){
+		if(buddies[i] == a){
+			return true;
+		}
+	}
+	return false;
+}
 //UnregPerson
 
 /**
