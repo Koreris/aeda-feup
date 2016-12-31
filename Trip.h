@@ -26,6 +26,9 @@ private:
 	float distance;
 	vector< pair <Place *,int> > route;
 	vector< pair <Person*, vector<Place*> > > travellers;
+
+	priority_queue<Person*, vector<Person*>, greater<Person*> > travellerQueue;
+
 	bool smoking_allowed;
 	Date start;
 	Date end;
@@ -52,6 +55,7 @@ public:
 	void setStart(Date s);
 	void setEnd(Date e);
 
+	priority_queue<Person*, vector<Person*>, greater<Person*> > addtopriorityQ(RegPerson*);
 
 	static bool compareTrips (Trip* i,Trip* j);
 	static bool compareTripsDriverName (Trip* i,Trip* j);

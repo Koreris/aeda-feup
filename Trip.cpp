@@ -475,3 +475,6 @@ string Trip::toStringByPerson (string name, long nr)
 	return ss.str ();
 }
 
+priority_queue<Person*, vector<Person*>, greater<Person*> > Trip::addtopriorityQ(RegPerson* a){
+	return travellerQueue;
+}

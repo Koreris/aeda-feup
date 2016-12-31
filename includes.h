@@ -14,6 +14,7 @@
 #include <utility>
 #include <list>
 #include "BST.h"
+#include <queue>
 
 //function to ignore upper case in strings
 /*bool caseInsensitive(const std::string& a, const std::string& b)
@@ -30,3 +31,4 @@
         return false;
     }
 }*/
+
