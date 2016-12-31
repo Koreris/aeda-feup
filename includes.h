@@ -14,3 +14,19 @@
 #include <utility>
 #include <list>
 #include "BST.h"
+
+//function to ignore upper case in strings
+/*bool caseInsensitive(const std::string& a, const std::string& b)
+{
+    if (a.length() == b.length())
+    {
+        return std::equal(b.begin(), b.end(), a.begin(), [](char lhs, char rhs)
+        {
+            return tolower(lhs) == tolower(rhs);
+        });
+    }
+    else
+    {
+        return false;
+    }
+}*/

@@ -15,9 +15,11 @@ class VehicleWrapper
 public:
 	Vehicle* vhc;
 
+	VehicleWrapper(){vhc=NULL;};
 	VehicleWrapper (Vehicle* v):vhc(v){};
-	~VehicleWrapper ();
+	//~VehicleWrapper (){};
 	bool operator<(const VehicleWrapper &vw) const;
+	bool operator==(const VehicleWrapper &vw) const;
 	Vehicle* operator->() {return vhc;}
 };
 

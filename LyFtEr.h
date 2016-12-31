@@ -25,7 +25,8 @@ enum states
 				chooseTripMenu,
 				adminMenu,
 				createTripMenu,
-				signUpMenu
+				signUpMenu,
+				advSearchOpt
 			};
 /**
  * @brief Lyfter class
@@ -72,6 +73,7 @@ public:
 	void displayPastTrips();
 	void displayAllTrips();
 	void displayTripHistoryMenu();
+	void displayAdvSearchOptMenu();
 	void displayBuddies(vector <RegPerson *> buds);
 	///@}
 
@@ -99,6 +101,16 @@ public:
 	bool findBuddyUsername();
 	Vehicle* makeVehicle();
 	bool rmVehicle();
+	bool transferVehicleTo();
+
+	//BST Search
+
+	bool BSTSearchByBrand();
+	bool BSTSearchByModel();
+	bool BSTSearchByYear();
+	bool BSTSearchByType();
+	bool BSTSearchBySeatNr();
+
 	///@}
 
 

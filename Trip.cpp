@@ -3,11 +3,17 @@
 
 /**
  * @brief Trip default constructor
+* @param VehicleOwner vehicle owner's name
+ * @param v vehicle
+ * @param smoke smoking allowed or not
+ * @param s start date
+ * @param e end date
  */
 Trip::Trip()
 {
 	vehicleOwner = "";
 	vehicle = new Vehicle();
+	plate = "";
 	distance=0;
 	available_seats=0;
 	smoking_allowed=false;
@@ -17,18 +23,11 @@ Trip::Trip()
 	travellers=vector< pair<Person*,vector<Place*> > >();
 }
 
-/**
- * @brief Trip constructor
- * @param VehicleOwner vehicle owner's name
- * @param v vehicle
- * @param smoke smoking allowed or not
- * @param s start date
- * @param e end date
- */
-Trip::Trip(string VehicleOwner,Vehicle* v,bool smoke, Date s,Date e)
+Trip::Trip(string VehicleOwner, string p, Vehicle* v,bool smoke, Date s,Date e)
 {
 	vehicleOwner=VehicleOwner;
 	vehicle = v;
+	plate=p;
 	available_seats=v->getCarSeats()-1;
 	smoking_allowed=smoke;
 	start = s;
@@ -46,9 +45,10 @@ Trip::Trip(string VehicleOwner,Vehicle* v,bool smoke, Date s,Date e)
  * @param s start date
  * @param e end date
  */
-Trip::Trip(string VehicleOwner,unsigned int seats,bool smoke, Date s,Date e)
+Trip::Trip(string VehicleOwner,string p,unsigned int seats,bool smoke, Date s,Date e)
 {
 	vehicleOwner=VehicleOwner;
+	plate=p;
 	available_seats=seats-1;
 	smoking_allowed=smoke;
 	start = s;
@@ -74,15 +74,6 @@ Trip::~Trip()
 void Trip::setAvailableSeats(unsigned int a_s)
 {
 	available_seats=a_s;
-}
-
-/**
- * @brief Sets the trip's vehicle
- * @param v Vehicle * with the intended vehicle for the trip
- */
-void Trip::setVehicle(Vehicle * v)
-{
-	vehicle=v;
 }
 
 /**
@@ -112,6 +103,10 @@ void Trip::setStart(Date s)
 	start=s;
 }
 
+void Trip::setLicensePlate(string lp)
+{
+	plate=lp;
+}
 /**
  * @brief Sets the trip's end date
  * @param e Date with the trip's end date
@@ -133,12 +128,12 @@ string Trip::getDriver() const
 }
 
 /**
- * @brief Returns the vehicle used in the trip
- * @return Vehicle* with the trip's vehicle
+ * @brief Returns the vehicle's license plate
+ * @return string with the license plate
  */
-Vehicle* Trip::getVehicle() const
+string Trip::getLicensePlate() const
 {
-	return vehicle;
+	return plate;
 }
 
 /**

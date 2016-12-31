@@ -11,3 +11,8 @@ bool VehicleWrapper::operator<(const VehicleWrapper &vw) const
 {
 	return (*vhc) < *(vw.vhc);
 }
+
+bool VehicleWrapper::operator== (const VehicleWrapper &vw) const
+{
+	return (*vhc) == *(vw.vhc);
+}

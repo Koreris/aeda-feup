@@ -42,6 +42,7 @@ public:
 	string getLicensePlate() const;
 	unsigned int getCarSeats() const;
 	bool operator<(const Vehicle& vc1);
+	bool operator== (const Vehicle &vc1) const;
 
 	string toString();
 };

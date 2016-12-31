@@ -8,6 +8,7 @@
 #include "Place.h"
 #include "Trip.h"
 #include "Vehicle.h"
+#include "VehicleWrapper.h"
 
 using namespace std;
 
@@ -35,7 +36,7 @@ private:
 	vector<Place *> del_destinations;
 	vector<Trip *> cur_trips;
 	vector<Trip *> del_trips;
-	//BST<VehicleWrapper> available_vehicles;
+	BST<VehicleWrapper> bst_vehicles;
 
 	string cfg_dir;
 	string cfg_file_regusers;
@@ -62,6 +63,7 @@ public:
 	vector<Trip*>& getDelTrips ();
 	vector<Place*>& getDestinations ();
 	vector<RegPerson*>& getRegUsers ();
+	BST<VehicleWrapper>& getBST();
 
 	///@}
 
@@ -91,6 +93,7 @@ public:
 	vector<Trip *> findVacantTrips(Person * p);
 	Place * findDest(string destname, string f="");
 	bool usernameExists(string n);
+	bool isUniqueLicensePlate(string n_lp);
 	///@}
 
 	/** @name sorting
@@ -118,7 +121,7 @@ public:
 	//int save_del_regUsers();
 	int save_destinations();
 	int save_del_destinations();
-	int save_trips();
+	int save_trips() const;
 	int save_data();
 	///@}
 };

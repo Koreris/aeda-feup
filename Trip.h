@@ -21,6 +21,7 @@ class Trip
 private:
 	string vehicleOwner;
 	Vehicle* vehicle;
+	string plate;
 	unsigned int available_seats;
 	float distance;
 	vector< pair <Place *,int> > route;
@@ -30,8 +31,8 @@ private:
 	Date end;
 public:
 	Trip();
-	Trip(string VehicleOwner,Vehicle* vehicle, bool smoke, Date s, Date e);
-	Trip(string VehicleOwner,unsigned int seats, bool smoke, Date s, Date e);
+	Trip(string VehicleOwner,string p, Vehicle* vehicle, bool smoke, Date s, Date e);
+	Trip(string VehicleOwner,string p, unsigned int seats, bool smoke, Date s, Date e);
 	~Trip();
 
 	unsigned int getAvailableSeats() const;
@@ -42,10 +43,10 @@ public:
 	Date getEnd() const;
 	vector< pair <Person*, vector<Place*> > > & getTravellers();
 	string getDriver() const;
-	Vehicle* getVehicle() const;
+	string getLicensePlate() const;
 
 	void setAvailableSeats(unsigned int a_s);
-	void setVehicle(Vehicle * v);
+	void setLicensePlate(string lp);
 	void setDistance(float d);
 	void setSmokingSign(bool s);
 	void setStart(Date s);

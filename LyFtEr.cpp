@@ -95,7 +95,6 @@ bool Lyfter::removeDestination()
 			cout << "Destination " << l.getDestinations()[i]<< " removed successfully"<<endl;
 			l.deleteDestinations(i);
 			l.save_data();
-			l.load_data();
 			return true;
 		}
 		cout << "Invalid index! Please input again." << endl;
@@ -132,6 +131,7 @@ bool Lyfter::updateDestination()
 			getline(cin, y);
 			cin.clear();
 			l.getDestinations()[i]->setCoords(stol(x),stol(y));
+			l.save_data();
 			cout << l.getDestinations()[i]->getName() <<"(" << x << "," << y << ") "<<" updated successfully" <<endl;
 		}
 		cout << "Invalid index! Please input again." << endl;
@@ -161,6 +161,7 @@ bool Lyfter::addDestination()
 		cin.clear();
 		Place * p = new Place(destname,pair<int,int>(stol(x),stol(y)));
 		l.getDestinations().push_back(p);
+		l.save_data();
 		cout << destname <<"(" <<x << "," << y << ") "<<" added successfully" <<endl;
 		return true;
 	}
@@ -357,6 +358,7 @@ bool Lyfter::registerUser(){
 	cin.clear();
 	RegPerson * user = new RegPerson(name,addr,phonenr,usr,passw);
 	l.getRegUsers().push_back(user);
+	l.save_data();
 	cout << "Added user: ";
 	user->printPerson();
 	return true;
@@ -710,9 +712,10 @@ bool Lyfter::createTrip()
 		else validEndDate=true;
 	}
 
-	Trip * t = new Trip(usr, l.curr_user->getVehicles()[i], smk,start_date,end_date);
+	Trip * t = new Trip(usr, l.curr_user->getVehicles().at(i)->getLicensePlate(), l.curr_user->getVehicles()[i], smk,start_date,end_date);
 	addDestinationsTrip(t);
 	l.getCurTrips().push_back(t);
+	l.save_data();
 	cout << "Successfully added the trip: " << t->toString() << endl;
 	curr_state=prev_state;
 	pressEnter();
@@ -754,14 +757,18 @@ void Lyfter::chooseTrip(vector<Trip *> v,vector<Place*>p)
 				p.push_back(v[i]->getRoute()[0].first);
 				p.push_back(v[i]->getRoute()[v[i]->getRoute().size()-1].first);
 			}
-			if(l.login){
+			if(l.login)
+			{
 				p.push_back(v[i]->getRoute()[0].first);
 				v[i]->addTraveller(l.curr_user,p);
 				l.curr_user->addBill("trip",v[i]->getDistance());
+				l.save_data();
 			}
-			else {
+			else
+			{
 				v[i]->addTraveller(l.curr_unreg,p);
 				l.curr_unreg->addBill("trip",v[i]->getDistance());
+				l.save_data();
 			}
 			pressEnter();
 		}
@@ -808,6 +815,7 @@ bool Lyfter::userDest()
 			places.push_back(place);
 			found=true;
 			chooseTrip(temp,places);
+			l.save_data();
 			cls();
 			return true;
 		}
@@ -837,6 +845,7 @@ bool Lyfter::allVacantTrips()
 	{
 		cout <<" found " <<temp.size() <<" trips" <<endl;
 		chooseTrip(temp,places);
+		l.save_data();
 		pressEnter();
 		cls();
 		return true;
@@ -847,6 +856,364 @@ bool Lyfter::allVacantTrips()
 
 
 }
+
+/**
+ * Prompts user for desired begin destination and end destination
+ * @brief choose begin and end destinations
+ * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ */
+bool Lyfter::BSTSearchByBrand()
+{
+	cls();
+	string brand="";
+	vector<Trip *> temp=vector<Trip *>();
+	vector<Trip *> valid_t=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
+	bool searched=false;
+
+	if(l.login)
+		temp=l.findVacantTrips(l.curr_user);
+	else
+		temp=l.findVacantTrips(l.curr_unreg);
+
+	if(temp.size()>0)
+	{
+		while(!searched)
+		{
+			cout << "Input the desired brand with first letter capitalised: (or F to quit selection) " << endl;
+			getline(cin, brand);
+			cin.clear();
+
+			if(brand=="F"||brand=="f")
+				break;
+
+			BSTItrIn<VehicleWrapper> it(l.getBST());
+			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
+
+
+			for(unsigned int i=0; i<temp.size(); i++)
+			{
+				cout << "vetor " << temp[i]->getLicensePlate() << endl;
+			}
+			while(!ita.isAtEnd())
+			{
+				cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
+				ita.advance();
+			}*/
+
+			while(!it.isAtEnd())
+			{
+				if(it.retrieve()->getBrand()==brand)
+				{
+					cout << "Found possible trips" << endl;
+					for(unsigned int i=0; i<temp.size(); i++)
+					{
+						if(temp[i]->getLicensePlate()==it.retrieve()->getLicensePlate())
+						{
+							valid_t.push_back(temp[i]);
+						}
+					}
+				}
+				it.advance();
+			}
+			if(valid_t.size()>0)
+			{
+				chooseTrip(valid_t,places);
+				l.save_data();
+			}
+			searched=true;
+		}
+		//if(!found)
+			//cout << "No trips with vehicles of the desired brand found!" << endl;
+	}
+	return searched;
+}
+
+/**
+ * Prompts user for desired begin destination and end destination
+ * @brief choose begin and end destinations
+ * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ */
+bool Lyfter::BSTSearchByModel()
+{
+	cls();
+	string model="";
+	vector<Trip *> temp=vector<Trip *>();
+	vector<Trip *> valid_t=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
+	bool searched=false;
+
+	if(l.login)
+		temp=l.findVacantTrips(l.curr_user);
+	else
+		temp=l.findVacantTrips(l.curr_unreg);
+
+	if(temp.size()>0)
+	{
+		while(!searched)
+		{
+			cout << "Input the desired model with first letter capitalised: (or F to quit selection) " << endl;
+			getline(cin, model);
+			cin.clear();
+
+			if(model=="F"||model=="f")
+				break;
+
+			BSTItrIn<VehicleWrapper> it(l.getBST());
+			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
+
+
+			for(unsigned int i=0; i<temp.size(); i++)
+			{
+				cout << "vetor " << temp[i]->getLicensePlate() << endl;
+			}
+			while(!ita.isAtEnd())
+			{
+				cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
+				ita.advance();
+			}*/
+
+			while(!it.isAtEnd())
+			{
+				if(it.retrieve()->getModel()==model)
+				{
+					cout << "Found possible trips" << endl;
+					for(unsigned int i=0; i<temp.size(); i++)
+					{
+						if(temp[i]->getLicensePlate()==it.retrieve()->getLicensePlate())
+						{
+							valid_t.push_back(temp[i]);
+						}
+					}
+				}
+				it.advance();
+			}
+			if(valid_t.size()>0)
+			{
+				chooseTrip(valid_t,places);
+				l.save_data();
+			}
+			searched=true;
+		}
+		//if(!found)
+			//cout << "No trips with vehicles of the desired brand found!" << endl;
+	}
+	return searched;
+}
+
+/**
+ * Prompts user for desired begin destination and end destination
+ * @brief choose begin and end destinations
+ * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ */
+bool Lyfter::BSTSearchByYear()
+{
+	cls();
+	string year="";
+	vector<Trip *> temp=vector<Trip *>();
+	vector<Trip *> valid_t=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
+	bool searched=false;
+
+	if(l.login)
+		temp=l.findVacantTrips(l.curr_user);
+	else
+		temp=l.findVacantTrips(l.curr_unreg);
+
+	if(temp.size()>0)
+	{
+		while(!searched)
+		{
+			cout << "Input the desired year: (or F to quit selection) " << endl;
+			getline(cin, year);
+			cin.clear();
+
+			if(year=="F"||year=="f")
+				break;
+
+			int n_year=stol(year);
+
+			BSTItrIn<VehicleWrapper> it(l.getBST());
+			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
+
+
+			for(unsigned int i=0; i<temp.size(); i++)
+			{
+				cout << "vetor " << temp[i]->getLicensePlate() << endl;
+			}
+			while(!ita.isAtEnd())
+			{
+				cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
+				ita.advance();
+			}*/
+
+			while(!it.isAtEnd())
+			{
+				if(it.retrieve()->getYear()==n_year)
+				{
+					cout << "Found possible trips" << endl;
+					for(unsigned int i=0; i<temp.size(); i++)
+					{
+						if(temp[i]->getLicensePlate()==it.retrieve()->getLicensePlate())
+						{
+							valid_t.push_back(temp[i]);
+						}
+					}
+				}
+				it.advance();
+			}
+			if(valid_t.size()>0)
+			{
+				chooseTrip(valid_t,places);
+				l.save_data();
+			}
+			searched=true;
+		}
+		//if(!found)
+			//cout << "No trips with vehicles of the desired brand found!" << endl;
+	}
+	return searched;
+}
+
+/**
+ * Prompts user for desired begin destination and end destination
+ * @brief choose begin and end destinations
+ * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ */
+bool Lyfter::BSTSearchByType()
+{
+	/*
+	cls();
+	string type="";
+	Place * place;
+	vector<Trip *> temp=vector<Trip *>();
+	vector<Trip *> valid_t=vector<Trip *>();
+	vector<Place *> places=vector<Place*>();
+	bool found=false;
+
+	while(!found)
+	{
+		cout << "Input the desired type with first letter capitalised: (or F to quit selection) " << endl;
+		getline(cin, type);
+		cin.clear();
+
+		if(type=="F"||type=="f")
+			break;
+
+		BSTItrIn<VehicleWrapper> it(l.getBST());
+
+		if(l.login)
+			temp=l.findVacantTrips(l.curr_user);
+		else
+			temp=l.findVacantTrips(l.curr_unreg);
+
+		while(!it.isAtEnd())
+		{
+			if(it.retrieve()->getType()==type)
+			{
+				if(temp.size()>0)
+				{
+					cout << "Found possible trips" << endl;
+					for(unsigned int i=0; i<temp.size(); i++)
+					{
+						if(temp[i]->getVehicle()==it)
+						{
+							valid_t.push_back(temp[i]);
+							chooseTrip(valid_t,places);
+							found=true;
+							cls();
+							return true;
+						}
+						cout << "No trips with vehicles of the desired type found!" << endl;
+					}
+				}
+			}
+		}
+		return false;
+	}*/
+}
+
+/**
+ * @brief  Displays the options menu for advanced vehicle search
+ */
+void Lyfter::displayAdvSearchOptMenu()
+{
+	string user_in="";
+	long user_in_;
+	bool validInput=false;
+	cout << "Here's the advanced vehicle search menu! Pick what you want to search for:" << endl
+					<< "|*****************************************************************|" << endl <<
+					"| +.  Vehicles by...                                              |" << endl <<
+					"| 1.  Brand                                                       |" << endl <<
+					"| 2.  Model                                                       |" << endl <<
+					"| 3.  Year                                                        |" << endl <<
+					"| 4.  Type                                                        |" << endl <<
+					"| 5.  Go back to previous menu                                    |" << endl <<
+					"|*****************************************************************|" << endl;
+	cout << "Selected number from menu: ";
+	while(!validInput)
+	{
+		getline(cin, user_in);
+		cin.clear();
+		user_in_=stol(user_in);
+		if(user_in_>=1 && user_in_<=5)
+		{
+			validInput=true;
+			switch(user_in_)
+			{
+			case 1:
+				if(BSTSearchByBrand())
+				{
+					prev_state=curr_state;
+					if(l.login)
+						curr_state=loginMenu;
+					else curr_state=mainMenu;
+				}
+				else cls();
+				break;
+			case 2:
+				if(BSTSearchByModel())
+				{
+					prev_state=curr_state;
+					if(l.login)
+						curr_state=loginMenu;
+					else curr_state=mainMenu;
+				}
+				else cls();
+				break;
+			case 3:
+				if(BSTSearchByYear())
+				{
+					prev_state=curr_state;
+					if(l.login)
+						curr_state=loginMenu;
+					else curr_state=mainMenu;
+				}
+				else cls();
+				break;
+			case 4:
+				if(BSTSearchByType())
+				{
+					prev_state=curr_state;
+					if(l.login)
+						curr_state=loginMenu;
+					else curr_state=mainMenu;
+				}
+				else cls();
+				break;
+			case 5:
+				prev_state=curr_state;
+				if(l.login)
+					curr_state=loginMenu;
+				else curr_state=mainMenu;
+				cls();
+				break;
+			}
+		}
+	}
+}
+
+
 /**
  * @brief  Displays search for trips menu and changes states accordingly to user input
  */
@@ -859,8 +1226,9 @@ long Lyfter::displayTripMenu()
 					<< "|*****************************************************************|" << endl <<
 					"| +.  During your next trip you'll want to go to...               |" << endl <<
 					"| 1.  X destination                                               |" << endl <<
-					"| 2.  I don't care where I go, show all trips with vacancies!     |" << endl <<
-					"| 3.  Go back to previous menu                                    |" << endl <<
+					"| 2.  Advanced vehicle search                                     |" << endl <<
+					"| 3.  I don't care where I go, show all trips with vacancies!     |" << endl <<
+					"| 4.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	while(!validInput)
@@ -868,7 +1236,7 @@ long Lyfter::displayTripMenu()
 		getline(cin, user_in);
 		cin.clear();
 		user_in_=stol(user_in);
-		if(user_in_>=1 && user_in_<=3)
+		if(user_in_>=1 && user_in_<=4)
 		{
 			validInput=true;
 			switch(user_in_)
@@ -884,21 +1252,24 @@ long Lyfter::displayTripMenu()
 				else cls();
 				break;
 			case 2:
-				cout << "CASE 2 " << endl;
+				prev_state=curr_state;
+				curr_state=advSearchOpt;
+				break;
+			case 3:
 				if(allVacantTrips())
 				{
-
 					prev_state=curr_state;
 					if(l.login)
 						curr_state=loginMenu;
 					else curr_state=mainMenu;
 				}
-				else{
+				else
+				{
 					pressEnter();
 					cls();
 				}
 				break;
-			case 3:
+			case 4:
 				prev_state=curr_state;
 				if(l.login)
 				curr_state=loginMenu;
@@ -1332,8 +1703,9 @@ Vehicle* Lyfter::makeVehicle()
 	string type="";
 	string brand="";
 	string model="";
+	string s_year="";
 	unsigned short int year=-1;
-	string license_plate="";
+	string license_plate="-1";
 	string seats="";
 	unsigned int car_seats;
 
@@ -1348,19 +1720,23 @@ Vehicle* Lyfter::makeVehicle()
 	//cin.ignore(10000, '\n');
 
 	cout << "Input the vehicle model: " << endl;
-	getline(cin,brand);
+	getline(cin,model);
 	cin.clear();
 	//cin.ignore(10000, '\n');
 
 	cout << "Input the vehicle year: " << endl;
-	getline(cin,brand);
+	getline(cin,s_year);
 	cin.clear();
 	//cin.ignore(10000, '\n');
+	year=stol(s_year);
 
-	cout << "Input the vehicle license plate: " << endl;
-	getline(cin,license_plate);
-	cin.clear();
-	//cin.ignore(10000, '\n');
+	while(!l.isUniqueLicensePlate(license_plate))
+	{
+		cout << "Input the vehicle license plate: " << endl;
+		getline(cin,license_plate);
+		cin.clear();
+		//cin.ignore(10000, '\n');
+	}
 
 	cout << "Input the car's number of seats: " << endl;
 	getline(cin,seats);
@@ -1368,9 +1744,9 @@ Vehicle* Lyfter::makeVehicle()
 	cin.clear();
 	//cin.ignore(10000, '\n');
 
-	Vehicle* v=new Vehicle(l.curr_user->getName(),type,brand,model,year,license_plate,car_seats);
+	Vehicle* v=new Vehicle(l.curr_user->getUsern(),type,brand,model,year,license_plate,car_seats);
 	l.save_data();
-	l.load_data();
+	l.getBST().insert(v);
 	return v;
 }
 /**
@@ -1408,9 +1784,18 @@ bool Lyfter::rmVehicle()
 		if(i<=l.curr_user->getVehicles().size())
 		{
 			validIndex=true;
+			string lp_to_rm=l.curr_user->getVehicles().at(i)->getLicensePlate();
 			l.curr_user->removeVehicle(i);
 			l.save_data();
-			l.load_data();
+			BSTItrIn<VehicleWrapper> it(l.getBST());
+			while(!it.isAtEnd())
+			{
+				if(it.retrieve()->getLicensePlate()==lp_to_rm)
+				{
+					l.getBST().remove(it.retrieve().operator ->());
+				}
+				it.advance();
+			}
 			return true;
 		}
 		cout << "Invalid index! Please input again." << endl;
@@ -1441,7 +1826,6 @@ bool Lyfter::changePassword(RegPerson* p)
 	{
 		p->setPassw(new_passw);
 		l.save_data();
-		l.load_data();
 		cout << "Changed password successfully" << endl;
 		pressEnter();
 		cls();
@@ -1451,6 +1835,54 @@ bool Lyfter::changePassword(RegPerson* p)
 	pressEnter();
 	cls();
 	return false;
+}
+
+/**
+ * Prompts for new password and changes password
+ * @brief Change user password
+ * @param p user to change the password of
+ * @return if password successfully changed
+ */
+bool Lyfter::transferVehicleTo()
+{
+	cls();
+	string usern_to_transfer="";
+	string v_index="-1";
+	int v_ind=-1;
+
+	int v_size=l.curr_user->getVehicles().size();
+	displayVehicles(l.curr_user->getVehicles());
+
+	while(v_ind==-1)
+	{
+
+		cout << "Input the index of the vehicle you want to transfer: " << endl;
+		getline(cin,v_index);
+		cin.clear();
+		v_ind=stol(v_index);
+
+		if(v_ind>=0 && v_ind<v_size)
+		{
+			cout << "Input the username of the user you want to transfer ownership to: " << endl;
+			getline(cin, usern_to_transfer);
+			cin.clear();
+			//cin.ignore(10000, '\n');
+
+			if(l.usernameExists(usern_to_transfer))
+			{
+				Vehicle* v = l.curr_user->getVehicles().at(v_ind);
+				v->setOwner(usern_to_transfer);
+				RegPerson* other_user=l.findRegPerson(usern_to_transfer);
+				other_user->getVehicles().push_back(v);
+				l.curr_user->removeVehicle(v_ind);
+				l.save_data();
+				return true;
+			}
+			else
+				cout << "Username inexistent!" << endl;
+		}
+		cout << "Invalid index!" << endl;
+	}
 }
 /**
  * @brief  Displays user settings menu and changes states accordingly to user input
@@ -1466,7 +1898,8 @@ void Lyfter::displaySettingsMenu()
 					"| 2.  Delete vehicle                                              |" << endl <<
 					"| 3.  Display all vehicles                                        |" << endl <<
 					"| 4.  Alter password                                              |" << endl <<
-					"| 5.  Go back to previous menu                                    |" << endl <<
+					"| 5.  Transfer Vehicle Ownership                                  |" << endl <<
+					"| 6.  Go back to previous menu                                    |" << endl <<
 					"|*****************************************************************|" << endl;
 	cout << "Selected number from menu: ";
 	while(!validInput)
@@ -1475,13 +1908,14 @@ void Lyfter::displaySettingsMenu()
 		cin.clear();
 		//cin.ignore(10000, '\n');
 		user_in_=stol(user_in);
-		if(user_in_>= 1 && user_in_<= 5)
+		if(user_in_>= 1 && user_in_<= 6)
 		{
 			validInput=true;
 			switch(user_in_)
 			{
 			case 1:
 				l.curr_user->addVehicle(makeVehicle());
+				l.save_data();
 				pressEnter();
 				cls();
 				break;
@@ -1499,6 +1933,9 @@ void Lyfter::displaySettingsMenu()
 				changePassword(l.curr_user);
 				break;
 			case 5:
+				transferVehicleTo();
+				break;
+			case 6:
 				prev_state=curr_state;
 				curr_state=loginMenu;
 				break;
@@ -1555,6 +1992,8 @@ int main()
 		case adminMenu:
 			menu.displayAdminMenu();
 			break;
+		case advSearchOpt:
+			menu.displayAdvSearchOptMenu();
 		}
 	}
 }

@@ -197,3 +197,14 @@ bool Vehicle::operator<(const Vehicle& vc1)
 			return this->getBrand() < vc1.getBrand();
 		}
 	}
+
+bool Vehicle::operator== (const Vehicle &vc1) const
+{
+	return (this->owner==vc1.getOwner() &&
+					this->type==vc1.getType() &&
+					this->getBrand()==vc1.getBrand() &&
+					this->model == vc1.getModel() &&
+					this->year == vc1.getYear() &&
+					this->license_plate == vc1.getLicensePlate() &&
+					this->car_seats == vc1.getCarSeats());
+}

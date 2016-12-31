@@ -10,14 +10,15 @@ using namespace std;
 /*
  * @brief default logic constructor
  */
-Logic::Logic()
+Logic::Logic():bst_vehicles(VehicleWrapper())
 {
 }
 /*
  * @brief logic constructor
  * @param dir directory of where the files for loading will be. Directory must be in same directory as program executable!
  */
-Logic::Logic(string dir){
+Logic::Logic(string dir):bst_vehicles(VehicleWrapper())
+{
 	if (dir != "")
 		dir += "\\";
 	cfg_dir=dir;
@@ -81,6 +82,10 @@ vector<Place*>& Logic::getDelDestinations()
 	return del_destinations;
 }
 
+BST<VehicleWrapper>& Logic::getBST()
+{
+	return bst_vehicles;
+}
 
 /**
  * @brief Sets current trips vector
@@ -341,6 +346,28 @@ Place * Logic::findDest(string destname,string f)
 			}
 		return NULL;
 }
+
+bool Logic::isUniqueLicensePlate(string n_lp)
+{
+	if(n_lp=="-1")
+		return false;
+
+	for(int i=0; i<regUsers.size(); i++)
+	{
+		vector <Vehicle *> usr_v=regUsers[i]->getVehicles();
+
+		for(int j=0; j<usr_v.size(); j++)
+		{
+			if(usr_v.at(j)->getLicensePlate()==n_lp)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+
+
 /**
  * Loads RegPerson data members from file and creates RegPerson * objects
  * to push_back into the applications vector of registered users
@@ -426,6 +453,7 @@ int Logic::load_regUsers()
 				if (owner == "" || type == "" || brand == "" || model == "" || year == -1 || license_plate=="" || seats==-1)
 					throw CorruptedRegUser();
 				Vehicle *v = new Vehicle(owner, type, brand, model, year, license_plate,seats);
+				bst_vehicles.insert(v);
 				userVehicle.push_back(v);
 			}
 
@@ -646,6 +674,7 @@ int Logic::load_trips()
 		string value = "";
 
 		string vehicleowner ="";
+		string plate="";
 		unsigned long seats=-1;
 		string place="";
 		bool smoking=false;
@@ -667,6 +696,7 @@ int Logic::load_trips()
 			getline(fin, line);
 			if (line == "[Trip]")
 			{
+				plate="";
 				vehicleowner ="";
 				seats=-1;
 				smoking=false;
@@ -678,7 +708,7 @@ int Logic::load_trips()
 			}
 			else if (line == "[/Trip]")
 			{
-				if (vehicleowner == "" || seats == -1 || route.size()==0)
+				if (vehicleowner == "" || plate=="" || seats == -1 || route.size()==0)
 					throw CorruptedTrip();
 				try
 				{
@@ -703,7 +733,7 @@ int Logic::load_trips()
 				Date start_date(beginDate);
 				Date end_date(endDate);
 
-				Trip *trip = new Trip(vehicleowner, seats, smoking,start_date,end_date);
+				Trip *trip = new Trip(vehicleowner, plate, seats, smoking,start_date,end_date);
 				trip->addRoute(route);
 				if(driverP!=NULL)
 				{
@@ -727,13 +757,13 @@ int Logic::load_trips()
 					cout <<"CUR_TRIP:"<<trip->toString() << endl;
 				}
 			}
-			else if (line == "[Traveler]")
+			else if (line == "[Traveller]")
 			{
 				tuser="";
 				tplace="";
 				tplaces.clear();
 			}
-			else if (line == "[/Traveler]")
+			else if (line == "[/Traveller]")
 			{
 				if (tuser == "" || tplace == "")
 					throw CorruptedTrip();
@@ -769,9 +799,12 @@ int Logic::load_trips()
 					driverP=findRegPerson(value);
 
 				}
+				else if (key == "plate")
+					plate = value;
 				else if (key == "seats")
 					seats = stol(value);
-				else if (key == "place"){
+				else if (key == "place")
+				{
 					place = value;
 					Place * p = findDest(value,"loading");
 					if(p==NULL)
@@ -782,7 +815,8 @@ int Logic::load_trips()
 					pair <Place *, int> r(p,0);
 					route.push_back(r);
 				}
-				else if (key == "tplace"){
+				else if (key == "tplace")
+				{
 					tplace = value;
 					Place * p = findDest(value,"loading");
 					if(p==NULL)
@@ -996,7 +1030,7 @@ int Logic::save_del_destinations()
  * @brief loads Trip objects from file
  * @return 0 on success, -1 otherwise
  */
-int Logic::save_trips()
+int Logic::save_trips() const
 {
 	ofstream fout;
 
@@ -1018,6 +1052,7 @@ int Logic::save_trips()
 		{
 			fout << "[Trip]\n";
 			fout << "vehicleOwner=" << cur_trips[i]->getDriver() << endl;
+			fout << "plate=" << cur_trips[i]->getLicensePlate() << endl;
 			fout << "seats=" << cur_trips[i]->getAvailableSeats() << endl;
 
 			unsigned int route_size = cur_trips[i]->getRoute().size();
