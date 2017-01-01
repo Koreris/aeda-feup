@@ -105,7 +105,7 @@ RegPerson::RegPerson()
  * @param uname person's username
  * @param passw person's password
  */
-RegPerson::RegPerson(string n, string a, unsigned long t_nr, string uname,string passw)
+RegPerson::RegPerson(string n, string a, unsigned long t_nr, string uname,string passw,Date lastL)
 :Person(n,t_nr)
 {
 	address=a;
@@ -114,6 +114,7 @@ RegPerson::RegPerson(string n, string a, unsigned long t_nr, string uname,string
 	vehicles = vector<Vehicle *>();
 	buddies = vector<RegPerson *>();
 	tripHistory = vector<Trip *>();
+	lastLogin=lastL;
 }
 /**
  * @brief RegPerson destructor
@@ -127,6 +128,13 @@ RegPerson::~RegPerson(){}
 void RegPerson::setUsern(string usrn)
 {
 	username=usrn;
+}
+
+/**
+ * @brief Sets last login date
+ */
+void RegPerson::setlastLogin(Date date){
+	lastLogin = date;
 }
 
 /**
@@ -156,6 +164,15 @@ string RegPerson::getUsern() const
 {
 	return username;
 }
+
+/**
+ * @brief Returns the last login
+ * @return Date of last login
+ */
+Date RegPerson::getLastLogin() const{
+	return lastLogin;
+}
+
 /**
  * @brief Returns the password
  * @return string with password
@@ -332,6 +349,19 @@ void RegPerson::printPerson()
 	}
 }
 
+/**
+ * @brief Prints registered person's information with login data
+ */
+void RegPerson::printPersonAdmin()
+{
+	stringstream ss,ssn;
+	ss << "Name:" << name << " | Address:" << address << " | Phone:" << telephone_nr << " | Username:" << username << " | Password:" << password << " | Last active at:" << lastLogin;
+	cout << ss.str() << endl;
+	for(int i=0;i<vehicles.size();i++)
+	{
+		cout << vehicles[i]->toString() << endl;
+	}
+}
 
 /**
  * @brief Adds bill to billing, if user has vehicles, trips are free of charge
@@ -378,6 +408,9 @@ bool RegPerson::operator<(RegPerson* a){
 	}
 	return false;
 }
+
+
+
 //UnregPerson
 
 /**
@@ -410,6 +443,8 @@ void UnregPerson::printPerson()
 	ss << "Name:" << name << "| Phone:" << telephone_nr;
 	cout << ss.str();
 }
+
+
 
 /**
  * @brief Adds bill to billing of unregistered person

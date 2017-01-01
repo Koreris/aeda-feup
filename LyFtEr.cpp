@@ -61,7 +61,7 @@ void Lyfter::displayRegisteredUsers()
 	for(unsigned int i=0;i<l.getRegUsers().size();i++)
 	{
 		cout << i << ":";
-		l.getRegUsers()[i]->printPerson();
+		l.getRegUsers()[i]->printPersonAdmin();
 	}
 }
 /**
@@ -211,7 +211,9 @@ void Lyfter::displayAdminMenu()
 						" | 4.  List Destinations                                                      |" << endl <<
 						" | 5.  List Registered Users                                                  |" << endl <<
 						" | 6.  Charge Registered Users Monthly Fee                                    |" << endl <<
-						" | 7.  Back to Sign Up                                                        |" << endl <<
+						" | 7.  Update Registered Users addresses                                      |" << endl <<
+						" | 8.  List Inactive Users                                                    |" << endl <<
+						" | 9.  Back to Sign Up                                                       |" << endl <<
 						" +============================================================================+\n" << endl;
 		cout << "\n Selected number from menu:\n";
 
@@ -219,7 +221,7 @@ void Lyfter::displayAdminMenu()
 			cin.clear();
 			//cin.ignore(10000, '\n');
 			user_in_=stol(user_in);
-			if(user_in_>= 1 && user_in_<= 7)
+			if(user_in_>= 1 && user_in_<= 9)
 			{
 				validInput=true;
 				switch(user_in_)
@@ -255,6 +257,16 @@ void Lyfter::displayAdminMenu()
 					cls();
 					break;
 				case 7:
+					//editRegUserAddress();
+					pressEnter();
+					cls();
+					break;
+				case 8:
+					l.printHash();
+					pressEnter();
+					cls();
+					break;
+				case 9:
 					prev_state=curr_state;
 					curr_state=signUpMenu;
 					cls();
@@ -356,7 +368,7 @@ bool Lyfter::registerUser(){
 	getline(cin, phone);
 	phonenr=stol(phone);
 	cin.clear();
-	RegPerson * user = new RegPerson(name,addr,phonenr,usr,passw);
+	RegPerson * user = new RegPerson(name,addr,phonenr,usr,passw,l.get_curDate());
 	l.getRegUsers().push_back(user);
 	l.save_data();
 	cout << "Added user: ";

@@ -14,6 +14,7 @@
 #include <utility>
 #include <list>
 #include "BST.h"
+#include <tr1/unordered_set>
 #include <queue>
 
 //function to ignore upper case in strings

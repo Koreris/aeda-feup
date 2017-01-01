@@ -1,0 +1,17 @@
+[Trip]
+vehicleOwner=hellodarknessmyoldfriend
+plate=PO14-34
+seats=2147483637
+place=Lisboa
+place=S.Mamede
+place=Madrid
+smoking=0
+begindate=2018 12 10 19 30 0
+finishdate=2018 12 10 21 10 0
+[Traveller]
+traveller=user5
+tplace=Lisboa
+tplace=Madrid
+tplace=Lisboa
+[/Traveller]
+[/Trip]

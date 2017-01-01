@@ -37,6 +37,7 @@ private:
 	vector<Trip *> cur_trips;
 	vector<Trip *> del_trips;
 	BST<VehicleWrapper> bst_vehicles;
+	RegHashTable hash_reg;
 
 	string cfg_dir;
 	string cfg_file_regusers;
@@ -58,6 +59,7 @@ public:
 	///@{
 
 	Date get_curDate() const;
+	RegHashTable& getInactiveUsers();
 	vector<Trip*>& getCurTrips ();
 	vector<Place*>& getDelDestinations ();
 	vector<Trip*>& getDelTrips ();
@@ -102,7 +104,7 @@ public:
 	vector<Trip *> tripSortByDate(vector<Trip*>v);
 	vector<Trip *> tripSortByDriverName(vector<Trip*>v);
 	///@}
-
+	void printHash();
 	/** @name File loading
 	 */
 	///@{

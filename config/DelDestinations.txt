@@ -1,0 +1,15 @@
+[DelPlace]
+name=OAZ
+x=5
+y=83
+[/DelPlace]
+[DelPlace]
+name=SJM
+x=7
+y=84
+[/DelPlace]
+[DelPlace]
+name=Porto
+x=0
+y=90
+[/DelPlace]

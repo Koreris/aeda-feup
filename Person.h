@@ -8,6 +8,7 @@
 #include "Person.h"
 
 
+
 using namespace std;
 
 class Trip;
@@ -62,25 +63,27 @@ private:
 	string password;
 	string username;
 	string address;
+	Date lastLogin;
 	vector <RegPerson*> buddies;
 	vector <Vehicle *> vehicles;
 	vector <Trip*> tripHistory;
 	vector<string> notifications;
 public:
 	RegPerson();
-	RegPerson(string n, string a, unsigned long t_nr, string uname, string passw);
+	RegPerson(string n, string a, unsigned long t_nr, string uname, string passw,Date lastL);
 	~RegPerson();
 
 	//setters
 	void setPassw(string pw);
 	void setUsern(string usrn);
 	void setAddress(string ad);
-
+	void setlastLogin(Date date);
 	//getters
 	string getPassw() const;
 	string getUsern() const;
 	string getAddress() const;
 	bool getHasVehicle() const;
+	Date getLastLogin() const;
 	vector<RegPerson*>& getBuddies();
 	vector<Vehicle *>& getVehicles();
 	vector<string>& getNotifications();
@@ -101,6 +104,7 @@ public:
 
 	//Printing functions
 	void printPerson();
+	void printPersonAdmin();
 	void printTripHistory();
 
 	//operators
@@ -128,5 +132,37 @@ public:
 	}
 	void printPerson();
 };
+
+/**
+ * @brief Equal operator and Hash function to RegPerson* objects
+ *
+ * Used in the RegHashTable.
+ */
+struct eqstr {
+    bool operator() (const RegPerson* s1, const RegPerson* s2) const {
+        return s1->getUsern()==s2->getUsern();
+    }
+};
+
+/**
+ * @brief Hash function to RegPerson* objects
+ *
+ * Used in the RegHashTable.
+ */
+struct hstr {
+    int operator() (const RegPerson* s1) const {
+        int v = 0;
+        string u_name=s1->getUsern();
+        for ( unsigned int i=0; i< u_name.size(); i++ )
+            v = 37*v + u_name[i];
+        return v;
+    }
+};
+
+/**
+ * RegPerson* Hashtable
+ */
+typedef tr1::unordered_set<RegPerson*, hstr, eqstr> RegHashTable;
+
 
 #endif //PERSON_H_
