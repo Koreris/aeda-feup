@@ -84,6 +84,7 @@ public:
 	bool removeDestination();
 	bool updateDestination();
 	bool addDestination();
+	bool updateAddress();
 	void chargeMonthlyFee();
 	//Choose trips
 	bool allVacantTrips();
