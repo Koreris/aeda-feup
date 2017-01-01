@@ -154,6 +154,7 @@ bool Logic::userLogin(string usr, string passw) {
 			UnregPerson* curr_unreg = NULL;
 			cout << "Logged in with User: " << regUsers[i]->getUsern() << endl;
 			setLogin(true);
+			save_data();
 			return true;
 		}
 	}
