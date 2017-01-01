@@ -845,9 +845,8 @@ int Logic::load_data() {
 ////////////////--fix comments from here
 
 /**
- * Loads RegPerson data members from file and creates RegPerson * objects
- * to push_back into the applications vector of registered users
- * @brief loads RegPerson objects from file
+ * Saves RegPerson data members to file
+ * @brief saves RegPerson objects to file
  * @return 0 on success, -1 otherwise
  */
 int Logic::save_regUsers() {
@@ -908,9 +907,8 @@ int Logic::save_regUsers() {
 }
 
 /**
- * Loads place data members from file and creates Place * objects
- * to push_back into the applications vector of destinations
- * @brief loads Place objects from file
+ * Saves place data members to file
+ * @brief saves Place objects to file
  * @return 0 on success, -1 otherwise
  */
 int Logic::save_destinations() {
@@ -938,11 +936,10 @@ int Logic::save_destinations() {
 	return 0;
 }
 /**
- * Loads place data members from file and creates Place * objects
- * to push_back into the applications vector of deleted destinations
+ * Saves place data members to file
  * These deleted destinations are useful to mantain integrity of trip history
  * for each user in case a Place entry is deleted by the application admnistration
- * @brief loads "deleted" Place objects from file
+ * @brief saves "deleted" Place objects from file
  * @return 0 on success, -1 otherwise
  */
 int Logic::save_del_destinations() {
@@ -971,12 +968,8 @@ int Logic::save_del_destinations() {
 	return 0;
 }
 /**
- * Loads trip data members from file and creates Trip * objects
- * to push_back into the applications vector of trips, if the trip's
- * start date is lower than the current date, it will be added into the
- * deleted trips vector instead and push_backed into the vector of tripHistory
- * of the participants  of said trip
- * @brief loads Trip objects from file
+ * Saves trip data members to file
+ * @brief save Trip objects to file
  * @return 0 on success, -1 otherwise
  */
 int Logic::save_trips() const {
@@ -1037,10 +1030,7 @@ int Logic::save_trips() const {
 	return 0;
 }
 /**
- * Loads all the program information from the files (their names are defined in the top of Logic.h as constants).\n
- * This includes the registeredUsers, destinations(the ones that exist and a record of deleted ones) and trips \n\n
- *
- * @brief Loads all the Program information from files
+ * @brief Saves all the Program information to files
  * @return 0 upon success, non-zero otherwise
  */
 int Logic::save_data() {
