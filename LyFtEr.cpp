@@ -914,9 +914,9 @@ bool Lyfter::allVacantTrips() {
 }
 
 /**
- * Prompts user for desired begin destination and end destination
- * @brief choose begin and end destinations
- * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ * Show vacant trips by brand
+ * @brief finds vacant trips by car brand
+ * @return true if found results, false otherwise
  */
 bool Lyfter::BSTSearchByBrand() {
 	cls();
@@ -943,18 +943,6 @@ bool Lyfter::BSTSearchByBrand() {
 				break;
 
 			BSTItrIn<VehicleWrapper> it(l.getBST());
-			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
-
-
-			 for(unsigned int i=0; i<temp.size(); i++)
-			 {
-			 cout << "vetor " << temp[i]->getLicensePlate() << endl;
-			 }
-			 while(!ita.isAtEnd())
-			 {
-			 cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
-			 ita.advance();
-			 }*/
 
 			while (!it.isAtEnd()) {
 				if (it.retrieve()->getBrand() == brand) {
@@ -974,16 +962,14 @@ bool Lyfter::BSTSearchByBrand() {
 			}
 			searched = true;
 		}
-		//if(!found)
-		//cout << "No trips with vehicles of the desired brand found!" << endl;
 	}
 	return searched;
 }
 
 /**
- * Prompts user for desired begin destination and end destination
- * @brief choose begin and end destinations
- * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ * Show vacant trips by model
+ * @brief finds vacant trips by car model
+ * @return true if found results, false otherwise
  */
 bool Lyfter::BSTSearchByModel() {
 	cls();
@@ -1010,18 +996,6 @@ bool Lyfter::BSTSearchByModel() {
 				break;
 
 			BSTItrIn<VehicleWrapper> it(l.getBST());
-			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
-
-
-			 for(unsigned int i=0; i<temp.size(); i++)
-			 {
-			 cout << "vetor " << temp[i]->getLicensePlate() << endl;
-			 }
-			 while(!ita.isAtEnd())
-			 {
-			 cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
-			 ita.advance();
-			 }*/
 
 			while (!it.isAtEnd()) {
 				if (it.retrieve()->getModel() == model) {
@@ -1041,16 +1015,16 @@ bool Lyfter::BSTSearchByModel() {
 			}
 			searched = true;
 		}
-		//if(!found)
-		//cout << "No trips with vehicles of the desired brand found!" << endl;
+		if(!searched)
+		cout << "No trips with vehicles of the desired model found!" << endl;
 	}
 	return searched;
 }
 
 /**
- * Prompts user for desired begin destination and end destination
- * @brief choose begin and end destinations
- * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ * Show vacant trips by car year
+ * @brief finds vacant trips by car year
+ * @return true if found results, false otherwise
  */
 bool Lyfter::BSTSearchByYear() {
 	cls();
@@ -1077,18 +1051,6 @@ bool Lyfter::BSTSearchByYear() {
 			int n_year = stol(year);
 
 			BSTItrIn<VehicleWrapper> it(l.getBST());
-			/*BSTItrIn<VehicleWrapper> ita(l.getBST());
-
-
-			 for(unsigned int i=0; i<temp.size(); i++)
-			 {
-			 cout << "vetor " << temp[i]->getLicensePlate() << endl;
-			 }
-			 while(!ita.isAtEnd())
-			 {
-			 cout << "iterator " << ita.retrieve()->getLicensePlate() << endl;
-			 ita.advance();
-			 }*/
 
 			while (!it.isAtEnd()) {
 				if (it.retrieve()->getYear() == n_year) {
@@ -1108,16 +1070,16 @@ bool Lyfter::BSTSearchByYear() {
 			}
 			searched = true;
 		}
-		//if(!found)
-		//cout << "No trips with vehicles of the desired brand found!" << endl;
+		if(!searched)
+		cout << "No trips with vehicles of the desired brand found!" << endl;
 	}
 	return searched;
 }
 
 /**
- * Prompts user for desired begin destination and end destination
- * @brief choose begin and end destinations
- * @return true if destinations inputted are valid and exist and that there are trips with said destinations
+ * Show vacant trips by car type
+ * @brief finds vacant trips by car type
+ * @return true if found results, false otherwise
  */
 bool Lyfter::BSTSearchByType() {
 	/*
