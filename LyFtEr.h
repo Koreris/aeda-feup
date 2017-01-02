@@ -110,7 +110,6 @@ public:
 	bool BSTSearchByModel();
 	bool BSTSearchByYear();
 	bool BSTSearchByType();
-	bool BSTSearchBySeatNr();
 
 	///@}
 

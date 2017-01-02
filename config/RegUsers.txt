@@ -4,7 +4,7 @@ address=rua avenida
 phone=111111
 username=user
 password=1
-lastLogin=2017 1 1 10 0 0
+lastLogin=2017 1 2 16 23 8
 [Vehicle]
 owner=user
 type=Sedan
@@ -131,21 +131,13 @@ address=avenida do rei
 phone=666666
 username=user8
 password=8
-lastLogin=2016 2 1 10 0 0
+lastLogin=2017 1 1 19 53 44
 [/RegUser]
 [RegUser]
 name=u9
-address=avenida da rainha
+address=rua da rainha
 phone=666666
 username=user9
 password=9
 lastLogin=2016 10 1 10 0 0
-[/RegUser]
-[RegUser]
-name=Jig
-address=Rua muito real
-phone=111111
-username=u11
-password=11
-lastLogin=2017 1 1 19 34 42
 [/RegUser]
