@@ -18,6 +18,7 @@ const string CFG_FILE_DESTINATIONS = "Destinations.txt";
 const string CFG_FILE_DEL_DESTINATIONS = "DelDestinations.txt";
 const string CFG_FILE_CURTRIPS = "Trips.txt";
 const string CFG_FILE_DELTRIPS = "DelTrips.txt";
+const string CFG_FILE_BUDDIES = "Buddies.txt";
 
 /**
  * @brief Logic class
@@ -46,6 +47,7 @@ private:
 	string cfg_file_deldestinations;
 	string cfg_file_curtrips;
 	string cfg_file_deltrips;
+	string cfg_file_buddies;
 public:
 	Logic();
 
@@ -113,6 +115,7 @@ public:
 	int load_destinations();
 	int load_del_destinations();
 	int load_trips();
+	int load_buddies();
 	int load_data();
 	///@}
 
@@ -122,6 +125,7 @@ public:
 	int save_regUsers();
 	//int save_del_regUsers();
 	int save_destinations();
+	int save_buddies();
 	int save_del_destinations();
 	int save_trips() const;
 	int save_data();
@@ -131,6 +135,12 @@ public:
 /** @name Exceptions
  */
 ///@{
+class CorruptedBuddies {
+public:
+	CorruptedBuddies() {
+	}
+};
+
 class CorruptedRegUser {
 public:
 	CorruptedRegUser() {

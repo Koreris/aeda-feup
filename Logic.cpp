@@ -28,6 +28,7 @@ Logic::Logic(string dir) :
 	cfg_file_deldestinations = cfg_dir + CFG_FILE_DEL_DESTINATIONS;
 	cfg_file_curtrips = cfg_dir + CFG_FILE_CURTRIPS;
 	cfg_file_deltrips = cfg_dir + CFG_FILE_DELTRIPS;
+	cfg_file_buddies = cfg_dir + CFG_FILE_BUDDIES;
 	login = false;
 
 }
@@ -905,7 +906,40 @@ int Logic::save_regUsers() {
 	fout.close();
 	return 0;
 }
+/**
+ * Saves buddies of registeredUsers data  to file
+ * @brief saves buddies to file
+ * @return 0 on success, -1 otherwise
+ */
+int Logic::save_buddies() {
+	ofstream fout;
 
+	// -------------------
+	// Buddies file
+	// -------------------
+
+	fout.open(cfg_file_buddies.c_str());
+
+	if (fout.fail()) {
+		cout << "Opening file failed " << cfg_file_buddies.c_str() << endl;
+		throw CorruptedBuddies();
+	} else {
+		for (int i = 0; i < regUsers.size(); i++) {
+			if(regUsers[i]->getBuddies().size()>0)
+			{
+				fout << "[Buddies]\n";
+				fout << "name=" << regUsers[i]->getUsern() << endl;
+				for(int j = 0; j < regUsers[i]->getBuddies().size();j++)
+				{
+					fout << "friend=" << regUsers[i]->getBuddies()[j]->getUsern() << endl;
+				}
+				fout << "[/Buddies]\n";
+			}
+		}
+	}
+	fout.close();
+	return 0;
+}
 /**
  * Saves place data members to file
  * @brief saves Place objects to file
@@ -1037,6 +1071,12 @@ int Logic::save_data() {
 	try {
 		save_regUsers();
 	} catch (CorruptedRegUser& e) {
+		return -1;
+	}
+
+	try {
+		save_buddies();
+	} catch (CorruptedBuddies& e) {
 		return -1;
 	}
 

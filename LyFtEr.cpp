@@ -1659,9 +1659,11 @@ void Lyfter::displayBuddyMenu() {
 			switch (user_in_) {
 			case 1:
 				findBuddyUsername();
+				l.save_data();
 				break;
 			case 2:
 				rmBuddyUsername();
+				l.save_data();
 				break;
 			case 3:
 				displayBuddies(l.curr_user->getBuddies());
